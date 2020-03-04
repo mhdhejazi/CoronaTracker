@@ -18,6 +18,15 @@
           "revision": "891a6833e823f56ae3dd943fc9f646667a27876b",
           "version": "0.3.3"
         }
+      },
+      {
+        "package": "OverlayContainer",
+        "repositoryURL": "https://github.com/applidium/OverlayContainer",
+        "state": {
+          "branch": null,
+          "revision": "093bf9a8c69b5e88afbeed1c642e00eee95664c4",
+          "version": "3.2.1"
+        }
       }
     ]
   },

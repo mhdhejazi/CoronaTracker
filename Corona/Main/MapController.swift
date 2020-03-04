@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 import CodableCSV
+import OverlayContainer
 
 class MapController: UIViewController {
 	private var allAnnotations: [VirusReportAnnotation] = []
@@ -103,4 +104,25 @@ extension MapController: MKMapViewDelegate {
 	}
 }
 
+extension MapController: OverlayContainerViewControllerDelegate {
+	enum OverlayNotch: Int, CaseIterable {
+		case minimum, medium, maximum
+	}
 
+	func numberOfNotches(in containerViewController: OverlayContainerViewController) -> Int {
+		return OverlayNotch.allCases.count
+	}
+
+	func overlayContainerViewController(_ containerViewController: OverlayContainerViewController,
+										heightForNotchAt index: Int,
+										availableSpace: CGFloat) -> CGFloat {
+		switch OverlayNotch.allCases[index] {
+		case .maximum:
+			return availableSpace * 3 / 4
+		case .medium:
+			return availableSpace / 2
+		case .minimum:
+			return availableSpace * 1 / 4
+		}
+	}
+}

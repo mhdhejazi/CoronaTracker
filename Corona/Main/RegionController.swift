@@ -31,7 +31,7 @@ class RegionController: UITableViewController {
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
 
-//		virusReport = VirusDataManager.instance.allReports[1]
+		virusReport = VirusDataManager.instance.allReports[1]
 
 		update()
     }
