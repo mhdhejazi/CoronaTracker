@@ -3,27 +3,59 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
-		1162D130240D05F600647002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* ViewController.swift */; };
+		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
 		1162D133240D05F600647002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D131240D05F600647002 /* Main.storyboard */; };
 		1162D135240D05FA00647002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1162D134240D05FA00647002 /* Assets.xcassets */; };
 		1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D136240D05FA00647002 /* LaunchScreen.storyboard */; };
+		1162D141240D2F9300647002 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D140240D2F9300647002 /* CodableCSV */; };
+		1162D143240E57EB00647002 /* daily_report.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D142240E57EB00647002 /* daily_report.csv */; };
+		1162D145240EB86400647002 /* VirusReportAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D144240EB86400647002 /* VirusReportAnnotation.swift */; };
+		1162D149240EB8B300647002 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D148240EB8B300647002 /* Extensions.swift */; };
+		1162D14A240EBA3400647002 /* VirusReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D146240EB89C00647002 /* VirusReport.swift */; };
+		1162D14D240EE5B900647002 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D14C240EE5B900647002 /* Charts */; };
+		1162D155240F934000647002 /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D152240F934000647002 /* XYMarkerView.swift */; };
+		1162D156240F934100647002 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D153240F934000647002 /* BalloonMarker.swift */; };
+		1162D15A240FA46D00647002 /* VirusDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D159240FA46D00647002 /* VirusDataManager.swift */; };
+		1162D15C240FA5F600647002 /* time_series_confirmed.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D15B240FA5F600647002 /* time_series_confirmed.csv */; };
+		1162D15E240FA66000647002 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D15D240FA66000647002 /* Region.swift */; };
+		1162D161240FA87E00647002 /* VirusReportAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D160240FA87E00647002 /* VirusReportAnnotationView.swift */; };
+		1162D163240FAC9300647002 /* VirusTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D162240FAC9300647002 /* VirusTimeSeries.swift */; };
+		1162D165240FAE8900647002 /* VirusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D164240FAE8900647002 /* VirusData.swift */; };
+		1162D168240FB7BD00647002 /* time_series_recovered.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D166240FB7BC00647002 /* time_series_recovered.csv */; };
+		1162D169240FB7BD00647002 /* time_series_deaths.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D167240FB7BC00647002 /* time_series_deaths.csv */; };
+		1162D16E240FCDAB00647002 /* RegionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D16D240FCDAB00647002 /* RegionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1162D128240D05F600647002 /* Corona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Corona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1162D12F240D05F600647002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1162D12F240D05F600647002 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		1162D132240D05F600647002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1162D134240D05FA00647002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1162D137240D05FA00647002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1162D139240D05FA00647002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1162D142240E57EB00647002 /* daily_report.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = daily_report.csv; sourceTree = "<group>"; };
+		1162D144240EB86400647002 /* VirusReportAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReportAnnotation.swift; sourceTree = "<group>"; };
+		1162D146240EB89C00647002 /* VirusReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReport.swift; sourceTree = "<group>"; };
+		1162D148240EB8B300647002 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1162D152240F934000647002 /* XYMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
+		1162D153240F934000647002 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		1162D159240FA46D00647002 /* VirusDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusDataManager.swift; sourceTree = "<group>"; };
+		1162D15B240FA5F600647002 /* time_series_confirmed.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_confirmed.csv; sourceTree = "<group>"; };
+		1162D15D240FA66000647002 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		1162D160240FA87E00647002 /* VirusReportAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReportAnnotationView.swift; sourceTree = "<group>"; };
+		1162D162240FAC9300647002 /* VirusTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusTimeSeries.swift; sourceTree = "<group>"; };
+		1162D164240FAE8900647002 /* VirusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusData.swift; sourceTree = "<group>"; };
+		1162D166240FB7BC00647002 /* time_series_recovered.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_recovered.csv; sourceTree = "<group>"; };
+		1162D167240FB7BC00647002 /* time_series_deaths.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_deaths.csv; sourceTree = "<group>"; };
+		1162D16D240FCDAB00647002 /* RegionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1162D141240D2F9300647002 /* CodableCSV in Frameworks */,
+				1162D14D240EE5B900647002 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +90,70 @@
 		1162D12A240D05F600647002 /* Corona */ = {
 			isa = PBXGroup;
 			children = (
-				1162D12B240D05F600647002 /* AppDelegate.swift */,
-				1162D12D240D05F600647002 /* SceneDelegate.swift */,
-				1162D12F240D05F600647002 /* ViewController.swift */,
+				1162D158240FA41200647002 /* Data */,
+				1162D15F240FA85300647002 /* Map */,
+				1162D151240F934000647002 /* Chart */,
+				1162D16B240FC55F00647002 /* Util */,
+				1162D16C240FC56F00647002 /* Main */,
 				1162D131240D05F600647002 /* Main.storyboard */,
 				1162D134240D05FA00647002 /* Assets.xcassets */,
 				1162D136240D05FA00647002 /* LaunchScreen.storyboard */,
 				1162D139240D05FA00647002 /* Info.plist */,
+				1162D142240E57EB00647002 /* daily_report.csv */,
+				1162D15B240FA5F600647002 /* time_series_confirmed.csv */,
+				1162D167240FB7BC00647002 /* time_series_deaths.csv */,
+				1162D166240FB7BC00647002 /* time_series_recovered.csv */,
 			);
 			path = Corona;
+			sourceTree = "<group>";
+		};
+		1162D151240F934000647002 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				1162D152240F934000647002 /* XYMarkerView.swift */,
+				1162D153240F934000647002 /* BalloonMarker.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		1162D158240FA41200647002 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1162D159240FA46D00647002 /* VirusDataManager.swift */,
+				1162D15D240FA66000647002 /* Region.swift */,
+				1162D164240FAE8900647002 /* VirusData.swift */,
+				1162D146240EB89C00647002 /* VirusReport.swift */,
+				1162D162240FAC9300647002 /* VirusTimeSeries.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1162D15F240FA85300647002 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				1162D144240EB86400647002 /* VirusReportAnnotation.swift */,
+				1162D160240FA87E00647002 /* VirusReportAnnotationView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		1162D16B240FC55F00647002 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1162D148240EB8B300647002 /* Extensions.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		1162D16C240FC56F00647002 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1162D12B240D05F600647002 /* AppDelegate.swift */,
+				1162D12D240D05F600647002 /* SceneDelegate.swift */,
+				1162D12F240D05F600647002 /* MapController.swift */,
+				1162D16D240FCDAB00647002 /* RegionController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +172,10 @@
 			dependencies = (
 			);
 			name = Corona;
+			packageProductDependencies = (
+				1162D140240D2F9300647002 /* CodableCSV */,
+				1162D14C240EE5B900647002 /* Charts */,
+			);
 			productName = Corona;
 			productReference = 1162D128240D05F600647002 /* Corona.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +204,10 @@
 				Base,
 			);
 			mainGroup = 1162D11F240D05F600647002;
+			packageReferences = (
+				1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */,
+				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,7 +222,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1162D169240FB7BD00647002 /* time_series_deaths.csv in Resources */,
+				1162D143240E57EB00647002 /* daily_report.csv in Resources */,
 				1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */,
+				1162D168240FB7BD00647002 /* time_series_recovered.csv in Resources */,
+				1162D15C240FA5F600647002 /* time_series_confirmed.csv in Resources */,
 				1162D135240D05FA00647002 /* Assets.xcassets in Resources */,
 				1162D133240D05F600647002 /* Main.storyboard in Resources */,
 			);
@@ -138,9 +239,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1162D130240D05F600647002 /* ViewController.swift in Sources */,
+				1162D149240EB8B300647002 /* Extensions.swift in Sources */,
+				1162D155240F934000647002 /* XYMarkerView.swift in Sources */,
+				1162D161240FA87E00647002 /* VirusReportAnnotationView.swift in Sources */,
+				1162D163240FAC9300647002 /* VirusTimeSeries.swift in Sources */,
+				1162D145240EB86400647002 /* VirusReportAnnotation.swift in Sources */,
+				1162D15E240FA66000647002 /* Region.swift in Sources */,
+				1162D130240D05F600647002 /* MapController.swift in Sources */,
+				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
+				1162D165240FAE8900647002 /* VirusData.swift in Sources */,
+				1162D14A240EBA3400647002 /* VirusReport.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
+				1162D15A240FA46D00647002 /* VirusDataManager.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
+				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -285,6 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 37BYKL96J7;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 37BYKL96J7;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -336,6 +450,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dehesa/CodableCSV";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.3;
+			};
+		};
+		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1162D140240D2F9300647002 /* CodableCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */;
+			productName = CodableCSV;
+		};
+		1162D14C240EE5B900647002 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1162D120240D05F600647002 /* Project object */;
 }
