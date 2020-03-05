@@ -35,7 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1162D128240D05F600647002 /* Corona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Corona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1162D12F240D05F600647002 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		1162D129240D05F600647002 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1162D128240D05F600647002 /* Corona.app */,
+				1162D128240D05F600647002 /* Corona Tracker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,9 +162,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1162D127240D05F600647002 /* Corona */ = {
+		1162D127240D05F600647002 /* Corona Tracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona" */;
+			buildConfigurationList = 1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona Tracker" */;
 			buildPhases = (
 				1162D124240D05F600647002 /* Sources */,
 				1162D125240D05F600647002 /* Frameworks */,
@@ -174,7 +174,7 @@
 			);
 			dependencies = (
 			);
-			name = Corona;
+			name = "Corona Tracker";
 			packageProductDependencies = (
 				1162D140240D2F9300647002 /* CodableCSV */,
 				1162D14C240EE5B900647002 /* Charts */,
@@ -183,7 +183,7 @@
 				11198BBF24117A9A0080307F /* PKHUD */,
 			);
 			productName = Corona;
-			productReference = 1162D128240D05F600647002 /* Corona.app */;
+			productReference = 1162D128240D05F600647002 /* Corona Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -221,7 +221,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1162D127240D05F600647002 /* Corona */,
+				1162D127240D05F600647002 /* Corona Tracker */,
 			);
 		};
 /* End PBXProject section */
@@ -411,7 +411,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.Corona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.Corona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +448,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona" */ = {
+		1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1162D13D240D05FA00647002 /* Debug */,
