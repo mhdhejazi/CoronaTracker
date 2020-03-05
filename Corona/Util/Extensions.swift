@@ -70,6 +70,14 @@ extension Date {
 	var referenceDays: Int {
 		Calendar.posix.dateComponents([.day], from: Date.reference, to: self).day!
 	}
+
+	var ageDays: Int {
+		Calendar.posix.dateComponents([.day], from: self, to: Date()).day!
+	}
+
+	var yesterday: Date {
+		Calendar.posix.date(byAdding: .day, value: -1, to: self)!
+	}
 }
 
 extension Double {

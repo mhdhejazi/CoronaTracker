@@ -16,10 +16,11 @@ class RegionController: UITableViewController {
 		didSet {
 			if virusReport == nil {
 				virusReport = VirusDataManager.instance.globalReport
-				return
 			}
 
-			virusTimeSeries = VirusDataManager.instance.timeSeries(for: virusReport!.region)
+			if let region = virusReport?.region {
+				virusTimeSeries = VirusDataManager.instance.timeSeries(for: region)
+			}
 		}
 	}
 	private var virusTimeSeries: VirusTimeSeries?
@@ -40,8 +41,6 @@ class RegionController: UITableViewController {
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
 
-		virusReport = VirusDataManager.instance.globalReport
-
 		update()
     }
 
@@ -58,6 +57,8 @@ class RegionController: UITableViewController {
 		chartView.holeColor = nil
 		chartView.rotationAngle = 0
 		chartView.drawEntryLabelsEnabled = false
+		chartView.noDataTextColor = .systemGray
+		chartView.noDataFont = .systemFont(ofSize: 15)
 		chartView.setExtraOffsets(left: 0, top: 5, right: 0, bottom: -10)
 
 		initializeLegent(chartView.legend)
@@ -100,6 +101,9 @@ class RegionController: UITableViewController {
 		marker.minimumSize = CGSize(width: 80, height: 40)
 		chartView.marker = marker
 
+		chartView.noDataTextColor = .systemGray
+		chartView.noDataFont = .systemFont(ofSize: 15)
+
 		initializeLegent(chartView.legend)
 	}
 
@@ -113,11 +117,15 @@ class RegionController: UITableViewController {
 	}
 
 	func update() {
+		if virusReport == nil || virusTimeSeries == nil {
+			virusReport = VirusDataManager.instance.globalReport
+		}
+
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelTitle.text = self.virusReport?.region.name
-			self.labelConfirmed.text = self.virusReport?.data.confirmedCountString
-			self.labelRecovered.text = self.virusReport?.data.recoveredCountString
-			self.labelDeaths.text = self.virusReport?.data.deathCountString
+			self.labelTitle.text = self.virusReport?.region.name ?? "-"
+			self.labelConfirmed.text = self.virusReport?.data.confirmedCountString ?? "-"
+			self.labelRecovered.text = self.virusReport?.data.recoveredCountString ?? "-"
+			self.labelDeaths.text = self.virusReport?.data.deathCountString ?? "-"
 			self.labelUpdated.text = "Last updated: \(self.virusReport?.hourAge ?? 0) hours ago"
 		}, completion: nil)
 

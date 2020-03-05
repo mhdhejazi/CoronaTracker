@@ -31,7 +31,7 @@ class RegionContainerController: UIViewController {
 
 	func update(report: VirusReport?) {
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelTitle.text = report?.region.name
+			self.labelTitle.text = report?.region.name ?? "No data"
 		}, completion: nil)
 	}
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11198BBD241177740080307F /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBC241177740080307F /* Disk */; };
+		11198BC024117A9A0080307F /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBF24117A9A0080307F /* PKHUD */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -73,6 +75,8 @@
 				1162D141240D2F9300647002 /* CodableCSV in Frameworks */,
 				1162D17724103B3100647002 /* FloatingPanel in Frameworks */,
 				1162D14D240EE5B900647002 /* Charts in Frameworks */,
+				11198BC024117A9A0080307F /* PKHUD in Frameworks */,
+				11198BBD241177740080307F /* Disk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +191,8 @@
 				1162D140240D2F9300647002 /* CodableCSV */,
 				1162D14C240EE5B900647002 /* Charts */,
 				1162D17624103B3100647002 /* FloatingPanel */,
+				11198BBC241177740080307F /* Disk */,
+				11198BBF24117A9A0080307F /* PKHUD */,
 			);
 			productName = Corona;
 			productReference = 1162D128240D05F600647002 /* Corona.app */;
@@ -220,6 +226,8 @@
 				1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */,
 				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
 				1162D17524103B3000647002 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				11198BBB241177740080307F /* XCRemoteSwiftPackageReference "Disk" */,
+				11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */,
 			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
 			projectDirPath = "";
@@ -468,6 +476,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		11198BBB241177740080307F /* XCRemoteSwiftPackageReference "Disk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/saoudrizwan/Disk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.4;
+			};
+		};
+		11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Hengyu/PKHUD";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dehesa/CodableCSV";
@@ -495,6 +519,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		11198BBC241177740080307F /* Disk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11198BBB241177740080307F /* XCRemoteSwiftPackageReference "Disk" */;
+			productName = Disk;
+		};
+		11198BBF24117A9A0080307F /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
+		};
 		1162D140240D2F9300647002 /* CodableCSV */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */;

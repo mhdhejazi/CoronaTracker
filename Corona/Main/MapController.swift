@@ -11,8 +11,11 @@ import MapKit
 
 import CodableCSV
 import FloatingPanel
+import PKHUD
 
 class MapController: UIViewController {
+	private let maxDataAge = 6 // Hours
+
 	static var instance: MapController!
 
 	private var allAnnotations: [VirusReportAnnotation] = []
@@ -40,35 +43,18 @@ class MapController: UIViewController {
 
 		panelController = FloatingPanelController()
 		panelController.delegate = self
-
-
-//		fpc.surfaceView.backgroundColor = .clear
 		panelController.surfaceView.cornerRadius = 12
 		panelController.surfaceView.shadowHidden = false
-
-
 		panelController.set(contentViewController: regionContainerController)
 		panelController.track(scrollView: regionContainerController.regionController.tableView)
-
 		panelController.surfaceView.backgroundColor = .clear
 		panelController.surfaceView.contentView.backgroundColor = .clear
 
-
-		for report in VirusDataManager.instance.allReports where report.data.confirmedCount > 0 {
-			let annotation = VirusReportAnnotation(virusReport: report)
-			allAnnotations.append(annotation)
-		}
-
-		for report in VirusDataManager.instance.mainReports where report.data.confirmedCount > 0 {
-			let annotation = VirusReportAnnotation(virusReport: report)
-			mainAnnotations.append(annotation)
-		}
-
-		annotations = allAnnotations
-		mapView.addAnnotations(annotations)
 		mapView.register(VirusReportAnnotationView.self,
 						 forAnnotationViewWithReuseIdentifier: VirusReportAnnotation.reuseIdentifier)
 		mapView.showsPointsOfInterest = false
+
+		update()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +62,8 @@ class MapController: UIViewController {
 
 		panelController.addPanel(toParent: self, animated: true)
 		regionContainerController.regionController.tableView.setContentOffset(.zero, animated: false)
+
+		downloadIfNeeded()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -95,6 +83,54 @@ class MapController: UIViewController {
 
 	func hideRegionScreen() {
 		panelController.move(to: .half, animated: true)
+	}
+
+	private func update() {
+		guard VirusDataManager.instance.load() else { return }
+
+		for report in VirusDataManager.instance.allReports where report.data.confirmedCount > 0 {
+			let annotation = VirusReportAnnotation(virusReport: report)
+			allAnnotations.append(annotation)
+		}
+
+		for report in VirusDataManager.instance.mainReports where report.data.confirmedCount > 0 {
+			let annotation = VirusReportAnnotation(virusReport: report)
+			mainAnnotations.append(annotation)
+		}
+
+		annotations = allAnnotations
+		mapView.addAnnotations(annotations)
+
+		regionContainerController.regionController.update()
+	}
+
+	private func downloadIfNeeded() {
+		if let age = VirusDataManager.instance.globalReport?.hourAge, age < maxDataAge {
+			return
+		}
+
+		let showSpinner = allAnnotations.isEmpty
+		if showSpinner {
+			HUD.show(.label("Updating..."))
+		}
+
+		VirusDataManager.instance.download { success in
+			if success {
+				HUD.hide()
+				if VirusDataManager.instance.load() {
+					self.update()
+				} else {
+					if showSpinner {
+						HUD.flash(.error, delay: 1.0)
+					}
+				}
+			}
+			else {
+				if showSpinner {
+					HUD.flash(.error, delay: 1.0)
+				}
+			}
+		}
 	}
 }
 
