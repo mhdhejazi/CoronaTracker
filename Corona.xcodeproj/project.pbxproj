@@ -16,7 +16,6 @@
 		1162D135240D05FA00647002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1162D134240D05FA00647002 /* Assets.xcassets */; };
 		1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D136240D05FA00647002 /* LaunchScreen.storyboard */; };
 		1162D141240D2F9300647002 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D140240D2F9300647002 /* CodableCSV */; };
-		1162D143240E57EB00647002 /* daily_report.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D142240E57EB00647002 /* daily_report.csv */; };
 		1162D145240EB86400647002 /* VirusReportAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D144240EB86400647002 /* VirusReportAnnotation.swift */; };
 		1162D149240EB8B300647002 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D148240EB8B300647002 /* Extensions.swift */; };
 		1162D14A240EBA3400647002 /* VirusReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D146240EB89C00647002 /* VirusReport.swift */; };
@@ -24,13 +23,10 @@
 		1162D155240F934000647002 /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D152240F934000647002 /* XYMarkerView.swift */; };
 		1162D156240F934100647002 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D153240F934000647002 /* BalloonMarker.swift */; };
 		1162D15A240FA46D00647002 /* VirusDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D159240FA46D00647002 /* VirusDataManager.swift */; };
-		1162D15C240FA5F600647002 /* time_series_confirmed.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D15B240FA5F600647002 /* time_series_confirmed.csv */; };
 		1162D15E240FA66000647002 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D15D240FA66000647002 /* Region.swift */; };
 		1162D161240FA87E00647002 /* VirusReportAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D160240FA87E00647002 /* VirusReportAnnotationView.swift */; };
 		1162D163240FAC9300647002 /* VirusTimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D162240FAC9300647002 /* VirusTimeSeries.swift */; };
 		1162D165240FAE8900647002 /* VirusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D164240FAE8900647002 /* VirusData.swift */; };
-		1162D168240FB7BD00647002 /* time_series_recovered.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D166240FB7BC00647002 /* time_series_recovered.csv */; };
-		1162D169240FB7BD00647002 /* time_series_deaths.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D167240FB7BC00647002 /* time_series_deaths.csv */; };
 		1162D16E240FCDAB00647002 /* RegionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D16D240FCDAB00647002 /* RegionController.swift */; };
 		1162D17724103B3100647002 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D17624103B3100647002 /* FloatingPanel */; };
 		11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1B24114922000B2466 /* PercentValueFormatter.swift */; };
@@ -47,20 +43,16 @@
 		1162D134240D05FA00647002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1162D137240D05FA00647002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1162D139240D05FA00647002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1162D142240E57EB00647002 /* daily_report.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = daily_report.csv; sourceTree = "<group>"; };
 		1162D144240EB86400647002 /* VirusReportAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReportAnnotation.swift; sourceTree = "<group>"; };
 		1162D146240EB89C00647002 /* VirusReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReport.swift; sourceTree = "<group>"; };
 		1162D148240EB8B300647002 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1162D152240F934000647002 /* XYMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
 		1162D153240F934000647002 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		1162D159240FA46D00647002 /* VirusDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusDataManager.swift; sourceTree = "<group>"; };
-		1162D15B240FA5F600647002 /* time_series_confirmed.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_confirmed.csv; sourceTree = "<group>"; };
 		1162D15D240FA66000647002 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		1162D160240FA87E00647002 /* VirusReportAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusReportAnnotationView.swift; sourceTree = "<group>"; };
 		1162D162240FAC9300647002 /* VirusTimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusTimeSeries.swift; sourceTree = "<group>"; };
 		1162D164240FAE8900647002 /* VirusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusData.swift; sourceTree = "<group>"; };
-		1162D166240FB7BC00647002 /* time_series_recovered.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_recovered.csv; sourceTree = "<group>"; };
-		1162D167240FB7BC00647002 /* time_series_deaths.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_deaths.csv; sourceTree = "<group>"; };
 		1162D16D240FCDAB00647002 /* RegionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionController.swift; sourceTree = "<group>"; };
 		11672A1B24114922000B2466 /* PercentValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentValueFormatter.swift; sourceTree = "<group>"; };
 		11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
@@ -111,10 +103,6 @@
 				1162D134240D05FA00647002 /* Assets.xcassets */,
 				1162D136240D05FA00647002 /* LaunchScreen.storyboard */,
 				1162D139240D05FA00647002 /* Info.plist */,
-				1162D142240E57EB00647002 /* daily_report.csv */,
-				1162D15B240FA5F600647002 /* time_series_confirmed.csv */,
-				1162D167240FB7BC00647002 /* time_series_deaths.csv */,
-				1162D166240FB7BC00647002 /* time_series_recovered.csv */,
 			);
 			path = Corona;
 			sourceTree = "<group>";
@@ -243,11 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1162D169240FB7BD00647002 /* time_series_deaths.csv in Resources */,
-				1162D143240E57EB00647002 /* daily_report.csv in Resources */,
 				1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */,
-				1162D168240FB7BD00647002 /* time_series_recovered.csv in Resources */,
-				1162D15C240FA5F600647002 /* time_series_confirmed.csv in Resources */,
 				1162D135240D05FA00647002 /* Assets.xcassets in Resources */,
 				1162D133240D05F600647002 /* Main.storyboard in Resources */,
 			);
