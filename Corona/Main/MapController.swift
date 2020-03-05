@@ -75,7 +75,6 @@ class MapController: UIViewController {
 		super.viewDidAppear(animated)
 
 		panelController.addPanel(toParent: self, animated: true)
-		panelController.move(to: .half, animated: true)
 		regionContainerController.regionController.tableView.setContentOffset(.zero, animated: false)
 	}
 
@@ -152,13 +151,14 @@ extension MapController: MKMapViewDelegate {
 
 extension MapController: FloatingPanelControllerDelegate {
 	func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-		return PanelLayout()
+		(newCollection.userInterfaceIdiom == .pad ||
+			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
 	}
 }
 
 class PanelLayout: FloatingPanelLayout {
 	public var initialPosition: FloatingPanelPosition {
-		return .tip
+		return .half
 	}
 
 	public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
@@ -168,5 +168,21 @@ class PanelLayout: FloatingPanelLayout {
 		case .tip: return 64
 		default: return nil
 		}
+	}
+
+	func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
+		return [
+			surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0),
+			surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
+		]
+	}
+}
+
+class LandscapePanelLayout: PanelLayout {
+	override func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
+		return [
+			surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
+			surfaceView.widthAnchor.constraint(equalToConstant: 400),
+		]
 	}
 }

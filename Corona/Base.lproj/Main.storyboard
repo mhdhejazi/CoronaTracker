@@ -305,7 +305,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9mw-6g-4tZ" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailingMargin" id="4x1-FF-XHg"/>
+                            <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="9mw-6g-4tZ" secondAttribute="trailing" constant="20" id="4x1-FF-XHg"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="bottom" secondItem="De6-gr-Z57" secondAttribute="bottom" id="5Gj-gb-N3M"/>
                             <constraint firstItem="9mw-6g-4tZ" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="18" id="5dn-HN-lio"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="75" id="DET-Ia-muS"/>
@@ -314,7 +314,7 @@
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="Wqw-mH-VGq"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="b6x-du-zhV"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="eLS-tU-aQM"/>
-                            <constraint firstItem="9mw-6g-4tZ" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leadingMargin" id="lnm-f8-AAJ"/>
+                            <constraint firstItem="9mw-6g-4tZ" firstAttribute="leading" secondItem="rB9-u9-YPh" secondAttribute="leading" constant="20" id="lnm-f8-AAJ"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailing" id="uGQ-Va-gtV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rB9-u9-YPh"/>
