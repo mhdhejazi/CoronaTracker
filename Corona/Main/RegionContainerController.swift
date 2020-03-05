@@ -12,6 +12,7 @@ class RegionContainerController: UIViewController {
 	var regionController: RegionController!
 
 	@IBOutlet var effectView: UIVisualEffectView!
+	@IBOutlet var labelTitle: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,4 +29,9 @@ class RegionContainerController: UIViewController {
 		}
     }
 
+	func update(report: VirusReport?) {
+		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+			self.labelTitle.text = report?.region.name
+		}, completion: nil)
+	}
 }

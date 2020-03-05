@@ -43,6 +43,12 @@ class RegionController: UITableViewController {
 		update()
     }
 
+	override func didMove(toParent parent: UIViewController?) {
+		super.didMove(toParent: parent)
+
+		updateParent()
+	}
+
 	private func initializeCurrentChart() {
 		let chartView = chartViewCurrent!
 
@@ -112,8 +118,14 @@ class RegionController: UITableViewController {
 			self.labelDeaths.text = self.virusReport?.data.deathCountString
 		}, completion: nil)
 
+		updateParent()
+
 		updateCurrentChartData()
 		updateTimeSeriesChartData()
+	}
+
+	func updateParent() {
+		(parent as? RegionContainerController)?.update(report: virusReport)
 	}
 
 	private func updateCurrentChartData() {
