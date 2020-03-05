@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import Charts
 
@@ -189,5 +190,12 @@ class RegionController: UITableViewController {
 		chartViewTimeSeries.data = LineChartData(dataSets: dataSets)
 
 		chartViewTimeSeries.animate(xAxisDuration: 2)
+	}
+
+	@IBAction func buttonInfoTapped(_ sender: Any) {
+		let url = URL(string: "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")!
+		let safariController = SFSafariViewController(url: url)
+		safariController.modalPresentationStyle = .formSheet
+		present(safariController, animated: true)
 	}
 }

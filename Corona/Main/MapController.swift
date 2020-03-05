@@ -76,6 +76,7 @@ class MapController: UIViewController {
 
 		panelController.addPanel(toParent: self, animated: true)
 		panelController.move(to: .half, animated: true)
+		regionContainerController.regionController.tableView.setContentOffset(.zero, animated: false)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -91,6 +92,10 @@ class MapController: UIViewController {
 
 	func showRegionScreen() {
 		panelController.move(to: .full, animated: true)
+	}
+
+	func hideRegionScreen() {
+		panelController.move(to: .half, animated: true)
 	}
 }
 

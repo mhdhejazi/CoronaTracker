@@ -198,6 +198,36 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="PyN-Ks-IkV">
+                                        <rect key="frame" x="0.0" y="764" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PyN-Ks-IkV" id="sfr-T1-3kB">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Data: The Center for Systems Science and Engineering at Johns Hopkins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdl-LP-xBX">
+                                                    <rect key="frame" x="30" y="8" width="321" height="34"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8F-8a-gQO">
+                                                    <rect key="frame" x="359" y="13" width="25" height="24"/>
+                                                    <connections>
+                                                        <action selector="buttonInfoTapped:" destination="Pk4-iK-Cch" eventType="touchUpInside" id="eQ7-dk-7Di"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="K8F-8a-gQO" firstAttribute="leading" secondItem="Mdl-LP-xBX" secondAttribute="trailing" constant="8" symbolic="YES" id="A6f-ad-wZJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="K8F-8a-gQO" secondAttribute="trailing" constant="10" id="Igu-bh-fsR"/>
+                                                <constraint firstItem="Mdl-LP-xBX" firstAttribute="centerY" secondItem="sfr-T1-3kB" secondAttribute="centerY" id="Mg4-bs-S7B"/>
+                                                <constraint firstItem="Mdl-LP-xBX" firstAttribute="leading" secondItem="sfr-T1-3kB" secondAttribute="leadingMargin" constant="10" id="T09-5y-IMi"/>
+                                                <constraint firstItem="K8F-8a-gQO" firstAttribute="centerY" secondItem="sfr-T1-3kB" secondAttribute="centerY" id="dYj-m8-ajX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -217,7 +247,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Skp-bG-vCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1474" y="139"/>
+            <point key="canvasLocation" x="1473.913043478261" y="138.95089285714286"/>
         </scene>
         <!--Region Container Controller-->
         <scene sceneID="z6c-2Z-WFk">
