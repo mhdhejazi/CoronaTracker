@@ -13,6 +13,11 @@ import Charts
 class RegionController: UITableViewController {
 	var virusReport: VirusReport? {
 		didSet {
+			if virusReport == nil {
+				virusReport = VirusDataManager.instance.globalReport
+				return
+			}
+
 			virusTimeSeries = VirusDataManager.instance.timeSeries(for: virusReport!.region)
 		}
 	}
@@ -33,7 +38,7 @@ class RegionController: UITableViewController {
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
 
-		virusReport = VirusDataManager.instance.allReports[1]
+		virusReport = VirusDataManager.instance.globalReport
 
 		update()
     }

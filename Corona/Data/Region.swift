@@ -9,7 +9,7 @@
 import MapKit
 
 class Region: Equatable {
-	let country: String
+	var country: String
 	let province: String
 	let location: CLLocationCoordinate2D
 

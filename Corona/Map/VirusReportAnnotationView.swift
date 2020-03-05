@@ -32,7 +32,7 @@ class VirusReportAnnotationView: MKAnnotationView {
 
 	private var detailsString: NSAttributedString? {
 		let descriptor = UIFontDescriptor
-			.preferredFontDescriptor(withTextStyle: .subheadline)
+			.preferredFontDescriptor(withTextStyle: .footnote)
 			.withSymbolicTraits(.traitBold)
 		let boldFont = UIFont(descriptor: descriptor!, size: 0)
 
@@ -64,13 +64,20 @@ class VirusReportAnnotationView: MKAnnotationView {
         }
     }
 
-	private lazy var rightAccessoryView: UIView? = UIButton(type: .detailDisclosure)
+	private lazy var rightAccessoryView: UIView? = {
+		let button = UIButton(type: .detailDisclosure)
+		button.addAction {
+			MapController.instance.updateRegionScreen(report: self.virusReport)
+			MapController.instance.showRegionScreen()
+		}
+		return button
+	}()
 	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
 
 	private lazy var detailAccessoryView: UIView? = {
 		let label = UILabel()
-		label.textColor = .gray
-		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .subheadline), size: 0)
+		label.textColor = .systemGray
+		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
 		label.attributedText = detailsString
 		label.numberOfLines = 10
 		return label
@@ -161,5 +168,4 @@ class VirusReportAnnotationView: MKAnnotationView {
 
 		isTouched = false
 	}
-
 }

@@ -13,6 +13,8 @@ import CodableCSV
 import FloatingPanel
 
 class MapController: UIViewController {
+	static var instance: MapController!
+
 	private var allAnnotations: [VirusReportAnnotation] = []
 	private var mainAnnotations: [VirusReportAnnotation] = []
 	private var annotations: [VirusReportAnnotation] = []
@@ -25,6 +27,8 @@ class MapController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		MapController.instance = self
 
 		if #available(iOS 13.0, *) {
 			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
@@ -78,6 +82,15 @@ class MapController: UIViewController {
 
 		panelController.removePanelFromParent(animated: animated)
 	}
+
+	func updateRegionScreen(report: VirusReport?) {
+		regionContainerController.regionController.virusReport = report
+		regionContainerController.regionController.update()
+	}
+
+	func showRegionScreen() {
+		panelController.move(to: .full, animated: true)
+	}
 }
 
 extension MapController: MKMapViewDelegate {
@@ -123,9 +136,11 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-		guard let annotationView = view as? VirusReportAnnotationView else { return }
-		regionContainerController.regionController.virusReport = annotationView.virusReport!
-		regionContainerController.regionController.update()
+		updateRegionScreen(report: (view as? VirusReportAnnotationView)?.virusReport)
+	}
+
+	func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+		updateRegionScreen(report: nil)
 	}
 }
 

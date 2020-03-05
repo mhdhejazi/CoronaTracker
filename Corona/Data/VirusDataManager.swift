@@ -15,9 +15,11 @@ class VirusDataManager {
 
 	var allReports: [VirusReport] = []
 	var mainReports: [VirusReport] = []
+	var globalReport: VirusReport?
 
 	var allTimeSerieses: [VirusTimeSeries] = []
 	var mainTimeSerieses: [VirusTimeSeries] = []
+	var globalTimeSeries: VirusTimeSeries?
 
 	init() {
 		load()
@@ -28,15 +30,31 @@ class VirusDataManager {
 			return report
 		}
 
-		return mainReports.first { $0.region == region }
-	}
-
-	func timeSeries(for region: Region) -> VirusTimeSeries? {
-		if let report = allTimeSerieses.first(where: { $0.region == region }) {
+		if let report = mainReports.first(where: { $0.region == region }) {
 			return report
 		}
 
-		return mainTimeSerieses.first { $0.region == region }
+		if globalReport?.region == region {
+			return globalReport
+		}
+
+		return nil
+	}
+
+	func timeSeries(for region: Region) -> VirusTimeSeries? {
+		if let timeSeries = allTimeSerieses.first(where: { $0.region == region }) {
+			return timeSeries
+		}
+
+		if let timeSeries = mainTimeSerieses.first(where: { $0.region == region }) {
+			return timeSeries
+		}
+
+		if globalTimeSeries?.region == region {
+			return globalTimeSeries
+		}
+
+		return nil
 	}
 
 	func load() {
@@ -66,6 +84,10 @@ class VirusDataManager {
 				reports.append(report)
 			}
 			mainReports = reports
+
+			/// Global report
+			globalReport = VirusReport(provinceReports: allReports)
+			globalReport?.region.country = "Worldwide"
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -129,6 +151,10 @@ class VirusDataManager {
 			timeSerieses.append(timeSeries)
 		}
 		mainTimeSerieses = timeSerieses
+
+		/// Global time series
+		globalTimeSeries = VirusTimeSeries(provinceSerieses: allTimeSerieses)
+		globalTimeSeries?.region.country = "Worldwide"
 	}
 
 	private func loadFileTimeSeries(fileURL: URL) -> (rows: [CounterTimeSeries], headers: [String]) {
