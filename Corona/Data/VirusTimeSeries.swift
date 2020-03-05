@@ -34,6 +34,13 @@ class VirusTimeSeries {
 }
 
 class CounterTimeSeries: Decodable {
+	enum CodingKeys: String, CodingKey {
+		case province = "Province/State"
+		case country = "Country/Region"
+		case latitude = "Lat"
+		case longitude = "Long"
+	}
+
 	let region: Region
 	let values: [Int]
 
