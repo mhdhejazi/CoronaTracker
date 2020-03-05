@@ -24,6 +24,10 @@ class VirusReport: Decodable {
 	let lastUpdate: Date
 	let data: VirusData
 
+	var hourAge: Int {
+		Calendar.current.dateComponents([.hour], from: self.lastUpdate, to: Date()).hour!
+	}
+
 	required init(from decoder: Decoder) throws {
 		let row = try decoder.container(keyedBy: CodingKeys.self)
 		let province = try row.decode(String.self, forKey: .province)
@@ -48,7 +52,7 @@ class VirusReport: Decodable {
 		assert(!provinceReports.isEmpty)
 
 		self.region = Region(provinceRegions: provinceReports.map { $0.region })
-		self.lastUpdate = provinceReports.min { $0.lastUpdate < $1.lastUpdate }!.lastUpdate
+		self.lastUpdate = provinceReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate
 		self.data = VirusData(subData: provinceReports.map { $0.data })
 	}
 }

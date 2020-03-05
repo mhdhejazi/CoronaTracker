@@ -30,6 +30,7 @@ class RegionController: UITableViewController {
 	@IBOutlet var labelDeaths: UILabel!
 	@IBOutlet var chartViewCurrent: PieChartView!
 	@IBOutlet var chartViewTimeSeries: LineChartView!
+	@IBOutlet var labelUpdated: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +118,7 @@ class RegionController: UITableViewController {
 			self.labelConfirmed.text = self.virusReport?.data.confirmedCountString
 			self.labelRecovered.text = self.virusReport?.data.recoveredCountString
 			self.labelDeaths.text = self.virusReport?.data.deathCountString
+			self.labelUpdated.text = "Last updated: \(self.virusReport?.hourAge ?? 0) hours ago"
 		}, completion: nil)
 
 		updateParent()
