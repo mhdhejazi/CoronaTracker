@@ -20,12 +20,12 @@
         }
       },
       {
-        "package": "OverlayContainer",
-        "repositoryURL": "https://github.com/applidium/OverlayContainer",
+        "package": "FloatingPanel",
+        "repositoryURL": "https://github.com/SCENEE/FloatingPanel",
         "state": {
           "branch": null,
-          "revision": "093bf9a8c69b5e88afbeed1c642e00eee95664c4",
-          "version": "3.2.1"
+          "revision": "f909cd41016ec28e06965dd270814f412d46312e",
+          "version": "1.7.4"
         }
       }
     ]

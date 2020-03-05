@@ -28,6 +28,8 @@ class RegionController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		view.backgroundColor = .clear
+
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
 
@@ -94,10 +96,12 @@ class RegionController: UITableViewController {
 	}
 
 	func update() {
-		labelTitle.text = virusReport?.region.name
-		labelConfirmed.text = virusReport?.data.confirmedCountString
-		labelRecovered.text = virusReport?.data.recoveredCountString
-		labelDeaths.text = virusReport?.data.deathCountString
+		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+			self.labelTitle.text = self.virusReport?.region.name
+			self.labelConfirmed.text = self.virusReport?.data.confirmedCountString
+			self.labelRecovered.text = self.virusReport?.data.recoveredCountString
+			self.labelDeaths.text = self.virusReport?.data.deathCountString
+		}, completion: nil)
 
 		updateCurrentChartData()
 		updateTimeSeriesChartData()

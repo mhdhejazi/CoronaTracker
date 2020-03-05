@@ -30,8 +30,8 @@
 		1162D168240FB7BD00647002 /* time_series_recovered.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D166240FB7BC00647002 /* time_series_recovered.csv */; };
 		1162D169240FB7BD00647002 /* time_series_deaths.csv in Resources */ = {isa = PBXBuildFile; fileRef = 1162D167240FB7BC00647002 /* time_series_deaths.csv */; };
 		1162D16E240FCDAB00647002 /* RegionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D16D240FCDAB00647002 /* RegionController.swift */; };
-		1162D17224102C4600647002 /* OverlayContainer in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D17124102C4600647002 /* OverlayContainer */; };
-		1162D174241031A200647002 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D173241031A100647002 /* MainController.swift */; };
+		1162D17724103B3100647002 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D17624103B3100647002 /* FloatingPanel */; };
+		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,7 @@
 		1162D166240FB7BC00647002 /* time_series_recovered.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_recovered.csv; sourceTree = "<group>"; };
 		1162D167240FB7BC00647002 /* time_series_deaths.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time_series_deaths.csv; sourceTree = "<group>"; };
 		1162D16D240FCDAB00647002 /* RegionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionController.swift; sourceTree = "<group>"; };
-		1162D173241031A100647002 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		116EC0A72410DF48006E4559 /* RegionContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionContainerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +67,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1162D141240D2F9300647002 /* CodableCSV in Frameworks */,
+				1162D17724103B3100647002 /* FloatingPanel in Frameworks */,
 				1162D14D240EE5B900647002 /* Charts in Frameworks */,
-				1162D17224102C4600647002 /* OverlayContainer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,9 +154,9 @@
 			children = (
 				1162D12B240D05F600647002 /* AppDelegate.swift */,
 				1162D12D240D05F600647002 /* SceneDelegate.swift */,
-				1162D173241031A100647002 /* MainController.swift */,
 				1162D12F240D05F600647002 /* MapController.swift */,
 				1162D16D240FCDAB00647002 /* RegionController.swift */,
+				116EC0A72410DF48006E4559 /* RegionContainerController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			packageProductDependencies = (
 				1162D140240D2F9300647002 /* CodableCSV */,
 				1162D14C240EE5B900647002 /* Charts */,
-				1162D17124102C4600647002 /* OverlayContainer */,
+				1162D17624103B3100647002 /* FloatingPanel */,
 			);
 			productName = Corona;
 			productReference = 1162D128240D05F600647002 /* Corona.app */;
@@ -213,7 +213,7 @@
 			packageReferences = (
 				1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */,
 				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
-				1162D17024102C4600647002 /* XCRemoteSwiftPackageReference "OverlayContainer" */,
+				1162D17524103B3000647002 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
 			projectDirPath = "";
@@ -250,13 +250,13 @@
 				1162D155240F934000647002 /* XYMarkerView.swift in Sources */,
 				1162D161240FA87E00647002 /* VirusReportAnnotationView.swift in Sources */,
 				1162D163240FAC9300647002 /* VirusTimeSeries.swift in Sources */,
-				1162D174241031A200647002 /* MainController.swift in Sources */,
 				1162D145240EB86400647002 /* VirusReportAnnotation.swift in Sources */,
 				1162D15E240FA66000647002 /* Region.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				1162D165240FAE8900647002 /* VirusData.swift in Sources */,
 				1162D14A240EBA3400647002 /* VirusReport.swift in Sources */,
+				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
 				1162D15A240FA46D00647002 /* VirusDataManager.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
@@ -476,12 +476,12 @@
 				minimumVersion = 3.4.0;
 			};
 		};
-		1162D17024102C4600647002 /* XCRemoteSwiftPackageReference "OverlayContainer" */ = {
+		1162D17524103B3000647002 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/applidium/OverlayContainer";
+			repositoryURL = "https://github.com/SCENEE/FloatingPanel";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.1;
+				minimumVersion = 1.7.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -497,10 +497,10 @@
 			package = 1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
 		};
-		1162D17124102C4600647002 /* OverlayContainer */ = {
+		1162D17624103B3100647002 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1162D17024102C4600647002 /* XCRemoteSwiftPackageReference "OverlayContainer" */;
-			productName = OverlayContainer;
+			package = 1162D17524103B3000647002 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
