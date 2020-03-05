@@ -75,6 +75,7 @@ class MapController: UIViewController {
 		super.viewDidAppear(animated)
 
 		panelController.addPanel(toParent: self, animated: true)
+		panelController.move(to: .half, animated: true)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {

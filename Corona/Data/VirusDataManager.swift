@@ -111,7 +111,7 @@ class VirusDataManager {
 		let deaths = loadFileTimeSeries(fileURL: dataFileURL).rows
 
 		let dateFormatter = DateFormatter()
-		dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+		dateFormatter.locale = .posix
 		dateFormatter.dateFormat = "M/d/yy"
 
 		let dateStrings = headers.dropFirst(4)

@@ -64,11 +64,15 @@ class RegionController: UITableViewController {
 		chartView.xAxis.labelPosition = .bottom
 		chartView.xAxis.gridLineDashLengths = [3, 3]
 		chartView.xAxis.labelTextColor = .systemGray
+		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView)
 
 //		chartView.leftAxis.drawGridLinesEnabled = false
 		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.gridColor = .lightGray
 		chartView.leftAxis.labelTextColor = .systemGray
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+			value.kmFormatted
+		}
 
 		chartView.rightAxis.enabled = false
 
@@ -77,7 +81,7 @@ class RegionController: UITableViewController {
 		chartView.scaleYEnabled = false
 
 		let marker = XYMarkerView(color: UIColor.darkGray.withAlphaComponent(0.75),
-								  font: .systemFont(ofSize: 12),
+								  font: .boldSystemFont(ofSize: 13),
 								  textColor: .white,
 								  insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10),
 								  xAxisValueFormatter: chartView.xAxis.valueFormatter!)
@@ -139,14 +143,14 @@ class RegionController: UITableViewController {
 		guard let series = virusTimeSeries else { return }
 
 		let dates = series.series.keys.sorted()
-		let confirmedEntries = zip(dates.indices, dates).map {
-			ChartDataEntry(x: Double($0.0), y: Double(series.series[$0.1]?.confirmedCount ?? 0))
+		let confirmedEntries = dates.map {
+			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.confirmedCount ?? 0))
 		}
-		let recoveredEntries = zip(dates.indices, dates).map {
-			ChartDataEntry(x: Double($0.0), y: Double(series.series[$0.1]?.recoveredCount ?? 0))
+		let recoveredEntries = dates.map {
+			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.recoveredCount ?? 0))
 		}
-		let deathsEntries = zip(dates.indices, dates).map {
-			ChartDataEntry(x: Double($0.0), y: Double(series.series[$0.1]?.deathCount ?? 0))
+		let deathsEntries = dates.map {
+			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.deathCount ?? 0))
 		}
 
 		let entries = [confirmedEntries, deathsEntries, recoveredEntries]
@@ -173,28 +177,5 @@ class RegionController: UITableViewController {
 		chartViewTimeSeries.data = LineChartData(dataSets: dataSets)
 
 		chartViewTimeSeries.animate(xAxisDuration: 2)
-	}
-}
-
-class PercentValueFormatter: DefaultValueFormatter {
-	override init() {
-		let valueFormatter = NumberFormatter()
-		valueFormatter.numberStyle = .percent
-		valueFormatter.maximumFractionDigits = 1
-		valueFormatter.multiplier = 1
-		valueFormatter.percentSymbol = "%"
-
-		super.init(formatter: valueFormatter)
-	}
-
-	override func stringForValue(_ value: Double,
-								 entry: ChartDataEntry,
-								 dataSetIndex: Int,
-								 viewPortHandler: ViewPortHandler?) -> String {
-		if value < 4 {
-			return ""
-		}
-
-		return super.stringForValue(value, entry: entry, dataSetIndex: dataSetIndex, viewPortHandler: viewPortHandler)
 	}
 }

@@ -9,13 +9,6 @@
 import Foundation
 
 class VirusData {
-	private lazy var numberFormatter: NumberFormatter = {
-		let formatter = NumberFormatter()
-		formatter.usesGroupingSeparator = true
-		formatter.groupingSize = 3
-		return formatter
-	}()
-
 	let confirmedCount: Int
 	let recoveredCount: Int
 	let deathCount: Int
@@ -25,9 +18,9 @@ class VirusData {
 	var deathPercent: Double { 100.0 * Double(deathCount) / Double(confirmedCount) }
 	var existingPercent: Double { 100.0 * Double(existingCount) / Double(confirmedCount) }
 
-	var confirmedCountString: String { numberFormatter.string(from: NSNumber(value: confirmedCount))! }
-	var recoveredCountString: String { numberFormatter.string(from: NSNumber(value: recoveredCount))! }
-	var deathCountString: String { numberFormatter.string(from: NSNumber(value: deathCount))! }
+	var confirmedCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: confirmedCount))! }
+	var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }
+	var deathCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: deathCount))! }
 
 	init(confirmedCount: Int, recoveredCount: Int, deathCount: Int) {
 		self.confirmedCount = confirmedCount
