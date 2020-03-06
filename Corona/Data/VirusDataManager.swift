@@ -18,11 +18,16 @@ class VirusDataManager {
 	private let recoveredTimeSeriesFileName = "time_series_recovered.csv"
 	private let deathsTimeSeriesFileName = "time_series_deaths.csv"
 
-	private let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
-	private lazy var dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
-	private lazy var confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
-	private lazy var recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
-	private lazy var deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
+//	private let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
+//	private lazy var dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
+//	private lazy var confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
+//	private lazy var recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
+//	private lazy var deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
+	private let baseURL = URL(string: "https://github.com/MhdHejazi/COVID19/raw/master/data/")!
+	private lazy var dailyReportURL = URL(string: "report.csv", relativeTo: baseURL)!
+	private lazy var confirmedTimeSeriesURL = URL(string: "history-confirmed.csv", relativeTo: baseURL)!
+	private lazy var recoveredTimeSeriesURL = URL(string: "history-recovered.csv", relativeTo: baseURL)!
+	private lazy var deathsTimeSeriesURL = URL(string: "history-deaths.csv", relativeTo: baseURL)!
 
 	static let instance = VirusDataManager()
 
@@ -205,63 +210,71 @@ extension VirusDataManager {
 	}
 
 	private func downloadDailyReport(completion: @escaping (Bool) -> ()) {
-		let today = Date()
-		downloadDailyReport(date: today, completion: completion)
-	}
-
-	private func downloadDailyReport(date: Date, completion: @escaping (Bool) -> ()) {
-		if date.ageDays > maxOldDataAge {
-			completion(false)
-			return
-		}
-
-		let formatter = DateFormatter()
-		formatter.locale = .posix
-		formatter.dateFormat = "MM-dd-YYYY"
-		let fileName = formatter.string(from: date)
-
-		print("Downloading \(fileName)")
-		let url = URL(string: String(format: dailyReportURLString, fileName), relativeTo: baseURL)!
-
-		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-			DispatchQueue.main.async {
-				guard error == nil,
-					let data = data,
-					let string = String(data: data, encoding: .utf8),
-					!string.contains("<html") else {
-
-						print("Failed downloading \(fileName)")
-						self.downloadDailyReport(date: date.yesterday, completion: completion)
-						return
-				}
-
-				try? Disk.save(data, to: .caches, as: self.dailyReportFileName)
-				print("Download success \(fileName)")
-				completion(true)
-
-				self.downloadTimeSerieses(completion: completion)
+//		let today = Date()
+//		downloadDailyReport(date: today, completion: completion)
+		downloadFile(url: dailyReportURL, fileName: dailyReportFileName) { success in
+			if !success {
+				completion(false)
+				return
 			}
-		}.resume()
+
+			self.downloadTimeSerieses(completion: completion)
+		}
 	}
+
+//	private func downloadDailyReport(date: Date, completion: @escaping (Bool) -> ()) {
+//		if date.ageDays > maxOldDataAge {
+//			completion(false)
+//			return
+//		}
+//
+//		let formatter = DateFormatter()
+//		formatter.locale = .posix
+//		formatter.dateFormat = "MM-dd-YYYY"
+//		let fileName = formatter.string(from: date)
+//
+//		print("Downloading \(fileName)")
+//		let url = URL(string: String(format: dailyReportURLString, fileName), relativeTo: baseURL)!
+//
+//		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
+//			DispatchQueue.main.async {
+//				guard error == nil,
+//					let data = data,
+//					let string = String(data: data, encoding: .utf8),
+//					!string.contains("<html") else {
+//
+//						print("Failed downloading \(fileName)")
+//						self.downloadDailyReport(date: date.yesterday, completion: completion)
+//						return
+//				}
+//
+//				try? Disk.save(data, to: .caches, as: self.dailyReportFileName)
+//				print("Download success \(fileName)")
+//				completion(true)
+//
+//				self.downloadTimeSerieses(completion: completion)
+//			}
+//		}.resume()
+//	}
 
 	private func downloadTimeSerieses(completion: @escaping (Bool) -> ()) {
 		let dispatchGroup = DispatchGroup()
 		var result = true
 
 		dispatchGroup.enter()
-		downloadTimeSerieses(url: confirmedTimeSeriesURL, fileName: confirmedTimeSeriesFileName) { success in
+		downloadFile(url: confirmedTimeSeriesURL, fileName: confirmedTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadTimeSerieses(url: recoveredTimeSeriesURL, fileName: recoveredTimeSeriesFileName) { success in
+		downloadFile(url: recoveredTimeSeriesURL, fileName: recoveredTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadTimeSerieses(url: deathsTimeSeriesURL, fileName: deathsTimeSeriesFileName) { success in
+		downloadFile(url: deathsTimeSeriesURL, fileName: deathsTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}
@@ -271,7 +284,7 @@ extension VirusDataManager {
 		}
 	}
 
-	private func downloadTimeSerieses(url: URL, fileName: String, completion: @escaping (Bool) -> ()) {
+	private func downloadFile(url: URL, fileName: String, completion: @escaping (Bool) -> ()) {
 		print("Downloading \(fileName)")
 		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
 			DispatchQueue.main.async {
