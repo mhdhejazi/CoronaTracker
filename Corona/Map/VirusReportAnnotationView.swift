@@ -91,10 +91,10 @@ class VirusReportAnnotationView: MKAnnotationView {
 
 		layer.borderColor = UIColor.white.cgColor
 		layer.borderWidth = 3
-		layer.shadowColor = UIColor.black.cgColor
-		layer.shadowRadius = 2
-		layer.shadowOpacity = 0.25
-		layer.shadowOffset = .zero
+//		layer.shadowColor = UIColor.black.cgColor
+//		layer.shadowRadius = 2
+//		layer.shadowOpacity = 0.25
+//		layer.shadowOffset = .zero
 
 		countLabel = UILabel()
 		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
