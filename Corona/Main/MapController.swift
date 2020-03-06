@@ -54,7 +54,10 @@ class MapController: UIViewController {
 						 forAnnotationViewWithReuseIdentifier: VirusReportAnnotation.reuseIdentifier)
 		mapView.showsPointsOfInterest = false
 
-		update()
+		VirusDataManager.instance.loadAsync { _ in
+			self.update()
+			self.downloadIfNeeded()
+		}
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -62,8 +65,6 @@ class MapController: UIViewController {
 
 		panelController.addPanel(toParent: self, animated: true)
 		regionContainerController.regionController.tableView.setContentOffset(.zero, animated: false)
-
-		downloadIfNeeded()
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -86,8 +87,6 @@ class MapController: UIViewController {
 	}
 
 	private func update() {
-		guard VirusDataManager.instance.load() else { return }
-
 		for report in VirusDataManager.instance.allReports where report.data.confirmedCount > 0 {
 			let annotation = VirusReportAnnotation(virusReport: report)
 			allAnnotations.append(annotation)
@@ -111,23 +110,19 @@ class MapController: UIViewController {
 
 		let showSpinner = allAnnotations.isEmpty
 		if showSpinner {
-			HUD.show(.label("Updating..."))
+			HUD.show(.label("Updating..."), onView: view)
 		}
 
 		VirusDataManager.instance.download { success in
-			if success {
-				HUD.hide()
-				if VirusDataManager.instance.load() {
+			VirusDataManager.instance.loadAsync { _ in
+				if success {
+					HUD.hide()
 					self.update()
-				} else {
-					if showSpinner {
-						HUD.flash(.error, delay: 1.0)
-					}
 				}
-			}
-			else {
-				if showSpinner {
-					HUD.flash(.error, delay: 1.0)
+				else {
+					if showSpinner {
+						HUD.flash(.error, onView: self.view, delay: 1.0)
+					}
 				}
 			}
 		}

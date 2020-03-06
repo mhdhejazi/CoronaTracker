@@ -80,6 +80,16 @@ class VirusDataManager {
 		return loadReports()
 	}
 
+	func loadAsync(completion: @escaping (Bool) -> ()) {
+		DispatchQueue.global().async {
+			self.loadTimeSeries()
+			let result = self.loadReports()
+			DispatchQueue.main.async {
+				completion(result);
+			}
+		}
+	}
+
 	private func loadReports() -> Bool {
 		do {
 			/// All reports
@@ -237,7 +247,7 @@ extension VirusDataManager {
 //		let url = URL(string: String(format: dailyReportURLString, fileName), relativeTo: baseURL)!
 //
 //		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//			DispatchQueue.main.async {
+//			DispatchQueue.global().async {
 //				guard error == nil,
 //					let data = data,
 //					let string = String(data: data, encoding: .utf8),
@@ -287,7 +297,7 @@ extension VirusDataManager {
 	private func downloadFile(url: URL, fileName: String, completion: @escaping (Bool) -> ()) {
 		print("Downloading \(fileName)")
 		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-			DispatchQueue.main.async {
+			DispatchQueue.global().async {
 				guard error == nil,
 					let data = data,
 					let string = String(data: data, encoding: .utf8),
