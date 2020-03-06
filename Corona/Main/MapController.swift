@@ -207,6 +207,10 @@ class PanelLayout: FloatingPanelLayout {
 			surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
 		]
 	}
+
+	func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+		return position == .full ? 0.3 : 0.0
+	}
 }
 
 class LandscapePanelLayout: PanelLayout {
@@ -215,5 +219,9 @@ class LandscapePanelLayout: PanelLayout {
 			surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
 			surfaceView.widthAnchor.constraint(equalToConstant: 400),
 		]
+	}
+
+	override func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
+		return 0.0
 	}
 }
