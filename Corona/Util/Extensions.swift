@@ -90,7 +90,7 @@ extension Double {
 			return String(format: "%.1fm", locale: .posix, self / 1_000_000).replacingOccurrences(of: ".0", with: "")
 		}
 
-		return String(format: "%.0f", locale: .posix, self)
+		return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
 }
 

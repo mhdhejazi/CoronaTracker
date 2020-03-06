@@ -34,6 +34,7 @@ class VirusDataManager {
 	var allReports: [VirusReport] = []
 	var mainReports: [VirusReport] = []
 	var globalReport: VirusReport?
+	var topCountries: [VirusReport] = []
 
 	var allTimeSerieses: [VirusTimeSeries] = []
 	var mainTimeSerieses: [VirusTimeSeries] = []
@@ -117,6 +118,14 @@ class VirusDataManager {
 			/// Global report
 			globalReport = VirusReport(provinceReports: allReports)
 			globalReport?.region.country = "Worldwide"
+
+			/// Top countries
+			topCountries = [VirusReport](
+				mainReports.filter({ $0.region.name != "Others" })
+					.sorted(by: { $0.data.confirmedCount < $1.data.confirmedCount })
+					.reversed()
+					.prefix(6)
+			)
 		}
 		catch {
 			print("Unexpected error: \(error).")

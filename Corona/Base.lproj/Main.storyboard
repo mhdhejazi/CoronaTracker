@@ -198,8 +198,29 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="350" id="M89-3e-QJ7">
+                                        <rect key="frame" x="0.0" y="764" width="414" height="350"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M89-3e-QJ7" id="jG2-zw-QBx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71d-xP-f0E" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="20" y="20" width="374" height="310"/>
+                                                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="71d-xP-f0E" secondAttribute="trailing" constant="20" symbolic="YES" id="4VC-ca-EhJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="71d-xP-f0E" secondAttribute="bottom" constant="20" symbolic="YES" id="Brh-M5-hgQ"/>
+                                                <constraint firstItem="71d-xP-f0E" firstAttribute="leading" secondItem="jG2-zw-QBx" secondAttribute="leading" constant="20" symbolic="YES" id="TOX-2j-xuW"/>
+                                                <constraint firstItem="71d-xP-f0E" firstAttribute="top" secondItem="jG2-zw-QBx" secondAttribute="top" constant="20" symbolic="YES" id="bsL-PL-fWS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="ce0-b4-Yib">
-                                        <rect key="frame" x="0.0" y="764" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="1114" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ce0-b4-Yib" id="H1I-0u-7Do">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -221,7 +242,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="PyN-Ks-IkV">
-                                        <rect key="frame" x="0.0" y="804" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="1154" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PyN-Ks-IkV" id="sfr-T1-3kB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -261,6 +282,7 @@
                     <connections>
                         <outlet property="chartViewCurrent" destination="VZx-82-PuJ" id="XvA-eJ-gjl"/>
                         <outlet property="chartViewTimeSeries" destination="a8U-m1-EOW" id="y1d-WP-3f1"/>
+                        <outlet property="chartViewTop" destination="71d-xP-f0E" id="UrQ-4p-RH0"/>
                         <outlet property="labelConfirmed" destination="Qx6-QW-GSL" id="VlY-fm-0et"/>
                         <outlet property="labelDeaths" destination="ywS-vK-Jre" id="d35-57-jTR"/>
                         <outlet property="labelRecovered" destination="59t-UT-5AT" id="TP4-1D-vJN"/>

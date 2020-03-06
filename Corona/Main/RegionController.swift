@@ -31,16 +31,18 @@ class RegionController: UITableViewController {
 	@IBOutlet var labelDeaths: UILabel!
 	@IBOutlet var chartViewCurrent: PieChartView!
 	@IBOutlet var chartViewTimeSeries: LineChartView!
+	@IBOutlet var chartViewTop: BarChartView!
 	@IBOutlet var labelUpdated: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		view.backgroundColor = .clear
-		tableView.tableFooterView = UIView() 
+		tableView.tableFooterView = UIView()
 
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
+		initializeTopChart()
 
 		update()
     }
@@ -62,24 +64,24 @@ class RegionController: UITableViewController {
 		chartView.noDataFont = .systemFont(ofSize: 15)
 		chartView.setExtraOffsets(left: 0, top: 5, right: 0, bottom: -10)
 
-		initializeLegent(chartView.legend)
+		initializeLegend(chartView.legend)
+		initializeMarkerView(chartView: chartView)
 	}
 
 	private func initializeTimeSeriesChart() {
-
 		let chartView = chartViewTimeSeries!
 
 //		chartView.xAxis.drawGridLinesEnabled = false
 		chartView.xAxis.gridColor = .lightGray
-		chartView.xAxis.labelPosition = .bottom
 		chartView.xAxis.gridLineDashLengths = [3, 3]
-		chartView.xAxis.labelTextColor = .systemGray
+		chartView.xAxis.labelPosition = .bottom
+		chartView.xAxis.labelTextColor = SystemColor.secondaryLabel
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView)
 
 //		chartView.leftAxis.drawGridLinesEnabled = false
-		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.gridColor = .lightGray
-		chartView.leftAxis.labelTextColor = .systemGray
+		chartView.leftAxis.gridLineDashLengths = [3, 3]
+		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
 			value.kmFormatted
 		}
@@ -90,31 +92,69 @@ class RegionController: UITableViewController {
 //		chartView.scaleXEnabled = false
 		chartView.scaleYEnabled = false
 
+		chartView.noDataTextColor = .systemGray
+		chartView.noDataFont = .systemFont(ofSize: 15)
+
+		initializeLegend(chartView.legend)
+		initializeMarkerView(chartView: chartView)
+	}
+
+	private func initializeTopChart() {
+		let chartView = chartViewTop!
+
+//		chartView.xAxis.drawGridLinesEnabled = false
+		chartView.xAxis.drawGridLinesEnabled = false
+		chartView.xAxis.labelPosition = .bottom
+		chartView.xAxis.labelTextColor = SystemColor.secondaryLabel
+		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
+			guard let entry = chartView.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
+				let report = entry.data as? VirusReport else { return value.description }
+
+			return report.region.name.replacingOccurrences(of: " ", with: "\n")
+		})
+
+//		chartView.leftAxis.drawGridLinesEnabled = false
+		chartView.leftAxis.gridColor = .lightGray
+		chartView.leftAxis.gridLineDashLengths = [3, 3]
+		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+			value.kmFormatted
+		}
+
+		chartView.rightAxis.enabled = false
+
+		chartView.scaleXEnabled = false
+		chartView.scaleYEnabled = false
+
+		chartView.noDataTextColor = .systemGray
+		chartView.noDataFont = .systemFont(ofSize: 15)
+
+		initializeLegend(chartView.legend)
+		initializeMarkerView(chartView: chartView)
+	}
+
+	private func initializeLegend(_ legend: Legend) {
+		legend.textColor = SystemColor.secondaryLabel
+		legend.font = .systemFont(ofSize: 12, weight: .regular)
+		legend.form = .circle
+		legend.formSize = 12
+		legend.horizontalAlignment = .center
+		legend.xEntrySpace = 10
+	}
+
+	private func initializeMarkerView(chartView: ChartViewBase) {
+		let xFormatter = chartView is PieChartView ? nil : chartView.xAxis.valueFormatter
 		let marker = XYMarkerView(color: UIColor.darkGray.withAlphaComponent(0.75),
 								  font: .boldSystemFont(ofSize: 13),
 								  textColor: .white,
 								  insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10),
-								  xAxisValueFormatter: chartView.xAxis.valueFormatter!)
+								  xAxisValueFormatter: xFormatter)
 
 		marker.arrowSize = CGSize(width: 15, height: 15)
 //		marker.offset = CGPoint(x: 0, y: -10)
 		marker.chartView = chartView
 		marker.minimumSize = CGSize(width: 80, height: 40)
 		chartView.marker = marker
-
-		chartView.noDataTextColor = .systemGray
-		chartView.noDataFont = .systemFont(ofSize: 15)
-
-		initializeLegent(chartView.legend)
-	}
-
-	private func initializeLegent(_ legend: Legend) {
-		legend.textColor = .systemGray
-		legend.font = .systemFont(ofSize: 12, weight: .regular)
-		legend.form = .circle
-		legend.formSize = 12
-		legend.horizontalAlignment = .center
-		legend.xEntrySpace = 10
 	}
 
 	func update() {
@@ -134,6 +174,7 @@ class RegionController: UITableViewController {
 
 		updateCurrentChartData()
 		updateTimeSeriesChartData()
+		updateTopChartData()
 	}
 
 	func updateParent() {
@@ -187,8 +228,8 @@ class RegionController: UITableViewController {
 			dataSet.mode = .cubicBezier
 //			dataSet.drawCirclesEnabled = false
 			dataSet.drawCircleHoleEnabled = false
-			dataSet.circleRadius = 2
-			dataSet.circleColors = [colors[i].withAlphaComponent(0.5)]
+			dataSet.circleRadius = 2.5
+			dataSet.circleColors = [colors[i].withAlphaComponent(0.75)]
 			dataSet.circleHoleRadius = 1
 			dataSet.drawValuesEnabled = false
 			dataSet.lineWidth = 1
@@ -201,6 +242,37 @@ class RegionController: UITableViewController {
 		chartViewTimeSeries.data = LineChartData(dataSets: dataSets)
 
 		chartViewTimeSeries.animate(xAxisDuration: 2)
+	}
+
+	private func updateTopChartData() {
+		let reports = VirusDataManager.instance.topCountries
+
+		var entries = [BarChartDataEntry]()
+		for i in reports.indices {
+			let report = reports[i]
+//			let entry = BarChartDataEntry(x: Double(i), yValues: [
+//				Double(report.data.deathCount), Double(report.data.existingCount), Double(report.data.recoveredCount)
+//			])
+			let entry = BarChartDataEntry(x: Double(i), y: Double(report.data.confirmedCount))
+			entry.data = report
+			entries.append(entry)
+		}
+
+		let dataSet = BarChartDataSet(entries: entries, label: "Most affected countries")
+//		dataSet.colors = [UIColor.systemRed, .systemGray, .systemGreen]
+		dataSet.colors = ChartColorTemplates.pastel()//.reversed()
+		dataSet.stackLabels = ["Deaths", "Existing", "Recovered"]
+//		dataSet.drawValuesEnabled = false
+		dataSet.valueTextColor = SystemColor.secondaryLabel
+		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
+		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
+			value.kmFormatted
+		})
+
+		chartViewTop.fitBars = true
+		chartViewTop.data = BarChartData(dataSet: dataSet)
+
+		chartViewTop.animate(yAxisDuration: 2)
 	}
 
 	@IBAction func buttonInfoTapped(_ sender: Any) {
