@@ -37,6 +37,7 @@ class RegionController: UITableViewController {
         super.viewDidLoad()
 
 		view.backgroundColor = .clear
+		tableView.tableFooterView = UIView() 
 
 		initializeCurrentChart()
 		initializeTimeSeriesChart()
