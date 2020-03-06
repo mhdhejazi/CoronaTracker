@@ -13,6 +13,7 @@ import Charts
 public class XYMarkerView: BalloonMarker {
     private var xAxisValueFormatter: IAxisValueFormatter?
 	private var yAxisFormatter = NumberFormatter.groupingFormatter
+	private var unhighlighteTask: DispatchWorkItem?
     
     public init(color: UIColor, font: UIFont, textColor: UIColor, insets: UIEdgeInsets, xAxisValueFormatter: IAxisValueFormatter? = nil) {
         self.xAxisValueFormatter = xAxisValueFormatter
@@ -30,6 +31,13 @@ public class XYMarkerView: BalloonMarker {
 			let y = yAxisFormatter.string(from: NSNumber(value: entry.y))!
 			setLabel("\(y)")
 		}
+
+		unhighlighteTask?.cancel()
+		let task = DispatchWorkItem {
+			self.chartView?.highlightValues(nil)
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: task)
+		unhighlighteTask = task
     }
     
 }
