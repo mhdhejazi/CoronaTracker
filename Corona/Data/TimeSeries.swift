@@ -1,5 +1,5 @@
 //
-//  VirusTimeSeries.swift
+//  TimeSeries.swift
 //  Corona
 //
 //  Created by Mohammad on 3/4/20.
@@ -8,25 +8,25 @@
 
 import MapKit
 
-class VirusTimeSeries {
+class TimeSeries {
 	let region: Region
-	let series: [Date : VirusData]
+	let series: [Date : Statistic]
 
-	init(region: Region, series: [Date : VirusData]) {
+	init(region: Region, series: [Date : Statistic]) {
 		self.region = region
 		self.series = series
     }
 
-	init(provinceSerieses: [VirusTimeSeries]) {
-		assert(!provinceSerieses.isEmpty)
+	init(subSerieses: [TimeSeries]) {
+		assert(!subSerieses.isEmpty)
 
-		self.region = Region(provinceRegions: provinceSerieses.map { $0.region })
+		self.region = Region(subRegions: subSerieses.map { $0.region })
 
-		var series: [Date : VirusData] = [:]
-		let provinceSeries = provinceSerieses.first!
-		provinceSeries.series.keys.forEach { key in
-			let subData = provinceSerieses.compactMap { $0.series[key] }
-			let superData = VirusData(subData: subData)
+		var series: [Date : Statistic] = [:]
+		let subSeries = subSerieses.first!
+		subSeries.series.keys.forEach { key in
+			let subData = subSerieses.compactMap { $0.series[key] }
+			let superData = Statistic(subData: subData)
 			series[key] = superData
 		}
 		self.series = series

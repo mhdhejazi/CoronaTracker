@@ -10,15 +10,22 @@ import UIKit
 
 import Charts
 
-public class XYMarkerView: BalloonMarker {
+public class SimpleMarkerView: BalloonMarker {
     private var xAxisValueFormatter: IAxisValueFormatter?
 	private var yAxisFormatter = NumberFormatter.groupingFormatter
 	private var unhighlighteTask: DispatchWorkItem?
-    
-    public init(color: UIColor, font: UIFont, textColor: UIColor, insets: UIEdgeInsets, xAxisValueFormatter: IAxisValueFormatter? = nil) {
-        self.xAxisValueFormatter = xAxisValueFormatter
 
-        super.init(color: color, font: font, textColor: textColor, insets: insets)
+    public init(chartView: ChartViewBase) {
+		self.xAxisValueFormatter = chartView is PieChartView ? nil : xAxisValueFormatter
+
+        super.init(color: UIColor.darkGray.withAlphaComponent(0.75),
+				   font: .boldSystemFont(ofSize: 13),
+				   textColor: .white,
+				   insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10))
+
+		self.chartView = chartView
+		self.arrowSize = CGSize(width: 15, height: 15)
+		self.minimumSize = CGSize(width: 80, height: 40)
     }
     
     public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {

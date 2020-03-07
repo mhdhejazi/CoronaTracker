@@ -1,5 +1,5 @@
 //
-//  VirusReportAnnotationView.swift
+//  ReportAnnotationView.swift
 //  Corona
 //
 //  Created by Mohammad on 3/4/20.
@@ -8,26 +8,26 @@
 
 import MapKit
 
-class VirusReportAnnotationView: MKAnnotationView {
+class ReportAnnotationView: MKAnnotationView {
     private var countLabel: UILabel!
 
 	private var radius: CGFloat {
-		guard let annotation = annotation as? VirusReportAnnotation else { return 1 }
-		let number = CGFloat(annotation.virusReport.data.confirmedCount)
+		guard let annotation = annotation as? ReportAnnotation else { return 1 }
+		let number = CGFloat(annotation.report.stat.confirmedCount)
 		return 10 + log( 1 + number) * CGFloat(mapZoomLevel - 2.2)
 	}
 
 	private var color: UIColor {
-		guard let annotation = annotation as? VirusReportAnnotation else { return .clear }
-		let number = CGFloat(annotation.virusReport.data.confirmedCount)
+		guard let annotation = annotation as? ReportAnnotation else { return .clear }
+		let number = CGFloat(annotation.report.stat.confirmedCount)
 		let level = log10(number + 10) * 2
 		let brightness = max(0, 255 - level * 40) / 255;
 		let saturation = brightness > 0 ? 1 : max(0, 255 - ((level * 40) - 255)) / 255;
 		return UIColor(red: saturation, green: brightness, blue: brightness, alpha: 0.8)
 	}
 
-	var virusReport: VirusReport? {
-		(annotation as? VirusReportAnnotation)?.virusReport
+	var report: Report? {
+		(annotation as? ReportAnnotation)?.report
 	}
 
 	private var detailsString: NSAttributedString? {
@@ -38,15 +38,15 @@ class VirusReportAnnotationView: MKAnnotationView {
 
 		let string = NSMutableAttributedString()
 		string.append(NSAttributedString(string: "Confirmed: "))
-		string.append(NSAttributedString(string: virusReport?.data.confirmedCountString ?? "",
+		string.append(NSAttributedString(string: report?.stat.confirmedCountString ?? "",
 			attributes: [.foregroundColor: UIColor.systemOrange, .font: boldFont]))
 
 		string.append(NSAttributedString(string: "\nRecovered: "))
-		string.append(NSAttributedString(string: virusReport?.data.recoveredCountString ?? "",
+		string.append(NSAttributedString(string: report?.stat.recoveredCountString ?? "",
 			attributes: [.foregroundColor : UIColor.systemGreen, .font: boldFont]))
 
 		string.append(NSAttributedString(string: "\nDeath: "))
-		string.append(NSAttributedString(string: virusReport?.data.deathCountString ?? "",
+		string.append(NSAttributedString(string: report?.stat.deathCountString ?? "",
 			attributes: [.foregroundColor : UIColor.systemRed, .font: boldFont]))
 
 		return string
@@ -54,6 +54,10 @@ class VirusReportAnnotationView: MKAnnotationView {
 
 	var mapZoomLevel: CGFloat = 1 {
 		didSet {
+			if mapZoomLevel.rounded() == oldValue.rounded() {
+				return
+			}
+
 			configure()
 		}
 	}
@@ -67,7 +71,7 @@ class VirusReportAnnotationView: MKAnnotationView {
 	private lazy var rightAccessoryView: UIView? = {
 		let button = UIButton(type: .detailDisclosure)
 		button.addAction {
-			MapController.instance.updateRegionScreen(report: self.virusReport)
+			MapController.instance.updateRegionScreen(report: self.report)
 			MapController.instance.showRegionScreen()
 		}
 		return button
@@ -90,7 +94,7 @@ class VirusReportAnnotationView: MKAnnotationView {
 		canShowCallout = true
 
 		layer.borderColor = UIColor.white.cgColor
-		layer.borderWidth = 3
+		layer.borderWidth = 2
 //		layer.shadowColor = UIColor.black.cgColor
 //		layer.shadowRadius = 2
 //		layer.shadowOpacity = 0.25
@@ -113,9 +117,9 @@ class VirusReportAnnotationView: MKAnnotationView {
 	}
 
     func configure() {
-		guard let virusReport = virusReport else { return }
+		guard let report = report else { return }
 		if self.mapZoomLevel > 4 {
-			self.countLabel.text = virusReport.data.confirmedCountString
+			self.countLabel.text = report.stat.confirmedCountString
 			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
 			self.countLabel.alpha = 1
 		}

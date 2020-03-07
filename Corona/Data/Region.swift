@@ -21,24 +21,24 @@ class Region: Equatable {
 		self.location = location
 	}
 
-	init(provinceRegions: [Region]) {
-		assert(!provinceRegions.isEmpty)
+	init(subRegions: [Region]) {
+		assert(!subRegions.isEmpty)
 
-		self.country = provinceRegions.first!.country
+		self.country = subRegions.first!.country
 		self.province = ""
 
 //		self.location = provincePlaces.filter({
 //			!$0.province.starts(with: "Unassigned Location")
 //		}).max { $0.confirmedCount < $1.confirmedCount }!.location
 
-		let coordinates = provinceRegions.map { $0.location }
+		let coordinates = subRegions.map { $0.location }
 		let totals = coordinates.reduce((latitude: 0.0, longitude: 0.0)) {
 			($0.latitude + $1.latitude, $0.longitude + $1.longitude)
 		}
 		let location = CLLocationCoordinate2D(latitude: totals.latitude / Double(coordinates.count),
 											  longitude: totals.longitude / Double(coordinates.count))
 
-		self.location = provinceRegions.min {
+		self.location = subRegions.min {
 			location.distance(from: $0.location) < location.distance(from: $1.location)
 		}!.location
 	}

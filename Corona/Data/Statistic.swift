@@ -1,5 +1,5 @@
 //
-//  VirusData.swift
+//  Statistic.swift
 //  Corona
 //
 //  Created by Mohammad on 3/4/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class VirusData {
+class Statistic {
 	let confirmedCount: Int
 	let recoveredCount: Int
 	let deathCount: Int
@@ -28,7 +28,7 @@ class VirusData {
 		self.deathCount = deathCount
 	}
 
-	init(subData: [VirusData]) {
+	init(subData: [Statistic]) {
 		self.confirmedCount = subData.reduce(0) { $0 + $1.confirmedCount }
 		self.recoveredCount = subData.reduce(0) { $0 + $1.recoveredCount }
 		self.deathCount = subData.reduce(0) { $0 + $1.deathCount }

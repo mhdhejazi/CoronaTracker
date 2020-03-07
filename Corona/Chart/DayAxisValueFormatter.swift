@@ -11,14 +11,14 @@ import Foundation
 import Charts
 
 class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
-	weak var chart: BarLineChartViewBase?
+	weak var chartView: BarLineChartViewBase?
 	let months = ["Jan", "Feb", "Mar",
 				  "Apr", "May", "Jun",
 				  "Jul", "Aug", "Sep",
 				  "Oct", "Nov", "Dec"]
 
-	init(chart: BarLineChartViewBase) {
-		self.chart = chart
+	init(chartView: BarLineChartViewBase) {
+		self.chartView = chartView
 	}
 
 	public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
@@ -29,8 +29,8 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
 		let monthName = months[month - 1]
 		let yearName = "\(year)"
 
-		if let chart = chart,
-			chart.visibleXRange > 30 * 6 {
+		if let chartView = chartView,
+			chartView.visibleXRange > 30 * 6 {
 			return monthName + yearName
 		} else {
 			let dayOfMonth = Calendar.posix.component(.day, from: date)

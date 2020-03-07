@@ -18,9 +18,9 @@ class MapController: UIViewController {
 
 	static var instance: MapController!
 
-	private var allAnnotations: [VirusReportAnnotation] = []
-	private var mainAnnotations: [VirusReportAnnotation] = []
-	private var annotations: [VirusReportAnnotation] = []
+	private var allAnnotations: [ReportAnnotation] = []
+	private var countryAnnotations: [ReportAnnotation] = []
+	private var currentAnnotations: [ReportAnnotation] = []
 
 	private var panelController: FloatingPanelController!
 	private var regionContainerController: RegionContainerController!
@@ -41,20 +41,13 @@ class MapController: UIViewController {
 		regionContainerController = storyboard?.instantiateViewController(
 			withIdentifier: identifier) as? RegionContainerController
 
-		panelController = FloatingPanelController()
-		panelController.delegate = self
-		panelController.surfaceView.cornerRadius = 12
-		panelController.surfaceView.shadowHidden = false
-		panelController.set(contentViewController: regionContainerController)
-		panelController.track(scrollView: regionContainerController.regionController.tableView)
-		panelController.surfaceView.backgroundColor = .clear
-		panelController.surfaceView.contentView.backgroundColor = .clear
+		initializeBottomSheet()
 
-		mapView.register(VirusReportAnnotationView.self,
-						 forAnnotationViewWithReuseIdentifier: VirusReportAnnotation.reuseIdentifier)
+		mapView.register(ReportAnnotationView.self,
+						 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
 		mapView.showsPointsOfInterest = false
 
-		VirusDataManager.instance.loadAsync { _ in
+		DataManager.instance.loadAsync { _ in
 			self.update()
 			self.downloadIfNeeded()
 		}
@@ -73,8 +66,19 @@ class MapController: UIViewController {
 		panelController.removePanelFromParent(animated: animated)
 	}
 
-	func updateRegionScreen(report: VirusReport?) {
-		regionContainerController.regionController.virusReport = report
+	private func initializeBottomSheet() {
+		panelController = FloatingPanelController()
+		panelController.delegate = self
+		panelController.surfaceView.cornerRadius = 12
+		panelController.surfaceView.shadowHidden = false
+		panelController.set(contentViewController: regionContainerController)
+		panelController.track(scrollView: regionContainerController.regionController.tableView)
+		panelController.surfaceView.backgroundColor = .clear
+		panelController.surfaceView.contentView.backgroundColor = .clear
+	}
+
+	func updateRegionScreen(report: Report?) {
+		regionContainerController.regionController.report = report
 		regionContainerController.regionController.update()
 	}
 
@@ -87,24 +91,24 @@ class MapController: UIViewController {
 	}
 
 	private func update() {
-		for report in VirusDataManager.instance.allReports where report.data.confirmedCount > 0 {
-			let annotation = VirusReportAnnotation(virusReport: report)
+		for report in DataManager.instance.allReports where report.stat.confirmedCount > 0 {
+			let annotation = ReportAnnotation(report: report)
 			allAnnotations.append(annotation)
 		}
 
-		for report in VirusDataManager.instance.mainReports where report.data.confirmedCount > 0 {
-			let annotation = VirusReportAnnotation(virusReport: report)
-			mainAnnotations.append(annotation)
+		for report in DataManager.instance.countryReports where report.stat.confirmedCount > 0 {
+			let annotation = ReportAnnotation(report: report)
+			countryAnnotations.append(annotation)
 		}
 
-		annotations = allAnnotations
-		mapView.addAnnotations(annotations)
+		currentAnnotations = allAnnotations
+		mapView.addAnnotations(currentAnnotations)
 
 		regionContainerController.regionController.update()
 	}
 
 	private func downloadIfNeeded() {
-		if let age = VirusDataManager.instance.globalReport?.hourAge, age < maxDataAge {
+		if let age = DataManager.instance.worldwideReport?.hourAge, age < maxDataAge {
 			return
 		}
 
@@ -113,8 +117,8 @@ class MapController: UIViewController {
 			HUD.show(.label("Updating..."), onView: view)
 		}
 
-		VirusDataManager.instance.download { success in
-			VirusDataManager.instance.loadAsync { _ in
+		DataManager.instance.download { success in
+			DispatchQueue.main.async {
 				if success {
 					HUD.hide()
 					self.update()
@@ -136,8 +140,8 @@ extension MapController: MKMapViewDelegate {
 		}
 
 		guard let annotationView = mapView.dequeueReusableAnnotationView(
-			withIdentifier: VirusReportAnnotation.reuseIdentifier,
-			for: annotation) as? VirusReportAnnotationView else { return nil }
+			withIdentifier: ReportAnnotation.reuseIdentifier,
+			for: annotation) as? ReportAnnotationView else { return nil }
 
 		annotationView.mapZoomLevel = mapView.zoomLevel
 
@@ -146,8 +150,8 @@ extension MapController: MKMapViewDelegate {
 
 	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
 //		print(mapView.zoomLevel)
-		for annotation in annotations {
-			if let view = mapView.view(for: annotation) as? VirusReportAnnotationView {
+		for annotation in currentAnnotations {
+			if let view = mapView.view(for: annotation) as? ReportAnnotationView {
 				view.mapZoomLevel = mapView.zoomLevel
 			}
 		}
@@ -156,23 +160,23 @@ extension MapController: MKMapViewDelegate {
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		if mapView.zoomLevel > 4 {
-			if annotations.count != allAnnotations.count {
-				mapView.removeAnnotations(annotations)
-				annotations = allAnnotations
-				mapView.addAnnotations(annotations)
+			if currentAnnotations.count != allAnnotations.count {
+				mapView.removeAnnotations(currentAnnotations)
+				currentAnnotations = allAnnotations
+				mapView.addAnnotations(currentAnnotations)
 			}
 		}
 		else {
-			if annotations.count != mainAnnotations.count {
-				mapView.removeAnnotations(annotations)
-				annotations = mainAnnotations
-				mapView.addAnnotations(annotations)
+			if currentAnnotations.count != countryAnnotations.count {
+				mapView.removeAnnotations(currentAnnotations)
+				currentAnnotations = countryAnnotations
+				mapView.addAnnotations(currentAnnotations)
 			}
 		}
 	}
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-		updateRegionScreen(report: (view as? VirusReportAnnotationView)?.virusReport)
+		updateRegionScreen(report: (view as? ReportAnnotationView)?.report)
 	}
 
 	func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -189,6 +193,9 @@ extension MapController: FloatingPanelControllerDelegate {
 
 class PanelLayout: FloatingPanelLayout {
 	public var initialPosition: FloatingPanelPosition {
+		#if DEBUG
+		return .full
+		#endif
 		return .half
 	}
 

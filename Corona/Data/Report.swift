@@ -1,5 +1,5 @@
 //
-//  PlaceData.swift
+//  Report.swift
 //  Corona
 //
 //  Created by Mohammad on 3/3/20.
@@ -8,7 +8,7 @@
 
 import MapKit
 
-class VirusReport: Decodable {
+class Report: Decodable {
 	enum CodingKeys: String, CodingKey {
 		case province = "Province/State"
 		case country = "Country/Region"
@@ -22,7 +22,7 @@ class VirusReport: Decodable {
 
 	let region: Region
 	let lastUpdate: Date
-	let data: VirusData
+	let stat: Statistic
 
 	var hourAge: Int {
 		Calendar.current.dateComponents([.hour], from: self.lastUpdate, to: Date()).hour!
@@ -45,14 +45,14 @@ class VirusReport: Decodable {
 		let confirmed = try row.decode(Int.self, forKey: .confirmed)
 		let deaths = try row.decode(Int.self, forKey: .deaths)
 		let recovered = try row.decode(Int.self, forKey: .recovered)
-		self.data = VirusData(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
+		self.stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
     }
 
-	init(provinceReports: [VirusReport]) {
-		assert(!provinceReports.isEmpty)
+	init(subReports: [Report]) {
+		assert(!subReports.isEmpty)
 
-		self.region = Region(provinceRegions: provinceReports.map { $0.region })
-		self.lastUpdate = provinceReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate
-		self.data = VirusData(subData: provinceReports.map { $0.data })
+		self.region = Region(subRegions: subReports.map { $0.region })
+		self.lastUpdate = subReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate
+		self.stat = Statistic(subData: subReports.map { $0.stat })
 	}
 }
