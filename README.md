@@ -1,4 +1,6 @@
-# Corona Tracker
+![image](https://user-images.githubusercontent.com/121827/76154001-f278c600-60e5-11ea-9d79-7d38eef3738b.png)
+
+# Corona Tracker 
 Coronavirus tracker app for iOS with map &amp; charts.
 
 The app shows a distribution map, charts, and a timeline for every country. You can also see the data at city level for the US, Canada, and Australia, and at province level for China.
