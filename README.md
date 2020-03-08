@@ -11,4 +11,12 @@ The app shows a distribution map, charts, and a timeline for every country. You 
 Clone, build, and run!
 
 # Credits
+## Data
 Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
+
+## Libraries
+* [CodableCSV](https://github.com/dehesa/CodableCSV): For parsing the CSV data file.
+* [Charts](https://github.com/danielgindi/Charts): Beautiful and powerful charts.
+* [FloatingPanel](https://github.com/SCENEE/FloatingPanel): For the bottom sheet.
+* [Disk](https://github.com/saoudrizwan/Disk): Simlifies loading/saving files.
+* [PKHUD](https://github.com/Hengyu/PKHUD): For the activity indicator.
