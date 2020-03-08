@@ -15,6 +15,7 @@ import PKHUD
 
 class MapController: UIViewController {
 	private let maxDataAge = 6 // Hours
+	private let cityZoomLevel = CGFloat(4)
 
 	static var instance: MapController!
 
@@ -91,17 +92,17 @@ class MapController: UIViewController {
 	}
 
 	private func update() {
-		for report in DataManager.instance.allReports where report.stat.confirmedCount > 0 {
-			let annotation = ReportAnnotation(report: report)
-			allAnnotations.append(annotation)
-		}
+		allAnnotations = DataManager.instance.allReports
+			.filter({ $0.stat.confirmedCount > 0 })
+			.map({ ReportAnnotation(report: $0) })
 
-		for report in DataManager.instance.countryReports where report.stat.confirmedCount > 0 {
-			let annotation = ReportAnnotation(report: report)
-			countryAnnotations.append(annotation)
-		}
+		countryAnnotations = DataManager.instance.countryReports
+			.filter({ $0.stat.confirmedCount > 0 })
+			.map({ ReportAnnotation(report: $0) })
 
-		currentAnnotations = allAnnotations
+		currentAnnotations = mapView.zoomLevel > cityZoomLevel ? allAnnotations : countryAnnotations
+
+		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(currentAnnotations)
 
 		regionContainerController.regionController.update()
@@ -159,16 +160,16 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		if mapView.zoomLevel > 4 {
+		if mapView.zoomLevel > cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
-				mapView.removeAnnotations(currentAnnotations)
+				mapView.removeAnnotations(mapView.annotations)
 				currentAnnotations = allAnnotations
 				mapView.addAnnotations(currentAnnotations)
 			}
 		}
 		else {
 			if currentAnnotations.count != countryAnnotations.count {
-				mapView.removeAnnotations(currentAnnotations)
+				mapView.removeAnnotations(mapView.annotations)
 				currentAnnotations = countryAnnotations
 				mapView.addAnnotations(currentAnnotations)
 			}
