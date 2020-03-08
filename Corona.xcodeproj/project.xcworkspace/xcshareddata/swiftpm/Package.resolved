@@ -30,11 +30,11 @@
       },
       {
         "package": "FloatingPanel",
-        "repositoryURL": "https://github.com/SCENEE/FloatingPanel",
+        "repositoryURL": "https://github.com/MhdHejazi/FloatingPanel",
         "state": {
-          "branch": null,
-          "revision": "f909cd41016ec28e06965dd270814f412d46312e",
-          "version": "1.7.4"
+          "branch": "master",
+          "revision": "53ce8282f60964f946c3468de97ba414e563a3d0",
+          "version": null
         }
       },
       {
