@@ -11,15 +11,18 @@ import UIKit
 class RegionContainerController: UIViewController {
 	var regionController: RegionController!
 
-	@IBOutlet var effectView: UIVisualEffectView!
+	@IBOutlet var effectViewBackground: UIVisualEffectView!
+	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		if #available(iOS 13.0, *) {
-			effectView.effect = UIBlurEffect(style: .systemMaterial)
-			effectView.contentView.alpha = 0
+			effectViewBackground.effect = UIBlurEffect(style: .systemMaterial)
+			effectViewBackground.contentView.alpha = 0
+
+			effectViewHeader.effect = UIBlurEffect(style: .systemMaterial)
 		}
     }
 

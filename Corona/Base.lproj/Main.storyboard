@@ -58,7 +58,7 @@
         <scene sceneID="QjW-3Y-ZfF">
             <objects>
                 <tableViewController storyboardIdentifier="RegionController" id="Pk4-iK-Cch" customClass="RegionController" customModule="Corona_Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3Q-0s-6LW">
+                    <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3Q-0s-6LW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="821"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -311,12 +311,6 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="China" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-6g-4tZ">
-                                <rect key="frame" x="20" y="18" width="374" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBC-RK-X8c">
                                 <rect key="frame" x="0.0" y="75" width="414" height="821"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -324,25 +318,44 @@
                                     <segue destination="Pk4-iK-Cch" kind="embed" id="01Q-J6-QCh"/>
                                 </connections>
                             </containerView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IF-jV-QKe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ndt-qk-NZZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="China" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-6g-4tZ">
+                                <rect key="frame" x="20" y="18" width="374" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="9mw-6g-4tZ" secondAttribute="trailing" constant="20" id="4x1-FF-XHg"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="bottom" secondItem="De6-gr-Z57" secondAttribute="bottom" id="5Gj-gb-N3M"/>
                             <constraint firstItem="9mw-6g-4tZ" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="18" id="5dn-HN-lio"/>
+                            <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="2IF-jV-QKe" secondAttribute="bottom" id="5gk-St-JC3"/>
+                            <constraint firstItem="2IF-jV-QKe" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="A3A-Ao-8kO"/>
+                            <constraint firstItem="2IF-jV-QKe" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="D2Q-Mq-cev"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="75" id="DET-Ia-muS"/>
                             <constraint firstAttribute="bottom" secondItem="0hs-6B-msn" secondAttribute="bottom" id="Msc-FN-sAs"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="trailing" secondItem="rB9-u9-YPh" secondAttribute="trailing" id="QhN-hL-XFg"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="Wqw-mH-VGq"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="b6x-du-zhV"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="eLS-tU-aQM"/>
+                            <constraint firstItem="2IF-jV-QKe" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailing" id="iFk-g6-7J9"/>
                             <constraint firstItem="9mw-6g-4tZ" firstAttribute="leading" secondItem="rB9-u9-YPh" secondAttribute="leading" constant="20" id="lnm-f8-AAJ"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailing" id="uGQ-Va-gtV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rB9-u9-YPh"/>
                     </view>
                     <connections>
-                        <outlet property="effectView" destination="0hs-6B-msn" id="3qS-oa-1qu"/>
+                        <outlet property="effectViewBackground" destination="0hs-6B-msn" id="3qS-oa-1qu"/>
+                        <outlet property="effectViewHeader" destination="2IF-jV-QKe" id="XLt-Ez-olK"/>
                         <outlet property="labelTitle" destination="9mw-6g-4tZ" id="ONa-Yj-wOa"/>
                     </connections>
                 </viewController>
