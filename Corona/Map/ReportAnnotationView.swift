@@ -95,10 +95,6 @@ class ReportAnnotationView: MKAnnotationView {
 
 		layer.borderColor = UIColor.white.cgColor
 		layer.borderWidth = 2
-//		layer.shadowColor = UIColor.black.cgColor
-//		layer.shadowRadius = 2
-//		layer.shadowOpacity = 0.25
-//		layer.shadowOffset = .zero
 
 		countLabel = UILabel()
 		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]

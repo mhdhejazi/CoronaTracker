@@ -12,17 +12,17 @@ import CodableCSV
 import Disk
 
 class DataManager {
-	private let maxOldDataAge = 10 // Days
-	private let dailyReportFileName = "daily_report.csv"
-	private let confirmedTimeSeriesFileName = "time_series_confirmed.csv"
-	private let recoveredTimeSeriesFileName = "time_series_recovered.csv"
-	private let deathsTimeSeriesFileName = "time_series_deaths.csv"
+	private static let maxOldDataAge = 10 // Days
+	private static let dailyReportFileName = "daily_report.csv"
+	private static let confirmedTimeSeriesFileName = "time_series_confirmed.csv"
+	private static let recoveredTimeSeriesFileName = "time_series_recovered.csv"
+	private static let deathsTimeSeriesFileName = "time_series_deaths.csv"
 
-	private let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
-	private lazy var dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
-	private lazy var confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
-	private lazy var recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
-	private lazy var deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
+	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
+	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
+	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
+	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
+	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
 
 	static let instance = DataManager()
 
@@ -89,7 +89,7 @@ class DataManager {
 	private func loadReports() -> Bool {
 		do {
 			/// All reports
-			let data = try Disk.retrieve(dailyReportFileName, from: .caches, as: Data.self)
+			let data = try Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
 
 			let decoder = CSVDecoder()
 			decoder.headerStrategy = .firstLine
@@ -97,11 +97,11 @@ class DataManager {
 
 			/// Main reports
 			var reports = [Report]()
-			reports.append(contentsOf: allReports.filter({ $0.region.province.isEmpty }))
+			reports.append(contentsOf: allReports.filter({ !$0.region.isProvince }))
 			Dictionary(grouping: allReports.filter({ report in
-				!report.region.province.isEmpty
+				report.region.isProvince
 			}), by: { report in
-				report.region.country
+				report.region.countryName
 			}).forEach { (key, value) in
 				let report = Report(subReports: value.map { $0 })
 				reports.append(report)
@@ -110,7 +110,7 @@ class DataManager {
 
 			/// Global report
 			worldwideReport = Report(subReports: allReports)
-			worldwideReport?.region.country = "Worldwide"
+			worldwideReport?.region.countryName = "Worldwide"
 
 			/// Top countries
 			topReports = [Report](
@@ -131,15 +131,15 @@ class DataManager {
 	private func loadTimeSeries() {
 		do {
 			/// All time serieses
-			var data = try Disk.retrieve(confirmedTimeSeriesFileName, from: .caches, as: Data.self)
+			var data = try Disk.retrieve(Self.confirmedTimeSeriesFileName, from: .caches, as: Data.self)
 			let result = loadFileTimeSeries(data: data)
 			let confirmed = result.rows
 			let headers = result.headers
 
-			data = try Disk.retrieve(recoveredTimeSeriesFileName, from: .caches, as: Data.self)
+			data = try Disk.retrieve(Self.recoveredTimeSeriesFileName, from: .caches, as: Data.self)
 			let recovered = loadFileTimeSeries(data: data).rows
 
-			data = try Disk.retrieve(deathsTimeSeriesFileName, from: .caches, as: Data.self)
+			data = try Disk.retrieve(Self.deathsTimeSeriesFileName, from: .caches, as: Data.self)
 			let deaths = loadFileTimeSeries(data: data).rows
 
 			let dateFormatter = DateFormatter()
@@ -173,11 +173,11 @@ class DataManager {
 
 			/// Main time serieses
 			timeSerieses = []
-			timeSerieses.append(contentsOf: allTimeSerieses.filter({ $0.region.province.isEmpty }))
+			timeSerieses.append(contentsOf: allTimeSerieses.filter({ !$0.region.isProvince }))
 			Dictionary(grouping: allTimeSerieses.filter({ timeSeries in
-				!timeSeries.region.province.isEmpty
+				timeSeries.region.isProvince
 			}), by: { timeSeries in
-				timeSeries.region.country
+				timeSeries.region.countryName
 			}).forEach { (key, value) in
 				let timeSeries = TimeSeries(subSerieses: value.map { $0 })
 				timeSerieses.append(timeSeries)
@@ -186,7 +186,7 @@ class DataManager {
 
 			/// Global time series
 			worldwideTimeSeries = TimeSeries(subSerieses: allTimeSerieses)
-			worldwideTimeSeries?.region.country = "Worldwide"
+			worldwideTimeSeries?.region.countryName = "Worldwide"
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -224,7 +224,7 @@ extension DataManager {
 	}
 
 	private func downloadDailyReport(date: Date, completion: @escaping (Bool) -> ()) {
-		if date.ageDays > maxOldDataAge {
+		if date.ageDays > Self.maxOldDataAge {
 			completion(false)
 			return
 		}
@@ -235,7 +235,7 @@ extension DataManager {
 		let fileName = formatter.string(from: date)
 
 		print("Downloading \(fileName)")
-		let url = URL(string: String(format: dailyReportURLString, fileName), relativeTo: baseURL)!
+		let url = URL(string: String(format: Self.dailyReportURLString, fileName), relativeTo: Self.baseURL)!
 
 		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
 			DispatchQueue.global().async {
@@ -249,7 +249,7 @@ extension DataManager {
 						return
 				}
 
-				try? Disk.save(data, to: .caches, as: self.dailyReportFileName)
+				try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
 				print("Download success \(fileName)")
 
 				_ = self.loadReports()
@@ -265,19 +265,19 @@ extension DataManager {
 		var result = true
 
 		dispatchGroup.enter()
-		downloadFile(url: confirmedTimeSeriesURL, fileName: confirmedTimeSeriesFileName) { success in
+		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: recoveredTimeSeriesURL, fileName: recoveredTimeSeriesFileName) { success in
+		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: deathsTimeSeriesURL, fileName: deathsTimeSeriesFileName) { success in
+		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { success in
 			result = result && success
 			dispatchGroup.leave()
 		}

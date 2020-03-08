@@ -9,27 +9,24 @@
 import MapKit
 
 class Region: Equatable {
-	var country: String
-	let province: String
+	var countryName: String
+	let provinceName: String
 	let location: CLLocationCoordinate2D
 
-	var name: String { province.isEmpty ? country : "\(province), \(country)" }
+	var isProvince: Bool { !provinceName.isEmpty }
+	var name: String { isProvince ? "\(provinceName), \(countryName)" : countryName }
 
 	init(country: String, province: String, location: CLLocationCoordinate2D) {
-		self.country = country
-		self.province = province
+		self.countryName = country
+		self.provinceName = province
 		self.location = location
 	}
 
 	init(subRegions: [Region]) {
 		assert(!subRegions.isEmpty)
 
-		self.country = subRegions.first!.country
-		self.province = ""
-
-//		self.location = provincePlaces.filter({
-//			!$0.province.starts(with: "Unassigned Location")
-//		}).max { $0.confirmedCount < $1.confirmedCount }!.location
+		self.countryName = subRegions.first!.countryName
+		self.provinceName = ""
 
 		let coordinates = subRegions.map { $0.location }
 		let totals = coordinates.reduce((latitude: 0.0, longitude: 0.0)) {
@@ -45,8 +42,8 @@ class Region: Equatable {
 
 
 	func equals(other: Region) -> Bool {
-		self.country == other.country &&
-		self.province == other.province
+		self.countryName == other.countryName &&
+		self.provinceName == other.provinceName
 	}
 
 	static func == (lhs: Region, rhs: Region) -> Bool {
@@ -54,7 +51,7 @@ class Region: Equatable {
 	}
 
 	func hash(into hasher: inout Hasher) {
-		hasher.combine(country)
-		hasher.combine(province)
+		hasher.combine(countryName)
+		hasher.combine(provinceName)
 	}
 }

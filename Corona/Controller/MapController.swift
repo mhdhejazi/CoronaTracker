@@ -14,8 +14,8 @@ import FloatingPanel
 import PKHUD
 
 class MapController: UIViewController {
-	private let maxDataAge = 6 // Hours
-	private let cityZoomLevel = CGFloat(4)
+	private static let maxDataAge = 6 // Hours
+	private static let cityZoomLevel = CGFloat(4)
 
 	static var instance: MapController!
 
@@ -100,7 +100,7 @@ class MapController: UIViewController {
 			.filter({ $0.stat.confirmedCount > 0 })
 			.map({ ReportAnnotation(report: $0) })
 
-		currentAnnotations = mapView.zoomLevel > cityZoomLevel ? allAnnotations : countryAnnotations
+		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
 
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(currentAnnotations)
@@ -109,7 +109,7 @@ class MapController: UIViewController {
 	}
 
 	private func downloadIfNeeded() {
-		if let age = DataManager.instance.worldwideReport?.hourAge, age < maxDataAge {
+		if let age = DataManager.instance.worldwideReport?.hourAge, age < Self.maxDataAge {
 			return
 		}
 
@@ -156,11 +156,10 @@ extension MapController: MKMapViewDelegate {
 				view.mapZoomLevel = mapView.zoomLevel
 			}
 		}
-
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		if mapView.zoomLevel > cityZoomLevel {
+		if mapView.zoomLevel > Self.cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
 				mapView.removeAnnotations(mapView.annotations)
 				currentAnnotations = allAnnotations
