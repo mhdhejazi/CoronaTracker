@@ -16,7 +16,6 @@
 		1162D133240D05F600647002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D131240D05F600647002 /* Main.storyboard */; };
 		1162D135240D05FA00647002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1162D134240D05FA00647002 /* Assets.xcassets */; };
 		1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D136240D05FA00647002 /* LaunchScreen.storyboard */; };
-		1162D141240D2F9300647002 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 1162D140240D2F9300647002 /* CodableCSV */; };
 		1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D144240EB86400647002 /* ReportAnnotation.swift */; };
 		1162D149240EB8B300647002 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D148240EB8B300647002 /* Extensions.swift */; };
 		1162D14A240EBA3400647002 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D146240EB89C00647002 /* Report.swift */; };
@@ -33,6 +32,7 @@
 		11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */; };
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
+		11BF32AF2415F83100270130 /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32AE2415F83100270130 /* CSV */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */; };
@@ -72,8 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1162D141240D2F9300647002 /* CodableCSV in Frameworks */,
 				11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */,
+				11BF32AF2415F83100270130 /* CSV in Frameworks */,
 				1162D14D240EE5B900647002 /* Charts in Frameworks */,
 				11198BC024117A9A0080307F /* PKHUD in Frameworks */,
 				11198BBD241177740080307F /* Disk in Frameworks */,
@@ -204,11 +204,11 @@
 			);
 			name = "Corona Tracker";
 			packageProductDependencies = (
-				1162D140240D2F9300647002 /* CodableCSV */,
 				1162D14C240EE5B900647002 /* Charts */,
 				11198BBC241177740080307F /* Disk */,
 				11198BBF24117A9A0080307F /* PKHUD */,
 				11BF32A924156AE500270130 /* FloatingPanel */,
+				11BF32AE2415F83100270130 /* CSV */,
 			);
 			productName = Corona;
 			productReference = 1162D128240D05F600647002 /* Corona Tracker.app */;
@@ -239,11 +239,11 @@
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
-				1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */,
 				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
 				11198BBB241177740080307F /* XCRemoteSwiftPackageReference "Disk" */,
 				11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */,
 				11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				11BF32AD2415F83100270130 /* XCRemoteSwiftPackageReference "CSV" */,
 			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
 			projectDirPath = "";
@@ -367,7 +367,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -510,14 +510,6 @@
 				kind = branch;
 			};
 		};
-		1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dehesa/CodableCSV";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.3;
-			};
-		};
 		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
@@ -534,6 +526,14 @@
 				kind = branch;
 			};
 		};
+		11BF32AD2415F83100270130 /* XCRemoteSwiftPackageReference "CSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yaslab/CSV.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -547,11 +547,6 @@
 			package = 11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */;
 			productName = PKHUD;
 		};
-		1162D140240D2F9300647002 /* CodableCSV */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1162D13F240D2F9200647002 /* XCRemoteSwiftPackageReference "CodableCSV" */;
-			productName = CodableCSV;
-		};
 		1162D14C240EE5B900647002 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */;
@@ -561,6 +556,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		11BF32AE2415F83100270130 /* CSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11BF32AD2415F83100270130 /* XCRemoteSwiftPackageReference "CSV" */;
+			productName = CSV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

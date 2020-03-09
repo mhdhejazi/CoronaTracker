@@ -8,7 +8,7 @@
 
 import Foundation
 
-import CodableCSV
+import CSV
 import Disk
 
 class DataManager {
@@ -91,12 +91,16 @@ class DataManager {
 			/// All reports
 			let data = try Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
 
-			let decoder = CSVDecoder()
-			decoder.headerStrategy = .firstLine
-			allReports = try decoder.decode([Report].self, from: data)
+			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
+			let decoder = CSVRowDecoder()
+			var reports = [Report]()
+			while reader.next() != nil {
+				reports.append(try decoder.decode(Report.self, from: reader))
+			}
+			allReports = reports
 
 			/// Main reports
-			var reports = [Report]()
+			reports = []
 			reports.append(contentsOf: allReports.filter({ !$0.region.isProvince }))
 			Dictionary(grouping: allReports.filter({ report in
 				report.region.isProvince
@@ -195,13 +199,11 @@ class DataManager {
 
 	private func loadFileTimeSeries(data: Data) -> (rows: [CounterTimeSeries], headers: [String]) {
 		do {
-			let decoder = CSVDecoder()
-			decoder.headerStrategy = .firstLine
-			let result = try decoder.decode([CounterTimeSeries].self, from: data)
+			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
+			let headers = reader.headerRow
+			let result = reader.map({ CounterTimeSeries(dataRow: $0) })
 
-			let rows = try CSVReader(data: data).parseRow()
-
-			return (result, rows ?? [])
+			return (result, headers ?? [])
 		}
 		catch {
 			print("Unexpected error: \(error).")

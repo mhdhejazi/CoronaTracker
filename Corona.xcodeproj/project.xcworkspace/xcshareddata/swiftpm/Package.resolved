@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "CodableCSV",
-        "repositoryURL": "https://github.com/dehesa/CodableCSV",
+        "package": "CSV.swift",
+        "repositoryURL": "https://github.com/yaslab/CSV.swift",
         "state": {
           "branch": null,
-          "revision": "891a6833e823f56ae3dd943fc9f646667a27876b",
-          "version": "0.3.3"
+          "revision": "67c5209ae699d5d3ded866de5ee6a6b4005a1b56",
+          "version": "2.4.2"
         }
       },
       {

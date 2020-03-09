@@ -30,7 +30,7 @@ class Report: Decodable {
 
 	required init(from decoder: Decoder) throws {
 		let row = try decoder.container(keyedBy: CodingKeys.self)
-		let province = try row.decode(String.self, forKey: .province)
+		let province = try row.decodeIfPresent(String.self, forKey: .province) ?? ""
 		let country = try row.decode(String.self, forKey: .country)
 		let latitude = try row.decode(Double.self, forKey: .latitude)
 		let longitude = Double(try row.decode(String.self, forKey: .longitude).trimmingCharacters(in: .newlines)) ?? 0
