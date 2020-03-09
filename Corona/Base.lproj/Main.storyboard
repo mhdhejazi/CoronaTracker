@@ -232,11 +232,7 @@
                                                         <constraint firstAttribute="width" constant="44" id="5ag-FY-4w2"/>
                                                         <constraint firstAttribute="height" constant="44" id="eB9-ta-HoI"/>
                                                     </constraints>
-                                                    <state key="normal" image="arrow.right.arrow.left.square" catalog="system">
-                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="default" weight="light">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                        </preferredSymbolConfiguration>
-                                                    </state>
+                                                    <state key="normal" image="Switch"/>
                                                     <connections>
                                                         <action selector="buttonLogarithmicTapped:" destination="Pk4-iK-Cch" eventType="touchUpInside" id="ebO-0Y-t09"/>
                                                     </connections>
@@ -409,6 +405,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.right.arrow.left.square" catalog="system" width="64" height="56"/>
+        <image name="Switch" width="22" height="22"/>
     </resources>
 </document>
