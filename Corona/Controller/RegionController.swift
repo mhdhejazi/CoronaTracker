@@ -40,6 +40,15 @@ class RegionController: UITableViewController {
 		view.backgroundColor = .clear
 		tableView.tableFooterView = UIView()
 
+		if #available(iOS 11.0, *) {
+			/// Do nothing
+		} else {
+			/// iOS 10
+			labelConfirmed.font = .systemFont(ofSize: 24)
+			labelRecovered.font = .systemFont(ofSize: 24)
+			labelDeaths.font = .systemFont(ofSize: 24)
+		}
+
 		update()
     }
 

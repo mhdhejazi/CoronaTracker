@@ -13,7 +13,7 @@ import FloatingPanel
 import PKHUD
 
 class MapController: UIViewController {
-	private static let maxDataAge = 6 // Hours
+	private static let maxDataAge = 1 // Hours
 	private static let cityZoomLevel = CGFloat(4)
 
 	static var instance: MapController!
@@ -43,8 +43,11 @@ class MapController: UIViewController {
 
 		initializeBottomSheet()
 
-		mapView.register(ReportAnnotationView.self,
-						 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
+		if #available(iOS 11.0, *) {
+			mapView.register(ReportAnnotationView.self,
+							 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
+		}
+
 		mapView.showsPointsOfInterest = false
 
 		DataManager.instance.loadAsync { _ in
@@ -139,9 +142,19 @@ extension MapController: MKMapViewDelegate {
 			return nil
 		}
 
-		guard let annotationView = mapView.dequeueReusableAnnotationView(
-			withIdentifier: ReportAnnotation.reuseIdentifier,
-			for: annotation) as? ReportAnnotationView else { return nil }
+		var annotationView: ReportAnnotationView
+		if #available(iOS 11.0, *) {
+			guard let view = mapView.dequeueReusableAnnotationView(
+				withIdentifier: ReportAnnotation.reuseIdentifier,
+				for: annotation) as? ReportAnnotationView else { return nil }
+			annotationView = view
+		} else {
+			/// iOS 10
+			let view = mapView.dequeueReusableAnnotationView(
+				withIdentifier: ReportAnnotation.reuseIdentifier) as? ReportAnnotationView
+			annotationView = view ?? ReportAnnotationView(annotation: annotation,
+														  reuseIdentifier: ReportAnnotation.reuseIdentifier)
+		}
 
 		annotationView.mapZoomLevel = mapView.zoomLevel
 
@@ -193,7 +206,7 @@ extension MapController: FloatingPanelControllerDelegate {
 class PanelLayout: FloatingPanelLayout {
 	public var initialPosition: FloatingPanelPosition {
 		#if DEBUG
-		return .full
+//		return .full
 		#endif
 		return .half
 	}
@@ -208,10 +221,18 @@ class PanelLayout: FloatingPanelLayout {
 	}
 
 	func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
-		return [
-			surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0),
-			surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
-		]
+		if #available(iOS 11.0, *) {
+			return [
+				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
+			]
+		} else {
+			/// iOS 10
+			return [
+				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+			]
+		}
 	}
 
 	func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
@@ -221,10 +242,18 @@ class PanelLayout: FloatingPanelLayout {
 
 class LandscapePanelLayout: PanelLayout {
 	override func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint] {
-		return [
-			surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
-			surfaceView.widthAnchor.constraint(equalToConstant: 400),
-		]
+		if #available(iOS 11.0, *) {
+			return [
+				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+			]
+		} else {
+			/// iOS 10
+			return [
+				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+			]
+		}
 	}
 
 	override func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {

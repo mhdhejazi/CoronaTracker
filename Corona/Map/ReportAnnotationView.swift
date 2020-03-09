@@ -9,7 +9,19 @@
 import MapKit
 
 class ReportAnnotationView: MKAnnotationView {
-    private var countLabel: UILabel!
+	private lazy var countLabel: UILabel = {
+		let countLabel = UILabel()
+		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		countLabel.backgroundColor = .clear
+		countLabel.font = .boldSystemFont(ofSize: 13)
+		countLabel.textColor = .white
+		countLabel.textAlignment = .center
+		countLabel.adjustsFontSizeToFitWidth = true
+		countLabel.minimumScaleFactor = 0.5
+		countLabel.baselineAdjustment = .alignCenters
+		self.addSubview(countLabel)
+		return countLabel
+	}()
 
 	private var radius: CGFloat {
 		guard let annotation = annotation as? ReportAnnotation else { return 1 }
@@ -95,17 +107,6 @@ class ReportAnnotationView: MKAnnotationView {
 
 		layer.borderColor = UIColor.white.cgColor
 		layer.borderWidth = 2
-
-		countLabel = UILabel()
-		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		countLabel.backgroundColor = .clear
-		countLabel.font = .boldSystemFont(ofSize: 13)
-		countLabel.textColor = .white
-		countLabel.textAlignment = .center
-		countLabel.adjustsFontSizeToFitWidth = true
-		countLabel.minimumScaleFactor = 0.5
-		countLabel.baselineAdjustment = .alignCenters
-		self.addSubview(countLabel)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

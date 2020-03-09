@@ -24,6 +24,13 @@ class RegionContainerController: UIViewController {
 
 			effectViewHeader.effect = UIBlurEffect(style: .systemMaterial)
 		}
+
+		if #available(iOS 11.0, *) {
+			/// Do nothing
+		} else {
+			/// iOS 10
+			labelTitle.font = .boldSystemFont(ofSize: 24)
+		}
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
