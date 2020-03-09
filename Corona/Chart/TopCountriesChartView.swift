@@ -11,6 +11,13 @@ import UIKit
 import Charts
 
 class TopCountriesChartView: BarChartView {
+	var isLogarithmic = false {
+		didSet {
+			self.clear()
+			self.update()
+		}
+	}
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
@@ -30,7 +37,7 @@ class TopCountriesChartView: BarChartView {
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
 		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			value.kmFormatted
+			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
 		rightAxis.enabled = false
@@ -42,8 +49,13 @@ class TopCountriesChartView: BarChartView {
 
 		noDataTextColor = .systemGray
 		noDataFont = .systemFont(ofSize: 15)
-		
-		marker = SimpleMarkerView(chartView: self)
+
+		let simpleMarker = SimpleMarkerView(chartView: self) { (entry, highlight) in
+			guard let report = entry.data as? Report else { return entry.y.kmFormatted }
+			return report.stat.description
+		}
+		simpleMarker.timeout = 5
+		marker = simpleMarker
 
 		initializeLegend(legend)
 	}
@@ -51,36 +63,53 @@ class TopCountriesChartView: BarChartView {
 	private func initializeLegend(_ legend: Legend) {
 		legend.textColor = SystemColor.secondaryLabel
 		legend.font = .systemFont(ofSize: 12, weight: .regular)
-		legend.form = .circle
-		legend.formSize = 12
+		legend.form = .none
+		legend.formSize = 0
 		legend.horizontalAlignment = .center
-		legend.xEntrySpace = 10
+		legend.xEntrySpace = 0
+		legend.formToTextSpace = 0
+		legend.stackSpace = 0
 	}
 
-	func update(reports: [Report]) {
+	func update() {
 		let reports = DataManager.instance.topReports
 
 		var entries = [BarChartDataEntry]()
 		for i in reports.indices {
 			let report = reports[i]
-//			let entry = BarChartDataEntry(x: Double(i), yValues: [
-//				Double(report.data.deathCount), Double(report.data.existingCount), Double(report.data.recoveredCount)
-//			])
-			let entry = BarChartDataEntry(x: Double(i), y: Double(report.stat.confirmedCount))
+			var value = Double(report.stat.confirmedCount)
+			if isLogarithmic {
+				value = log10(value)
+			}
+			let entry = BarChartDataEntry(x: Double(i), y: value)
 			entry.data = report
 			entries.append(entry)
 		}
 
-		let dataSet = BarChartDataSet(entries: entries, label: "Most affected countries")
+		var label = "Most Affected"
+		if isLogarithmic {
+			label += " (Logarothmic)"
+		}
+		let dataSet = BarChartDataSet(entries: entries, label: label)
 		dataSet.colors = ChartColorTemplates.pastel()
-		dataSet.stackLabels = ["Deaths", "Existing", "Recovered"]
 
 //		dataSet.drawValuesEnabled = false
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
 		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
-			value.kmFormatted
+			guard let report = entry.data as? Report else { return value.kmFormatted }
+			return report.stat.confirmedCount.kmFormatted
 		})
+
+		if isLogarithmic {
+			leftAxis.axisMinimum = 2
+			leftAxis.axisMaximum = 6
+			leftAxis.labelCount = 4
+		}
+		else {
+			leftAxis.resetCustomAxisMin()
+			leftAxis.resetCustomAxisMax()
+		}
 
 		data = BarChartData(dataSet: dataSet)
 

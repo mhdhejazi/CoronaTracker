@@ -11,14 +11,25 @@ import UIKit
 import Charts
 
 public class SimpleMarkerView: BalloonMarker {
-    private var xAxisValueFormatter: IAxisValueFormatter?
-	private var yAxisFormatter = NumberFormatter.groupingFormatter
+	public typealias Block = (_ entry: ChartDataEntry, _ highlight: Highlight) -> String
+
+    private var xValueFormatter: IAxisValueFormatter?
+	private var yValueFormatter: IAxisValueFormatter?
+	private var block: Block?
+
 	private var unhighlighteTask: DispatchWorkItem?
 
-    public init(chartView: ChartViewBase) {
-		self.xAxisValueFormatter = chartView is PieChartView ? nil : xAxisValueFormatter
+	var timeout: TimeInterval = 2 /// Seconds
 
-        super.init(color: UIColor.darkGray.withAlphaComponent(0.75),
+    public init(chartView: ChartViewBase, block: Block? = nil) {
+		if block == nil {
+			self.xValueFormatter = chartView is PieChartView ? nil : xValueFormatter
+			self.yValueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter.groupingFormatter)
+		} else {
+			self.block = block
+		}
+
+        super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
 				   font: .boldSystemFont(ofSize: 13),
 				   textColor: .white,
 				   insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10))
@@ -29,21 +40,29 @@ public class SimpleMarkerView: BalloonMarker {
     }
     
     public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
-		if let xFormatter = xAxisValueFormatter {
-			let x = xFormatter.stringForValue(entry.x, axis: XAxis())
-			let y = yAxisFormatter.string(from: NSNumber(value: entry.y))!
-			setLabel("\(x): \(y)")
+		var result: String
+		if let block = block {
+			result = block(entry, highlight)
 		}
 		else {
-			let y = yAxisFormatter.string(from: NSNumber(value: entry.y))!
-			setLabel("\(y)")
+			result = ""
+			if let xValueFormatter = xValueFormatter {
+				let x = xValueFormatter.stringForValue(entry.x, axis: nil)
+				result += "\(x): "
+			}
+			if let yValueFormatter = yValueFormatter {
+				let y = yValueFormatter.stringForValue(entry.y, axis: nil)
+				result += "\(y)"
+			}
 		}
+		setLabel(result)
 
+		/// Auto hide the marker after timout
 		unhighlighteTask?.cancel()
 		let task = DispatchWorkItem {
 			self.chartView?.highlightValues(nil)
 		}
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: task)
+		DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: task)
 		unhighlighteTask = task
     }
     

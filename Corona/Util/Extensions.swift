@@ -92,6 +92,14 @@ extension Double {
 
 		return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
+
+	var percentFormatted: String {
+		NumberFormatter.percentFormatter.string(from: NSNumber(value: self))!
+	}
+}
+
+extension Int {
+	var kmFormatted: String { Double(self).kmFormatted }
 }
 
 extension NumberFormatter {
@@ -100,6 +108,14 @@ extension NumberFormatter {
 		formatter.usesGroupingSeparator = true
 		formatter.groupingSize = 3
 		formatter.maximumFractionDigits = 1
+		return formatter
+	}()
+
+	static let percentFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .percent
+		formatter.maximumFractionDigits = 1
+		formatter.multiplier = 1
 		return formatter
 	}()
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Statistic {
+class Statistic: CustomStringConvertible {
 	let confirmedCount: Int
 	let recoveredCount: Int
 	let deathCount: Int
@@ -21,6 +21,14 @@ class Statistic {
 	var confirmedCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: confirmedCount))! }
 	var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }
 	var deathCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: deathCount))! }
+
+	var description: String {
+		"""
+		Confirmed: \(confirmedCountString)
+		Recovered: \(recoveredCountString) (\(recoveredPercent.percentFormatted))
+		Deaths: \(deathCountString) (\(deathPercent.percentFormatted))
+		"""
+	}
 
 	init(confirmedCount: Int, recoveredCount: Int, deathCount: Int) {
 		self.confirmedCount = confirmedCount

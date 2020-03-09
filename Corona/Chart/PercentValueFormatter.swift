@@ -12,13 +12,7 @@ import Charts
 
 class PercentValueFormatter: DefaultValueFormatter {
 	override init() {
-		let valueFormatter = NumberFormatter()
-		valueFormatter.numberStyle = .percent
-		valueFormatter.maximumFractionDigits = 1
-		valueFormatter.multiplier = 1
-		valueFormatter.percentSymbol = "%"
-
-		super.init(formatter: valueFormatter)
+		super.init(formatter: .percentFormatter)
 	}
 
 	override func stringForValue(_ value: Double,

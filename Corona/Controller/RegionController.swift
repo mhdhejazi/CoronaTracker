@@ -79,7 +79,7 @@ class RegionController: UITableViewController {
 			chartViewHistory.update(series: series)
 		}
 
-		chartViewTopCountries.update(reports: DataManager.instance.topReports)
+		chartViewTopCountries.update()
 
 		updateParent()
 	}
@@ -90,6 +90,12 @@ class RegionController: UITableViewController {
 }
 
 extension RegionController {
+	@IBAction func buttonLogarithmicTapped(_ sender: Any) {
+		UIView.transition(with: chartViewTopCountries, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+			self.chartViewTopCountries.isLogarithmic = !self.chartViewTopCountries.isLogarithmic
+		}, completion: nil)
+	}
+
 	@IBAction func buttonInfoTapped(_ sender: Any) {
 		let url = URL(string: "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")!
 		let safariController = SFSafariViewController(url: url)
