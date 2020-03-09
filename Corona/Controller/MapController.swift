@@ -48,8 +48,6 @@ class MapController: UIViewController {
 							 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
 		}
 
-		mapView.showsPointsOfInterest = false
-
 		DataManager.instance.loadAsync { _ in
 			self.update()
 			self.downloadIfNeeded()

@@ -86,7 +86,7 @@ class RegionController: UITableViewController {
 
 		updateParent()
 
-		updateStats()
+		updateStats(reset: true)
 	}
 
 	private func updateStats(reset: Bool = false) {
