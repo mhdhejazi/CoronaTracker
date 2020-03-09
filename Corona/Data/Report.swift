@@ -46,7 +46,7 @@ class Report: Decodable {
 		let deaths = try row.decode(Int.self, forKey: .deaths)
 		let recovered = try row.decode(Int.self, forKey: .recovered)
 		self.stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
-    }
+	}
 
 	init(subReports: [Report]) {
 		assert(!subReports.isEmpty)

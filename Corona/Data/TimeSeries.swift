@@ -15,7 +15,7 @@ class TimeSeries {
 	init(region: Region, series: [Date : Statistic]) {
 		self.region = region
 		self.series = series
-    }
+	}
 
 	init(subSerieses: [TimeSeries]) {
 		assert(!subSerieses.isEmpty)
@@ -45,8 +45,8 @@ class CounterTimeSeries: Decodable {
 	let values: [Int]
 
 	required init(from decoder: Decoder) throws {
-        var row = try decoder.unkeyedContainer()
-        let province = try row.decode(String.self)
+		var row = try decoder.unkeyedContainer()
+		let province = try row.decode(String.self)
 		let country = try row.decode(String.self)
 		let latitude = try row.decode(Double.self)
 		let longitude = try row.decode(Double.self)
@@ -59,7 +59,7 @@ class CounterTimeSeries: Decodable {
 			values.append(Int(numberString) ?? 0)
 		}
 		self.values = values
-    }
+	}
 
 	init(dataRow: [String]) {
 		let province = dataRow[CodingKeys.province.rawValue]

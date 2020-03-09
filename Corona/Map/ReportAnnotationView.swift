@@ -74,11 +74,11 @@ class ReportAnnotationView: MKAnnotationView {
 		}
 	}
 
-    override var annotation: MKAnnotation? {
-        didSet {
-            configure()
-        }
-    }
+	override var annotation: MKAnnotation? {
+		didSet {
+			configure()
+		}
+	}
 
 	private lazy var rightAccessoryView: UIView? = {
 		let button = UIButton(type: .detailDisclosure)
@@ -113,7 +113,7 @@ class ReportAnnotationView: MKAnnotationView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    func configure() {
+	func configure() {
 		guard let report = report else { return }
 		if self.mapZoomLevel > 4 {
 			self.countLabel.text = report.stat.confirmedCountString
@@ -129,13 +129,13 @@ class ReportAnnotationView: MKAnnotationView {
 
 		self.backgroundColor = self.color
 		self.layer.cornerRadius = self.frame.width / 2
-    }
+	}
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+	override func layoutSubviews() {
+		super.layoutSubviews()
 
 		countLabel.frame = bounds
-    }
+	}
 
 	var isTouched: Bool = false {
 		didSet {

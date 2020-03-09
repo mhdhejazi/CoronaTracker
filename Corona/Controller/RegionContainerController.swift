@@ -15,8 +15,8 @@ class RegionContainerController: UIViewController {
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		if #available(iOS 13.0, *) {
 			effectViewBackground.effect = UIBlurEffect(style: .systemMaterial)
@@ -31,13 +31,13 @@ class RegionContainerController: UIViewController {
 			/// iOS 10
 			labelTitle.font = .boldSystemFont(ofSize: 24)
 		}
-    }
+	}
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.destination is RegionController {
 			regionController = segue.destination as? RegionController
 		}
-    }
+	}
 
 	func update(report: Report?) {
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {

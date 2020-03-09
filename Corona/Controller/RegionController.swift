@@ -37,8 +37,8 @@ class RegionController: UITableViewController {
 	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
 	@IBOutlet var labelUpdated: UILabel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		view.backgroundColor = .clear
 		tableView.tableFooterView = UIView()
@@ -53,7 +53,7 @@ class RegionController: UITableViewController {
 		}
 
 		update()
-    }
+	}
 
 	override func didMove(toParent parent: UIViewController?) {
 		super.didMove(toParent: parent)

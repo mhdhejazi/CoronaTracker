@@ -13,7 +13,7 @@ import Charts
 public class SimpleMarkerView: BalloonMarker {
 	public typealias Block = (_ entry: ChartDataEntry, _ highlight: Highlight) -> String
 
-    private var xValueFormatter: IAxisValueFormatter?
+	private var xValueFormatter: IAxisValueFormatter?
 	private var yValueFormatter: IAxisValueFormatter?
 	private var block: Block?
 
@@ -21,7 +21,7 @@ public class SimpleMarkerView: BalloonMarker {
 
 	var timeout: TimeInterval = 2 /// Seconds
 
-    public init(chartView: ChartViewBase, block: Block? = nil) {
+	public init(chartView: ChartViewBase, block: Block? = nil) {
 		if block == nil {
 			self.xValueFormatter = chartView is PieChartView ? nil : xValueFormatter
 			self.yValueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter.groupingFormatter)
@@ -29,7 +29,7 @@ public class SimpleMarkerView: BalloonMarker {
 			self.block = block
 		}
 
-        super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
+		super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
 				   font: .boldSystemFont(ofSize: 13),
 				   textColor: .white,
 				   insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10))
@@ -37,9 +37,9 @@ public class SimpleMarkerView: BalloonMarker {
 		self.chartView = chartView
 		self.arrowSize = CGSize(width: 15, height: 15)
 		self.minimumSize = CGSize(width: 80, height: 40)
-    }
-    
-    public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
+	}
+
+	public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
 		var result: String
 		if let block = block {
 			result = block(entry, highlight)
@@ -64,6 +64,5 @@ public class SimpleMarkerView: BalloonMarker {
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: task)
 		unhighlightTask = task
-    }
-    
+	}
 }
