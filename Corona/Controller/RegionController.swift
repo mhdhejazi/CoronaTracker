@@ -24,6 +24,8 @@ class RegionController: UITableViewController {
 		}
 	}
 	private var timeSeries: TimeSeries?
+	private var showPercents = false
+	private var switchPercentsTask: DispatchWorkItem?
 
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelConfirmed: UILabel!
@@ -82,6 +84,31 @@ class RegionController: UITableViewController {
 		chartViewTopCountries.update()
 
 		updateParent()
+
+		showPercents = false
+		updateStats()
+	}
+
+	private func updateStats() {
+		switchPercentsTask?.cancel()
+		let task = DispatchWorkItem {
+			self.showPercents = !self.showPercents
+			self.updateStats()
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: task)
+		switchPercentsTask = task
+
+		guard let report = report else { return }
+
+		UIView.transition(with: view, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+			self.labelRecovered.text = self.showPercents ?
+				report.stat.recoveredPercent.percentFormatted :
+				report.stat.recoveredCountString
+
+			self.labelDeaths.text = self.showPercents ?
+				report.stat.deathPercent.percentFormatted :
+				report.stat.deathCountString
+		}, completion: nil)
 	}
 
 	func updateParent() {
@@ -90,6 +117,11 @@ class RegionController: UITableViewController {
 }
 
 extension RegionController {
+	@IBAction func labelStatTapped(_ sender: Any) {
+		self.showPercents = !self.showPercents
+		updateStats()
+	}
+
 	@IBAction func buttonLogarithmicTapped(_ sender: Any) {
 		UIView.transition(with: chartViewTopCountries, duration: 0.25, options: [.transitionCrossDissolve], animations: {
 			self.chartViewTopCountries.isLogarithmic = !self.chartViewTopCountries.isLogarithmic
