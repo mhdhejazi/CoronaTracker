@@ -48,6 +48,16 @@ extension UIControl {
 	}
 }
 
+extension UIView {
+	func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
+		UIView.transition(with: self,
+						  duration: duration,
+						  options: [.transitionCrossDissolve],
+						  animations: animations,
+						  completion: nil)
+	}
+}
+
 extension Locale {
 	static let posix = Locale(identifier: "en_US_POSIX")
 }

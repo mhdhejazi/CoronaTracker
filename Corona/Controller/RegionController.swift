@@ -27,6 +27,7 @@ class RegionController: UITableViewController {
 	private var showPercents = false
 	private var switchPercentsTask: DispatchWorkItem?
 
+	@IBOutlet var stackViewStats: UIStackView!
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelConfirmed: UILabel!
 	@IBOutlet var labelRecovered: UILabel!
@@ -65,7 +66,7 @@ class RegionController: UITableViewController {
 			report = DataManager.instance.worldwideReport
 		}
 
-		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+		UIView.transition(with: stackViewStats, duration: 0.25, options: [.transitionCrossDissolve], animations: {
 			self.labelTitle.text = self.report?.region.name ?? "-"
 			self.labelConfirmed.text = self.report?.stat.confirmedCountString ?? "-"
 			self.labelRecovered.text = self.report?.stat.recoveredCountString ?? "-"
@@ -85,11 +86,10 @@ class RegionController: UITableViewController {
 
 		updateParent()
 
-		showPercents = false
 		updateStats()
 	}
 
-	private func updateStats() {
+	private func updateStats(reset: Bool = false) {
 		switchPercentsTask?.cancel()
 		let task = DispatchWorkItem {
 			self.showPercents = !self.showPercents
@@ -98,17 +98,23 @@ class RegionController: UITableViewController {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: task)
 		switchPercentsTask = task
 
+		if reset {
+			showPercents = false
+			return
+		}
+
 		guard let report = report else { return }
 
-		UIView.transition(with: view, duration: 0.5, options: [.transitionCrossDissolve], animations: {
+		labelRecovered.transition {
 			self.labelRecovered.text = self.showPercents ?
 				report.stat.recoveredPercent.percentFormatted :
 				report.stat.recoveredCountString
-
+		}
+		labelDeaths.transition {
 			self.labelDeaths.text = self.showPercents ?
 				report.stat.deathPercent.percentFormatted :
 				report.stat.deathCountString
-		}, completion: nil)
+		}
 	}
 
 	func updateParent() {

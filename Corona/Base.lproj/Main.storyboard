@@ -318,6 +318,7 @@
                         <outlet property="labelRecovered" destination="59t-UT-5AT" id="TP4-1D-vJN"/>
                         <outlet property="labelTitle" destination="ttR-vI-ja0" id="Ic6-gQ-xhh"/>
                         <outlet property="labelUpdated" destination="Q0A-p0-mUG" id="Vny-dy-Y1n"/>
+                        <outlet property="stackViewStats" destination="ebv-hY-32O" id="puW-Py-ddA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Skp-bG-vCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
