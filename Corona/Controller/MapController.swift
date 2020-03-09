@@ -107,6 +107,7 @@ class MapController: UIViewController {
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(currentAnnotations)
 
+		regionContainerController.regionController.report = nil
 		regionContainerController.regionController.update()
 	}
 

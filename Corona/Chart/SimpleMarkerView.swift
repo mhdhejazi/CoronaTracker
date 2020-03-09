@@ -17,7 +17,7 @@ public class SimpleMarkerView: BalloonMarker {
 	private var yValueFormatter: IAxisValueFormatter?
 	private var block: Block?
 
-	private var unhighlighteTask: DispatchWorkItem?
+	private var unhighlightTask: DispatchWorkItem?
 
 	var timeout: TimeInterval = 2 /// Seconds
 
@@ -57,13 +57,13 @@ public class SimpleMarkerView: BalloonMarker {
 		}
 		setLabel(result)
 
-		/// Auto hide the marker after timout
-		unhighlighteTask?.cancel()
+		/// Auto hide the marker after timeout
+		unhighlightTask?.cancel()
 		let task = DispatchWorkItem {
 			self.chartView?.highlightValues(nil)
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: task)
-		unhighlighteTask = task
+		unhighlightTask = task
     }
     
 }

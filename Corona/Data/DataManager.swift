@@ -240,22 +240,28 @@ extension DataManager {
 		let url = URL(string: String(format: Self.dailyReportURLString, fileName), relativeTo: Self.baseURL)!
 
 		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-			DispatchQueue.global().async {
-				guard error == nil,
-					let data = data,
-					let string = String(data: data, encoding: .utf8),
-					!string.contains("<html") else {
 
-						print("Failed downloading \(fileName)")
-						self.downloadDailyReport(date: date.yesterday, completion: completion)
-						return
+			guard let response = response as? HTTPURLResponse,
+				response.statusCode == 200,
+				let data = data else {
+
+				print("Failed downloading \(fileName)")
+				self.downloadDailyReport(date: date.yesterday, completion: completion)
+				return
+			}
+
+			DispatchQueue.global(qos: .default).async {
+				let oldData = try? Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
+				if (oldData == data) {
+					print("Nothing new")
+					completion(false)
+					return
 				}
 
 				try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
 				print("Download success \(fileName)")
 
 				_ = self.loadReports()
-				completion(true)
 
 				self.downloadTimeSerieses(completion: completion)
 			}
