@@ -37,8 +37,8 @@ struct Region: Equatable, Codable {
 	}
 
 	func equals(other: Region) -> Bool {
-		self.countryName == other.countryName &&
-		self.provinceName == other.provinceName
+		(self.countryName == other.countryName && self.provinceName == other.provinceName) ||
+		self.location == other.location
 	}
 
 	static func == (lhs: Region, rhs: Region) -> Bool {
@@ -51,7 +51,7 @@ struct Region: Equatable, Codable {
 	}
 }
 
-struct Coordinate: Codable {
+struct Coordinate: Codable, Equatable {
 	var latitude: Double
 	var longitude: Double
 
@@ -60,4 +60,14 @@ struct Coordinate: Codable {
 	func distance(from other: Coordinate) -> Double {
 		hypot(latitude - other.latitude, longitude - other.longitude)
 	}
+
+	func equals(other: Coordinate) -> Bool {
+		Int(self.latitude * 1000) == Int(other.latitude * 1000) &&
+		Int(self.longitude * 1000) == Int(other.longitude * 1000)
+	}
+
+	static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
+		return lhs.equals(other: rhs)
+	}
+
 }
