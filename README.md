@@ -3,9 +3,24 @@
 # Corona Tracker 
 Coronavirus tracker app for iOS & macOS with map &amp; charts.
 
-The app shows a distribution map, charts, and a timeline for every country. You can also see the data at city level for the US, Canada, and Australia, and at province level for China.
+![image](https://user-images.githubusercontent.com/121827/76356430-fe06ff80-6326-11ea-8107-60f900a73016.png)
 
-![image](https://user-images.githubusercontent.com/121827/76153860-9b71f180-60e3-11ea-8567-9fa2192b0ba1.png)
+# Features
+* __Live data__: Shows the most recent data, and automatically updates data when the app enters the foreground.
+* __Distribution map__ with two levels of details:
+  * __Countries__: When the user zooms out. Fewer details and reduced clutter.
+  * __Cities__: When the user zooms in. More details.
+* __Red color scale__: Reflects the number of confirmed cases. In addition to increasing circle size.
+* __Statistics__: Including the number of confirmed, recovered, and deaths, in addition to percents.
+* __Current state chart__ for all countries (and cities).
+* __Timeline chart__ for all countries (and cities).
+* __Top affected countries__ chart with info about every country.
+  * Option for using a __logarithmic__ scale.
+* __iPad__ support (portrait & landscape).
+* __macOS__ support.
+* Works on old devices that still run __iOS 10__.
+
+![image](https://user-images.githubusercontent.com/121827/76356895-bd5bb600-6327-11ea-8433-06bede40a799.png)
 ![image](https://user-images.githubusercontent.com/121827/76235095-af306b80-623b-11ea-89df-5e5942318935.png)
 
 # How to Use
