@@ -8,23 +8,15 @@
 
 import Foundation
 
-import CSV
 import Disk
 
 class DataManager {
-	private static let maxOldDataAge = 10 // Days
-	private static let dailyReportFileName = "daily_report.csv"
-	private static let confirmedTimeSeriesFileName = "time_series_confirmed.csv"
-	private static let recoveredTimeSeriesFileName = "time_series_recovered.csv"
-	private static let deathsTimeSeriesFileName = "time_series_deaths.csv"
-
-	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
-	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
-	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
-	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
-	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
+	private static let reportsFileName = "reports.json"
+	private static let timeSeriesesFileName = "time_serieses.json"
 
 	static let instance = DataManager()
+
+	private let dataService: DataService = JHURepoDataService.instance
 
 	var allReports: [Report] = []
 	var countryReports: [Report] = []
@@ -34,10 +26,6 @@ class DataManager {
 	var allTimeSerieses: [TimeSeries] = []
 	var countryTimeSerieses: [TimeSeries] = []
 	var worldwideTimeSeries: TimeSeries?
-
-	private init() {
-//		load()
-	}
 
 	func report(for region: Region) -> Report? {
 		if let report = allReports.first(where: { $0.region == region }) {
@@ -71,12 +59,7 @@ class DataManager {
 		return nil
 	}
 
-	func load() -> Bool {
-		loadTimeSeries()
-		return loadReports()
-	}
-
-	func loadAsync(completion: @escaping (Bool) -> ()) {
+	func load(completion: @escaping (Bool) -> ()) {
 		DispatchQueue.global().async {
 			self.loadTimeSeries()
 			let result = self.loadReports()
@@ -89,35 +72,9 @@ class DataManager {
 	private func loadReports() -> Bool {
 		do {
 			/// All reports
-			let data = try Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
+			allReports = try Disk.retrieve(Self.reportsFileName, from: .caches, as: [Report].self)
 
-			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
-			allReports = reader.map({ Report.create(dataRow: $0) })
-
-			/// Main reports
-			var reports = [Report]()
-			reports.append(contentsOf: allReports.filter({ !$0.region.isProvince }))
-			Dictionary(grouping: allReports.filter({ report in
-				report.region.isProvince
-			}), by: { report in
-				report.region.countryName
-			}).forEach { (key, value) in
-				let report = Report.join(subReports: value.map { $0 })
-				reports.append(report)
-			}
-			countryReports = reports
-
-			/// Global report
-			worldwideReport = Report.join(subReports: allReports)
-			worldwideReport?.region.countryName = "Worldwide"
-
-			/// Top countries
-			topReports = [Report](
-				countryReports.filter({ $0.region.name != "Others" })
-					.sorted(by: { $0.stat.confirmedCount < $1.stat.confirmedCount })
-					.reversed()
-					.prefix(6)
-			)
+			generateOtherReports()
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -127,83 +84,62 @@ class DataManager {
 		return true
 	}
 
+	private func generateOtherReports() {
+		/// Main reports
+		var reports = [Report]()
+		reports.append(contentsOf: allReports.filter({ !$0.region.isProvince }))
+		Dictionary(grouping: allReports.filter({ report in
+			report.region.isProvince
+		}), by: { report in
+			report.region.countryName
+		}).forEach { (key, value) in
+			let report = Report.join(subReports: value.map { $0 })
+			reports.append(report)
+		}
+		countryReports = reports
+
+		/// Global report
+		worldwideReport = Report.join(subReports: allReports)
+		worldwideReport?.region.countryName = "Worldwide"
+
+		/// Top countries
+		topReports = [Report](
+			countryReports.filter({ $0.region.name != "Others" })
+				.sorted(by: { $0.stat.confirmedCount < $1.stat.confirmedCount })
+				.reversed()
+				.prefix(6)
+		)
+	}
+
 	private func loadTimeSeries() {
 		do {
 			/// All time serieses
-			var data = try Disk.retrieve(Self.confirmedTimeSeriesFileName, from: .caches, as: Data.self)
-			let result = loadFileTimeSeries(data: data)
-			let confirmed = result.rows
-			let headers = result.headers
+			allTimeSerieses = try Disk.retrieve(Self.timeSeriesesFileName, from: .caches, as: [TimeSeries].self)
 
-			data = try Disk.retrieve(Self.recoveredTimeSeriesFileName, from: .caches, as: Data.self)
-			let recovered = loadFileTimeSeries(data: data).rows
-
-			data = try Disk.retrieve(Self.deathsTimeSeriesFileName, from: .caches, as: Data.self)
-			let deaths = loadFileTimeSeries(data: data).rows
-
-			let dateFormatter = DateFormatter()
-			dateFormatter.locale = .posix
-			dateFormatter.dateFormat = "M/d/yy"
-
-			let dateStrings = headers.dropFirst(4)
-
-			var timeSerieses: [TimeSeries] = []
-			for row in confirmed.indices {
-				let confirmedTimeSeries = confirmed[row]
-				let recoveredTimeSeries = recovered[row]
-				let deathsTimeSeries = deaths[row]
-
-				var series: [Date : Statistic] = [:]
-				for column in confirmedTimeSeries.values.indices {
-					let dateString = dateStrings[dateStrings.startIndex + column]
-					if let date = dateFormatter.date(from: dateString) {
-						let stat = Statistic(
-							confirmedCount: confirmedTimeSeries.values[column],
-							recoveredCount: recoveredTimeSeries.values[column],
-							deathCount: deathsTimeSeries.values[column]
-						)
-						series[date] = stat
-					}
-				}
-				let timeSeries = TimeSeries(region: confirmedTimeSeries.region, series: series)
-				timeSerieses.append(timeSeries)
-			}
-			allTimeSerieses = timeSerieses
-
-			/// Main time serieses
-			timeSerieses = []
-			timeSerieses.append(contentsOf: allTimeSerieses.filter({ !$0.region.isProvince }))
-			Dictionary(grouping: allTimeSerieses.filter({ timeSeries in
-				timeSeries.region.isProvince
-			}), by: { timeSeries in
-				timeSeries.region.countryName
-			}).forEach { (key, value) in
-				let timeSeries = TimeSeries.join(subSerieses: value.map { $0 })
-				timeSerieses.append(timeSeries)
-			}
-			countryTimeSerieses = timeSerieses
-
-			/// Global time series
-			worldwideTimeSeries = TimeSeries.join(subSerieses: allTimeSerieses)
-			worldwideTimeSeries?.region.countryName = "Worldwide"
+			generateOtherTimeSerieses()
 		}
 		catch {
 			print("Unexpected error: \(error).")
 		}
 	}
 
-	private func loadFileTimeSeries(data: Data) -> (rows: [CounterTimeSeries], headers: [String]) {
-		do {
-			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
-			let headers = reader.headerRow
-			let result = reader.map({ CounterTimeSeries(dataRow: $0) })
+	private func generateOtherTimeSerieses() {
+		/// Main time serieses
+		var timeSerieses = [TimeSeries]()
+		timeSerieses.append(contentsOf: allTimeSerieses.filter({ !$0.region.isProvince }))
+		Dictionary(grouping: allTimeSerieses.filter({ timeSeries in
+			timeSeries.region.isProvince
+		}), by: { timeSeries in
+			timeSeries.region.countryName
+		}).forEach { (key, value) in
+			let timeSeries = TimeSeries.join(subSerieses: value.map { $0 })
+			timeSerieses.append(timeSeries)
+		}
+		countryTimeSerieses = timeSerieses
 
-			return (result, headers ?? [])
-		}
-		catch {
-			print("Unexpected error: \(error).")
-			return ([], [])
-		}
+		/// Global time series
+		worldwideTimeSeries = TimeSeries.join(subSerieses: allTimeSerieses)
+		worldwideTimeSeries?.region.countryName = "Worldwide"
 	}
 }
 
@@ -212,106 +148,34 @@ extension DataManager {
 		#if DEBUG
 //		return
 		#endif
-		downloadDailyReport(completion: completion)
-	}
 
-	private func downloadDailyReport(completion: @escaping (Bool) -> ()) {
-		let today = Date()
-		downloadDailyReport(date: today, completion: completion)
-	}
-
-	private func downloadDailyReport(date: Date, completion: @escaping (Bool) -> ()) {
-		if date.ageDays > Self.maxOldDataAge {
-			completion(false)
-			return
-		}
-
-		let formatter = DateFormatter()
-		formatter.locale = .posix
-		formatter.dateFormat = "MM-dd-YYYY"
-		let fileName = formatter.string(from: date)
-
-		print("Downloading \(fileName)")
-		let url = URL(string: String(format: Self.dailyReportURLString, fileName), relativeTo: Self.baseURL)!
-
-		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-
-			guard let response = response as? HTTPURLResponse,
-				response.statusCode == 200,
-				let data = data else {
-
-				print("Failed downloading \(fileName)")
-				self.downloadDailyReport(date: date.yesterday, completion: completion)
+		dataService.fetchReports { (reports, error) in
+			guard let reports = reports else {
+				completion(false)
 				return
 			}
 
-			DispatchQueue.global(qos: .default).async {
-				let oldData = try? Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
-				if (oldData == data) {
-					print("Nothing new")
-					completion(false)
-					return
-				}
+			self.allReports = reports
+			self.generateOtherReports()
 
-				try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
-				print("Download success \(fileName)")
-
-				_ = self.loadReports()
-
-				self.downloadTimeSerieses(completion: completion)
-			}
-		}.resume()
+			self.downloadTimeSerieses(completion: completion)
+		}
 	}
 
 	private func downloadTimeSerieses(completion: @escaping (Bool) -> ()) {
-		let dispatchGroup = DispatchGroup()
-		var result = true
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { success in
-			result = result && success
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { success in
-			result = result && success
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { success in
-			result = result && success
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.notify(queue: .main) {
-			if result {
-				self.loadTimeSeries()
+		dataService.fetchTimeSerieses { (timeSerieses, error) in
+			guard let timeSerieses = timeSerieses else {
+				completion(false)
+				return
 			}
-			completion(result)
+
+			self.allTimeSerieses = timeSerieses
+			self.generateOtherTimeSerieses()
+
+			try? Disk.save(self.allReports, to: .caches, as: Self.reportsFileName)
+			try? Disk.save(self.allTimeSerieses, to: .caches, as: Self.timeSeriesesFileName)
+
+			completion(true)
 		}
 	}
-
-	private func downloadFile(url: URL, fileName: String, completion: @escaping (Bool) -> ()) {
-		print("Downloading \(fileName)")
-		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
-			DispatchQueue.global().async {
-				guard error == nil,
-					let data = data,
-					let string = String(data: data, encoding: .utf8),
-					!string.contains("<html") else {
-
-						print("Failed downloading \(fileName)")
-						completion(false)
-						return
-				}
-
-				try? Disk.save(data, to: .caches, as: fileName)
-				print("Download success \(fileName)")
-				completion(true)
-			}
-		}.resume()
-	}
-
 }

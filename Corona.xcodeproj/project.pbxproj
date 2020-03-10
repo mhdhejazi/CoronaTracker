@@ -10,6 +10,8 @@
 		11198BBD241177740080307F /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBC241177740080307F /* Disk */; };
 		11198BC024117A9A0080307F /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBF24117A9A0080307F /* PKHUD */; };
 		111C76B62412C90500368F08 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
+		114D2E4B2417CD43001478D4 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D2E4A2417CD42001478D4 /* DataService.swift */; };
+		114D2E4E2417CE8A001478D4 /* JHURepoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D2E4D2417CE8A001478D4 /* JHURepoDataService.swift */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		111C76B52412C90500368F08 /* SystemColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		114D2E4A2417CD42001478D4 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		114D2E4D2417CE8A001478D4 /* JHURepoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHURepoDataService.swift; sourceTree = "<group>"; };
 		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		114D2E4C2417CD52001478D4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				114D2E4A2417CD42001478D4 /* DataService.swift */,
+				114D2E4D2417CE8A001478D4 /* JHURepoDataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		1162D11F240D05F600647002 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				1162D158240FA41200647002 /* Data */,
+				114D2E4C2417CD52001478D4 /* Service */,
 				1162D15F240FA85300647002 /* Map */,
 				1162D151240F934000647002 /* Chart */,
 				11EB2CA224140D24001769B2 /* Controller */,
@@ -276,9 +290,11 @@
 			files = (
 				1162D149240EB8B300647002 /* Extensions.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
+				114D2E4E2417CE8A001478D4 /* JHURepoDataService.swift in Sources */,
 				111C76B62412C90500368F08 /* SystemColor.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
 				1162D161240FA87E00647002 /* ReportAnnotationView.swift in Sources */,
+				114D2E4B2417CD43001478D4 /* DataService.swift in Sources */,
 				1162D163240FAC9300647002 /* TimeSeries.swift in Sources */,
 				1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */,
 				1162D15E240FA66000647002 /* Region.swift in Sources */,

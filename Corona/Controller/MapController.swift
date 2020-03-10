@@ -48,7 +48,7 @@ class MapController: UIViewController {
 							 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
 		}
 
-		DataManager.instance.loadAsync { _ in
+		DataManager.instance.load { _ in
 			self.update()
 			self.downloadIfNeeded()
 		}
