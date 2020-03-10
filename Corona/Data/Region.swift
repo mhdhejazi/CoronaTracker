@@ -8,38 +8,33 @@
 
 import MapKit
 
-class Region: Equatable {
+struct Region: Equatable, Codable {
 	var countryName: String
 	let provinceName: String
-	let location: CLLocationCoordinate2D
+	let location: Coordinate
 
 	var isProvince: Bool { !provinceName.isEmpty }
 	var name: String { isProvince ? "\(provinceName), \(countryName)" : countryName }
 
-	init(country: String, province: String, location: CLLocationCoordinate2D) {
-		self.countryName = country
-		self.provinceName = province
-		self.location = location
-	}
-
-	init(subRegions: [Region]) {
+	static func join(subRegions: [Region]) -> Region {
 		assert(!subRegions.isEmpty)
 
-		self.countryName = subRegions.first!.countryName
-		self.provinceName = ""
+		let countryName = subRegions.first!.countryName
+		let provinceName = ""
 
 		let coordinates = subRegions.map { $0.location }
 		let totals = coordinates.reduce((latitude: 0.0, longitude: 0.0)) {
 			($0.latitude + $1.latitude, $0.longitude + $1.longitude)
 		}
-		let location = CLLocationCoordinate2D(latitude: totals.latitude / Double(coordinates.count),
-											  longitude: totals.longitude / Double(coordinates.count))
+		var location = Coordinate(latitude: totals.latitude / Double(coordinates.count),
+								  longitude: totals.longitude / Double(coordinates.count))
 
-		self.location = subRegions.min {
+		location = subRegions.min {
 			location.distance(from: $0.location) < location.distance(from: $1.location)
 		}!.location
-	}
 
+		return Region(countryName: countryName, provinceName: provinceName, location: location)
+	}
 
 	func equals(other: Region) -> Bool {
 		self.countryName == other.countryName &&
@@ -53,5 +48,16 @@ class Region: Equatable {
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(countryName)
 		hasher.combine(provinceName)
+	}
+}
+
+struct Coordinate: Codable {
+	var latitude: Double
+	var longitude: Double
+
+	var clLocation: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
+
+	func distance(from other: Coordinate) -> Double {
+		hypot(latitude - other.latitude, longitude - other.longitude)
 	}
 }

@@ -92,28 +92,23 @@ class DataManager {
 			let data = try Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
 
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
-			let decoder = CSVRowDecoder()
-			var reports = [Report]()
-			while reader.next() != nil {
-				reports.append(try decoder.decode(Report.self, from: reader))
-			}
-			allReports = reports
+			allReports = reader.map({ Report.create(dataRow: $0) })
 
 			/// Main reports
-			reports = []
+			var reports = [Report]()
 			reports.append(contentsOf: allReports.filter({ !$0.region.isProvince }))
 			Dictionary(grouping: allReports.filter({ report in
 				report.region.isProvince
 			}), by: { report in
 				report.region.countryName
 			}).forEach { (key, value) in
-				let report = Report(subReports: value.map { $0 })
+				let report = Report.join(subReports: value.map { $0 })
 				reports.append(report)
 			}
 			countryReports = reports
 
 			/// Global report
-			worldwideReport = Report(subReports: allReports)
+			worldwideReport = Report.join(subReports: allReports)
 			worldwideReport?.region.countryName = "Worldwide"
 
 			/// Top countries
@@ -183,13 +178,13 @@ class DataManager {
 			}), by: { timeSeries in
 				timeSeries.region.countryName
 			}).forEach { (key, value) in
-				let timeSeries = TimeSeries(subSerieses: value.map { $0 })
+				let timeSeries = TimeSeries.join(subSerieses: value.map { $0 })
 				timeSerieses.append(timeSeries)
 			}
 			countryTimeSerieses = timeSerieses
 
 			/// Global time series
-			worldwideTimeSeries = TimeSeries(subSerieses: allTimeSerieses)
+			worldwideTimeSeries = TimeSeries.join(subSerieses: allTimeSerieses)
 			worldwideTimeSeries?.region.countryName = "Worldwide"
 		}
 		catch {

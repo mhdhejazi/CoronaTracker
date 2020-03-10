@@ -8,33 +8,29 @@
 
 import MapKit
 
-class TimeSeries {
-	let region: Region
+struct TimeSeries: Codable {
+	var region: Region
 	let series: [Date : Statistic]
 
-	init(region: Region, series: [Date : Statistic]) {
-		self.region = region
-		self.series = series
-	}
-
-	init(subSerieses: [TimeSeries]) {
+	static func join(subSerieses: [TimeSeries]) -> TimeSeries {
 		assert(!subSerieses.isEmpty)
 
-		self.region = Region(subRegions: subSerieses.map { $0.region })
+		let region = Region.join(subRegions: subSerieses.map { $0.region })
 
 		var series: [Date : Statistic] = [:]
 		let subSeries = subSerieses.first!
 		subSeries.series.keys.forEach { key in
 			let subData = subSerieses.compactMap { $0.series[key] }
-			let superData = Statistic(subData: subData)
+			let superData = Statistic.join(subData: subData)
 			series[key] = superData
 		}
-		self.series = series
+
+		return TimeSeries(region: region, series: series)
 	}
 }
 
-class CounterTimeSeries: Decodable {
-	enum CodingKeys: Int, CodingKey {
+class CounterTimeSeries {
+	private enum DataFieldOrder: Int {
 		case province = 0
 		case country
 		case latitude
@@ -44,31 +40,14 @@ class CounterTimeSeries: Decodable {
 	let region: Region
 	let values: [Int]
 
-	required init(from decoder: Decoder) throws {
-		var row = try decoder.unkeyedContainer()
-		let province = try row.decode(String.self)
-		let country = try row.decode(String.self)
-		let latitude = try row.decode(Double.self)
-		let longitude = try row.decode(Double.self)
-		let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-		self.region = Region(country: country, province: province, location: location)
-
-		var values = [Int]()
-		while !row.isAtEnd {
-			let numberString = try row.decode(String.self).trimmingCharacters(in: .newlines)
-			values.append(Int(numberString) ?? 0)
-		}
-		self.values = values
-	}
-
 	init(dataRow: [String]) {
-		let province = dataRow[CodingKeys.province.rawValue]
-		let country = dataRow[CodingKeys.country.rawValue]
-		let latitude = Double(dataRow[CodingKeys.latitude.rawValue]) ?? 0
-		let longitude = Double(dataRow[CodingKeys.longitude.rawValue]) ?? 0
-		let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-		self.region = Region(country: country, province: province, location: location)
+		let province = dataRow[DataFieldOrder.province.rawValue]
+		let country = dataRow[DataFieldOrder.country.rawValue]
+		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
+		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
+		let location = Coordinate(latitude: latitude, longitude: longitude)
+		self.region = Region(countryName: country, provinceName: province, location: location)
 
-		self.values = dataRow.dropFirst(CodingKeys.longitude.rawValue + 1).map { Int($0) ?? 0 }
+		self.values = dataRow.dropFirst(DataFieldOrder.longitude.rawValue + 1).map { Int($0) ?? 0 }
 	}
 }

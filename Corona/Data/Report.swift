@@ -8,19 +8,19 @@
 
 import MapKit
 
-class Report: Decodable {
-	enum CodingKeys: String, CodingKey {
-		case province = "Province/State"
-		case country = "Country/Region"
-		case lastUpdate = "Last Update"
-		case confirmed = "Confirmed"
-		case deaths = "Deaths"
-		case recovered = "Recovered"
-		case latitude = "Latitude"
-		case longitude = "Longitude"
+struct Report: Codable {
+	private enum DataFieldOrder: Int {
+		case province = 0
+		case country
+		case lastUpdate
+		case confirmed
+		case deaths
+		case recovered
+		case latitude
+		case longitude
 	}
 
-	let region: Region
+	var region: Region
 	let lastUpdate: Date
 	let stat: Statistic
 
@@ -28,31 +28,30 @@ class Report: Decodable {
 		Calendar.current.dateComponents([.hour], from: self.lastUpdate, to: Date()).hour!
 	}
 
-	required init(from decoder: Decoder) throws {
-		let row = try decoder.container(keyedBy: CodingKeys.self)
-		let province = try row.decodeIfPresent(String.self, forKey: .province) ?? ""
-		let country = try row.decode(String.self, forKey: .country)
-		let latitude = try row.decode(Double.self, forKey: .latitude)
-		let longitude = Double(try row.decode(String.self, forKey: .longitude).trimmingCharacters(in: .newlines)) ?? 0
-		let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-		self.region = Region(country: country, province: province, location: location)
+	static func create(dataRow: [String]) -> Report {
+		let province = dataRow[DataFieldOrder.province.rawValue]
+		let country = dataRow[DataFieldOrder.country.rawValue]
+		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
+		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
+		let location = Coordinate(latitude: latitude, longitude: longitude)
+		let region = Region(countryName: country, provinceName: province, location: location)
 
-		let timeString = try row.decode(String.self, forKey: .lastUpdate)
+		let timeString = dataRow[DataFieldOrder.lastUpdate.rawValue]
 		let formatter = ISO8601DateFormatter()
 		formatter.formatOptions = [.withFullDate, .withTime, .withColonSeparatorInTime]
-		self.lastUpdate = formatter.date(from: timeString) ?? Date()
+		let lastUpdate = formatter.date(from: timeString) ?? Date()
 
-		let confirmed = try row.decode(Int.self, forKey: .confirmed)
-		let deaths = try row.decode(Int.self, forKey: .deaths)
-		let recovered = try row.decode(Int.self, forKey: .recovered)
-		self.stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
+		let confirmed = Int(dataRow[DataFieldOrder.confirmed.rawValue]) ?? 0
+		let deaths = Int(dataRow[DataFieldOrder.deaths.rawValue]) ?? 0
+		let recovered = Int(dataRow[DataFieldOrder.recovered.rawValue]) ?? 0
+		let stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
+
+		return Report(region: region, lastUpdate: lastUpdate, stat: stat)
 	}
 
-	init(subReports: [Report]) {
-		assert(!subReports.isEmpty)
-
-		self.region = Region(subRegions: subReports.map { $0.region })
-		self.lastUpdate = subReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate
-		self.stat = Statistic(subData: subReports.map { $0.stat })
+	static func join(subReports: [Report]) -> Report {
+		Report(region: Region.join(subRegions: subReports.map { $0.region }),
+			   lastUpdate: subReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate,
+			   stat: Statistic.join(subData: subReports.map { $0.stat }))
 	}
 }

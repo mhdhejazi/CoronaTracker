@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Statistic: CustomStringConvertible {
+struct Statistic: CustomStringConvertible, Codable {
 	let confirmedCount: Int
 	let recoveredCount: Int
 	let deathCount: Int
@@ -30,15 +30,9 @@ class Statistic: CustomStringConvertible {
 		"""
 	}
 
-	init(confirmedCount: Int, recoveredCount: Int, deathCount: Int) {
-		self.confirmedCount = confirmedCount
-		self.recoveredCount = recoveredCount
-		self.deathCount = deathCount
-	}
-
-	init(subData: [Statistic]) {
-		self.confirmedCount = subData.reduce(0) { $0 + $1.confirmedCount }
-		self.recoveredCount = subData.reduce(0) { $0 + $1.recoveredCount }
-		self.deathCount = subData.reduce(0) { $0 + $1.deathCount }
+	static func join(subData: [Statistic]) -> Statistic {
+		Statistic(confirmedCount: subData.reduce(0) { $0 + $1.confirmedCount },
+				  recoveredCount: subData.reduce(0) { $0 + $1.recoveredCount },
+				  deathCount: subData.reduce(0) { $0 + $1.deathCount })
 	}
 }

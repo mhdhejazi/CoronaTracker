@@ -20,7 +20,7 @@ class ReportAnnotation: NSObject, MKAnnotation {
 		self.report = report
 
 		let region = report.region
-		self.coordinate = region.location
+		self.coordinate = region.location.clLocation
 		self.title = region.name
 
 		super.init()
