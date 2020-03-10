@@ -13,7 +13,6 @@ import FloatingPanel
 import PKHUD
 
 class MapController: UIViewController {
-	private static let maxDataAge = 1 // Hours
 	private static let cityZoomLevel = CGFloat(4)
 
 	static var instance: MapController!
@@ -109,11 +108,7 @@ class MapController: UIViewController {
 		regionContainerController.regionController.update()
 	}
 
-	private func downloadIfNeeded() {
-		if let age = DataManager.instance.worldwideReport?.hourAge, age < Self.maxDataAge {
-			return
-		}
-
+	func downloadIfNeeded() {
 		let showSpinner = allAnnotations.isEmpty
 		if showSpinner {
 			HUD.show(.label("Updating..."), onView: view)
