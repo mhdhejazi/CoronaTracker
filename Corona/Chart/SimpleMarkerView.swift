@@ -30,8 +30,8 @@ public class SimpleMarkerView: BalloonMarker {
 		}
 
 		super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
-				   font: .boldSystemFont(ofSize: 13),
-				   textColor: .white,
+				   font: .systemFont(ofSize: 13),
+				   textColor: UIColor.white.withAlphaComponent(0.9),
 				   insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10))
 
 		self.chartView = chartView

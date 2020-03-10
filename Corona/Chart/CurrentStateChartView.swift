@@ -50,7 +50,7 @@ class CurrentStateChartView: PieChartView {
 		dataSet.yValuePosition = .insideSlice
 		dataSet.valueTextColor = .white
 		dataSet.entryLabelColor = .black
-		dataSet.valueFont = .systemFont(ofSize: 13, weight: .heavy)
+		dataSet.valueFont = .systemFont(ofSize: 14, weight: .bold)
 		dataSet.valueFormatter = PercentValueFormatter()
 
 		data = PieChartData(dataSet: dataSet)

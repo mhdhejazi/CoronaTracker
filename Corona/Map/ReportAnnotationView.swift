@@ -35,7 +35,7 @@ class ReportAnnotationView: MKAnnotationView {
 		let level = log10(number + 10) * 2
 		let brightness = max(0, 255 - level * 40) / 255;
 		let saturation = brightness > 0 ? 1 : max(0, 255 - ((level * 40) - 255)) / 255;
-		return UIColor(red: saturation, green: brightness, blue: brightness, alpha: 0.8)
+		return UIColor(red: saturation, green: brightness, blue: brightness * 0.4, alpha: 0.8)
 	}
 
 	var report: Report? {
