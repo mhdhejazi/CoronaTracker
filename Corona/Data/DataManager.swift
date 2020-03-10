@@ -12,11 +12,9 @@ import Disk
 
 class DataManager {
 	private static let reportsFileName = "reports.json"
-	private static let timeSeriesesFileName = "time_serieses.json"
+	private static let timeSeriesesFileName = "timeSerieses.json"
 
 	static let instance = DataManager()
-
-	private let dataService: DataService = JHURepoDataService.instance
 
 	var allReports: [Report] = []
 	var countryReports: [Report] = []
@@ -124,6 +122,12 @@ class DataManager {
 	}
 
 	private func generateOtherTimeSerieses() {
+		if allTimeSerieses.isEmpty {
+			countryTimeSerieses = []
+			worldwideTimeSeries = nil
+			return
+		}
+
 		/// Main time serieses
 		var timeSerieses = [TimeSeries]()
 		timeSerieses.append(contentsOf: allTimeSerieses.filter({ !$0.region.isProvince }))
@@ -149,7 +153,7 @@ extension DataManager {
 //		return
 		#endif
 
-		dataService.fetchReports { (reports, error) in
+		JHUWebDataService.instance.fetchReports { (reports, error) in
 			guard let reports = reports else {
 				completion(false)
 				return
@@ -163,7 +167,7 @@ extension DataManager {
 	}
 
 	private func downloadTimeSerieses(completion: @escaping (Bool) -> ()) {
-		dataService.fetchTimeSerieses { (timeSerieses, error) in
+		JHURepoDataService.instance.fetchTimeSerieses { (timeSerieses, error) in
 			guard let timeSerieses = timeSerieses else {
 				completion(false)
 				return

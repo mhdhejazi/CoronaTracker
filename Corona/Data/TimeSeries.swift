@@ -28,26 +28,3 @@ struct TimeSeries: Codable {
 		return TimeSeries(region: region, series: series)
 	}
 }
-
-class CounterTimeSeries {
-	private enum DataFieldOrder: Int {
-		case province = 0
-		case country
-		case latitude
-		case longitude
-	}
-
-	let region: Region
-	let values: [Int]
-
-	init(dataRow: [String]) {
-		let province = dataRow[DataFieldOrder.province.rawValue]
-		let country = dataRow[DataFieldOrder.country.rawValue]
-		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
-		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
-		let location = Coordinate(latitude: latitude, longitude: longitude)
-		self.region = Region(countryName: country, provinceName: province, location: location)
-
-		self.values = dataRow.dropFirst(DataFieldOrder.longitude.rawValue + 1).map { Int($0) ?? 0 }
-	}
-}

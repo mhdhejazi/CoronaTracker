@@ -22,10 +22,10 @@ class JHURepoDataService: DataService {
 	static let instance = JHURepoDataService()
 
 	private static let maxOldDataAge = 10 // Days
-	private static let dailyReportFileName = "daily_report.csv"
-	private static let confirmedTimeSeriesFileName = "time_series_confirmed.csv"
-	private static let recoveredTimeSeriesFileName = "time_series_recovered.csv"
-	private static let deathsTimeSeriesFileName = "time_series_deaths.csv"
+	private static let dailyReportFileName = "JHURepoDataService-DailyReport.csv"
+	private static let confirmedTimeSeriesFileName = "JHURepoDataService-TS-Confirmed.csv"
+	private static let recoveredTimeSeriesFileName = "JHURepoDataService-TS-Recovered.csv"
+	private static let deathsTimeSeriesFileName = "JHURepoDataService-TS-Deaths.csv"
 
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
 	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
@@ -36,39 +36,6 @@ class JHURepoDataService: DataService {
 	func fetchReports(completion: @escaping FetchReportsBlock) {
 		let today = Date()
 		downloadDailyReport(date: today, completion: completion)
-	}
-
-	func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
-		let dispatchGroup = DispatchGroup()
-		var result = [Data?](repeating: nil, count: 3)
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { data in
-			result[0] = data
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { data in
-			result[1] = data
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.enter()
-		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
-			result[2] = data
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.notify(queue: .main) {
-			let result = result.compactMap { $0 }
-			if result.count != 3 {
-				completion(nil, FetchError.downloadError)
-				return
-			}
-
-			self.parseTimeSerieses(data: result, completion: completion)
-		}
 	}
 
 	private func downloadDailyReport(date: Date, completion: @escaping FetchReportsBlock) {
@@ -105,6 +72,7 @@ class JHURepoDataService: DataService {
 				}
 
 				print("Download success \(fileName)")
+				try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
 
 				self.parseReports(data: data, completion: completion)
 			}
@@ -113,8 +81,6 @@ class JHURepoDataService: DataService {
 
 	private func parseReports(data: Data, completion: @escaping FetchReportsBlock) {
 		do {
-			try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
-
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
 			let reports = reader.map({ Report.create(dataRow: $0) })
 			completion(reports, nil)
@@ -122,6 +88,41 @@ class JHURepoDataService: DataService {
 		catch {
 			print("Unexpected error: \(error).")
 			completion(nil, error)
+		}
+	}
+
+	func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
+		let dispatchGroup = DispatchGroup()
+		var result = [Data?](repeating: nil, count: 3)
+
+		dispatchGroup.enter()
+		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { data in
+			result[0] = data
+			dispatchGroup.leave()
+		}
+
+		dispatchGroup.enter()
+		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { data in
+			result[1] = data
+			dispatchGroup.leave()
+		}
+
+		dispatchGroup.enter()
+		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
+			result[2] = data
+			dispatchGroup.leave()
+		}
+
+		dispatchGroup.notify(queue: .main) {
+			let result = result.compactMap { $0 }
+			if result.count != 3 {
+				completion(nil, FetchError.downloadError)
+				return
+			}
+
+			DispatchQueue.global(qos: .default).async {
+				self.parseTimeSerieses(data: result, completion: completion)
+			}
 		}
 	}
 
@@ -191,20 +192,78 @@ class JHURepoDataService: DataService {
 	private func downloadFile(url: URL, fileName: String, completion: @escaping (Data?) -> ()) {
 		print("Downloading \(fileName)")
 		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
+			guard let response = response as? HTTPURLResponse,
+				response.statusCode == 200,
+				let data = data else {
+
+					print("Failed downloading \(fileName)")
+					completion(nil)
+					return
+			}
+
 			DispatchQueue.global().async {
-				guard let response = response as? HTTPURLResponse,
-					response.statusCode == 200,
-					let data = data else {
-
-						print("Failed downloading \(fileName)")
-						completion(nil)
-						return
-				}
-
-				try? Disk.save(data, to: .caches, as: fileName)
 				print("Download success \(fileName)")
+				try? Disk.save(data, to: .caches, as: fileName)
+
 				completion(data)
 			}
 		}.resume()
+	}
+}
+
+extension Report {
+	private enum DataFieldOrder: Int {
+		case province = 0
+		case country
+		case lastUpdate
+		case confirmed
+		case deaths
+		case recovered
+		case latitude
+		case longitude
+	}
+
+	static func create(dataRow: [String]) -> Report {
+		let province = dataRow[DataFieldOrder.province.rawValue]
+		let country = dataRow[DataFieldOrder.country.rawValue]
+		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
+		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
+		let location = Coordinate(latitude: latitude, longitude: longitude)
+		let region = Region(countryName: country, provinceName: province, location: location)
+
+		let timeString = dataRow[DataFieldOrder.lastUpdate.rawValue]
+		let formatter = ISO8601DateFormatter()
+		formatter.formatOptions = [.withFullDate, .withTime, .withColonSeparatorInTime]
+		let lastUpdate = formatter.date(from: timeString) ?? Date()
+
+		let confirmed = Int(dataRow[DataFieldOrder.confirmed.rawValue]) ?? 0
+		let deaths = Int(dataRow[DataFieldOrder.deaths.rawValue]) ?? 0
+		let recovered = Int(dataRow[DataFieldOrder.recovered.rawValue]) ?? 0
+		let stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
+
+		return Report(region: region, lastUpdate: lastUpdate, stat: stat)
+	}
+}
+
+private class CounterTimeSeries {
+	private enum DataFieldOrder: Int {
+		case province = 0
+		case country
+		case latitude
+		case longitude
+	}
+
+	let region: Region
+	let values: [Int]
+
+	init(dataRow: [String]) {
+		let province = dataRow[DataFieldOrder.province.rawValue]
+		let country = dataRow[DataFieldOrder.country.rawValue]
+		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
+		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
+		let location = Coordinate(latitude: latitude, longitude: longitude)
+		self.region = Region(countryName: country, provinceName: province, location: location)
+
+		self.values = dataRow.dropFirst(DataFieldOrder.longitude.rawValue + 1).map { Int($0) ?? 0 }
 	}
 }
