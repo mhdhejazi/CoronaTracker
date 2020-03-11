@@ -12,6 +12,8 @@ import SafariServices
 import Charts
 
 class RegionController: UITableViewController {
+	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
+
 	var report: Report? {
 		didSet {
 			if report == nil {
@@ -89,7 +91,7 @@ class RegionController: UITableViewController {
 			self.showPercents = !self.showPercents
 			self.updateStats()
 		}
-		DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: task)
+		DispatchQueue.main.asyncAfter(deadline: .now() + Self.numberPercentSwitchInterval, execute: task)
 		switchPercentsTask = task
 
 		if reset {

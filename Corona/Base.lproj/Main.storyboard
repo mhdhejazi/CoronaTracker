@@ -368,21 +368,29 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="China" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-6g-4tZ">
-                                <rect key="frame" x="20" y="18" width="374" height="41"/>
+                                <rect key="frame" x="20" y="18" width="294.5" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="20 min. ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="x3z-gb-5Us">
+                                <rect key="frame" x="322.5" y="33.5" width="71.5" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="9mw-6g-4tZ" secondAttribute="trailing" constant="20" id="4x1-FF-XHg"/>
+                            <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="x3z-gb-5Us" secondAttribute="trailing" constant="20" id="1w5-Kg-svE"/>
+                            <constraint firstItem="x3z-gb-5Us" firstAttribute="centerY" secondItem="9mw-6g-4tZ" secondAttribute="centerY" constant="3" id="4E0-yf-2eE"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="bottom" secondItem="De6-gr-Z57" secondAttribute="bottom" id="5Gj-gb-N3M"/>
                             <constraint firstItem="9mw-6g-4tZ" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="18" id="5dn-HN-lio"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="2IF-jV-QKe" secondAttribute="bottom" id="5gk-St-JC3"/>
                             <constraint firstItem="2IF-jV-QKe" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="A3A-Ao-8kO"/>
                             <constraint firstItem="2IF-jV-QKe" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="D2Q-Mq-cev"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="75" id="DET-Ia-muS"/>
+                            <constraint firstItem="x3z-gb-5Us" firstAttribute="leading" secondItem="9mw-6g-4tZ" secondAttribute="trailing" constant="8" symbolic="YES" id="LxX-NJ-SSn"/>
                             <constraint firstAttribute="bottom" secondItem="0hs-6B-msn" secondAttribute="bottom" id="Msc-FN-sAs"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="trailing" secondItem="rB9-u9-YPh" secondAttribute="trailing" id="QhN-hL-XFg"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="Wqw-mH-VGq"/>
@@ -398,6 +406,7 @@
                         <outlet property="effectViewBackground" destination="0hs-6B-msn" id="3qS-oa-1qu"/>
                         <outlet property="effectViewHeader" destination="2IF-jV-QKe" id="XLt-Ez-olK"/>
                         <outlet property="labelTitle" destination="9mw-6g-4tZ" id="ONa-Yj-wOa"/>
+                        <outlet property="labelUpdated" destination="x3z-gb-5Us" id="FYT-on-lKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CeF-hI-Mrk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

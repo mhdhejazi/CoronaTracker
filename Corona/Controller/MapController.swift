@@ -14,6 +14,7 @@ import PKHUD
 
 class MapController: UIViewController {
 	private static let cityZoomLevel = CGFloat(4)
+	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var instance: MapController!
 
@@ -49,6 +50,10 @@ class MapController: UIViewController {
 
 		DataManager.instance.load { _ in
 			self.update()
+			self.downloadIfNeeded()
+		}
+
+		Timer.scheduledTimer(withTimeInterval: Self.updateInterval, repeats: true) { _ in
 			self.downloadIfNeeded()
 		}
 	}
@@ -113,9 +118,12 @@ class MapController: UIViewController {
 		if showSpinner {
 			HUD.show(.label("Updating..."), onView: view)
 		}
+		regionContainerController.isUpdating = true
 
 		DataManager.instance.download { success in
 			DispatchQueue.main.async {
+				self.regionContainerController.isUpdating = false
+
 				if success {
 					HUD.hide()
 					self.update()

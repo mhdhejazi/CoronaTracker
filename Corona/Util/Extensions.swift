@@ -91,7 +91,9 @@ extension Date {
 
 	var relativeTimeString: String {
 		if #available(iOS 13.0, *) {
-			return RelativeDateTimeFormatter().localizedString(for: self, relativeTo: Date())
+			let formatter = RelativeDateTimeFormatter()
+			formatter.unitsStyle = .short
+			return formatter.localizedString(for: self, relativeTo: Date())
 		}
 
 		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())

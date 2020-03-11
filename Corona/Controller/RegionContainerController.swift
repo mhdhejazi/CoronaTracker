@@ -10,10 +10,16 @@ import UIKit
 
 class RegionContainerController: UIViewController {
 	var regionController: RegionController!
+	var isUpdating: Bool = false {
+		didSet {
+			updateTime()
+		}
+	}
 
 	@IBOutlet var effectViewBackground: UIVisualEffectView!
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
+	@IBOutlet var labelUpdated: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,6 +37,10 @@ class RegionContainerController: UIViewController {
 			/// iOS 10
 			labelTitle.font = .boldSystemFont(ofSize: 24)
 		}
+
+		Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
+			self.updateTime()
+		}
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,5 +53,16 @@ class RegionContainerController: UIViewController {
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
 			self.labelTitle.text = report?.region.name ?? "No data"
 		}, completion: nil)
+
+		updateTime()
+	}
+
+	func updateTime() {
+		if isUpdating {
+			self.labelUpdated.text = "Updating..."
+			return
+		}
+
+		self.labelUpdated.text = self.regionController.report?.lastUpdate.relativeTimeString
 	}
 }
