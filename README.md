@@ -9,7 +9,7 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 ![image](https://user-images.githubusercontent.com/121827/76356430-fe06ff80-6326-11ea-8107-60f900a73016.png)
 
 # Features
-* __Live data__: Shows the most recent data, and automatically updates data when the app enters the foreground.
+* __Live data__: Shows the most recent data, and updates automatically.
 * __Distribution map__ with two levels of details:
   * __Countries__: When the user zooms out. Fewer details and reduced clutter.
   * __Cities__: When the user zooms in. More details.
