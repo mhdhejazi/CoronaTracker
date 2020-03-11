@@ -36,6 +36,7 @@
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11BF32AF2415F83100270130 /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32AE2415F83100270130 /* CSV */; };
+		11D637152418D83900BE6557 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D637142418D83900BE6557 /* Coordinate.swift */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */; };
@@ -69,6 +70,7 @@
 		11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		116EC0A72410DF48006E4559 /* RegionContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionContainerController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		11D637142418D83900BE6557 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCountriesChartView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				1162D158240FA41200647002 /* Data */,
+				11D637132418D7F100BE6557 /* Model */,
 				114D2E4C2417CD52001478D4 /* Service */,
 				1162D15F240FA85300647002 /* Map */,
 				1162D151240F934000647002 /* Chart */,
@@ -154,10 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				1162D159240FA46D00647002 /* DataManager.swift */,
-				1162D15D240FA66000647002 /* Region.swift */,
-				1162D164240FAE8900647002 /* Statistic.swift */,
-				1162D146240EB89C00647002 /* Report.swift */,
-				1162D162240FAC9300647002 /* TimeSeries.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -187,6 +186,18 @@
 				1162D12D240D05F600647002 /* SceneDelegate.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		11D637132418D7F100BE6557 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1162D146240EB89C00647002 /* Report.swift */,
+				1162D162240FAC9300647002 /* TimeSeries.swift */,
+				1162D164240FAE8900647002 /* Statistic.swift */,
+				1162D15D240FA66000647002 /* Region.swift */,
+				11D637142418D83900BE6557 /* Coordinate.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		11EB2CA224140D24001769B2 /* Controller */ = {
@@ -310,6 +321,7 @@
 				1162D165240FAE8900647002 /* Statistic.swift in Sources */,
 				1162D14A240EBA3400647002 /* Report.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
+				11D637152418D83900BE6557 /* Coordinate.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
 				1162D15A240FA46D00647002 /* DataManager.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
