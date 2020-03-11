@@ -126,6 +126,14 @@ extension Date {
 
 		return "\(interval) \(unit + (interval > 1 ? "s" : "")) ago"
 	}
+
+	var relativeDateString: String {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		formatter.timeStyle = .short
+		formatter.doesRelativeDateFormatting = true
+		return formatter.string(from: self)
+	}
 }
 
 extension Double {
