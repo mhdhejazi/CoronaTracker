@@ -9,8 +9,10 @@
 import MapKit
 
 struct Coordinate: Codable, Equatable {
-	var latitude: Double
-	var longitude: Double
+	static let zero = Coordinate(latitude: 0, longitude: 0)
+
+	let latitude: Double
+	let longitude: Double
 
 	var clLocation: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
 

@@ -14,9 +14,9 @@ struct Statistic: CustomStringConvertible, Codable {
 	let deathCount: Int
 	var existingCount: Int { confirmedCount - recoveredCount - deathCount }
 
-	var recoveredPercent: Double { 100.0 * Double(recoveredCount) / Double(confirmedCount) }
-	var deathPercent: Double { 100.0 * Double(deathCount) / Double(confirmedCount) }
-	var existingPercent: Double { 100.0 * Double(existingCount) / Double(confirmedCount) }
+	var recoveredPercent: Double { confirmedCount == 0 ? 0 : 100.0 * Double(recoveredCount) / Double(confirmedCount) }
+	var deathPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(deathCount) / Double(confirmedCount) }
+	var existingPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(existingCount) / Double(confirmedCount) }
 
 	var confirmedCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: confirmedCount))! }
 	var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }

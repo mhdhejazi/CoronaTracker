@@ -9,7 +9,9 @@
 import Foundation
 
 struct Region: Equatable, Codable {
-	var countryName: String
+	static let worldWide = Region(countryName: "Worldwide", provinceName: "", location: .zero)
+
+	let countryName: String
 	let provinceName: String
 	let location: Coordinate
 

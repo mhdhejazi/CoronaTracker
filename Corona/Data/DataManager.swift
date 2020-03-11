@@ -98,7 +98,7 @@ class DataManager {
 
 		/// Global report
 		worldwideReport = Report.join(subReports: allReports)
-		worldwideReport?.region.countryName = "Worldwide"
+		worldwideReport?.region  = .worldWide
 
 		/// Top countries
 		topReports = [Report](
@@ -143,7 +143,7 @@ class DataManager {
 
 		/// Global time series
 		worldwideTimeSeries = TimeSeries.join(subSerieses: allTimeSerieses)
-		worldwideTimeSeries?.region.countryName = "Worldwide"
+		worldwideTimeSeries?.region = .worldWide
 	}
 }
 
