@@ -3,6 +3,9 @@
 # Corona Tracker 
 Coronavirus tracker app for iOS & macOS with map &amp; charts.
 
+![iOS](https://img.shields.io/badge/iOS-10%20-blue)
+![macOS](https://img.shields.io/badge/macOS-10.15-blue)
+![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
 ![image](https://user-images.githubusercontent.com/121827/76356430-fe06ff80-6326-11ea-8107-60f900a73016.png)
 
 # Features
