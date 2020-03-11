@@ -37,7 +37,12 @@ class CurrentStateChartView: PieChartView {
 		legend.xEntrySpace = 10
 	}
 
-	func update(report: Report) {
+	func update(report: Report?) {
+		guard let report = report else {
+			data = nil
+			return
+		}
+
 		var dataEntries: [PieChartDataEntry] = []
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.existingCount), label: "Existing"))
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: "Deaths"))

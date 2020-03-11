@@ -51,7 +51,12 @@ class HistoryChartView: LineChartView {
 		legend.xEntrySpace = 10
 	}
 
-	func update(series: TimeSeries) {
+	func update(series: TimeSeries?) {
+		guard let series = series else {
+			data = nil
+			return
+		}
+
 		let dates = series.series.keys.sorted()
 		let confirmedEntries = dates.map {
 			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.confirmedCount ?? 0))

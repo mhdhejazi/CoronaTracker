@@ -62,7 +62,7 @@ class RegionController: UITableViewController {
 	}
 
 	func update() {
-		if report == nil || timeSeries == nil {
+		if report == nil {
 			report = DataManager.instance.worldwideReport
 		}
 
@@ -74,14 +74,8 @@ class RegionController: UITableViewController {
 			self.labelUpdated.text = "Last updated: \(self.report?.hourAge ?? 0) hours ago"
 		}, completion: nil)
 
-		if let report = report {
-			chartViewCurrent.update(report: report)
-		}
-
-		if let series = timeSeries {
-			chartViewHistory.update(series: series)
-		}
-
+		chartViewCurrent.update(report: report)
+		chartViewHistory.update(series: timeSeries)
 		chartViewTopCountries.update()
 
 		updateParent()
