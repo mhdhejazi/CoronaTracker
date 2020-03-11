@@ -13,10 +13,6 @@ struct Report: Codable {
 	let lastUpdate: Date
 	let stat: Statistic
 
-	var hourAge: Int {
-		Calendar.current.dateComponents([.hour], from: self.lastUpdate, to: Date()).hour!
-	}
-
 	static func join(subReports: [Report]) -> Report {
 		Report(region: Region.join(subRegions: subReports.map { $0.region }),
 			   lastUpdate: subReports.max { $0.lastUpdate < $1.lastUpdate }!.lastUpdate,

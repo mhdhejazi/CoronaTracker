@@ -71,7 +71,7 @@ class RegionController: UITableViewController {
 			self.labelConfirmed.text = self.report?.stat.confirmedCountString ?? "-"
 			self.labelRecovered.text = self.report?.stat.recoveredCountString ?? "-"
 			self.labelDeaths.text = self.report?.stat.deathCountString ?? "-"
-			self.labelUpdated.text = "Last updated: \(self.report?.hourAge ?? 0) hours ago"
+			self.labelUpdated.text = "Last updated: \(self.report?.lastUpdate.relativeTimeString ?? "-")"
 		}, completion: nil)
 
 		chartViewCurrent.update(report: report)

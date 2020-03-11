@@ -88,6 +88,42 @@ extension Date {
 	var yesterday: Date {
 		Calendar.posix.date(byAdding: .day, value: -1, to: self)!
 	}
+
+	var relativeTimeString: String {
+		if #available(iOS 13.0, *) {
+			return RelativeDateTimeFormatter().localizedString(for: self, relativeTo: Date())
+		}
+
+		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
+
+		var interval: Int
+		var unit: String
+		if let value = components.year, value > 0  {
+			interval = value
+			unit = "year"
+		}
+		else if let value = components.month, value > 0  {
+			interval = value
+			unit = "month"
+		}
+		else if let value = components.day, value > 0  {
+			interval = value
+			unit = "day"
+		}
+		else if let value = components.hour, value > 0  {
+			interval = value
+			unit = "hour"
+		}
+		else if let value = components.minute, value > 0  {
+			interval = value
+			unit = "minute"
+		}
+		else {
+			return "moments ago"
+		}
+
+		return "\(interval) \(unit + (interval > 1 ? "s" : "")) ago"
+	}
 }
 
 extension Double {
