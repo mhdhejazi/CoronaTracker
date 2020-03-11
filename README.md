@@ -37,5 +37,5 @@ Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
 * [Charts](https://github.com/danielgindi/Charts): Beautiful and powerful charts.
 * [FloatingPanel](https://github.com/SCENEE/FloatingPanel): For the bottom sheet.
-* [Disk](https://github.com/saoudrizwan/Disk): Simlifies loading/saving files.
+* [Disk](https://github.com/saoudrizwan/Disk): Simplifies loading/saving files.
 * [PKHUD](https://github.com/Hengyu/PKHUD): For the activity indicator.
