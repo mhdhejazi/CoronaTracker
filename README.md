@@ -31,8 +31,9 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 
 ## How to Use
 1. Clone/Download the repo.
-2. Choose the right target (iOS or macOS).
-3. Build & run!
+2. Open `Corona.xcodeproj` in Xcode.
+3. Choose the right target (iOS or macOS).
+4. Build & run!
 
 Or [download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
 
