@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/121827/76154001-f278c600-60e5-11ea-9d79-7d38eef3738b.png)
+<img src="https://user-images.githubusercontent.com/121827/76558431-5e747900-64ae-11ea-9168-2091a431773a.png" width="127">
 
 # Corona Tracker 
 Coronavirus tracker app for iOS & macOS with map &amp; charts.
