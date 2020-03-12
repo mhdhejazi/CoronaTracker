@@ -207,9 +207,6 @@ extension MapController: FloatingPanelControllerDelegate {
 
 class PanelLayout: FloatingPanelLayout {
 	public var initialPosition: FloatingPanelPosition {
-		#if DEBUG
-//		return .full
-		#endif
 		return .half
 	}
 

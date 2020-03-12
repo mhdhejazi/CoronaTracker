@@ -30,8 +30,8 @@ class HistoryChartView: LineChartView {
 
 		rightAxis.enabled = false
 
-//		dragEnabled = false
-//		scaleXEnabled = false
+		dragEnabled = false
+		scaleXEnabled = false
 		scaleYEnabled = false
 
 		noDataTextColor = .systemGray

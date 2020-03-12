@@ -42,6 +42,7 @@ class TopCountriesChartView: BarChartView {
 
 		rightAxis.enabled = false
 
+		dragEnabled = false
 		scaleXEnabled = false
 		scaleYEnabled = false
 
