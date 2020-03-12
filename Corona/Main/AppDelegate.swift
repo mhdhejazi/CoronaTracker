@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoronaTrackerData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

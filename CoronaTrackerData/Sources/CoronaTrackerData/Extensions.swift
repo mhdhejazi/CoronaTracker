@@ -9,7 +9,7 @@
 import MapKit
 
 extension MKMapView {
-	var zoomLevel: CGFloat {
+	public var zoomLevel: CGFloat {
 		let maxZoom: CGFloat = 20
 		let zoomScale = self.visibleMapRect.size.width / Double(self.frame.size.width)
 		let zoomExponent = log2(zoomScale)
@@ -18,17 +18,17 @@ extension MKMapView {
 }
 
 extension CLLocationCoordinate2D {
-	var location: CLLocation {
+	public var location: CLLocation {
 		return CLLocation(latitude: latitude, longitude: longitude)
 	}
 
-	func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
+	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
 		return location.distance(from: coordinate.location)
 	}
 }
 
 extension UIControl {
-	func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
+	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
 		let sleeve = ClosureSleeve(closure)
 		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
 		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -49,7 +49,7 @@ extension UIControl {
 }
 
 extension UIView {
-	func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
+	public func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
 		UIView.transition(with: self,
 						  duration: duration,
 						  options: [.transitionCrossDissolve],
@@ -59,11 +59,11 @@ extension UIView {
 }
 
 extension Locale {
-	static let posix = Locale(identifier: "en_US_POSIX")
+	public static let posix = Locale(identifier: "en_US_POSIX")
 }
 
 extension Calendar {
-	static let posix: Calendar = {
+	public static let posix: Calendar = {
 		var calendar = Calendar(identifier: .gregorian)
 		calendar.locale = .posix
 		return calendar
@@ -71,25 +71,25 @@ extension Calendar {
 }
 
 extension Date {
-	static let reference = Calendar.posix.date(from: DateComponents(year: 2000))!
+	public static let reference = Calendar.posix.date(from: DateComponents(year: 2000))!
 
-	static func fromReferenceDays(days: Int) -> Date {
+	public static func fromReferenceDays(days: Int) -> Date {
 		Calendar.posix.date(byAdding: .day, value: days, to: Date.reference)!
 	}
 
-	var referenceDays: Int {
+	public var referenceDays: Int {
 		Calendar.posix.dateComponents([.day], from: Date.reference, to: self).day!
 	}
 
-	var ageDays: Int {
+	public var ageDays: Int {
 		Calendar.posix.dateComponents([.day], from: self, to: Date()).day!
 	}
 
-	var yesterday: Date {
+	public var yesterday: Date {
 		Calendar.posix.date(byAdding: .day, value: -1, to: self)!
 	}
 
-	var relativeTimeString: String {
+	public var relativeTimeString: String {
 		if #available(iOS 13.0, *) {
 			let formatter = RelativeDateTimeFormatter()
 			formatter.unitsStyle = .short
@@ -127,7 +127,7 @@ extension Date {
 		return "\(interval) \(unit + (interval > 1 ? "s" : "")) ago"
 	}
 
-	var relativeDateString: String {
+	public var relativeDateString: String {
 		let formatter = DateFormatter()
 		formatter.dateStyle = .short
 		formatter.timeStyle = .short
@@ -137,7 +137,7 @@ extension Date {
 }
 
 extension Double {
-	var kmFormatted: String {
+	public var kmFormatted: String {
 		if self >= 10_000, self < 1_000_000 {
 			return String(format: "%.1fk", locale: .posix, self / 1_000).replacingOccurrences(of: ".0", with: "")
 		}
@@ -149,17 +149,17 @@ extension Double {
 		return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
 
-	var percentFormatted: String {
+	public var percentFormatted: String {
 		NumberFormatter.percentFormatter.string(from: NSNumber(value: self))!
 	}
 }
 
 extension Int {
-	var kmFormatted: String { Double(self).kmFormatted }
+	public var kmFormatted: String { Double(self).kmFormatted }
 }
 
 extension NumberFormatter {
-	static let groupingFormatter: NumberFormatter = {
+	public static let groupingFormatter: NumberFormatter = {
 		let formatter = NumberFormatter()
 		formatter.usesGroupingSeparator = true
 		formatter.groupingSize = 3
@@ -167,7 +167,7 @@ extension NumberFormatter {
 		return formatter
 	}()
 
-	static let percentFormatter: NumberFormatter = {
+	public static let percentFormatter: NumberFormatter = {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .percent
 		formatter.maximumFractionDigits = 1

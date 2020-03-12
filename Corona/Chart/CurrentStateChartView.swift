@@ -9,6 +9,7 @@
 import UIKit
 
 import Charts
+import CoronaTrackerData
 
 class CurrentStateChartView: PieChartView {
 	required init?(coder aDecoder: NSCoder) {

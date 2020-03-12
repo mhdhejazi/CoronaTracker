@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import CoronaTrackerData
 
 class ReportAnnotationView: MKAnnotationView {
 	private lazy var countLabel: UILabel = {

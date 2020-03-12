@@ -9,6 +9,7 @@
 import UIKit
 
 import Charts
+import CoronaTrackerData
 
 class HistoryChartView: LineChartView {
 	required init?(coder aDecoder: NSCoder) {
