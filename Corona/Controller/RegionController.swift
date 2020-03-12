@@ -131,7 +131,7 @@ extension RegionController {
 	}
 
 	@IBAction func buttonInfoTapped(_ sender: Any) {
-		let url = URL(string: "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6")!
+		let url = URL(string: "https://arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61")!
 		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
 		present(safariController, animated: true)

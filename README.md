@@ -8,7 +8,7 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
 ![image](https://user-images.githubusercontent.com/121827/76356430-fe06ff80-6326-11ea-8107-60f900a73016.png)
 
-# Features
+## Features
 * __Live data__: Shows the most recent data, and updates automatically.
 * __Distribution map__ with two levels of details:
   * __Countries__: When the user zooms out. Fewer details and reduced clutter.
@@ -26,14 +26,19 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 ![image](https://user-images.githubusercontent.com/121827/76356895-bd5bb600-6327-11ea-8433-06bede40a799.png)
 ![image](https://user-images.githubusercontent.com/121827/76235095-af306b80-623b-11ea-89df-5e5942318935.png)
 
-# How to Use
-Clone, build, choose the right target (iOS or macOS), and run!
+## How to Use
+1. Clone/Download the repo.
+2. Choose the right target (iOS or macOS).
+3. Build & run!
 
-# Credits
-## Data
+## Contribute
+Please feel free to contribute pull requests or create issues for bugs and feature requests.
+
+## Credits
+### Data
 Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
 
-## Libraries
+### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
 * [Charts](https://github.com/danielgindi/Charts): Beautiful and powerful charts.
 * [FloatingPanel](https://github.com/SCENEE/FloatingPanel): For the bottom sheet.
