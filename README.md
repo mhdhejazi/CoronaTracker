@@ -23,8 +23,11 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 * __macOS__ support.
 * Works on old devices that still run __iOS 10__.
 
-![image](https://user-images.githubusercontent.com/121827/76356895-bd5bb600-6327-11ea-8433-06bede40a799.png)
-![image](https://user-images.githubusercontent.com/121827/76235095-af306b80-623b-11ea-89df-5e5942318935.png)
+<details>
+  <summary><b>Screenshots</b></summary> 
+  <img src="https://user-images.githubusercontent.com/121827/76356895-bd5bb600-6327-11ea-8433-06bede40a799.png" />
+  <img src="https://user-images.githubusercontent.com/121827/76235095-af306b80-623b-11ea-89df-5e5942318935.png" />
+</details>
 
 ## How to Use
 1. Clone/Download the repo.
@@ -33,6 +36,12 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 
 ## Contribute
 Please feel free to contribute pull requests or create issues for bugs and feature requests.
+
+## License
+The app is available for personal/non-commercial use. It's not allowed to publish, distribute, or use the app in a commercial way.
+
+## Author
+Mhd Hejazi (contact@samabox.com)
 
 ## Credits
 ### Data
