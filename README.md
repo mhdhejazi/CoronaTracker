@@ -34,7 +34,7 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 2. Choose the right target (iOS or macOS).
 3. Build & run!
 
-Or [download the latest release](https://github.com/MhdHejazi/Inspect/releases/latest) for macOS.
+Or [download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
 
 ## Contribute
 Please feel free to contribute pull requests or create issues for bugs and feature requests.
