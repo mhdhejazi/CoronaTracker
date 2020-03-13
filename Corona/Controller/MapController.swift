@@ -56,6 +56,8 @@ class MapController: UIViewController {
 		Timer.scheduledTimer(withTimeInterval: Self.updateInterval, repeats: true) { _ in
 			self.downloadIfNeeded()
 		}
+
+		App.checkForAppUpdate(viewController: self)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

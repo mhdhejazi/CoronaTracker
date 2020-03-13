@@ -10,6 +10,7 @@
 		11198BBD241177740080307F /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBC241177740080307F /* Disk */; };
 		11198BC024117A9A0080307F /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBF24117A9A0080307F /* PKHUD */; };
 		111C76B62412C90500368F08 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
+		113FACE9241BAD66008B5574 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113FACE8241BAD66008B5574 /* App.swift */; };
 		114D2E4B2417CD43001478D4 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D2E4A2417CD42001478D4 /* DataService.swift */; };
 		114D2E4E2417CE8A001478D4 /* JHURepoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D2E4D2417CE8A001478D4 /* JHURepoDataService.swift */; };
 		114D2E522417FCFF001478D4 /* JHUWebDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D2E512417FCFF001478D4 /* JHUWebDataService.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		111C76B52412C90500368F08 /* SystemColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		113FACE8241BAD66008B5574 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		114D2E4A2417CD42001478D4 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		114D2E4D2417CE8A001478D4 /* JHURepoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHURepoDataService.swift; sourceTree = "<group>"; };
 		114D2E512417FCFF001478D4 /* JHUWebDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHUWebDataService.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				1162D12B240D05F600647002 /* AppDelegate.swift */,
 				1162D12D240D05F600647002 /* SceneDelegate.swift */,
+				113FACE8241BAD66008B5574 /* App.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				114D2E522417FCFF001478D4 /* JHUWebDataService.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
+				113FACE9241BAD66008B5574 /* App.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
@@ -470,7 +474,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 37BYKL96J7;
 				INFOPLIST_FILE = Corona/Info.plist;
@@ -478,7 +482,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -493,7 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 37BYKL96J7;
 				INFOPLIST_FILE = Corona/Info.plist;
@@ -501,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
