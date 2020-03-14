@@ -111,10 +111,10 @@ extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		var reports = DataManager.instance.allReports
 
-		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
 		if !query.isEmpty {
 			reports = reports.filter({ report in
-				report.region.name.contains(query)
+				report.region.name.lowercased().contains(query)
 			})
 		}
 
