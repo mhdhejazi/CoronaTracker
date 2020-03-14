@@ -27,6 +27,7 @@ class JHUWebDataService: DataService {
 
 	func fetchReports(completion: @escaping FetchReportsBlock) {
 		print("Calling API")
+		URLCache.shared.removeAllCachedResponses()
 		let request = URLRequest(url: Self.reportsURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
 		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
 			guard let response = response as? HTTPURLResponse,
@@ -69,6 +70,7 @@ class JHUWebDataService: DataService {
 
 	func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
 		print("Calling API")
+		URLCache.shared.removeAllCachedResponses()
 		let request = URLRequest(url: Self.globalTimeSeriesURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
 		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
 			guard let response = response as? HTTPURLResponse,

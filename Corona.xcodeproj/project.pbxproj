@@ -35,6 +35,7 @@
 		11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1B24114922000B2466 /* PercentValueFormatter.swift */; };
 		11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */; };
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
+		1195F19E241D2E7900FE718F /* RegionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195F19D241D2E7900FE718F /* RegionListController.swift */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11BF32AF2415F83100270130 /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32AE2415F83100270130 /* CSV */; };
 		11D637152418D83900BE6557 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D637142418D83900BE6557 /* Coordinate.swift */; };
@@ -71,6 +72,7 @@
 		11672A1B24114922000B2466 /* PercentValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentValueFormatter.swift; sourceTree = "<group>"; };
 		11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		116EC0A72410DF48006E4559 /* RegionContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionContainerController.swift; sourceTree = "<group>"; };
+		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11D637142418D83900BE6557 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -207,8 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				1162D12F240D05F600647002 /* MapController.swift */,
-				1162D16D240FCDAB00647002 /* RegionController.swift */,
 				116EC0A72410DF48006E4559 /* RegionContainerController.swift */,
+				1162D16D240FCDAB00647002 /* RegionController.swift */,
+				1195F19D241D2E7900FE718F /* RegionListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
 				11D637152418D83900BE6557 /* Coordinate.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
+				1195F19E241D2E7900FE718F /* RegionListController.swift in Sources */,
 				1162D15A240FA46D00647002 /* DataManager.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
 				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,

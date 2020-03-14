@@ -97,6 +97,18 @@ class MapController: UIViewController {
 		panelController.move(to: .half, animated: true)
 	}
 
+	func showRegionOnMap(report: Report) {
+		let region = MKCoordinateRegion(center: report.region.location.clLocation,
+										span: MKCoordinateSpan(latitudeDelta: 12, longitudeDelta: 12))
+		mapView.setRegion(region, animated: true)
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			if let annotation = self.currentAnnotations.first(where: { $0.report.region == report.region }) {
+				self.mapView.selectAnnotation(annotation, animated: true)
+			}
+		}
+	}
+
 	private func update() {
 		allAnnotations = DataManager.instance.allReports
 			.filter({ $0.stat.confirmedCount > 0 })

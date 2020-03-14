@@ -9,6 +9,7 @@
 import UIKit
 
 class RegionContainerController: UIViewController {
+	var regionListController: RegionListController!
 	var regionController: RegionController!
 	var isUpdating: Bool = false {
 		didSet {
@@ -16,10 +17,35 @@ class RegionContainerController: UIViewController {
 		}
 	}
 
+	var isSearching: Bool = false {
+		didSet {
+			view.transition(duration: 0.25) {
+				self.labelTitle.isHidden = self.isSearching
+				self.labelUpdated.isHidden = self.isSearching
+				self.buttonSearch.isHidden = self.isSearching
+				self.searchBar.isHidden = !self.isSearching
+				self.regionListController.view.isHidden = !self.isSearching
+				self.regionController.view.isHidden = self.isSearching
+
+				if self.isSearching {
+					self.regionListController.reports = DataManager.instance.allReports
+					self.searchBar.text = ""
+					self.searchBar.becomeFirstResponder()
+					MapController.instance.showRegionScreen()
+				} else {
+					self.regionListController.reports = []
+					self.searchBar.resignFirstResponder()
+				}
+			}
+		}
+	}
+
 	@IBOutlet var effectViewBackground: UIVisualEffectView!
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelUpdated: UILabel!
+	@IBOutlet var buttonSearch: UIButton!
+	@IBOutlet var searchBar: UISearchBar!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,11 +67,17 @@ class RegionContainerController: UIViewController {
 		Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
 			self.updateTime()
 		}
+
+		regionListController.tableView.isHidden = true
+		regionListController.tableView.delegate = self
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.destination is RegionController {
 			regionController = segue.destination as? RegionController
+		}
+		else if segue.destination is RegionListController {
+			regionListController = segue.destination as? RegionListController
 		}
 	}
 
@@ -64,5 +96,40 @@ class RegionContainerController: UIViewController {
 		}
 
 		self.labelUpdated.text = self.regionController.report?.lastUpdate.relativeTimeString
+	}
+
+	@IBAction func buttonSearchTapped(_ sender: Any) {
+		isSearching = true
+	}
+}
+
+extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		isSearching = false
+	}
+
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		var reports = DataManager.instance.allReports
+
+		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+		if !query.isEmpty {
+			reports = reports.filter({ report in
+				report.region.name.contains(query)
+			})
+		}
+
+		regionListController.reports = reports
+	}
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let report = regionListController.reports[indexPath.row]
+
+		regionController.report = report
+		regionController.update()
+
+		isSearching = false
+
+		MapController.instance.hideRegionScreen()
+		MapController.instance.showRegionOnMap(report: report)
 	}
 }
