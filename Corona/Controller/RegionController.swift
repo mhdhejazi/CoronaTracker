@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 
 import Charts
+import CoronaTrackerData
 
 class RegionController: UITableViewController {
 	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds

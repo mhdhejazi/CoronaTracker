@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoronaTrackerData
 
 class RegionContainerController: UIViewController {
 	var regionListController: RegionListController!

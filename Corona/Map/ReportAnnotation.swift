@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import CoronaTrackerData
 
 class ReportAnnotation: NSObject, MKAnnotation {
 	static let reuseIdentifier = String(describing: ReportAnnotation.self)

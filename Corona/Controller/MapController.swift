@@ -11,6 +11,7 @@ import MapKit
 
 import FloatingPanel
 import PKHUD
+import CoronaTrackerData
 
 class MapController: UIViewController {
 	private static let cityZoomLevel = CGFloat(4)

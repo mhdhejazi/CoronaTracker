@@ -12,16 +12,16 @@
       },
       {
         "package": "CSV.swift",
-        "repositoryURL": "https://github.com/yaslab/CSV.swift",
+        "repositoryURL": "https://github.com/yaslab/CSV.swift.git",
         "state": {
           "branch": null,
-          "revision": "67c5209ae699d5d3ded866de5ee6a6b4005a1b56",
-          "version": "2.4.2"
+          "revision": "81d2874c51db364d7e1d71b0d99018a294c87ac1",
+          "version": "2.4.3"
         }
       },
       {
         "package": "Disk",
-        "repositoryURL": "https://github.com/saoudrizwan/Disk",
+        "repositoryURL": "https://github.com/saoudrizwan/Disk.git",
         "state": {
           "branch": null,
           "revision": "b0cb4fdf23e51849cc2460bdc6de795c3bcca99d",
