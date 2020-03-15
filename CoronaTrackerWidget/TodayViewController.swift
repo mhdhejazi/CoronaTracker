@@ -44,9 +44,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         guard let worldwideReport = worldwideReport else {
             return
         }
-        self.confirmedCountLabel.text = String(format: "%d", worldwideReport.stat.confirmedCount)
-        self.recoveredCountLabel.text = String(format: "%d", worldwideReport.stat.recoveredCount)
-        self.deathsCountLabel.text = String(format: "%d", worldwideReport.stat.deathCount)
+        confirmedCountLabel.text = String(format: "%d", worldwideReport.stat.confirmedCount)
+        recoveredCountLabel.text = String(format: "%d", worldwideReport.stat.recoveredCount)
+        deathsCountLabel.text = String(format: "%d", worldwideReport.stat.deathCount)
     }
 
     private func setupStyle() {
