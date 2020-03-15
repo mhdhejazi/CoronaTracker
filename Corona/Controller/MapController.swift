@@ -57,6 +57,8 @@ class MapController: UIViewController {
 		Timer.scheduledTimer(withTimeInterval: Self.updateInterval, repeats: true) { _ in
 			self.downloadIfNeeded()
 		}
+
+		App.checkForAppUpdate(viewController: self)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +96,18 @@ class MapController: UIViewController {
 
 	func hideRegionScreen() {
 		panelController.move(to: .half, animated: true)
+	}
+
+	func showRegionOnMap(report: Report) {
+		let region = MKCoordinateRegion(center: report.region.location.clLocation,
+										span: MKCoordinateSpan(latitudeDelta: 12, longitudeDelta: 12))
+		mapView.setRegion(region, animated: true)
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+			if let annotation = self.currentAnnotations.first(where: { $0.report.region == report.region }) {
+				self.mapView.selectAnnotation(annotation, animated: true)
+			}
+		}
 	}
 
 	private func update() {

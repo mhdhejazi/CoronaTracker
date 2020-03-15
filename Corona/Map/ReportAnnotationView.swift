@@ -50,16 +50,16 @@ class ReportAnnotationView: MKAnnotationView {
 		let boldFont = UIFont(descriptor: descriptor!, size: 0)
 
 		let string = NSMutableAttributedString()
-		string.append(NSAttributedString(string: "Confirmed: "))
-		string.append(NSAttributedString(string: report?.stat.confirmedCountString ?? "",
+		string.append(.init(string: "Confirmed: "))
+		string.append(.init(string: report?.stat.confirmedCountString ?? "",
 			attributes: [.foregroundColor: UIColor.systemOrange, .font: boldFont]))
 
-		string.append(NSAttributedString(string: "\nRecovered: "))
-		string.append(NSAttributedString(string: report?.stat.recoveredCountString ?? "",
+		string.append(.init(string: "\nRecovered: "))
+		string.append(.init(string: report?.stat.recoveredCountString ?? "",
 			attributes: [.foregroundColor : UIColor.systemGreen, .font: boldFont]))
 
-		string.append(NSAttributedString(string: "\nDeath: "))
-		string.append(NSAttributedString(string: report?.stat.deathCountString ?? "",
+		string.append(.init(string: "\nDeath: "))
+		string.append(.init(string: report?.stat.deathCountString ?? "",
 			attributes: [.foregroundColor : UIColor.systemRed, .font: boldFont]))
 
 		return string
