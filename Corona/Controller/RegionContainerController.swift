@@ -24,7 +24,7 @@ class RegionContainerController: UIViewController {
 				self.labelUpdated.isHidden = self.isSearching
 				self.buttonSearch.isHidden = self.isSearching
 				self.searchBar.isHidden = !self.isSearching
-				self.regionListController.view.isHidden = !self.isSearching
+				self.regionListController.view.superview?.isHidden = !self.isSearching
 				self.regionController.view.isHidden = self.isSearching
 
 				if self.isSearching {
@@ -68,7 +68,7 @@ class RegionContainerController: UIViewController {
 			self.updateTime()
 		}
 
-		regionListController.tableView.isHidden = true
+		regionListController.tableView.superview?.isHidden = true
 		regionListController.tableView.delegate = self
 	}
 
