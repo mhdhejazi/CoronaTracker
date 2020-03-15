@@ -523,7 +523,7 @@ Deaths</string>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <searchBar hidden="YES" contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvF-pW-WYC">
-                                <rect key="frame" x="8" y="14" width="398" height="56"/>
+                                <rect key="frame" x="8" y="13.5" width="398" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="bGw-3g-OPq" id="PMJ-36-ftQ"/>
@@ -535,7 +535,7 @@ Deaths</string>
                                     <constraint firstAttribute="width" constant="40" id="icy-PG-f7K"/>
                                     <constraint firstAttribute="height" constant="44" id="uOc-Ai-Hue"/>
                                 </constraints>
-                                <state key="normal" image="magnifyingglass" catalog="system"/>
+                                <state key="normal" image="Search"/>
                                 <connections>
                                     <action selector="buttonSearchTapped:" destination="bGw-3g-OPq" eventType="touchUpInside" id="lgX-x3-jYK"/>
                                 </connections>
@@ -599,7 +599,7 @@ Deaths</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Search" width="22" height="22"/>
         <image name="Switch" width="22" height="22"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
 </document>
