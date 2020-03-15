@@ -24,11 +24,12 @@
 		11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1B24114922000B2466 /* PercentValueFormatter.swift */; };
 		11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */; };
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
-		1195F19E241D2E7900FE718F /* RegionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195F19D241D2E7900FE718F /* RegionListController.swift */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */; };
+		3447B4BB241E7631003914AF /* RegionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195F19D241D2E7900FE718F /* RegionListController.swift */; };
+		3447B4BD241E7790003914AF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3447B4BC241E7790003914AF /* App.swift */; };
 		344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */; };
 		344ED328241AC7AA004C4EA8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344ED326241AC7AA004C4EA8 /* MainInterface.storyboard */; };
 		344ED32C241AC7AA004C4EA8 /* CoronaTrackerWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 344ED31F241AC7AA004C4EA8 /* CoronaTrackerWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -84,6 +85,7 @@
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCountriesChartView.swift; sourceTree = "<group>"; };
+		3447B4BC241E7790003914AF /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		344ED31F241AC7AA004C4EA8 /* CoronaTrackerWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoronaTrackerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -188,9 +190,9 @@
 		1162D16C240FC56F00647002 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3447B4BC241E7790003914AF /* App.swift */,
 				1162D12B240D05F600647002 /* AppDelegate.swift */,
 				1162D12D240D05F600647002 /* SceneDelegate.swift */,
-				113FACE8241BAD66008B5574 /* App.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -354,9 +356,10 @@
 				1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
-				113FACE9241BAD66008B5574 /* App.swift in Sources */,
+				3447B4BD241E7790003914AF /* App.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
+				3447B4BB241E7631003914AF /* RegionListController.swift in Sources */,
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
