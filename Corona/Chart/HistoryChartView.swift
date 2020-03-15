@@ -8,8 +8,8 @@
 
 import UIKit
 
+import CoronaData
 import Charts
-import CoronaTrackerData
 
 class HistoryChartView: LineChartView {
 	required init?(coder aDecoder: NSCoder) {

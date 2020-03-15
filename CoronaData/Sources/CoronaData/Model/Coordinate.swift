@@ -25,7 +25,7 @@ public struct Coordinate: Codable, Equatable {
 			Int(self.longitude * 1000) == Int(other.longitude * 1000)
 	}
 
-    public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
+	public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
 		return lhs.equals(other: rhs)
 	}
 

@@ -33,7 +33,7 @@ public class JHURepoDataService: DataService {
 	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
 	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
 
-    public func fetchReports(completion: @escaping FetchReportsBlock) {
+	public func fetchReports(completion: @escaping FetchReportsBlock) {
 		let today = Date()
 		downloadDailyReport(date: today, completion: completion)
 	}
@@ -91,7 +91,7 @@ public class JHURepoDataService: DataService {
 		}
 	}
 
-    public func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
+	public func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
 		let dispatchGroup = DispatchGroup()
 		var result = [Data?](repeating: nil, count: 3)
 

@@ -8,7 +8,8 @@
 
 import UIKit
 import NotificationCenter
-import CoronaTrackerData
+
+import CoronaData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import CoronaTrackerData
+
+import CoronaData
 
 class RegionListController: UITableViewController {
 	var reports: [Report] = [] {

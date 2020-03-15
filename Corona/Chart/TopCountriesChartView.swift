@@ -8,8 +8,8 @@
 
 import UIKit
 
+import CoronaData
 import Charts
-import CoronaTrackerData
 
 class TopCountriesChartView: BarChartView {
 	var isLogarithmic = false {

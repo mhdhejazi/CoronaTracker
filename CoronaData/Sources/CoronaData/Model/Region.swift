@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct Region: Equatable, Codable {
-	static let worldWide = Region(countryName: "Worldwide", provinceName: "", location: .zero)
+public struct Region: Equatable, Codable {
+	public static let worldWide = Region(countryName: "Worldwide", provinceName: "", location: .zero)
 
-	let countryName: String
-	let provinceName: String
-	let location: Coordinate
+	public let countryName: String
+	public let provinceName: String
+	public let location: Coordinate
 
-	var isProvince: Bool { !provinceName.isEmpty }
-	var name: String { isProvince ? "\(provinceName), \(countryName)" : countryName }
+	public var isProvince: Bool { !provinceName.isEmpty }
+	public var name: String { isProvince ? "\(provinceName), \(countryName)" : countryName }
 
-	static func join(subRegions: [Region]) -> Region {
+	public static func join(subRegions: [Region]) -> Region {
 		assert(!subRegions.isEmpty)
 
 		let countryName = subRegions.first!.countryName
@@ -38,12 +38,12 @@ struct Region: Equatable, Codable {
 		return Region(countryName: countryName, provinceName: provinceName, location: location)
 	}
 
-	func equals(other: Region) -> Bool {
+	public func equals(other: Region) -> Bool {
 		(self.countryName == other.countryName && self.provinceName == other.provinceName) ||
 		self.location == other.location
 	}
 
-	static func == (lhs: Region, rhs: Region) -> Bool {
+	public static func == (lhs: Region, rhs: Region) -> Bool {
 		return lhs.equals(other: rhs)
 	}
 

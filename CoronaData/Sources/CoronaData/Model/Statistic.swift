@@ -22,7 +22,7 @@ public struct Statistic: CustomStringConvertible, Codable {
 	public var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }
 	public var deathCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: deathCount))! }
 
-    public var description: String {
+	public var description: String {
 		"""
 		Confirmed: \(confirmedCountString)
 		Recovered: \(recoveredCountString) (\(recoveredPercent.percentFormatted))
