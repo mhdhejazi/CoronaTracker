@@ -12,30 +12,55 @@ import CoronaTrackerData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
+    @IBOutlet var worldwideTitleLabel: UILabel!
     @IBOutlet var confirmedCountLabel: UILabel!
     @IBOutlet var recoveredCountLabel: UILabel!
     @IBOutlet var deathsCountLabel: UILabel!
+    @IBOutlet var confirmedLabel: UILabel!
+    @IBOutlet var recoveredLabel: UILabel!
+    @IBOutlet var deathsLabel: UILabel!
+    @IBOutlet var dataViews: [UIView]!
+    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+
+        setupStyle()
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
+        activityIndicatorView.startAnimating()
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { (success) in
-                print(success)
-                print(DataManager.instance.worldwideReport?.stat.confirmedCount)
-self?.confirmedCountLabel.text = String(format: "%d", DataManager.instance.worldwideReport?.stat.confirmedCount ?? 0)
+            DataManager.instance.load { [weak self] (success) in
+                self?.activityIndicatorView.stopAnimating()
+                self?.dataViews.forEach({ $0.isHidden = false })
+                self?.showData(worldwideReport: DataManager.instance.worldwideReport)
             }
-
         }
-//        print(DataManager.instance.worldwideReport?.stat.confirmedCount)
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
     }
 
+    private func showData(worldwideReport: Report?) {
+        guard let worldwideReport = worldwideReport else {
+            return
+        }
+        self.confirmedCountLabel.text = String(format: "%d", worldwideReport.stat.confirmedCount)
+        self.recoveredCountLabel.text = String(format: "%d", worldwideReport.stat.recoveredCount)
+        self.deathsCountLabel.text = String(format: "%d", worldwideReport.stat.deathCount)
+    }
+
+    private func setupStyle() {
+        worldwideTitleLabel.textColor = .white
+        confirmedCountLabel.textColor = .white
+        recoveredCountLabel.textColor = .white
+        deathsCountLabel.textColor = .white
+        confirmedLabel.textColor = .white
+        recoveredLabel.textColor = .white
+        deathsLabel.textColor = .white
+        dataViews.forEach { (view) in
+            view.layer.cornerRadius = 5
+            view.layer.masksToBounds = true
+            view.isHidden = true
+        }
+    }
 }
