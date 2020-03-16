@@ -217,6 +217,18 @@ extension MapController: FloatingPanelControllerDelegate {
 		(newCollection.userInterfaceIdiom == .pad ||
 			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
 	}
+    
+    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
+        let currentPosition = vc.position
+        
+        // currentPosition == .full means deceleration will start from top to bottom (i.e. user dragging the panel down)
+        if currentPosition == .full, regionContainerController.isSearching {
+            
+            // Reset to region container's default mode then hide the keyboard
+            self.regionContainerController.isSearching = false
+            self.view.endEditing(true)
+        }
+    }
 }
 
 class PanelLayout: FloatingPanelLayout {
