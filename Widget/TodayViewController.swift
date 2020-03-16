@@ -18,6 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	@IBOutlet var dataViews: [UIView]!
 	@IBOutlet var dataLabels: [UILabel]!
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+	@IBOutlet var updateTimeLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         activityIndicatorView.startAnimating()
+		updateTimeLabel.isHidden = true
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
             DataManager.instance.load(reportsOnly: true) { [weak self] success in
                 self?.activityIndicatorView.stopAnimating()
+				self?.updateTimeLabel.isHidden = false
                 self?.update(report: DataManager.instance.worldwideReport)
             }
         }
@@ -48,7 +51,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		dataLabels.forEach { label in
 			label.textColor = .white
 		}
-
+		updateTimeLabel.textColor = SystemColor.secondaryLabel
 		if #available(iOSApplicationExtension 13.0, *) {
 			activityIndicatorView.style = .medium
 		}
@@ -63,6 +66,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 			self?.confirmedCountLabel.text = report.stat.confirmedCountString
 			self?.recoveredCountLabel.text = report.stat.recoveredCountString
 			self?.deathsCountLabel.text = report.stat.deathCountString
+			self?.updateTimeLabel.text = report.lastUpdate.relativeTimeString
 		}
 
 //		dataViews.forEach({ $0.isHidden = false })

@@ -34,6 +34,7 @@
 		115186B6241FB03F00EBC83E /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B5241FB03F00EBC83E /* Disk */; };
 		115186B8241FB04200EBC83E /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B7241FB04200EBC83E /* CSV */; };
 		115186B9241FB31B00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151869B241FAF6200EBC83E /* Extensions.swift */; };
+		115186BA242005E900EBC83E /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -454,6 +455,7 @@
 				115186A8241FAFCA00EBC83E /* Region.swift in Sources */,
 				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
 				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,
+				115186BA242005E900EBC83E /* SystemColor.swift in Sources */,
 				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
