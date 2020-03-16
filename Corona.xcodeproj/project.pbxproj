@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11198BC024117A9A0080307F /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 11198BBF24117A9A0080307F /* PKHUD */; };
 		111C76B62412C90500368F08 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
+		1151868B241FA9AA00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* Extensions.swift */; };
+		1151868C241FAC5B00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* Extensions.swift */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		111C76B52412C90500368F08 /* SystemColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		1151868A241FA9AA00EBC83E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +103,6 @@
 			files = (
 				11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */,
 				1195F1A1241EC18B00FE718F /* CoronaData in Frameworks */,
-				11198BC024117A9A0080307F /* PKHUD in Frameworks */,
 				1195F1A5241EC1FB00FE718F /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +182,7 @@
 		1162D16B240FC55F00647002 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				1151868A241FA9AA00EBC83E /* Extensions.swift */,
 				111C76B52412C90500368F08 /* SystemColor.swift */,
 			);
 			path = Util;
@@ -244,7 +246,6 @@
 			);
 			name = "Corona Tracker";
 			packageProductDependencies = (
-				11198BBF24117A9A0080307F /* PKHUD */,
 				11BF32A924156AE500270130 /* FloatingPanel */,
 				1195F1A0241EC18B00FE718F /* CoronaData */,
 				1195F1A4241EC1FB00FE718F /* Charts */,
@@ -302,7 +303,6 @@
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
 				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
-				11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */,
 				11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
@@ -342,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				111C76B62412C90500368F08 /* SystemColor.swift in Sources */,
+				1151868B241FA9AA00EBC83E /* Extensions.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
 				1162D161240FA87E00647002 /* ReportAnnotationView.swift in Sources */,
@@ -366,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */,
+				1151868C241FAC5B00EBC83E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,14 +643,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Hengyu/PKHUD";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
@@ -668,11 +662,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		11198BBF24117A9A0080307F /* PKHUD */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 11198BBE24117A9A0080307F /* XCRemoteSwiftPackageReference "PKHUD" */;
-			productName = PKHUD;
-		};
 		1195F1A0241EC18B00FE718F /* CoronaData */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoronaData;

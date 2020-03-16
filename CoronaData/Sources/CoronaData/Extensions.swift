@@ -6,57 +6,7 @@
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 
-import MapKit
-
-extension MKMapView {
-	public var zoomLevel: CGFloat {
-		let maxZoom: CGFloat = 20
-		let zoomScale = self.visibleMapRect.size.width / Double(self.frame.size.width)
-		let zoomExponent = log2(zoomScale)
-		return maxZoom - CGFloat(zoomExponent)
-	}
-}
-
-extension CLLocationCoordinate2D {
-	public var location: CLLocation {
-		return CLLocation(latitude: latitude, longitude: longitude)
-	}
-
-	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
-		return location.distance(from: coordinate.location)
-	}
-}
-
-extension UIControl {
-	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
-		let sleeve = ClosureSleeve(closure)
-		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
-		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-	}
-}
-
-/// WARNING: This solution causes memory leaks
-@objc class ClosureSleeve: NSObject {
-	let closure: () -> ()
-
-	init (_ closure: @escaping () -> ()) {
-		self.closure = closure
-	}
-
-	@objc func invoke() {
-		closure()
-	}
-}
-
-extension UIView {
-	public func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
-		UIView.transition(with: self,
-						  duration: duration,
-						  options: [.transitionCrossDissolve],
-						  animations: animations,
-						  completion: nil)
-	}
-}
+import Foundation
 
 extension Locale {
 	public static let posix = Locale(identifier: "en_US_POSIX")

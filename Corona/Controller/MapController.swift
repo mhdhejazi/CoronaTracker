@@ -11,7 +11,6 @@ import MapKit
 
 import CoronaData
 import FloatingPanel
-import PKHUD
 
 class MapController: UIViewController {
 	private static let cityZoomLevel = CGFloat(4)
@@ -131,7 +130,7 @@ class MapController: UIViewController {
 	func downloadIfNeeded() {
 		let showSpinner = allAnnotations.isEmpty
 		if showSpinner {
-			HUD.show(.label("Updating..."), onView: view)
+			showHUD(message: "Updating...")
 		}
 		regionContainerController.isUpdating = true
 
@@ -140,12 +139,13 @@ class MapController: UIViewController {
 				self.regionContainerController.isUpdating = false
 
 				if success {
-					HUD.hide()
+					self.hideHUD()
 					self.update()
 				}
 				else {
 					if showSpinner {
-						HUD.flash(.error, onView: self.view, delay: 1.0)
+						self.showMessage(title: "Can't update the data",
+										 message: "Please make sure you're connected to the internet.")
 					}
 				}
 			}
