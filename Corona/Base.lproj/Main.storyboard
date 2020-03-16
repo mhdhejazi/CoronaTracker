@@ -22,6 +22,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ITt-fQ-LdM"/>
                                 </connections>
                             </mapView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
+                                <rect key="frame" x="330" y="54" width="74" height="27"/>
+                                <color key="backgroundColor" red="0.10443064439999999" green="0.59553691789999996" blue="0.28788988450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <inset key="contentEdgeInsets" minX="13" minY="6" maxX="13" maxY="6"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonUpdateTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dac-vs-ko6"/>
+                                </connections>
+                            </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZx-3p-KzT">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b7U-N3-C63">
@@ -35,16 +47,20 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ABL-K8-Ghe" secondAttribute="trailing" id="DS4-y1-Bnk"/>
                             <constraint firstItem="ABL-K8-Ghe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FN2-Wr-Y3j"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="HgJ-0T-Lcr"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Mg2-HV-MWy"/>
                             <constraint firstItem="ABL-K8-Ghe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xkn-am-sqj"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="a3J-6Z-LWE"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cDy-Ki-Gc7"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dRa-y1-qq1"/>
                             <constraint firstItem="ABL-K8-Ghe" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="iRn-O2-6bG"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="un6-8O-SDk"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="xCo-zG-tv8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonUpdate" destination="nPj-BL-8DR" id="R1A-RR-Zu3"/>
                         <outlet property="effectView" destination="xZx-3p-KzT" id="F3B-TY-TcE"/>
                         <outlet property="mapView" destination="ABL-K8-Ghe" id="9z9-v7-SwG"/>
                     </connections>

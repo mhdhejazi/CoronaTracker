@@ -26,26 +26,14 @@ class MapController: UIViewController {
 
 	@IBOutlet var mapView: MKMapView!
 	@IBOutlet var effectView: UIVisualEffectView!
+	@IBOutlet var buttonUpdate: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		MapController.instance = self
 
-		if #available(iOS 13.0, *) {
-			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
-		}
-
-		if #available(iOS 11.0, *) {
-			mapView.mapType = .mutedStandard
-			mapView.register(ReportAnnotationView.self,
-							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
-		}
-
-		let identifier = String(describing: RegionContainerController.self)
-		regionContainerController = storyboard?.instantiateViewController(
-			withIdentifier: identifier) as? RegionContainerController
-
+		initializeView()
 		initializeBottomSheet()
 
 		DataManager.instance.load { _ in
@@ -57,7 +45,7 @@ class MapController: UIViewController {
 			self.downloadIfNeeded()
 		}
 
-		App.checkForAppUpdate(viewController: self)
+		checkForAppUpdate()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +61,25 @@ class MapController: UIViewController {
 		panelController.removePanelFromParent(animated: animated)
 	}
 
+	private func initializeView() {
+		buttonUpdate.layer.cornerRadius = buttonUpdate.bounds.height / 2
+
+		if #available(iOS 13.0, *) {
+			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
+		}
+
+		if #available(iOS 11.0, *) {
+			mapView.mapType = .mutedStandard
+			mapView.register(ReportAnnotationView.self,
+							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
+		}
+	}
+
 	private func initializeBottomSheet() {
+		let identifier = String(describing: RegionContainerController.self)
+		regionContainerController = storyboard?.instantiateViewController(
+			withIdentifier: identifier) as? RegionContainerController
+
 		panelController = FloatingPanelController()
 		panelController.delegate = self
 		panelController.surfaceView.cornerRadius = 12
@@ -150,6 +156,36 @@ class MapController: UIViewController {
 				}
 			}
 		}
+	}
+
+	private func checkForAppUpdate() {
+		App.checkForAppUpdate { updateAvailable in
+			if updateAvailable {
+				DispatchQueue.main.async {
+					self.buttonUpdate.isHidden = false
+				}
+			}
+		}
+	}
+
+	@IBAction func buttonUpdateTapped(_ sender: Any) {
+		let alertController = UIAlertController.init(
+			title: "New Version Available",
+			message: "Please update from https://github.com/MhdHejazi/CoronaTracker",
+			preferredStyle: .alert)
+
+		#if targetEnvironment(macCatalyst)
+		alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+		alertController.addAction(UIAlertAction(title: "Open", style: .default, handler: { _ in
+			App.openUpdatePage(viewController: self)
+		}))
+		#else
+		alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
+		#endif
+
+		present(alertController, animated: true)
+
+		buttonUpdate.isHidden = true
 	}
 }
 
