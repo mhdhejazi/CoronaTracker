@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-import CoronaData
 import FloatingPanel
 
 class MapController: UIViewController {

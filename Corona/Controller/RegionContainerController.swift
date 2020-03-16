@@ -8,8 +8,6 @@
 
 import UIKit
 
-import CoronaData
-
 class RegionContainerController: UIViewController {
 	var regionListController: RegionListController!
 	var regionController: RegionController!

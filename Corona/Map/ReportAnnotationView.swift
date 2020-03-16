@@ -8,8 +8,6 @@
 
 import MapKit
 
-import CoronaData
-
 class ReportAnnotationView: MKAnnotationView {
 	static let reuseIdentifier = String(describing: ReportAnnotation.self)
 

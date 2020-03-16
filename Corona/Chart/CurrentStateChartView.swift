@@ -8,7 +8,6 @@
 
 import UIKit
 
-import CoronaData
 import Charts
 
 class CurrentStateChartView: PieChartView {

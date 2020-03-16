@@ -8,8 +8,6 @@
 
 import UIKit
 
-import CoronaData
-
 class RegionListController: UITableViewController {
 	var reports: [Report] = [] {
 		didSet {

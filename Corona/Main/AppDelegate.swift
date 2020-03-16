@@ -8,8 +8,6 @@
 
 import UIKit
 
-import CoronaData
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

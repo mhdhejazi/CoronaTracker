@@ -6,91 +6,122 @@
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 
-import MapKit
+import Foundation
 
-extension MKMapView {
-	public var zoomLevel: CGFloat {
-		let maxZoom: CGFloat = 20
-		let zoomScale = self.visibleMapRect.size.width / Double(self.frame.size.width)
-		let zoomExponent = log2(zoomScale)
-		return maxZoom - CGFloat(zoomExponent)
+extension Locale {
+	public static let posix = Locale(identifier: "en_US_POSIX")
+}
+
+extension Calendar {
+	public static let posix: Calendar = {
+		var calendar = Calendar(identifier: .gregorian)
+		calendar.locale = .posix
+		return calendar
+	}()
+}
+
+extension Date {
+	public static let reference = Calendar.posix.date(from: DateComponents(year: 2000))!
+
+	public static func fromReferenceDays(days: Int) -> Date {
+		Calendar.posix.date(byAdding: .day, value: days, to: Date.reference)!
+	}
+
+	public var referenceDays: Int {
+		Calendar.posix.dateComponents([.day], from: Date.reference, to: self).day!
+	}
+
+	public var ageDays: Int {
+		Calendar.posix.dateComponents([.day], from: self, to: Date()).day!
+	}
+
+	public var yesterday: Date {
+		Calendar.posix.date(byAdding: .day, value: -1, to: self)!
+	}
+
+	public var relativeTimeString: String {
+		if #available(iOS 13.0, *) {
+			let formatter = RelativeDateTimeFormatter()
+			formatter.unitsStyle = .short
+			return formatter.localizedString(for: self, relativeTo: Date())
+		}
+
+		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self, to: Date())
+
+		var interval: Int
+		var unit: String
+		if let value = components.year, value > 0  {
+			interval = value
+			unit = "year"
+		}
+		else if let value = components.month, value > 0  {
+			interval = value
+			unit = "month"
+		}
+		else if let value = components.day, value > 0  {
+			interval = value
+			unit = "day"
+		}
+		else if let value = components.hour, value > 0  {
+			interval = value
+			unit = "hour"
+		}
+		else if let value = components.minute, value > 0  {
+			interval = value
+			unit = "minute"
+		}
+		else {
+			return "moments ago"
+		}
+
+		return "\(interval) \(unit + (interval > 1 ? "s" : "")) ago"
+	}
+
+	public var relativeDateString: String {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		formatter.timeStyle = .short
+		formatter.doesRelativeDateFormatting = true
+		return formatter.string(from: self)
 	}
 }
 
-extension CLLocationCoordinate2D {
-	public var location: CLLocation {
-		return CLLocation(latitude: latitude, longitude: longitude)
+extension Double {
+	public var kmFormatted: String {
+		if self >= 10_000, self < 1_000_000 {
+			return String(format: "%.1fk", locale: .posix, self / 1_000).replacingOccurrences(of: ".0", with: "")
+		}
+
+		if self >= 1_000_000 {
+			return String(format: "%.1fm", locale: .posix, self / 1_000_000).replacingOccurrences(of: ".0", with: "")
+		}
+
+		return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
 
-	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
-		return location.distance(from: coordinate.location)
+	public var percentFormatted: String {
+		NumberFormatter.percentFormatter.string(from: NSNumber(value: self))!
 	}
 }
 
-extension UIControl {
-	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
-		let sleeve = ClosureSleeve(closure)
-		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
-		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-	}
+extension Int {
+	public var kmFormatted: String { Double(self).kmFormatted }
 }
 
-/// WARNING: This solution causes memory leaks
-@objc class ClosureSleeve: NSObject {
-	let closure: () -> ()
+extension NumberFormatter {
+	public static let groupingFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.usesGroupingSeparator = true
+		formatter.groupingSize = 3
+		formatter.maximumFractionDigits = 1
+		return formatter
+	}()
 
-	init (_ closure: @escaping () -> ()) {
-		self.closure = closure
-	}
-
-	@objc func invoke() {
-		closure()
-	}
-}
-
-extension UIView {
-	public func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
-		UIView.transition(with: self,
-						  duration: duration,
-						  options: [.transitionCrossDissolve],
-						  animations: animations,
-						  completion: nil)
-	}
-}
-
-extension UIViewController {
-	private static let hudTag = "UIAlertController#hud".hashValue
-
-	func showHUD(message: String, completion: (() -> Void)? = nil) {
-		hideHUD(animated: false) {
-			let alertController = UIAlertController(title: "\n\(message)\n\n", message: nil, preferredStyle: .alert)
-			alertController.view.tag = Self.hudTag
-			self.present(alertController, animated: true, completion: completion)
-		}
-	}
-
-	func hideHUD(animated: Bool = true, afterDelay delay: TimeInterval = 0, completion: (() -> Void)? = nil) {
-		guard let alertController = self.presentedViewController as? UIAlertController,
-			alertController.view.tag == Self.hudTag else {
-				completion?()
-				return
-		}
-
-		if delay == 0 {
-			alertController.dismiss(animated: animated, completion: completion)
-			return
-		}
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-			alertController.dismiss(animated: animated, completion: completion)
-		}
-	}
-
-	func showMessage(title: String?, message: String?) {
-		hideHUD(animated: false) {
-			let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-			alertController.addAction(.init(title: "OK", style: .default))
-			self.present(alertController, animated: true)
-		}
-	}
+	public static let percentFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .percent
+		formatter.maximumFractionDigits = 1
+		formatter.multiplier = 1
+		return formatter
+	}()
 }

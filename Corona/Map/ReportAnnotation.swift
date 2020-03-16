@@ -8,8 +8,6 @@
 
 import MapKit
 
-import CoronaData
-
 class ReportAnnotation: NSObject, MKAnnotation {
 	let report: Report
 	let coordinate: CLLocationCoordinate2D

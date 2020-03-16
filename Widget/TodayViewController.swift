@@ -9,8 +9,6 @@
 import UIKit
 import NotificationCenter
 
-import CoronaData
-
 class TodayViewController: UIViewController, NCWidgetProviding {
 
 	@IBOutlet var worldwideTitleLabel: UILabel!

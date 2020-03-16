@@ -9,7 +9,6 @@
 import UIKit
 import SafariServices
 
-import CoronaData
 import Charts
 
 class RegionController: UITableViewController {

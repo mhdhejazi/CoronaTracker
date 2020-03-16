@@ -8,8 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		111C76B62412C90500368F08 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
-		1151868B241FA9AA00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* Extensions.swift */; };
-		1151868C241FAC5B00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* Extensions.swift */; };
+		1151868B241FA9AA00EBC83E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* UIExtensions.swift */; };
+		1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* UIExtensions.swift */; };
+		1151869C241FAF6200EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151869B241FAF6200EBC83E /* Extensions.swift */; };
+		1151869D241FAFC200EBC83E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868E241FAECB00EBC83E /* DataManager.swift */; };
+		1151869E241FAFC500EBC83E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868E241FAECB00EBC83E /* DataManager.swift */; };
+		1151869F241FAFCA00EBC83E /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518690241FAECB00EBC83E /* Report.swift */; };
+		115186A0241FAFCA00EBC83E /* TimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518691241FAECB00EBC83E /* TimeSeries.swift */; };
+		115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518692241FAECB00EBC83E /* Coordinate.swift */; };
+		115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518693241FAECB00EBC83E /* Statistic.swift */; };
+		115186A3241FAFCA00EBC83E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518694241FAECB00EBC83E /* Region.swift */; };
+		115186A4241FAFCA00EBC83E /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518690241FAECB00EBC83E /* Report.swift */; };
+		115186A5241FAFCA00EBC83E /* TimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518691241FAECB00EBC83E /* TimeSeries.swift */; };
+		115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518692241FAECB00EBC83E /* Coordinate.swift */; };
+		115186A7241FAFCA00EBC83E /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518693241FAECB00EBC83E /* Statistic.swift */; };
+		115186A8241FAFCA00EBC83E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518694241FAECB00EBC83E /* Region.swift */; };
+		115186A9241FAFCE00EBC83E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518696241FAECB00EBC83E /* DataService.swift */; };
+		115186AA241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518697241FAECB00EBC83E /* JHUWebDataService.swift */; };
+		115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518698241FAECB00EBC83E /* JHURepoDataService.swift */; };
+		115186AC241FAFCE00EBC83E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518696241FAECB00EBC83E /* DataService.swift */; };
+		115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518697241FAECB00EBC83E /* JHUWebDataService.swift */; };
+		115186AE241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518698241FAECB00EBC83E /* JHURepoDataService.swift */; };
+		115186B1241FAFF300EBC83E /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B0241FAFF300EBC83E /* Disk */; };
+		115186B4241FB00000EBC83E /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B3241FB00000EBC83E /* CSV */; };
+		115186B6241FB03F00EBC83E /* Disk in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B5241FB03F00EBC83E /* Disk */; };
+		115186B8241FB04200EBC83E /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B7241FB04200EBC83E /* CSV */; };
+		115186B9241FB31B00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151869B241FAF6200EBC83E /* Extensions.swift */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -24,9 +48,7 @@
 		11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1B24114922000B2466 /* PercentValueFormatter.swift */; };
 		11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */; };
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
-		1195F1A1241EC18B00FE718F /* CoronaData in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A0241EC18B00FE718F /* CoronaData */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
-		1195F1A7241EC22200FE718F /* CoronaData in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A6241EC22200FE718F /* CoronaData */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
@@ -65,7 +87,17 @@
 
 /* Begin PBXFileReference section */
 		111C76B52412C90500368F08 /* SystemColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
-		1151868A241FA9AA00EBC83E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1151868A241FA9AA00EBC83E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		1151868E241FAECB00EBC83E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		11518690241FAECB00EBC83E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		11518691241FAECB00EBC83E /* TimeSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeries.swift; sourceTree = "<group>"; };
+		11518692241FAECB00EBC83E /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		11518693241FAECB00EBC83E /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
+		11518694241FAECB00EBC83E /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		11518696241FAECB00EBC83E /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		11518697241FAECB00EBC83E /* JHUWebDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHUWebDataService.swift; sourceTree = "<group>"; };
+		11518698241FAECB00EBC83E /* JHURepoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHURepoDataService.swift; sourceTree = "<group>"; };
+		1151869B241FAF6200EBC83E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +125,6 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED327241AC7AA004C4EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		344ED33F241ACE50004C4EA8 /* CoronaData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoronaData; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +133,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */,
-				1195F1A1241EC18B00FE718F /* CoronaData in Frameworks */,
+				115186B1241FAFF300EBC83E /* Disk in Frameworks */,
 				1195F1A5241EC1FB00FE718F /* Charts in Frameworks */,
+				115186B4241FB00000EBC83E /* CSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,18 +143,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1195F1A7241EC22200FE718F /* CoronaData in Frameworks */,
+				115186B8241FB04200EBC83E /* CSV in Frameworks */,
 				344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */,
+				115186B6241FB03F00EBC83E /* Disk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1151868D241FAECB00EBC83E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1151868E241FAECB00EBC83E /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1151868F241FAECB00EBC83E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11518690241FAECB00EBC83E /* Report.swift */,
+				11518691241FAECB00EBC83E /* TimeSeries.swift */,
+				11518692241FAECB00EBC83E /* Coordinate.swift */,
+				11518693241FAECB00EBC83E /* Statistic.swift */,
+				11518694241FAECB00EBC83E /* Region.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		11518695241FAECB00EBC83E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				11518696241FAECB00EBC83E /* DataService.swift */,
+				11518697241FAECB00EBC83E /* JHUWebDataService.swift */,
+				11518698241FAECB00EBC83E /* JHURepoDataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		1162D11F240D05F600647002 = {
 			isa = PBXGroup;
 			children = (
-				344ED33F241ACE50004C4EA8 /* CoronaData */,
 				1162D12A240D05F600647002 /* Corona */,
 				344ED323241AC7AA004C4EA8 /* Widget */,
 				344ED320241AC7AA004C4EA8 /* Frameworks */,
@@ -142,6 +204,9 @@
 		1162D12A240D05F600647002 /* Corona */ = {
 			isa = PBXGroup;
 			children = (
+				1151868D241FAECB00EBC83E /* Data */,
+				1151868F241FAECB00EBC83E /* Model */,
+				11518695241FAECB00EBC83E /* Service */,
 				1162D15F240FA85300647002 /* Map */,
 				1162D151240F934000647002 /* Chart */,
 				11EB2CA224140D24001769B2 /* Controller */,
@@ -182,7 +247,8 @@
 		1162D16B240FC55F00647002 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				1151868A241FA9AA00EBC83E /* Extensions.swift */,
+				1151869B241FAF6200EBC83E /* Extensions.swift */,
+				1151868A241FA9AA00EBC83E /* UIExtensions.swift */,
 				111C76B52412C90500368F08 /* SystemColor.swift */,
 			);
 			path = Util;
@@ -247,8 +313,9 @@
 			name = "Corona Tracker";
 			packageProductDependencies = (
 				11BF32A924156AE500270130 /* FloatingPanel */,
-				1195F1A0241EC18B00FE718F /* CoronaData */,
 				1195F1A4241EC1FB00FE718F /* Charts */,
+				115186B0241FAFF300EBC83E /* Disk */,
+				115186B3241FB00000EBC83E /* CSV */,
 			);
 			productName = Corona;
 			productReference = 1162D128240D05F600647002 /* Corona Tracker.app */;
@@ -268,7 +335,8 @@
 			);
 			name = Widget;
 			packageProductDependencies = (
-				1195F1A6241EC22200FE718F /* CoronaData */,
+				115186B5241FB03F00EBC83E /* Disk */,
+				115186B7241FB04200EBC83E /* CSV */,
 			);
 			productName = CoronaTrackerWidget;
 			productReference = 344ED31F241AC7AA004C4EA8 /* Widget.appex */;
@@ -304,6 +372,8 @@
 			packageReferences = (
 				1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */,
 				11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				115186AF241FAFF300EBC83E /* XCRemoteSwiftPackageReference "Disk" */,
+				115186B2241FB00000EBC83E /* XCRemoteSwiftPackageReference "CSV" */,
 			);
 			productRefGroup = 1162D129240D05F600647002 /* Products */;
 			projectDirPath = "";
@@ -342,19 +412,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				111C76B62412C90500368F08 /* SystemColor.swift in Sources */,
-				1151868B241FA9AA00EBC83E /* Extensions.swift in Sources */,
+				115186AA241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
+				115186A9241FAFCE00EBC83E /* DataService.swift in Sources */,
+				1151869D241FAFC200EBC83E /* DataManager.swift in Sources */,
+				1151869F241FAFCA00EBC83E /* Report.swift in Sources */,
+				1151868B241FA9AA00EBC83E /* UIExtensions.swift in Sources */,
+				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
 				1162D161240FA87E00647002 /* ReportAnnotationView.swift in Sources */,
 				1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
+				115186A0241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
+				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
 				3447B4BD241E7790003914AF /* App.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				3447B4BB241E7631003914AF /* RegionListController.swift in Sources */,
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
+				115186A3241FAFCA00EBC83E /* Region.swift in Sources */,
+				115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
+				115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
 				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,
@@ -366,8 +446,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115186AC241FAFCE00EBC83E /* DataService.swift in Sources */,
+				115186AE241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */,
-				1151868C241FAC5B00EBC83E /* Extensions.swift in Sources */,
+				115186A5241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
+				1151869E241FAFC500EBC83E /* DataManager.swift in Sources */,
+				115186A8241FAFCA00EBC83E /* Region.swift in Sources */,
+				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
+				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,
+				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
+				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
+				115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
+				115186A7241FAFCA00EBC83E /* Statistic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +733,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		115186AF241FAFF300EBC83E /* XCRemoteSwiftPackageReference "Disk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/saoudrizwan/Disk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.4;
+			};
+		};
+		115186B2241FB00000EBC83E /* XCRemoteSwiftPackageReference "CSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yaslab/CSV.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.3;
+			};
+		};
 		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts";
@@ -662,18 +768,30 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1195F1A0241EC18B00FE718F /* CoronaData */ = {
+		115186B0241FAFF300EBC83E /* Disk */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = CoronaData;
+			package = 115186AF241FAFF300EBC83E /* XCRemoteSwiftPackageReference "Disk" */;
+			productName = Disk;
+		};
+		115186B3241FB00000EBC83E /* CSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 115186B2241FB00000EBC83E /* XCRemoteSwiftPackageReference "CSV" */;
+			productName = CSV;
+		};
+		115186B5241FB03F00EBC83E /* Disk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 115186AF241FAFF300EBC83E /* XCRemoteSwiftPackageReference "Disk" */;
+			productName = Disk;
+		};
+		115186B7241FB04200EBC83E /* CSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 115186B2241FB00000EBC83E /* XCRemoteSwiftPackageReference "CSV" */;
+			productName = CSV;
 		};
 		1195F1A4241EC1FB00FE718F /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
-		};
-		1195F1A6241EC22200FE718F /* CoronaData */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CoronaData;
 		};
 		11BF32A924156AE500270130 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
