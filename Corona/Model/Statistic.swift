@@ -12,11 +12,11 @@ public struct Statistic: Codable {
 	public let confirmedCount: Int
 	public let recoveredCount: Int
 	public let deathCount: Int
-	public var existingCount: Int { confirmedCount - recoveredCount - deathCount }
+	public var activeCount: Int { confirmedCount - recoveredCount - deathCount }
 
 	public var recoveredPercent: Double { confirmedCount == 0 ? 0 : 100.0 * Double(recoveredCount) / Double(confirmedCount) }
 	public var deathPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(deathCount) / Double(confirmedCount) }
-	public var existingPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(existingCount) / Double(confirmedCount) }
+	public var activePercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(activeCount) / Double(confirmedCount) }
 
 	public var confirmedCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: confirmedCount))! }
 	public var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }

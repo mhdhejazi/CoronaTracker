@@ -44,7 +44,7 @@ class CurrentStateChartView: PieChartView {
 		}
 
 		var dataEntries: [PieChartDataEntry] = []
-		dataEntries.append(PieChartDataEntry(value: Double(report.stat.existingCount), label: "Existing"))
+		dataEntries.append(PieChartDataEntry(value: Double(report.stat.activeCount), label: "Active"))
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: "Deaths"))
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.recoveredCount), label: "Recovered"))
 
