@@ -35,6 +35,12 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 3. Choose the right target (iOS or macOS).
 4. Build & run!
 
+Or install via [brew](http://brew.sh):
+
+  ```bash
+  brew cask install corona-tracker
+  ```
+
 Or [download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
 
 ## Contribute
