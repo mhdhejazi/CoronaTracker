@@ -13,15 +13,15 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 * __Distribution map__ with two levels of details:
   * __Countries__: When the user zooms out. Fewer details and reduced clutter.
   * __Cities__: When the user zooms in. More details.
+* __Charts__:
+   * __Current state chart__ for all countries (and cities).
+   * __Timeline chart__ for all countries (and cities).
+   * __Top affected countries__ chart with info about every country.
+  * Option for using a __logarithmic__ scale.
+* __Today widget__ for worldwide stats (Contributed by [Piotr Ożóg](https://github.com/pbeo)).
 * __Red color scale__: Reflects the number of confirmed cases. In addition to increasing circle size.
 * __Statistics__: Including the number of confirmed, recovered, and deaths, in addition to percents.
-* __Current state chart__ for all countries (and cities).
-* __Timeline chart__ for all countries (and cities).
-* __Top affected countries__ chart with info about every country.
-  * Option for using a __logarithmic__ scale.
-* __iPad__ support (portrait & landscape).
-* __macOS__ support.
-* Works on old devices that still run __iOS 10__.
+* __iPad__ & __macOS__ support.
 
 <details>
   <summary><b>Screenshots</b></summary> 
