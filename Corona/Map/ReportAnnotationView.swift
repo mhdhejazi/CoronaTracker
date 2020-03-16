@@ -11,6 +11,8 @@ import MapKit
 import CoronaData
 
 class ReportAnnotationView: MKAnnotationView {
+	static let reuseIdentifier = String(describing: ReportAnnotation.self)
+
 	private lazy var countLabel: UILabel = {
 		let countLabel = UILabel()
 		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -138,37 +140,37 @@ class ReportAnnotationView: MKAnnotationView {
 
 		countLabel.frame = bounds
 	}
+}
 
-	var isTouched: Bool = false {
-		didSet {
-			let scale = 0.9 + 0.06 * max(1, self.frame.width / 400)
-			let transform = isTouched ? CGAffineTransform(scaleX: scale, y: scale) : .identity
-			UIView.animate(withDuration: 0.4,
-						   delay: 0.1,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 1,
-						   options: .allowUserInteraction,
-						   animations: {
-				self.transform = transform
-			})
-		}
+extension ReportAnnotationView { // Pressable view
+	private func setTouched(_ isTouched: Bool) {
+		let scale = 0.9 + 0.06 * max(1, self.frame.width / 400)
+		let transform = isTouched ? CGAffineTransform(scaleX: scale, y: scale) : .identity
+		UIView.animate(withDuration: 0.4,
+					   delay: 0.1,
+					   usingSpringWithDamping: 0.7,
+					   initialSpringVelocity: 1,
+					   options: .allowUserInteraction,
+					   animations: {
+			self.transform = transform
+		})
 	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		super.touchesBegan(touches, with: event)
 
-		isTouched = true
+		setTouched(true)
 	}
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		super.touchesEnded(touches, with: event)
 
-		isTouched = false
+		setTouched(false)
 	}
 
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 		super.touchesCancelled(touches, with: event)
 
-		isTouched = false
+		setTouched(false)
 	}
 }

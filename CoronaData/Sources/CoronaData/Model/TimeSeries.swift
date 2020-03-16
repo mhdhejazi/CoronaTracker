@@ -11,7 +11,9 @@ import MapKit
 public struct TimeSeries: Codable {
 	public var region: Region
 	public let series: [Date : Statistic]
+}
 
+extension TimeSeries {
 	static func join(subSerieses: [TimeSeries]) -> TimeSeries {
 		assert(!subSerieses.isEmpty)
 

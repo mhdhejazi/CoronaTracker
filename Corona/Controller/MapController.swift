@@ -46,7 +46,7 @@ class MapController: UIViewController {
 
 		if #available(iOS 11.0, *) {
 			mapView.register(ReportAnnotationView.self,
-							 forAnnotationViewWithReuseIdentifier: ReportAnnotation.reuseIdentifier)
+							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
 		}
 
 		DataManager.instance.load { _ in
@@ -162,15 +162,15 @@ extension MapController: MKMapViewDelegate {
 		var annotationView: ReportAnnotationView
 		if #available(iOS 11.0, *) {
 			guard let view = mapView.dequeueReusableAnnotationView(
-				withIdentifier: ReportAnnotation.reuseIdentifier,
+				withIdentifier: ReportAnnotationView.reuseIdentifier,
 				for: annotation) as? ReportAnnotationView else { return nil }
 			annotationView = view
 		} else {
 			/// iOS 10
 			let view = mapView.dequeueReusableAnnotationView(
-				withIdentifier: ReportAnnotation.reuseIdentifier) as? ReportAnnotationView
+				withIdentifier: ReportAnnotationView.reuseIdentifier) as? ReportAnnotationView
 			annotationView = view ?? ReportAnnotationView(annotation: annotation,
-														  reuseIdentifier: ReportAnnotation.reuseIdentifier)
+														  reuseIdentifier: ReportAnnotationView.reuseIdentifier)
 		}
 
 		annotationView.mapZoomLevel = mapView.zoomLevel

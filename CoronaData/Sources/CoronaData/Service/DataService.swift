@@ -9,8 +9,9 @@
 import Foundation
 
 public protocol DataService {
-	typealias FetchReportsBlock = ([Report]?, Error?) -> Void
-	typealias FetchTimeSeriesesBlock = ([TimeSeries]?, Error?) -> Void
+	typealias FetchListBlock<T> = ([T]?, Error?) -> Void
+	typealias FetchReportsBlock = FetchListBlock<Report>
+	typealias FetchTimeSeriesesBlock = FetchListBlock<TimeSeries>
 
 	func fetchReports(completion: @escaping FetchReportsBlock)
 

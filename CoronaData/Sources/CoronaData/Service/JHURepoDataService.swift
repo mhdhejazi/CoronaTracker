@@ -211,7 +211,7 @@ public class JHURepoDataService: DataService {
 	}
 }
 
-extension Report {
+private extension Report {
 	private enum DataFieldOrder: Int {
 		case province = 0
 		case country

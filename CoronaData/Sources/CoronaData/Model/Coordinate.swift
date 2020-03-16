@@ -8,7 +8,7 @@
 
 import MapKit
 
-public struct Coordinate: Codable, Equatable {
+public struct Coordinate: Codable {
 	static let zero = Coordinate(latitude: 0, longitude: 0)
 
 	let latitude: Double
@@ -19,14 +19,11 @@ public struct Coordinate: Codable, Equatable {
 	func distance(from other: Coordinate) -> Double {
 		hypot(latitude - other.latitude, longitude - other.longitude)
 	}
+}
 
-	func equals(other: Coordinate) -> Bool {
-		Int(self.latitude * 1000) == Int(other.latitude * 1000) &&
-			Int(self.longitude * 1000) == Int(other.longitude * 1000)
-	}
-
+extension Coordinate: Equatable {
 	public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
-		return lhs.equals(other: rhs)
+		Int(lhs.latitude * 1000) == Int(rhs.latitude * 1000) &&
+			Int(lhs.longitude * 1000) == Int(rhs.longitude * 1000)
 	}
-
 }

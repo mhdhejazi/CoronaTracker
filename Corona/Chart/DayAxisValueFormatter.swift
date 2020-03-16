@@ -22,18 +22,16 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
 
 	public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
 		let date = Date.fromReferenceDays(days: Int(value))
-		let year = Calendar.posix.component(.year, from: date)
 		let month = Calendar.posix.component(.month, from: date)
-
 		let monthName = Self.months[month - 1]
-		let yearName = "\(year)"
 
 		if let chartView = chartView,
 			chartView.visibleXRange > 30 * 6 {
-			return monthName + yearName
-		} else {
-			let dayOfMonth = Calendar.posix.component(.day, from: date)
-			return String(format: "\(monthName) %d", dayOfMonth)
+			let year = Calendar.posix.component(.year, from: date)
+			return "\(monthName) \(year)"
 		}
+
+		let dayOfMonth = Calendar.posix.component(.day, from: date)
+		return "\(monthName) \(dayOfMonth)"
 	}
 }

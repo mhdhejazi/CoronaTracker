@@ -11,19 +11,14 @@ import MapKit
 import CoronaData
 
 class ReportAnnotation: NSObject, MKAnnotation {
-	static let reuseIdentifier = String(describing: ReportAnnotation.self)
-
 	let report: Report
-
 	let coordinate: CLLocationCoordinate2D
 	let title: String?
 
 	init(report: Report) {
 		self.report = report
-
-		let region = report.region
-		self.coordinate = region.location.clLocation
-		self.title = region.name
+		self.coordinate = report.region.location.clLocation
+		self.title = report.region.name
 
 		super.init()
 	}

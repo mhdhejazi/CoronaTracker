@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Statistic: CustomStringConvertible, Codable {
+public struct Statistic: Codable {
 	public let confirmedCount: Int
 	public let recoveredCount: Int
 	public let deathCount: Int
@@ -21,7 +21,9 @@ public struct Statistic: CustomStringConvertible, Codable {
 	public var confirmedCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: confirmedCount))! }
 	public var recoveredCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: recoveredCount))! }
 	public var deathCountString: String { NumberFormatter.groupingFormatter.string(from: NSNumber(value: deathCount))! }
+}
 
+extension Statistic: CustomStringConvertible {
 	public var description: String {
 		"""
 		Confirmed: \(confirmedCountString)
@@ -29,8 +31,10 @@ public struct Statistic: CustomStringConvertible, Codable {
 		Deaths: \(deathCountString) (\(deathPercent.percentFormatted))
 		"""
 	}
+}
 
-	static func join(subData: [Statistic]) -> Statistic {
+extension Statistic {
+	public static func join(subData: [Statistic]) -> Statistic {
 		Statistic(confirmedCount: subData.reduce(0) { $0 + $1.confirmedCount },
 				  recoveredCount: subData.reduce(0) { $0 + $1.recoveredCount },
 				  deathCount: subData.reduce(0) { $0 + $1.deathCount })
