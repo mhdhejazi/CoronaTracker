@@ -179,7 +179,6 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-//		print(mapView.zoomLevel)
 		for annotation in currentAnnotations {
 			if let view = mapView.view(for: annotation) as? ReportAnnotationView {
 				view.mapZoomLevel = mapView.zoomLevel
@@ -218,16 +217,14 @@ extension MapController: FloatingPanelControllerDelegate {
 		(newCollection.userInterfaceIdiom == .pad ||
 			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
 	}
-    
-    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
-        let currentPosition = vc.position
-        
-        // currentPosition == .full means deceleration will start from top to bottom (i.e. user dragging the panel down)
-        if currentPosition == .full, regionContainerController.isSearching {
-            
-            // Reset to region container's default mode then hide the keyboard
-            self.regionContainerController.isSearching = false
-            self.view.endEditing(true)
+
+	func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
+		let currentPosition = vc.position
+
+		// currentPosition == .full means deceleration will start from top to bottom (i.e. user dragging the panel down)
+		if currentPosition == .full, regionContainerController.isSearching {
+			// Reset to region container's default mode then hide the keyboard
+			self.regionContainerController.isSearching = false
         }
     }
 }
