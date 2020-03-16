@@ -36,16 +36,17 @@ class MapController: UIViewController {
 			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
 		}
 
+		if #available(iOS 11.0, *) {
+			mapView.mapType = .mutedStandard
+			mapView.register(ReportAnnotationView.self,
+							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
+		}
+
 		let identifier = String(describing: RegionContainerController.self)
 		regionContainerController = storyboard?.instantiateViewController(
 			withIdentifier: identifier) as? RegionContainerController
 
 		initializeBottomSheet()
-
-		if #available(iOS 11.0, *) {
-			mapView.register(ReportAnnotationView.self,
-							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
-		}
 
 		DataManager.instance.load { _ in
 			self.update()

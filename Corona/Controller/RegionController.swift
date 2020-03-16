@@ -46,7 +46,9 @@ class RegionController: UITableViewController {
 		tableView.tableFooterView = UIView()
 
 		if #available(iOS 11.0, *) {
-			/// Do nothing
+			labelConfirmed.font = .preferredFont(forTextStyle: .largeTitle)
+			labelRecovered.font = .preferredFont(forTextStyle: .largeTitle)
+			labelDeaths.font = .preferredFont(forTextStyle: .largeTitle)
 		} else {
 			/// iOS 10
 			labelConfirmed.font = .systemFont(ofSize: 24)

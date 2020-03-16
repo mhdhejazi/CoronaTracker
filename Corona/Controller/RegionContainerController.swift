@@ -58,7 +58,7 @@ class RegionContainerController: UIViewController {
 		}
 
 		if #available(iOS 11.0, *) {
-			/// Do nothing
+			labelTitle.font = .preferredFont(forTextStyle: .largeTitle)
 		} else {
 			/// iOS 10
 			labelTitle.font = .boldSystemFont(ofSize: 24)
