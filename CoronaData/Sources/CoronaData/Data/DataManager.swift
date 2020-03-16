@@ -57,9 +57,11 @@ public class DataManager {
 		return nil
 	}
 
-	public func load(completion: @escaping (Bool) -> ()) {
+	public func load(reportsOnly: Bool = false, completion: @escaping (Bool) -> ()) {
 		DispatchQueue.global().async {
-			self.loadTimeSeries()
+			if !reportsOnly {
+				self.loadTimeSeries()
+			}
 			let result = self.loadReports()
 			DispatchQueue.main.async {
 				completion(result);

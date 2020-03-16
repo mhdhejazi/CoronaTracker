@@ -13,55 +13,60 @@ import CoronaData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
-    @IBOutlet var worldwideTitleLabel: UILabel!
+	@IBOutlet var worldwideTitleLabel: UILabel!
     @IBOutlet var confirmedCountLabel: UILabel!
     @IBOutlet var recoveredCountLabel: UILabel!
     @IBOutlet var deathsCountLabel: UILabel!
-    @IBOutlet var confirmedLabel: UILabel!
-    @IBOutlet var recoveredLabel: UILabel!
-    @IBOutlet var deathsLabel: UILabel!
-    @IBOutlet var dataViews: [UIView]!
+	@IBOutlet var dataViews: [UIView]!
+	@IBOutlet var dataLabels: [UILabel]!
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupStyle()
+        initializeView()
+
+		DataManager.instance.load(reportsOnly: true) { [weak self] success in
+			self?.update(report: DataManager.instance.worldwideReport)
+		}
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         activityIndicatorView.startAnimating()
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { [weak self] (success) in
+            DataManager.instance.load(reportsOnly: true) { [weak self] success in
                 self?.activityIndicatorView.stopAnimating()
-                self?.dataViews.forEach({ $0.isHidden = false })
-                self?.showData(worldwideReport: DataManager.instance.worldwideReport)
+                self?.update(report: DataManager.instance.worldwideReport)
             }
         }
     }
 
-    private func showData(worldwideReport: Report?) {
-        guard let worldwideReport = worldwideReport else {
+	private func initializeView() {
+		dataViews.forEach { view in
+			view.layer.cornerRadius = 8
+//			view.isHidden = true
+		}
+		dataLabels.forEach { label in
+			label.textColor = .white
+		}
+
+		if #available(iOSApplicationExtension 13.0, *) {
+			activityIndicatorView.style = .medium
+		}
+	}
+
+    private func update(report: Report?) {
+        guard let report = report else {
             return
         }
-        confirmedCountLabel.text = String(format: "%d", worldwideReport.stat.confirmedCount)
-        recoveredCountLabel.text = String(format: "%d", worldwideReport.stat.recoveredCount)
-        deathsCountLabel.text = String(format: "%d", worldwideReport.stat.deathCount)
-    }
 
-    private func setupStyle() {
-        worldwideTitleLabel.textColor = .white
-        confirmedCountLabel.textColor = .white
-        recoveredCountLabel.textColor = .white
-        deathsCountLabel.textColor = .white
-        confirmedLabel.textColor = .white
-        recoveredLabel.textColor = .white
-        deathsLabel.textColor = .white
-        dataViews.forEach { (view) in
-            view.layer.cornerRadius = 5
-            view.layer.masksToBounds = true
-            view.isHidden = true
-        }
+		view.transition { [weak self] in
+			self?.confirmedCountLabel.text = report.stat.confirmedCountString
+			self?.recoveredCountLabel.text = report.stat.recoveredCountString
+			self?.deathsCountLabel.text = report.stat.deathCountString
+		}
+
+//		dataViews.forEach({ $0.isHidden = false })
     }
 }
