@@ -35,6 +35,8 @@
 		115186B8241FB04200EBC83E /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 115186B7241FB04200EBC83E /* CSV */; };
 		115186B9241FB31B00EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151869B241FAF6200EBC83E /* Extensions.swift */; };
 		115186BA242005E900EBC83E /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
+		115186C024203D5100EBC83E /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115186BE242019EE00EBC83E /* Change.swift */; };
+		115186C124203D6800EBC83E /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115186BE242019EE00EBC83E /* Change.swift */; };
 		1162D12C240D05F600647002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12B240D05F600647002 /* AppDelegate.swift */; };
 		1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12D240D05F600647002 /* SceneDelegate.swift */; };
 		1162D130240D05F600647002 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D12F240D05F600647002 /* MapController.swift */; };
@@ -99,6 +101,7 @@
 		11518697241FAECB00EBC83E /* JHUWebDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHUWebDataService.swift; sourceTree = "<group>"; };
 		11518698241FAECB00EBC83E /* JHURepoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHURepoDataService.swift; sourceTree = "<group>"; };
 		1151869B241FAF6200EBC83E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		115186BE242019EE00EBC83E /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 				11518691241FAECB00EBC83E /* TimeSeries.swift */,
 				11518692241FAECB00EBC83E /* Coordinate.swift */,
 				11518693241FAECB00EBC83E /* Statistic.swift */,
+				115186BE242019EE00EBC83E /* Change.swift */,
 				11518694241FAECB00EBC83E /* Region.swift */,
 			);
 			path = Model;
@@ -428,6 +432,7 @@
 				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
 				3447B4BD241E7790003914AF /* App.swift in Sources */,
+				115186C024203D5100EBC83E /* Change.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				3447B4BB241E7631003914AF /* RegionListController.swift in Sources */,
@@ -460,6 +465,7 @@
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
 				115186A7241FAFCA00EBC83E /* Statistic.swift in Sources */,
+				115186C124203D6800EBC83E /* Change.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -124,11 +124,14 @@
                                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100,252" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qx6-QW-GSL">
+                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100,252" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qx6-QW-GSL">
                                                                     <rect key="frame" x="0.0" y="32" width="134.5" height="41"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                                                     <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <connections>
+                                                                        <outletCollection property="gestureRecognizers" destination="3Km-ni-fGy" appends="YES" id="8fW-2e-x9x"/>
+                                                                    </connections>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
@@ -346,6 +349,11 @@
                 <tapGestureRecognizer id="biS-pl-Pul">
                     <connections>
                         <action selector="labelStatTapped:" destination="Pk4-iK-Cch" id="rn9-1m-Lil"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3Km-ni-fGy">
+                    <connections>
+                        <action selector="labelStatTapped:" destination="Pk4-iK-Cch" id="e0z-MU-WHI"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -147,6 +147,7 @@ public class JHURepoDataService: DataService {
 
 		let dateFormatter = DateFormatter()
 		dateFormatter.locale = .posix
+		dateFormatter.timeZone = .utc
 		dateFormatter.dateFormat = "M/d/yy"
 
 		let dateStrings = headers.dropFirst(4)

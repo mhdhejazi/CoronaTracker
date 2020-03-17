@@ -22,10 +22,12 @@ class RegionController: UITableViewController {
 
 			if let region = report?.region {
 				timeSeries = DataManager.instance.timeSeries(for: region)
+				change = DataManager.instance.dailyChange(for: region)
 			}
 		}
 	}
 	private var timeSeries: TimeSeries?
+	private var change: Change?
 	private var showPercents = false
 	private var switchPercentsTask: DispatchWorkItem?
 
@@ -102,7 +104,11 @@ class RegionController: UITableViewController {
 		}
 
 		guard let report = report else { return }
-
+		labelConfirmed.transition {
+			self.labelConfirmed.text = self.showPercents ?
+				"↑\(self.change?.growthPercent.kmFormatted ?? "-")%" :
+				report.stat.confirmedCountString
+		}
 		labelRecovered.transition {
 			self.labelRecovered.text = self.showPercents ?
 				report.stat.recoveredPercent.percentFormatted :

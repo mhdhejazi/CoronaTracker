@@ -57,6 +57,33 @@ public class DataManager {
 		return nil
 	}
 
+	public func dailyChange(for region: Region) -> Change? {
+		guard let todayReport = report(for: region),
+			let timeSeries = timeSeries(for: region) else { return nil }
+
+		var yesterdayStat: Statistic
+		var dates = timeSeries.series.keys.sorted()
+		guard let lastDate = dates.popLast(),
+			lastDate.ageDays < 2,
+			let lastStat = timeSeries.series[lastDate] else { return nil }
+
+		yesterdayStat = lastStat
+
+		if todayReport.stat.confirmedCount == lastStat.confirmedCount {
+			guard let nextToLastDate = dates.popLast(),
+				let nextToLastStat = timeSeries.series[nextToLastDate] else { return nil }
+
+			yesterdayStat = nextToLastStat
+		}
+
+		let growth = (Double(todayReport.stat.confirmedCount) / Double(yesterdayStat.confirmedCount) - 1) * 100
+
+		return Change(newConfirmed: todayReport.stat.confirmedCount - yesterdayStat.confirmedCount,
+					  newRecovered: todayReport.stat.recoveredCount - yesterdayStat.recoveredCount,
+					  newDeaths: todayReport.stat.deathCount - yesterdayStat.deathCount,
+					  growthPercent: growth)
+	}
+
 	public func load(reportsOnly: Bool = false, completion: @escaping (Bool) -> ()) {
 		DispatchQueue.global().async {
 			if !reportsOnly {

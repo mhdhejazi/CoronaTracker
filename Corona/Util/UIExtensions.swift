@@ -52,7 +52,7 @@ extension UIView {
 	public func transition(duration: TimeInterval = 0.5, animations: @escaping (() -> Void)) {
 		UIView.transition(with: self,
 						  duration: duration,
-						  options: [.transitionCrossDissolve],
+						  options: [.transitionCrossDissolve, .allowUserInteraction],
 						  animations: animations,
 						  completion: nil)
 	}

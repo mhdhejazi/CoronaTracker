@@ -86,6 +86,10 @@ extension Date {
 	}
 }
 
+extension TimeZone {
+	public static let utc = TimeZone(identifier: "UTC")!
+}
+
 extension Double {
 	public var kmFormatted: String {
 		if self >= 10_000, self < 1_000_000 {
