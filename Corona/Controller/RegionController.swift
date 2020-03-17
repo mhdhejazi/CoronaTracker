@@ -14,20 +14,13 @@ import Charts
 class RegionController: UITableViewController {
 	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
 
-	var report: Report? {
+	var region: Region? {
 		didSet {
-			if report == nil {
-				report = DataManager.instance.worldwideReport
-			}
-
-			if let region = report?.region {
-				timeSeries = DataManager.instance.timeSeries(for: region)
-				change = DataManager.instance.dailyChange(for: region)
+			if region == nil {
+				region = DataManager.instance.world
 			}
 		}
 	}
-	private var timeSeries: TimeSeries?
-	private var change: Change?
 	private var showPercents = false
 	private var switchPercentsTask: DispatchWorkItem?
 
@@ -71,26 +64,26 @@ class RegionController: UITableViewController {
 	}
 
 	func update() {
-		if report == nil {
-			report = DataManager.instance.worldwideReport
+		if region == nil {
+			region = DataManager.instance.world
 		}
 
 		UIView.transition(with: stackViewStats, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelTitle.text = self.report?.region.name ?? "-"
+			self.labelTitle.text = self.region?.longName ?? "-"
 
-			self.labelConfirmed.text = self.report?.stat.confirmedCountString ?? "-"
-			self.labelRecovered.text = self.report?.stat.recoveredCountString ?? "-"
-			self.labelDeaths.text = self.report?.stat.deathCountString ?? "-"
+			self.labelConfirmed.text = self.region?.report?.stat.confirmedCountString ?? "-"
+			self.labelRecovered.text = self.region?.report?.stat.recoveredCountString ?? "-"
+			self.labelDeaths.text = self.region?.report?.stat.deathCountString ?? "-"
 
-			self.labelNewConfirmed.text = self.change?.newConfirmedString ?? "-"
-			self.labelNewRecovered.text = self.change?.newRecoveredString ?? "-"
-			self.labelNewDeaths.text = self.change?.newDeathsString ?? "-"
+			self.labelNewConfirmed.text = self.region?.dailyChange?.newConfirmedString ?? "-"
+			self.labelNewRecovered.text = self.region?.dailyChange?.newRecoveredString ?? "-"
+			self.labelNewDeaths.text = self.region?.dailyChange?.newDeathsString ?? "-"
 
-			self.labelUpdated.text = "Last updated: \(self.report?.lastUpdate.relativeDateString ?? "-")"
+			self.labelUpdated.text = "Last updated: \(self.region?.report?.lastUpdate.relativeDateString ?? "-")"
 		}, completion: nil)
 
-		chartViewCurrent.update(report: report)
-		chartViewHistory.update(series: timeSeries)
+		chartViewCurrent.update(report: region?.report)
+		chartViewHistory.update(series: region?.timeSeries)
 		chartViewTopCountries.update()
 
 		updateParent()
@@ -112,7 +105,7 @@ class RegionController: UITableViewController {
 			return
 		}
 
-		guard let report = report else { return }
+		guard let report = region?.report else { return }
 		labelRecovered.transition {
 			self.labelRecovered.text = self.showPercents ?
 				report.stat.recoveredPercent.percentFormatted :
@@ -125,23 +118,23 @@ class RegionController: UITableViewController {
 		}
 		labelNewConfirmed.transition {
 			self.labelNewConfirmed.text = self.showPercents ?
-				self.change?.confirmedGrowthString ?? "-" :
-				self.change?.newConfirmedString ?? "-"
+				self.region?.dailyChange?.confirmedGrowthString ?? "-" :
+				self.region?.dailyChange?.newConfirmedString ?? "-"
 		}
 		labelNewRecovered.transition {
 			self.labelNewRecovered.text = self.showPercents ?
-				self.change?.recoveredGrowthString ?? "-" :
-				self.change?.newRecoveredString ?? "-"
+				self.region?.dailyChange?.recoveredGrowthString ?? "-" :
+				self.region?.dailyChange?.newRecoveredString ?? "-"
 		}
 		labelNewDeaths.transition {
 			self.labelNewDeaths.text = self.showPercents ?
-				self.change?.deathsGrowthString ?? "-" :
-				self.change?.newDeathsString ?? "-"
+				self.region?.dailyChange?.deathsGrowthString ?? "-" :
+				self.region?.dailyChange?.newDeathsString ?? "-"
 		}
 	}
 
 	func updateParent() {
-		(parent as? RegionContainerController)?.update(report: report)
+		(parent as? RegionContainerController)?.update(region: region)
 	}
 }
 

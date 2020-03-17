@@ -9,7 +9,7 @@
 import UIKit
 
 class RegionListController: UITableViewController {
-	var reports: [Report] = [] {
+	var regions: [Region] = [] {
 		didSet {
 			tableView.reloadData()
 		}
@@ -33,25 +33,25 @@ class RegionListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return reports.count
+		return regions.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let identifier = String(describing: RegionCell.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RegionCell
 
-		let report = reports[indexPath.row]
-		cell.report = report
+		let region = regions[indexPath.row]
+		cell.region = region
 
         return cell
     }
 }
 
 class RegionCell: UITableViewCell {
-	var report: Report? {
+	var region: Region? {
 		didSet {
-			labelName.text = report?.region.name
-			labelStats.text = report?.stat.confirmedCountString
+			labelName.text = region?.longName
+			labelStats.text = region?.report?.stat.confirmedCountString
 		}
 	}
 

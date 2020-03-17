@@ -25,7 +25,7 @@ public class JHUWebDataService: DataService {
 
 	static let instance = JHUWebDataService()
 
-	public func fetchReports(completion: @escaping FetchReportsBlock) {
+	public func fetchReports(completion: @escaping FetchResultBlock) {
 		print("Calling API")
 		URLCache.shared.removeAllCachedResponses()
 		let request = URLRequest(url: Self.reportsURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
@@ -55,12 +55,12 @@ public class JHUWebDataService: DataService {
 		}.resume()
 	}
 
-	private func parseReports(data: Data, completion: @escaping FetchReportsBlock) {
+	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
-			let reports = result.features.map { $0.attributes.report }
-			completion(reports, nil)
+			let regions = result.features.map { $0.attributes.region }
+			completion(regions, nil)
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -68,7 +68,7 @@ public class JHUWebDataService: DataService {
 		}
 	}
 
-	public func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
+	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		print("Calling API")
 		URLCache.shared.removeAllCachedResponses()
 		let request = URLRequest(url: Self.globalTimeSeriesURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
@@ -98,12 +98,12 @@ public class JHUWebDataService: DataService {
 		}.resume()
 	}
 
-	private func parseTimeSerieses(data: Data, completion: @escaping FetchTimeSeriesesBlock) {
+	private func parseTimeSerieses(data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(GlobalTimeSeriesCallResult.self, from: data)
-			let timeSeries = result.timeSeries
-			completion([timeSeries], nil)
+			let region = result.region
+			completion([region], nil)
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -130,28 +130,40 @@ private struct ReportAttributes: Decodable {
 	let Deaths: Int?
 	let Recovered: Int?
 
-	var report: Report {
+	var region: Region {
 		let location = Coordinate(latitude: Lat, longitude: Long_)
-		let region = Region(countryName: Country_Region, provinceName: Province_State ?? "", location: location)
 		let lastUpdate = Date(timeIntervalSince1970: Double(Last_Update) / 1000)
 		let stat = Statistic(confirmedCount: Confirmed ?? 0, recoveredCount: Recovered ?? 0, deathCount: Deaths ?? 0)
+		let report = Report(lastUpdate: lastUpdate, stat: stat)
 
-		return Report(region: region, lastUpdate: lastUpdate, stat: stat)
+		var region: Region
+		if let name = Province_State {
+			region = Region(level: .province, name: name, parentName: Country_Region, location: location)
+		} else {
+			region = Region(level: .country, name: Country_Region, parentName: nil, location: location)
+		}
+		region.report = report
+
+		return region
 	}
 }
 
 private struct GlobalTimeSeriesCallResult: Decodable {
 	let features: [GlobalTimeSeriesFeature]
 
-	var timeSeries: TimeSeries {
-		let region = Region.worldWide
+	var region: Region {
 		let series = [Date : Statistic](
 			uniqueKeysWithValues: zip(
 				features.map({ $0.attributes.date }),
 				features.map({ $0.attributes.stat })
 			)
 		)
-		return TimeSeries(region: region, series: series)
+		let timeSeries = TimeSeries(series: series)
+
+		let region = Region.world
+		region.timeSeries = timeSeries
+
+		return region
 	}
 }
 

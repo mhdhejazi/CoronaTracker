@@ -28,12 +28,12 @@ class RegionContainerController: UIViewController {
 				self.regionController.view.isHidden = self.isSearching
 
 				if self.isSearching {
-					self.regionListController.reports = DataManager.instance.allReports
+					self.regionListController.regions = DataManager.instance.regions(of: .province).sorted().reversed()
 					self.searchBar.text = ""
 					self.searchBar.becomeFirstResponder()
 					MapController.instance.showRegionScreen()
 				} else {
-					self.regionListController.reports = []
+					self.regionListController.regions = []
 					self.searchBar.resignFirstResponder()
 				}
 			}
@@ -81,9 +81,9 @@ class RegionContainerController: UIViewController {
 		}
 	}
 
-	func update(report: Report?) {
+	func update(region: Region?) {
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelTitle.text = report?.region.name ?? "No data"
+			self.labelTitle.text = region?.longName ?? "N/A"
 		}, completion: nil)
 
 		updateTime()
@@ -95,7 +95,7 @@ class RegionContainerController: UIViewController {
 			return
 		}
 
-		self.labelUpdated.text = self.regionController.report?.lastUpdate.relativeTimeString
+		self.labelUpdated.text = self.regionController.region?.report?.lastUpdate.relativeTimeString
 	}
 
 	@IBAction func buttonSearchTapped(_ sender: Any) {
@@ -109,27 +109,27 @@ extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
 	}
 
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		var reports = DataManager.instance.allReports
+		var regions: [Region] = DataManager.instance.regions(of: .province).sorted().reversed()
 
 		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
 		if !query.isEmpty {
-			reports = reports.filter({ report in
-				report.region.name.lowercased().contains(query)
+			regions = regions.filter({ region in
+				region.longName.lowercased().contains(query)
 			})
 		}
 
-		regionListController.reports = reports
+		regionListController.regions = regions
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let report = regionListController.reports[indexPath.row]
+		let region = regionListController.regions[indexPath.row]
 
-		regionController.report = report
+		regionController.region = region
 		regionController.update()
 
 		isSearching = false
 
 		MapController.instance.hideRegionScreen()
-		MapController.instance.showRegionOnMap(report: report)
+		MapController.instance.showRegionOnMap(region: region)
 	}
 }

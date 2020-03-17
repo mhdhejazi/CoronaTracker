@@ -27,9 +27,9 @@ class TopCountriesChartView: BarChartView {
 		xAxis.labelTextColor = SystemColor.secondaryLabel
 		xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
 			guard let entry = self.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
-				let report = entry.data as? Report else { return value.description }
+				let region = entry.data as? Region else { return value.description }
 
-			return report.region.name.replacingOccurrences(of: " ", with: "\n")
+			return region.name.replacingOccurrences(of: " ", with: "\n")
 		})
 
 //		leftAxis.drawGridLinesEnabled = false
@@ -73,17 +73,17 @@ class TopCountriesChartView: BarChartView {
 	}
 
 	func update() {
-		let reports = DataManager.instance.topReports
+		let regions = DataManager.instance.topCountries
 
 		var entries = [BarChartDataEntry]()
-		for i in reports.indices {
-			let report = reports[i]
-			var value = Double(report.stat.confirmedCount)
+		for i in regions.indices {
+			let region = regions[i]
+			var value = Double(region.report?.stat.confirmedCount ?? 0)
 			if isLogarithmic {
 				value = log10(value)
 			}
 			let entry = BarChartDataEntry(x: Double(i), y: value)
-			entry.data = report
+			entry.data = region
 			entries.append(entry)
 		}
 

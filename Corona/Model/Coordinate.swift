@@ -13,6 +13,21 @@ public struct Coordinate: Codable {
 
 	let latitude: Double
 	let longitude: Double
+}
+
+extension Coordinate {
+	public static func center(of coordinates: [Coordinate]) -> Coordinate {
+		let totals = coordinates.reduce((latitude: 0.0, longitude: 0.0)) {
+			($0.latitude + $1.latitude, $0.longitude + $1.longitude)
+		}
+
+		let center = Coordinate(latitude: totals.latitude / Double(coordinates.count),
+								longitude: totals.longitude / Double(coordinates.count))
+
+		return coordinates.min {
+			center.distance(from: $0) < center.distance(from: $1)
+		}!
+	}
 
 	public var clLocation: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
 

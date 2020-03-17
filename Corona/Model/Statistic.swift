@@ -34,7 +34,7 @@ extension Statistic: CustomStringConvertible {
 }
 
 extension Statistic {
-	public static func join(subData: [Statistic]) -> Statistic {
+	public static func sum(subData: [Statistic]) -> Statistic {
 		Statistic(confirmedCount: subData.reduce(0) { $0 + $1.confirmedCount },
 				  recoveredCount: subData.reduce(0) { $0 + $1.recoveredCount },
 				  deathCount: subData.reduce(0) { $0 + $1.deathCount })

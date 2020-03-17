@@ -9,13 +9,13 @@
 import MapKit
 
 class ReportAnnotation: NSObject, MKAnnotation {
-	let report: Report
+	let region: Region
 	let coordinate: CLLocationCoordinate2D
 	let title: String?
 
-	init(report: Report) {
-		self.report = report
-		self.coordinate = report.region.location.clLocation
-		self.title = report.region.name
+	init(region: Region) {
+		self.region = region
+		self.coordinate = region.location.clLocation
+		self.title = region.name
 	}
 }

@@ -27,3 +27,14 @@ extension Change {
 	public var recoveredGrowthString: String { "↑\(recoveredGrowthPercent.kmFormatted)%" }
 	public var deathsGrowthString: String { "↑\(deathsGrowthPercent.kmFormatted)%" }
 }
+
+extension Change {
+	public static func sum(subChanges: [Change]) -> Change {
+		Change(newConfirmed: subChanges.reduce(0) { $0 + $1.newConfirmed },
+			   newRecovered: subChanges.reduce(0) { $0 + $1.newRecovered },
+			   newDeaths: subChanges.reduce(0) { $0 + $1.newDeaths },
+			   confirmedGrowthPercent: (subChanges.reduce(0) { $0 + $1.confirmedGrowthPercent }) / Double(subChanges.count),
+			   recoveredGrowthPercent: (subChanges.reduce(0) { $0 + $1.recoveredGrowthPercent }) / Double(subChanges.count),
+			   deathsGrowthPercent: (subChanges.reduce(0) { $0 + $1.deathsGrowthPercent }) / Double(subChanges.count))
+	}
+}

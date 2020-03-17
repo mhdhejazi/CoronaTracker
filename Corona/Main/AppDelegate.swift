@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		if (!DataManager.instance.allReports.isEmpty) {
+		if (!DataManager.instance.world.subRegions.isEmpty) {
 			MapController.instance.downloadIfNeeded()
 		}
 	}

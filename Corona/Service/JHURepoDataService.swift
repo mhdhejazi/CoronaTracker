@@ -33,12 +33,12 @@ public class JHURepoDataService: DataService {
 	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
 	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
 
-	public func fetchReports(completion: @escaping FetchReportsBlock) {
+	public func fetchReports(completion: @escaping FetchResultBlock) {
 		let today = Date()
 		downloadDailyReport(date: today, completion: completion)
 	}
 
-	private func downloadDailyReport(date: Date, completion: @escaping FetchReportsBlock) {
+	private func downloadDailyReport(date: Date, completion: @escaping FetchResultBlock) {
 		if date.ageDays > Self.maxOldDataAge {
 			completion(nil, FetchError.tooOldData)
 			return
@@ -79,11 +79,11 @@ public class JHURepoDataService: DataService {
 		}.resume()
 	}
 
-	private func parseReports(data: Data, completion: @escaping FetchReportsBlock) {
+	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
-			let reports = reader.map({ Report.create(dataRow: $0) })
-			completion(reports, nil)
+			let regions = reader.map({ Region.createFromReportData(dataRow: $0) })
+			completion(regions, nil)
 		}
 		catch {
 			print("Unexpected error: \(error).")
@@ -91,7 +91,7 @@ public class JHURepoDataService: DataService {
 		}
 	}
 
-	public func fetchTimeSerieses(completion: @escaping FetchTimeSeriesesBlock) {
+	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		let dispatchGroup = DispatchGroup()
 		var result = [Data?](repeating: nil, count: 3)
 
@@ -126,7 +126,7 @@ public class JHURepoDataService: DataService {
 		}
 	}
 
-	private func parseTimeSerieses(data: [Data], completion: @escaping FetchTimeSeriesesBlock) {
+	private func parseTimeSerieses(data: [Data], completion: @escaping FetchResultBlock) {
 		assert(data.count == 3)
 
 		/// All time serieses
@@ -152,7 +152,7 @@ public class JHURepoDataService: DataService {
 
 		let dateStrings = headers.dropFirst(4)
 
-		var timeSerieses: [TimeSeries] = []
+		var regions: [Region] = []
 		for row in confirmed.indices {
 			let confirmedTimeSeries = confirmed[row]
 			let recoveredTimeSeries = recovered[row]
@@ -170,10 +170,14 @@ public class JHURepoDataService: DataService {
 					series[date] = stat
 				}
 			}
-			let timeSeries = TimeSeries(region: confirmedTimeSeries.region, series: series)
-			timeSerieses.append(timeSeries)
+			let timeSeries = TimeSeries(series: series)
+
+			let region = confirmedTimeSeries.region
+			region.timeSeries = timeSeries
+
+			regions.append(region)
 		}
-		completion(timeSerieses, nil)
+		completion(regions, nil)
 	}
 
 	private func parseTimeSeries(data: Data) -> (rows: [CounterTimeSeries], headers: [String])? {
@@ -212,7 +216,7 @@ public class JHURepoDataService: DataService {
 	}
 }
 
-private extension Report {
+private extension Region {
 	private enum DataFieldOrder: Int {
 		case province = 0
 		case country
@@ -224,13 +228,12 @@ private extension Report {
 		case longitude
 	}
 
-	static func create(dataRow: [String]) -> Report {
+	static func createFromReportData(dataRow: [String]) -> Region {
 		let province = dataRow[DataFieldOrder.province.rawValue]
 		let country = dataRow[DataFieldOrder.country.rawValue]
 		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
 		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
 		let location = Coordinate(latitude: latitude, longitude: longitude)
-		let region = Region(countryName: country, provinceName: province, location: location)
 
 		let timeString = dataRow[DataFieldOrder.lastUpdate.rawValue]
 		let formatter = ISO8601DateFormatter()
@@ -242,7 +245,17 @@ private extension Report {
 		let recovered = Int(dataRow[DataFieldOrder.recovered.rawValue]) ?? 0
 		let stat = Statistic(confirmedCount: confirmed, recoveredCount: recovered, deathCount: deaths)
 
-		return Report(region: region, lastUpdate: lastUpdate, stat: stat)
+		let report = Report(lastUpdate: lastUpdate, stat: stat)
+
+		var region: Region
+		if province.isEmpty {
+			region = Region(level: .country, name: country, parentName: nil, location: location)
+		} else {
+			region = Region(level: .province, name: province, parentName: country, location: location)
+		}
+		region.report = report
+
+		return region
 	}
 }
 
@@ -263,7 +276,14 @@ private class CounterTimeSeries {
 		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0
 		let longitude = Double(dataRow[DataFieldOrder.longitude.rawValue]) ?? 0
 		let location = Coordinate(latitude: latitude, longitude: longitude)
-		self.region = Region(countryName: country, provinceName: province, location: location)
+
+		var region: Region
+		if province.isEmpty {
+			region = Region(level: .country, name: country, parentName: nil, location: location)
+		} else {
+			region = Region(level: .province, name: province, parentName: country, location: location)
+		}
+		self.region = region
 
 		self.values = dataRow.dropFirst(DataFieldOrder.longitude.rawValue + 1).map { Int($0) ?? 0 }
 	}
