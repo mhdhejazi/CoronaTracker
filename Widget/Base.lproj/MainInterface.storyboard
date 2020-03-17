@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="hu2-8u-Ge5">
                                 <rect key="frame" x="0.0" y="0.0" width="360" height="220"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-EP-P96">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-EP-P96" customClass="StatsView" customModule="Widget" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="111.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Worldwide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3Y-ey-Vef">
@@ -144,8 +144,25 @@
                                             <constraint firstAttribute="trailing" secondItem="fx4-yy-BBW" secondAttribute="trailing" constant="20" symbolic="YES" id="mZW-tp-Uj2"/>
                                             <constraint firstItem="b5R-nJ-GV1" firstAttribute="trailing" secondItem="D3Y-ey-Vef" secondAttribute="trailing" id="qny-ic-pEF"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicatorView" destination="OFI-dB-YMc" id="scI-oU-NdE"/>
+                                            <outlet property="confirmedCountLabel" destination="LO4-9a-4YB" id="2RV-kz-EaS"/>
+                                            <outlet property="deathsCountLabel" destination="iwT-mN-mNn" id="FYn-zg-gJy"/>
+                                            <outlet property="recoveredCountLabel" destination="0gj-nh-MWj" id="aef-Gl-KvH"/>
+                                            <outlet property="titleLabel" destination="D3Y-ey-Vef" id="dEJ-hT-GBx"/>
+                                            <outlet property="updateTimeLabel" destination="b5R-nJ-GV1" id="rFM-Ue-jaV"/>
+                                            <outletCollection property="dataLabels" destination="ag1-kU-s0i" collectionClass="NSMutableArray" id="69x-rm-aR1"/>
+                                            <outletCollection property="dataLabels" destination="LO4-9a-4YB" collectionClass="NSMutableArray" id="CuT-r1-7fn"/>
+                                            <outletCollection property="dataLabels" destination="GLu-jo-d8c" collectionClass="NSMutableArray" id="gC6-Kq-Yzv"/>
+                                            <outletCollection property="dataLabels" destination="0gj-nh-MWj" collectionClass="NSMutableArray" id="aEV-zr-yIT"/>
+                                            <outletCollection property="dataLabels" destination="bwB-dW-jy7" collectionClass="NSMutableArray" id="vRl-4C-0Wh"/>
+                                            <outletCollection property="dataLabels" destination="iwT-mN-mNn" collectionClass="NSMutableArray" id="1Ns-yT-2VV"/>
+                                            <outletCollection property="dataViews" destination="yFg-xG-DQ7" collectionClass="NSMutableArray" id="jI7-oX-4tB"/>
+                                            <outletCollection property="dataViews" destination="SVP-1L-NHq" collectionClass="NSMutableArray" id="EF3-3y-nh2"/>
+                                            <outletCollection property="dataViews" destination="j7l-3j-WcT" collectionClass="NSMutableArray" id="oaQ-uG-R3L"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcy-b7-20y">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcy-b7-20y" customClass="StatsView" customModule="Widget" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="111.5" width="360" height="108.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1V-xi-dTd">
@@ -270,6 +287,23 @@
                                             <constraint firstItem="jDi-eX-HbV" firstAttribute="centerX" secondItem="Kcy-b7-20y" secondAttribute="centerX" id="sub-Ux-wQ0"/>
                                             <constraint firstItem="jDi-eX-HbV" firstAttribute="leading" secondItem="Kcy-b7-20y" secondAttribute="leading" constant="20" symbolic="YES" id="wCj-b5-kbY"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicatorView" destination="fkW-oi-NDx" id="KlV-YY-xud"/>
+                                            <outlet property="confirmedCountLabel" destination="zD9-nL-tkc" id="MhU-gu-g81"/>
+                                            <outlet property="deathsCountLabel" destination="f98-IA-cbn" id="r4s-BX-rGq"/>
+                                            <outlet property="recoveredCountLabel" destination="Gl7-Ab-rdK" id="OlJ-FR-oGB"/>
+                                            <outlet property="titleLabel" destination="g1V-xi-dTd" id="OTY-YN-pKK"/>
+                                            <outlet property="updateTimeLabel" destination="fJQ-Rd-dlP" id="ZyB-AV-KLc"/>
+                                            <outletCollection property="dataLabels" destination="0cY-qZ-Nck" collectionClass="NSMutableArray" id="id2-PF-GoN"/>
+                                            <outletCollection property="dataLabels" destination="dw8-QY-EIR" collectionClass="NSMutableArray" id="vRY-G7-rMR"/>
+                                            <outletCollection property="dataLabels" destination="blK-a8-Pm4" collectionClass="NSMutableArray" id="fVp-SA-DYa"/>
+                                            <outletCollection property="dataLabels" destination="zD9-nL-tkc" collectionClass="NSMutableArray" id="jkn-Va-5cK"/>
+                                            <outletCollection property="dataLabels" destination="Gl7-Ab-rdK" collectionClass="NSMutableArray" id="xGS-gj-J70"/>
+                                            <outletCollection property="dataLabels" destination="f98-IA-cbn" collectionClass="NSMutableArray" id="uWS-WS-ZHK"/>
+                                            <outletCollection property="dataViews" destination="0OK-Mv-5hJ" collectionClass="NSMutableArray" id="7Cb-LS-hr0"/>
+                                            <outletCollection property="dataViews" destination="2w9-zt-fbg" collectionClass="NSMutableArray" id="1xO-k7-EBY"/>
+                                            <outletCollection property="dataViews" destination="0rd-hc-zxQ" collectionClass="NSMutableArray" id="ypU-bh-Gdp"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -288,37 +322,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="360" height="220"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="OFI-dB-YMc" id="bTZ-yl-Dpl"/>
-                        <outlet property="confirmedCountLabel" destination="LO4-9a-4YB" id="PlW-88-YFf"/>
-                        <outlet property="deathsCountLabel" destination="iwT-mN-mNn" id="DfU-jm-vMA"/>
-                        <outlet property="favoriteActivityIndicatorView" destination="fkW-oi-NDx" id="hnY-Hi-SxO"/>
-                        <outlet property="favoriteConfirmedCountLabel" destination="zD9-nL-tkc" id="mdB-YB-x98"/>
-                        <outlet property="favoriteContainerView" destination="Kcy-b7-20y" id="PLD-ZN-Ulv"/>
-                        <outlet property="favoriteDeathsCountLabel" destination="f98-IA-cbn" id="hhu-A1-g2P"/>
-                        <outlet property="favoriteRecoveredCountLabel" destination="Gl7-Ab-rdK" id="GfX-30-qn2"/>
-                        <outlet property="favoriteTitleLabel" destination="g1V-xi-dTd" id="QXP-bK-T3g"/>
-                        <outlet property="favoriteUpdateTimeLabel" destination="fJQ-Rd-dlP" id="UuC-q2-ot1"/>
-                        <outlet property="recoveredCountLabel" destination="0gj-nh-MWj" id="iGl-C4-uOL"/>
-                        <outlet property="updateTimeLabel" destination="b5R-nJ-GV1" id="Aip-SH-xNj"/>
-                        <outlet property="worldwideTitleLabel" destination="D3Y-ey-Vef" id="3o7-l1-Jsq"/>
-                        <outletCollection property="dataViews" destination="SVP-1L-NHq" collectionClass="NSMutableArray" id="zrp-Cf-ada"/>
-                        <outletCollection property="dataLabels" destination="GLu-jo-d8c" collectionClass="NSMutableArray" id="nUL-Jj-ny1"/>
-                        <outletCollection property="dataViews" destination="yFg-xG-DQ7" collectionClass="NSMutableArray" id="CH0-0m-kwP"/>
-                        <outletCollection property="dataLabels" destination="LO4-9a-4YB" collectionClass="NSMutableArray" id="Fex-Ct-Qau"/>
-                        <outletCollection property="dataViews" destination="j7l-3j-WcT" collectionClass="NSMutableArray" id="qKn-6J-sCC"/>
-                        <outletCollection property="dataLabels" destination="iwT-mN-mNn" collectionClass="NSMutableArray" id="mDC-NE-pJl"/>
-                        <outletCollection property="dataLabels" destination="0gj-nh-MWj" collectionClass="NSMutableArray" id="73s-7j-qH8"/>
-                        <outletCollection property="dataLabels" destination="ag1-kU-s0i" collectionClass="NSMutableArray" id="NXn-eE-zsa"/>
-                        <outletCollection property="dataLabels" destination="bwB-dW-jy7" collectionClass="NSMutableArray" id="R9N-Wa-NWx"/>
-                        <outletCollection property="dataViews" destination="0OK-Mv-5hJ" collectionClass="NSMutableArray" id="iCg-cp-CSJ"/>
-                        <outletCollection property="dataViews" destination="2w9-zt-fbg" collectionClass="NSMutableArray" id="7Ye-1J-w4D"/>
-                        <outletCollection property="dataViews" destination="0rd-hc-zxQ" collectionClass="NSMutableArray" id="JJ6-4u-5Se"/>
-                        <outletCollection property="dataLabels" destination="blK-a8-Pm4" collectionClass="NSMutableArray" id="dfX-j9-j8Y"/>
-                        <outletCollection property="dataLabels" destination="dw8-QY-EIR" collectionClass="NSMutableArray" id="9dw-6s-nJm"/>
-                        <outletCollection property="dataLabels" destination="0cY-qZ-Nck" collectionClass="NSMutableArray" id="pJ5-nO-YZZ"/>
-                        <outletCollection property="dataLabels" destination="f98-IA-cbn" collectionClass="NSMutableArray" id="2ZW-rF-I0P"/>
-                        <outletCollection property="dataLabels" destination="Gl7-Ab-rdK" collectionClass="NSMutableArray" id="BmR-7i-e7C"/>
-                        <outletCollection property="dataLabels" destination="zD9-nL-tkc" collectionClass="NSMutableArray" id="Wtc-IM-nZG"/>
+                        <outlet property="favoriteStatView" destination="Kcy-b7-20y" id="cKd-W5-bGA"/>
+                        <outlet property="worldwideStatView" destination="h4i-EP-P96" id="ehU-JF-qBx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -62,6 +62,7 @@
 		344ED328241AC7AA004C4EA8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344ED326241AC7AA004C4EA8 /* MainInterface.storyboard */; };
 		344ED32C241AC7AA004C4EA8 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 344ED31F241AC7AA004C4EA8 /* Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344ED324241AC7AA004C4EA8 /* TodayViewController.swift */; };
+		349692162421917700990395 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349692152421917700990395 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		344ED327241AC7AA004C4EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3496921424218E0500990395 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
+		349692152421917700990395 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				3496921424218E0500990395 /* Widget.entitlements */,
+				349692152421917700990395 /* StatsView.swift */,
 				344ED324241AC7AA004C4EA8 /* TodayViewController.swift */,
 				344ED326241AC7AA004C4EA8 /* MainInterface.storyboard */,
 				344ED329241AC7AA004C4EA8 /* Info.plist */,
@@ -465,6 +468,7 @@
 				115186BA242005E900EBC83E /* SystemColor.swift in Sources */,
 				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
+				349692162421917700990395 /* StatsView.swift in Sources */,
 				115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
 				115186A7241FAFCA00EBC83E /* Statistic.swift in Sources */,
 				115186C124203D6800EBC83E /* Change.swift in Sources */,
