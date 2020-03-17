@@ -48,6 +48,7 @@ public class DataManager {
 			}
 			catch {
 				print("Unexpected error: \(error).")
+				try? Disk.clear(.caches)
 				result = false
 			}
 
