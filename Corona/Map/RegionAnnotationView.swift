@@ -1,5 +1,5 @@
 //
-//  ReportAnnotationView.swift
+//  RegionAnnotationView.swift
 //  Corona
 //
 //  Created by Mohammad on 3/4/20.
@@ -8,8 +8,8 @@
 
 import MapKit
 
-class ReportAnnotationView: MKAnnotationView {
-	static let reuseIdentifier = String(describing: ReportAnnotation.self)
+class RegionAnnotationView: MKAnnotationView {
+	static let reuseIdentifier = String(describing: RegionAnnotationView.self)
 
 	private lazy var countLabel: UILabel = {
 		let countLabel = UILabel()
@@ -26,13 +26,13 @@ class ReportAnnotationView: MKAnnotationView {
 	}()
 
 	private var radius: CGFloat {
-		guard let annotation = annotation as? ReportAnnotation else { return 1 }
+		guard let annotation = annotation as? RegionAnnotation else { return 1 }
 		let number = CGFloat(annotation.region.report?.stat.confirmedCount ?? 0)
 		return 10 + log( 1 + number) * CGFloat(mapZoomLevel - 2.2)
 	}
 
 	private var color: UIColor {
-		guard let annotation = annotation as? ReportAnnotation else { return .clear }
+		guard let annotation = annotation as? RegionAnnotation else { return .clear }
 		let number = CGFloat(annotation.region.report?.stat.confirmedCount ?? 0)
 		let level = log10(number + 10) * 2
 		let brightness = max(0, 255 - level * 40) / 255;
@@ -41,7 +41,7 @@ class ReportAnnotationView: MKAnnotationView {
 	}
 
 	var region: Region? {
-		(annotation as? ReportAnnotation)?.region
+		(annotation as? RegionAnnotation)?.region
 	}
 
 	private var detailsString: NSAttributedString? {
@@ -140,7 +140,7 @@ class ReportAnnotationView: MKAnnotationView {
 	}
 }
 
-extension ReportAnnotationView { // Pressable view
+extension RegionAnnotationView { // Pressable view
 	private func setTouched(_ isTouched: Bool) {
 		let scale = 0.9 + 0.06 * max(1, self.frame.width / 400)
 		let transform = isTouched ? CGAffineTransform(scaleX: scale, y: scale) : .identity

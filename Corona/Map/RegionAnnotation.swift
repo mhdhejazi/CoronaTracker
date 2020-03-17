@@ -1,5 +1,5 @@
 //
-//  ReportAnnotation.swift
+//  RegionAnnotation.swift
 //  Corona
 //
 //  Created by Mohammad on 3/3/20.
@@ -8,7 +8,7 @@
 
 import MapKit
 
-class ReportAnnotation: NSObject, MKAnnotation {
+class RegionAnnotation: NSObject, MKAnnotation {
 	let region: Region
 	let coordinate: CLLocationCoordinate2D
 	let title: String?
@@ -16,6 +16,6 @@ class ReportAnnotation: NSObject, MKAnnotation {
 	init(region: Region) {
 		self.region = region
 		self.coordinate = region.location.clLocation
-		self.title = region.name
+		self.title = region.longName
 	}
 }

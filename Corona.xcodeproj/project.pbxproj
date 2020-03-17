@@ -43,10 +43,10 @@
 		1162D133240D05F600647002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D131240D05F600647002 /* Main.storyboard */; };
 		1162D135240D05FA00647002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1162D134240D05FA00647002 /* Assets.xcassets */; };
 		1162D138240D05FA00647002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1162D136240D05FA00647002 /* LaunchScreen.storyboard */; };
-		1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D144240EB86400647002 /* ReportAnnotation.swift */; };
+		1162D145240EB86400647002 /* RegionAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D144240EB86400647002 /* RegionAnnotation.swift */; };
 		1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D152240F934000647002 /* SimpleMarkerView.swift */; };
 		1162D156240F934100647002 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D153240F934000647002 /* BalloonMarker.swift */; };
-		1162D161240FA87E00647002 /* ReportAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D160240FA87E00647002 /* ReportAnnotationView.swift */; };
+		1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D160240FA87E00647002 /* RegionAnnotationView.swift */; };
 		1162D16E240FCDAB00647002 /* RegionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1162D16D240FCDAB00647002 /* RegionController.swift */; };
 		11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1B24114922000B2466 /* PercentValueFormatter.swift */; };
 		11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */; };
@@ -110,10 +110,10 @@
 		1162D134240D05FA00647002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1162D137240D05FA00647002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1162D139240D05FA00647002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1162D144240EB86400647002 /* ReportAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnnotation.swift; sourceTree = "<group>"; };
+		1162D144240EB86400647002 /* RegionAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionAnnotation.swift; sourceTree = "<group>"; };
 		1162D152240F934000647002 /* SimpleMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMarkerView.swift; sourceTree = "<group>"; };
 		1162D153240F934000647002 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
-		1162D160240FA87E00647002 /* ReportAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnnotationView.swift; sourceTree = "<group>"; };
+		1162D160240FA87E00647002 /* RegionAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionAnnotationView.swift; sourceTree = "<group>"; };
 		1162D16D240FCDAB00647002 /* RegionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionController.swift; sourceTree = "<group>"; };
 		11672A1B24114922000B2466 /* PercentValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentValueFormatter.swift; sourceTree = "<group>"; };
 		11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 		1162D15F240FA85300647002 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				1162D144240EB86400647002 /* ReportAnnotation.swift */,
-				1162D160240FA87E00647002 /* ReportAnnotationView.swift */,
+				1162D144240EB86400647002 /* RegionAnnotation.swift */,
+				1162D160240FA87E00647002 /* RegionAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -425,8 +425,8 @@
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
-				1162D161240FA87E00647002 /* ReportAnnotationView.swift in Sources */,
-				1162D145240EB86400647002 /* ReportAnnotation.swift in Sources */,
+				1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */,
+				1162D145240EB86400647002 /* RegionAnnotation.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
 				115186A0241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
 				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,

@@ -17,9 +17,9 @@ class MapController: UIViewController {
 
 	static var instance: MapController!
 
-	private var allAnnotations: [ReportAnnotation] = []
-	private var countryAnnotations: [ReportAnnotation] = []
-	private var currentAnnotations: [ReportAnnotation] = []
+	private var allAnnotations: [RegionAnnotation] = []
+	private var countryAnnotations: [RegionAnnotation] = []
+	private var currentAnnotations: [RegionAnnotation] = []
 
 	private var panelController: FloatingPanelController!
 	private var regionContainerController: RegionContainerController!
@@ -70,8 +70,8 @@ class MapController: UIViewController {
 
 		if #available(iOS 11.0, *) {
 			mapView.mapType = .mutedStandard
-			mapView.register(ReportAnnotationView.self,
-							 forAnnotationViewWithReuseIdentifier: ReportAnnotationView.reuseIdentifier)
+			mapView.register(RegionAnnotationView.self,
+							 forAnnotationViewWithReuseIdentifier: RegionAnnotationView.reuseIdentifier)
 		}
 	}
 
@@ -118,11 +118,11 @@ class MapController: UIViewController {
 	private func update() {
 		allAnnotations = DataManager.instance.regions(of: .province)
 			.filter({ $0.report?.stat.confirmedCount ?? 0 > 0 })
-			.map({ ReportAnnotation(region: $0) })
+			.map({ RegionAnnotation(region: $0) })
 
 		countryAnnotations = DataManager.instance.regions(of: .country)
 			.filter({ $0.report?.stat.confirmedCount ?? 0 > 0 })
-			.map({ ReportAnnotation(region: $0) })
+			.map({ RegionAnnotation(region: $0) })
 
 		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
 
@@ -195,18 +195,18 @@ extension MapController: MKMapViewDelegate {
 			return nil
 		}
 
-		var annotationView: ReportAnnotationView
+		var annotationView: RegionAnnotationView
 		if #available(iOS 11.0, *) {
 			guard let view = mapView.dequeueReusableAnnotationView(
-				withIdentifier: ReportAnnotationView.reuseIdentifier,
-				for: annotation) as? ReportAnnotationView else { return nil }
+				withIdentifier: RegionAnnotationView.reuseIdentifier,
+				for: annotation) as? RegionAnnotationView else { return nil }
 			annotationView = view
 		} else {
 			/// iOS 10
 			let view = mapView.dequeueReusableAnnotationView(
-				withIdentifier: ReportAnnotationView.reuseIdentifier) as? ReportAnnotationView
-			annotationView = view ?? ReportAnnotationView(annotation: annotation,
-														  reuseIdentifier: ReportAnnotationView.reuseIdentifier)
+				withIdentifier: RegionAnnotationView.reuseIdentifier) as? RegionAnnotationView
+			annotationView = view ?? RegionAnnotationView(annotation: annotation,
+														  reuseIdentifier: RegionAnnotationView.reuseIdentifier)
 		}
 
 		annotationView.mapZoomLevel = mapView.zoomLevel
@@ -216,7 +216,7 @@ extension MapController: MKMapViewDelegate {
 
 	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
 		for annotation in currentAnnotations {
-			if let view = mapView.view(for: annotation) as? ReportAnnotationView {
+			if let view = mapView.view(for: annotation) as? RegionAnnotationView {
 				view.mapZoomLevel = mapView.zoomLevel
 			}
 		}
@@ -240,7 +240,7 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-		updateRegionScreen(region: (view as? ReportAnnotationView)?.region)
+		updateRegionScreen(region: (view as? RegionAnnotationView)?.region)
 	}
 
 	func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
