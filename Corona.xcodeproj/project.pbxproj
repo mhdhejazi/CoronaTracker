@@ -129,6 +129,7 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED327241AC7AA004C4EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3496921424218E0500990395 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +292,7 @@
 		344ED323241AC7AA004C4EA8 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				3496921424218E0500990395 /* Widget.entitlements */,
 				344ED324241AC7AA004C4EA8 /* TodayViewController.swift */,
 				344ED326241AC7AA004C4EA8 /* MainInterface.storyboard */,
 				344ED329241AC7AA004C4EA8 /* Info.plist */,
@@ -629,14 +631,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.3.1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 37BYKL96J7;
+				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -653,14 +655,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.3.1;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = 37BYKL96J7;
+				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -671,16 +673,17 @@
 		344ED32E241AC7AA004C4EA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 37BYKL96J7;
+				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -691,16 +694,17 @@
 		344ED32F241AC7AA004C4EA8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 37BYKL96J7;
+				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

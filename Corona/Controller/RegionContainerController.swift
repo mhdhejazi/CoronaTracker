@@ -10,8 +10,7 @@ import UIKit
 import Disk
 
 class RegionContainerController: UIViewController {
-    private static let favoriteRegionFileName = "favorite.json"
-
+    
 	var regionListController: RegionListController!
 	var regionController: RegionController!
 	var isUpdating: Bool = false {
@@ -101,7 +100,7 @@ class RegionContainerController: UIViewController {
             return
         }
         self.favoriteButton.isHidden = false
-        let favoriteRegion = try? Disk.retrieve(Self.favoriteRegionFileName, from: .caches, as: Region.self)
+        let favoriteRegion = try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
         let isFavorite = region == favoriteRegion
         self.favoriteButton.setImage(isFavorite ? UIImage(named: "favoriteFilled") : UIImage(named: "favorite"), for: .normal)
     }
@@ -123,7 +122,7 @@ class RegionContainerController: UIViewController {
         guard let region = self.regionController.region else {
             return
         }
-        try? Disk.save(region, to: .caches, as: Self.favoriteRegionFileName)
+        try? Disk.save(region, to: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.favoriteRegionFileName)
         self.updateFavoriteIcon(region: region)
     }
 }
