@@ -48,12 +48,13 @@ class StatsView: UIView {
         }
     }
 
-    func update(report: Report?) {
-        guard let report = report else {
+    func update(region: Region) {
+        guard let report = region.report else {
             return
         }
 
         transition { [weak self] in
+            self?.titleLabel.text = region.name
             self?.confirmedCountLabel.text = report.stat.confirmedCountString
             self?.recoveredCountLabel.text = report.stat.recoveredCountString
             self?.deathsCountLabel.text = report.stat.deathCountString

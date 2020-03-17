@@ -15,23 +15,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet var worldwideStatView: StatsView!
     @IBOutlet var favoriteStatView: StatsView!
 
-    private var favoriteRegion: Region? {
+    private var savedFavoriteRegion: Region? {
         return try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
     }
 
-    private var favoriteReport: Report? {
-        return DataManager.instance.regions(of: .country).first(where: {$0 == favoriteRegion})?.report
+    private var favorite: Region? {
+        return DataManager.instance.regions(of: .country).first(where: {$0 == savedFavoriteRegion})
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.extensionContext?.widgetLargestAvailableDisplayMode = favoriteRegion != nil ? .expanded : .compact
+        self.extensionContext?.widgetLargestAvailableDisplayMode = savedFavoriteRegion != nil ? .expanded : .compact
 
 		DataManager.instance.load { [weak self] success in
-            self?.worldwideStatView.update(report: DataManager.instance.world.report)
+            self?.worldwideStatView.update(region: DataManager.instance.world)
 
-            if let favorite = self?.favoriteRegion, let favoriteReport = DataManager.instance.regions(of: .country).first(where: {$0 == favorite})?.report {
-                self?.favoriteStatView.update(report: favoriteReport)
+            if let favorite = self?.favorite {
+                self?.favoriteStatView.update(region: favorite)
             }
 		}
     }
@@ -55,8 +55,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             DataManager.instance.load { [weak self] success in
                 self?.worldwideStatView.isUpdatingData = false
                 self?.favoriteStatView.isUpdatingData = false
-                self?.worldwideStatView.update(report: DataManager.instance.world.report)
-                self?.favoriteStatView.update(report: self?.favoriteReport)
+                self?.worldwideStatView.update(region: DataManager.instance.world)
+                if let favorite = self?.favorite {
+                    self?.favoriteStatView.update(region: favorite)
+                }
             }
         }
     }
