@@ -88,6 +88,10 @@ class MapController: UIViewController {
 		panelController.track(scrollView: regionContainerController.regionController.tableView)
 		panelController.surfaceView.backgroundColor = .clear
 		panelController.surfaceView.contentView.backgroundColor = .clear
+
+		#if targetEnvironment(macCatalyst)
+		panelController.additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 10, right: 0)
+		#endif
 	}
 
 	func updateRegionScreen(region: Region?) {
