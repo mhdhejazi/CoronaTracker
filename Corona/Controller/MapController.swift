@@ -273,7 +273,7 @@ class PanelLayout: FloatingPanelLayout {
 	public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
 		switch position {
 		case .full: return 16
-		case .half: return 215
+		case .half: return 185
 		case .tip: return 68
 		default: return nil
 		}
