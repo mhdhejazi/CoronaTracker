@@ -25,7 +25,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.extensionContext?.widgetLargestAvailableDisplayMode = savedFavoriteRegion != nil ? .expanded : .compact
+        let hasFavorite = savedFavoriteRegion != nil
+        self.extensionContext?.widgetLargestAvailableDisplayMode = hasFavorite ? .expanded : .compact
+        self.favoriteStatView.isHidden = !hasFavorite
 
 		DataManager.instance.load { [weak self] success in
             self?.worldwideStatView.update(region: DataManager.instance.world)
@@ -38,6 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
 
+        self.favoriteStatView.isHidden = activeDisplayMode == NCWidgetDisplayMode.compact
         if activeDisplayMode == NCWidgetDisplayMode.compact {
             //compact
             self.preferredContentSize = CGSize(width: maxSize.width, height: 110)

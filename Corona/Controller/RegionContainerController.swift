@@ -122,7 +122,14 @@ class RegionContainerController: UIViewController {
         guard let region = self.regionController.region else {
             return
         }
-        try? Disk.save(region, to: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.favoriteRegionFileName)
+        let actualFavorite = try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
+
+        var regionToSave: Region? = region
+        if region == actualFavorite {
+            regionToSave = nil
+        }
+
+        try? Disk.save(regionToSave, to: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.favoriteRegionFileName)
         self.updateFavoriteIcon(region: region)
     }
 }
