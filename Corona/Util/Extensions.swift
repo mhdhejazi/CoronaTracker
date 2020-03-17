@@ -110,6 +110,10 @@ extension Double {
 
 extension Int {
 	public var kmFormatted: String { Double(self).kmFormatted }
+
+	public var groupingFormatted: String {
+		NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
+	}
 }
 
 extension NumberFormatter {

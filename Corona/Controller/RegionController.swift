@@ -36,6 +36,9 @@ class RegionController: UITableViewController {
 	@IBOutlet var labelConfirmed: UILabel!
 	@IBOutlet var labelRecovered: UILabel!
 	@IBOutlet var labelDeaths: UILabel!
+	@IBOutlet var labelNewConfirmed: UILabel!
+	@IBOutlet var labelNewRecovered: UILabel!
+	@IBOutlet var labelNewDeaths: UILabel!
 	@IBOutlet var chartViewCurrent: CurrentStateChartView!
 	@IBOutlet var chartViewHistory: HistoryChartView!
 	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
@@ -74,9 +77,15 @@ class RegionController: UITableViewController {
 
 		UIView.transition(with: stackViewStats, duration: 0.25, options: [.transitionCrossDissolve], animations: {
 			self.labelTitle.text = self.report?.region.name ?? "-"
+
 			self.labelConfirmed.text = self.report?.stat.confirmedCountString ?? "-"
 			self.labelRecovered.text = self.report?.stat.recoveredCountString ?? "-"
 			self.labelDeaths.text = self.report?.stat.deathCountString ?? "-"
+
+			self.labelNewConfirmed.text = self.change?.newConfirmedString ?? "-"
+			self.labelNewRecovered.text = self.change?.newRecoveredString ?? "-"
+			self.labelNewDeaths.text = self.change?.newDeathsString ?? "-"
+
 			self.labelUpdated.text = "Last updated: \(self.report?.lastUpdate.relativeDateString ?? "-")"
 		}, completion: nil)
 
@@ -104,11 +113,6 @@ class RegionController: UITableViewController {
 		}
 
 		guard let report = report else { return }
-		labelConfirmed.transition {
-			self.labelConfirmed.text = self.showPercents ?
-				"↑\(self.change?.growthPercent.kmFormatted ?? "-")%" :
-				report.stat.confirmedCountString
-		}
 		labelRecovered.transition {
 			self.labelRecovered.text = self.showPercents ?
 				report.stat.recoveredPercent.percentFormatted :
@@ -118,6 +122,21 @@ class RegionController: UITableViewController {
 			self.labelDeaths.text = self.showPercents ?
 				report.stat.deathPercent.percentFormatted :
 				report.stat.deathCountString
+		}
+		labelNewConfirmed.transition {
+			self.labelNewConfirmed.text = self.showPercents ?
+				self.change?.confirmedGrowthString ?? "-" :
+				self.change?.newConfirmedString ?? "-"
+		}
+		labelNewRecovered.transition {
+			self.labelNewRecovered.text = self.showPercents ?
+				self.change?.recoveredGrowthString ?? "-" :
+				self.change?.newRecoveredString ?? "-"
+		}
+		labelNewDeaths.transition {
+			self.labelNewDeaths.text = self.showPercents ?
+				self.change?.deathsGrowthString ?? "-" :
+				self.change?.newDeathsString ?? "-"
 		}
 	}
 

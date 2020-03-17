@@ -76,12 +76,16 @@ public class DataManager {
 			yesterdayStat = nextToLastStat
 		}
 
-		let growth = (Double(todayReport.stat.confirmedCount) / Double(yesterdayStat.confirmedCount) - 1) * 100
+		let confirmedGrowth = (Double(todayReport.stat.confirmedCount) / Double(yesterdayStat.confirmedCount) - 1) * 100
+		let recoveredGrowth = (Double(todayReport.stat.recoveredCount) / Double(yesterdayStat.recoveredCount) - 1) * 100
+		let deathsGrowth = (Double(todayReport.stat.deathCount) / Double(yesterdayStat.deathCount) - 1) * 100
 
 		return Change(newConfirmed: todayReport.stat.confirmedCount - yesterdayStat.confirmedCount,
 					  newRecovered: todayReport.stat.recoveredCount - yesterdayStat.recoveredCount,
 					  newDeaths: todayReport.stat.deathCount - yesterdayStat.deathCount,
-					  growthPercent: growth)
+					  confirmedGrowthPercent: confirmedGrowth,
+					  recoveredGrowthPercent: recoveredGrowth,
+					  deathsGrowthPercent: deathsGrowth)
 	}
 
 	public func load(reportsOnly: Bool = false, completion: @escaping (Bool) -> ()) {

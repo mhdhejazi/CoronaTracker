@@ -12,5 +12,18 @@ public struct Change {
 	public let newConfirmed: Int
 	public let newRecovered: Int
 	public let newDeaths: Int
-	public let growthPercent: Double
+
+	public let confirmedGrowthPercent: Double
+	public let recoveredGrowthPercent: Double
+	public let deathsGrowthPercent: Double
+}
+
+extension Change {
+	public var newConfirmedString: String { "+\(newConfirmed.groupingFormatted)" }
+	public var newRecoveredString: String { "+\(newRecovered.groupingFormatted)" }
+	public var newDeathsString: String { "+\(newDeaths.groupingFormatted)" }
+
+	public var confirmedGrowthString: String { "↑\(confirmedGrowthPercent.kmFormatted)%" }
+	public var recoveredGrowthString: String { "↑\(recoveredGrowthPercent.kmFormatted)%" }
+	public var deathsGrowthString: String { "↑\(deathsGrowthPercent.kmFormatted)%" }
 }
