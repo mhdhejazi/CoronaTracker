@@ -260,7 +260,7 @@
                                                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgZ-GX-hqg">
-                                                    <rect key="frame" x="358" y="295" width="44" height="44"/>
+                                                    <rect key="frame" x="370" y="295" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="5ag-FY-4w2"/>
                                                         <constraint firstAttribute="height" constant="44" id="eB9-ta-HoI"/>
@@ -571,12 +571,29 @@ Deaths</string>
                                     <action selector="buttonSearchTapped:" destination="bGw-3g-OPq" eventType="touchUpInside" id="lgX-x3-jYK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="China" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-6g-4tZ">
-                                <rect key="frame" x="20" y="18" width="264.5" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Py9-4s-YZ9">
+                                <rect key="frame" x="20" y="29" width="114.5" height="25"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="China" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9mw-6g-4tZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="85.5" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHG-x8-sqq">
+                                        <rect key="frame" x="89.5" y="0.0" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="7Yx-Hq-fzG"/>
+                                            <constraint firstAttribute="width" constant="25" id="H8u-0M-faI"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="favorite"/>
+                                        <connections>
+                                            <action selector="favoriteButtonTapped:" destination="bGw-3g-OPq" eventType="touchUpInside" id="hBf-Cn-0ax"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="20 min. ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="x3z-gb-5Us">
                                 <rect key="frame" x="292.5" y="33.5" width="71.5" height="16"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -587,17 +604,15 @@ Deaths</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="fvF-pW-WYC" secondAttribute="trailing" constant="8" id="0iJ-fL-axC"/>
-                            <constraint firstItem="x3z-gb-5Us" firstAttribute="centerY" secondItem="9mw-6g-4tZ" secondAttribute="centerY" constant="3" id="4E0-yf-2eE"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="bottom" secondItem="De6-gr-Z57" secondAttribute="bottom" id="5Gj-gb-N3M"/>
-                            <constraint firstItem="9mw-6g-4tZ" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="18" id="5dn-HN-lio"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="2IF-jV-QKe" secondAttribute="bottom" id="5gk-St-JC3"/>
                             <constraint firstItem="fvF-pW-WYC" firstAttribute="centerY" secondItem="J8g-4r-eHY" secondAttribute="centerY" id="78c-w4-BMt"/>
                             <constraint firstItem="2IF-jV-QKe" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="A3A-Ao-8kO"/>
+                            <constraint firstItem="x3z-gb-5Us" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Py9-4s-YZ9" secondAttribute="trailing" constant="20" id="Bp0-0t-1qs"/>
                             <constraint firstItem="2IF-jV-QKe" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="D2Q-Mq-cev"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" constant="75" id="DET-Ia-muS"/>
                             <constraint firstItem="fvF-pW-WYC" firstAttribute="leading" secondItem="rB9-u9-YPh" secondAttribute="leading" constant="8" id="Fmw-XA-1vn"/>
                             <constraint firstItem="QaN-1K-JEI" firstAttribute="leading" secondItem="FBC-RK-X8c" secondAttribute="leading" id="KPw-Ws-W3m"/>
-                            <constraint firstItem="x3z-gb-5Us" firstAttribute="leading" secondItem="9mw-6g-4tZ" secondAttribute="trailing" constant="8" symbolic="YES" id="LxX-NJ-SSn"/>
                             <constraint firstAttribute="bottom" secondItem="0hs-6B-msn" secondAttribute="bottom" id="Msc-FN-sAs"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="trailing" secondItem="rB9-u9-YPh" secondAttribute="trailing" id="QhN-hL-XFg"/>
                             <constraint firstItem="rB9-u9-YPh" firstAttribute="trailing" secondItem="J8g-4r-eHY" secondAttribute="trailing" constant="10" id="SHf-F8-UyM"/>
@@ -605,12 +620,14 @@ Deaths</string>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="leading" secondItem="De6-gr-Z57" secondAttribute="leading" id="b6x-du-zhV"/>
                             <constraint firstItem="QaN-1K-JEI" firstAttribute="top" secondItem="FBC-RK-X8c" secondAttribute="top" id="bT2-ol-h3c"/>
                             <constraint firstItem="QaN-1K-JEI" firstAttribute="trailing" secondItem="FBC-RK-X8c" secondAttribute="trailing" id="bVj-o1-gTT"/>
+                            <constraint firstItem="Py9-4s-YZ9" firstAttribute="leading" secondItem="rB9-u9-YPh" secondAttribute="leading" constant="20" id="dTx-hG-X99"/>
                             <constraint firstItem="0hs-6B-msn" firstAttribute="top" secondItem="De6-gr-Z57" secondAttribute="top" id="eLS-tU-aQM"/>
+                            <constraint firstItem="Py9-4s-YZ9" firstAttribute="centerY" secondItem="fvF-pW-WYC" secondAttribute="centerY" id="fW0-d4-y3S"/>
                             <constraint firstItem="2IF-jV-QKe" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailing" id="iFk-g6-7J9"/>
-                            <constraint firstItem="9mw-6g-4tZ" firstAttribute="leading" secondItem="rB9-u9-YPh" secondAttribute="leading" constant="20" id="lnm-f8-AAJ"/>
                             <constraint firstItem="QaN-1K-JEI" firstAttribute="bottom" secondItem="FBC-RK-X8c" secondAttribute="bottom" id="mKb-ol-dlI"/>
                             <constraint firstItem="J8g-4r-eHY" firstAttribute="leading" secondItem="x3z-gb-5Us" secondAttribute="trailing" id="mdd-hd-BDW"/>
                             <constraint firstItem="FBC-RK-X8c" firstAttribute="trailing" secondItem="De6-gr-Z57" secondAttribute="trailing" id="uGQ-Va-gtV"/>
+                            <constraint firstItem="FBC-RK-X8c" firstAttribute="top" secondItem="fvF-pW-WYC" secondAttribute="bottom" constant="5.5" id="yme-48-H8I"/>
                             <constraint firstItem="J8g-4r-eHY" firstAttribute="centerY" secondItem="x3z-gb-5Us" secondAttribute="centerY" id="zbg-vH-O2s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rB9-u9-YPh"/>
@@ -619,6 +636,7 @@ Deaths</string>
                         <outlet property="buttonSearch" destination="J8g-4r-eHY" id="nSJ-dD-agA"/>
                         <outlet property="effectViewBackground" destination="0hs-6B-msn" id="3qS-oa-1qu"/>
                         <outlet property="effectViewHeader" destination="2IF-jV-QKe" id="XLt-Ez-olK"/>
+                        <outlet property="favoriteButton" destination="VHG-x8-sqq" id="8wk-gi-3tA"/>
                         <outlet property="labelTitle" destination="9mw-6g-4tZ" id="ONa-Yj-wOa"/>
                         <outlet property="labelUpdated" destination="x3z-gb-5Us" id="FYT-on-lKD"/>
                         <outlet property="searchBar" destination="fvF-pW-WYC" id="O1t-RH-wNc"/>
@@ -632,5 +650,6 @@ Deaths</string>
     <resources>
         <image name="Search" width="22" height="22"/>
         <image name="Switch" width="22" height="22"/>
+        <image name="favorite" width="50" height="50"/>
     </resources>
 </document>

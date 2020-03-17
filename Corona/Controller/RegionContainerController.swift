@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Disk
 
 class RegionContainerController: UIViewController {
+    private static let favoriteRegionFileName = "favorite.json"
+
 	var regionListController: RegionListController!
 	var regionController: RegionController!
 	var isUpdating: Bool = false {
@@ -21,6 +24,7 @@ class RegionContainerController: UIViewController {
 		didSet {
 			view.transition(duration: 0.25) {
 				self.labelTitle.isHidden = self.isSearching
+                self.favoriteButton.isHidden = self.isSearching
 				self.labelUpdated.isHidden = self.isSearching
 				self.buttonSearch.isHidden = self.isSearching
 				self.searchBar.isHidden = !self.isSearching
@@ -43,6 +47,7 @@ class RegionContainerController: UIViewController {
 	@IBOutlet var effectViewBackground: UIVisualEffectView!
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
+    @IBOutlet var favoriteButton: UIButton!
 	@IBOutlet var labelUpdated: UILabel!
 	@IBOutlet var buttonSearch: UIButton!
 	@IBOutlet var searchBar: UISearchBar!
@@ -82,12 +87,24 @@ class RegionContainerController: UIViewController {
 	}
 
 	func update(region: Region?) {
+        updateFavoriteIcon(region: region)
 		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
 			self.labelTitle.text = region?.longName ?? "N/A"
 		}, completion: nil)
 
 		updateTime()
 	}
+
+    private func updateFavoriteIcon(region: Region?) {
+        guard region != Region.world else {
+            self.favoriteButton.isHidden = true
+            return
+        }
+        self.favoriteButton.isHidden = false
+        let favoriteRegion = try? Disk.retrieve(Self.favoriteRegionFileName, from: .caches, as: Region.self)
+        let isFavorite = region == favoriteRegion
+        self.favoriteButton.setImage(isFavorite ? UIImage(named: "favoriteFilled") : UIImage(named: "favorite"), for: .normal)
+    }
 
 	func updateTime() {
 		if isUpdating {
@@ -101,6 +118,14 @@ class RegionContainerController: UIViewController {
 	@IBAction func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
 	}
+
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        guard let region = self.regionController.region else {
+            return
+        }
+        try? Disk.save(region, to: .caches, as: Self.favoriteRegionFileName)
+        self.updateFavoriteIcon(region: region)
+    }
 }
 
 extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
