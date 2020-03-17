@@ -55,16 +55,7 @@ public class Region: Codable {
 			yesterdayStat = nextToLastStat
 		}
 
-		let confirmedGrowth = (Double(todayReport.stat.confirmedCount) / Double(yesterdayStat.confirmedCount) - 1) * 100
-		let recoveredGrowth = (Double(todayReport.stat.recoveredCount) / Double(yesterdayStat.recoveredCount) - 1) * 100
-		let deathsGrowth = (Double(todayReport.stat.deathCount) / Double(yesterdayStat.deathCount) - 1) * 100
-
-		return Change(newConfirmed: todayReport.stat.confirmedCount - yesterdayStat.confirmedCount,
-					  newRecovered: todayReport.stat.recoveredCount - yesterdayStat.recoveredCount,
-					  newDeaths: todayReport.stat.deathCount - yesterdayStat.deathCount,
-					  confirmedGrowthPercent: confirmedGrowth,
-					  recoveredGrowthPercent: recoveredGrowth,
-					  deathsGrowthPercent: deathsGrowth)
+		return Change(currentStat: todayReport.stat, lastStat: yesterdayStat)
 	}
 
 	public enum Level: Int, RawRepresentable, Codable {

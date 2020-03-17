@@ -9,16 +9,33 @@
 import Foundation
 
 public struct Change {
-	public let newConfirmed: Int
-	public let newRecovered: Int
-	public let newDeaths: Int
-
-	public let confirmedGrowthPercent: Double
-	public let recoveredGrowthPercent: Double
-	public let deathsGrowthPercent: Double
+	public let currentStat: Statistic
+	public let lastStat: Statistic
 }
 
 extension Change {
+	public var currentConfirmed: Int { currentStat.confirmedCount }
+	public var currentRecovered: Int { currentStat.recoveredCount }
+	public var currentDeaths: Int { currentStat.deathCount }
+
+	public var lastConfirmed: Int { lastStat.confirmedCount }
+	public var lastRecovered: Int { lastStat.recoveredCount }
+	public var lastDeaths: Int { lastStat.deathCount }
+
+	public var newConfirmed: Int { currentConfirmed - lastConfirmed }
+	public var newRecovered: Int { currentRecovered - lastRecovered }
+	public var newDeaths: Int { currentDeaths - lastDeaths }
+
+	public var confirmedGrowthPercent: Double {
+		lastConfirmed == 0 ? 0 :(Double(currentConfirmed) / Double(lastConfirmed) - 1) * 100
+	}
+	public var recoveredGrowthPercent: Double {
+		lastRecovered == 0 ? 0 :(Double(currentRecovered) / Double(lastRecovered) - 1) * 100
+	}
+	public var deathsGrowthPercent: Double {
+		lastDeaths == 0 ? 0 :(Double(currentDeaths) / Double(lastDeaths) - 1) * 100
+	}
+
 	public var newConfirmedString: String { "+\(newConfirmed.groupingFormatted)" }
 	public var newRecoveredString: String { "+\(newRecovered.groupingFormatted)" }
 	public var newDeathsString: String { "+\(newDeaths.groupingFormatted)" }
@@ -30,11 +47,7 @@ extension Change {
 
 extension Change {
 	public static func sum(subChanges: [Change]) -> Change {
-		Change(newConfirmed: subChanges.reduce(0) { $0 + $1.newConfirmed },
-			   newRecovered: subChanges.reduce(0) { $0 + $1.newRecovered },
-			   newDeaths: subChanges.reduce(0) { $0 + $1.newDeaths },
-			   confirmedGrowthPercent: (subChanges.reduce(0) { $0 + $1.confirmedGrowthPercent }) / Double(subChanges.count),
-			   recoveredGrowthPercent: (subChanges.reduce(0) { $0 + $1.recoveredGrowthPercent }) / Double(subChanges.count),
-			   deathsGrowthPercent: (subChanges.reduce(0) { $0 + $1.deathsGrowthPercent }) / Double(subChanges.count))
+		Change(currentStat: Statistic.sum(subData: subChanges.map { $0.currentStat }),
+			   lastStat: Statistic.sum(subData: subChanges.map { $0.lastStat }))
 	}
 }
