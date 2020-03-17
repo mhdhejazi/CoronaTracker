@@ -17,7 +17,5 @@ class ReportAnnotation: NSObject, MKAnnotation {
 		self.report = report
 		self.coordinate = report.region.location.clLocation
 		self.title = report.region.name
-
-		super.init()
 	}
 }
