@@ -92,7 +92,7 @@ class RegionAnnotationView: MKAnnotationView {
 	}()
 	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
 
-	private lazy var detailAccessoryView: UIView? = {
+	private lazy var detailAccessoryView: UILabel? = {
 		let label = UILabel()
 		label.textColor = .systemGray
 		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
@@ -142,6 +142,12 @@ class RegionAnnotationView: MKAnnotationView {
 
 extension RegionAnnotationView { // Pressable view
 	private func setTouched(_ isTouched: Bool) {
+        
+        // BUG FIX: the data within detailAccessoryView would become stale in some cases. To address this, we now ensure that, if it has since been updated, the report text is set each time the detailAccessoryView is shown
+        if detailAccessoryView?.attributedText != detailsString {
+            detailAccessoryView?.attributedText = detailsString
+        }
+
 		let scale = 0.9 + 0.06 * max(1, self.frame.width / 400)
 		let transform = isTouched ? CGAffineTransform(scaleX: scale, y: scale) : .identity
 		UIView.animate(withDuration: 0.4,
