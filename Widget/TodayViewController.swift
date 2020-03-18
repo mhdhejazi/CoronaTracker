@@ -20,7 +20,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     private var favorite: Region? {
-        return DataManager.instance.regions(of: .country).first(where: {$0 == savedFavoriteRegion})
+        return DataManager.instance.regions(of: .country).first(where: { $0 == savedFavoriteRegion })
     }
 
     override func viewDidLoad() {
@@ -29,13 +29,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.extensionContext?.widgetLargestAvailableDisplayMode = hasFavorite ? .expanded : .compact
         self.favoriteStatView.isHidden = !hasFavorite
 
-		DataManager.instance.load { [weak self] success in
+        DataManager.instance.load { [weak self] success in
             self?.worldwideStatView.update(region: DataManager.instance.world)
 
             if let favorite = self?.favorite {
                 self?.favoriteStatView.update(region: favorite)
             }
-		}
+        }
     }
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {

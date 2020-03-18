@@ -24,7 +24,7 @@ class StatsView: UIView {
     private var switchPercentsTask: DispatchWorkItem?
 
     var isUpdatingData: Bool = true {
-        didSet{
+        didSet {
             isUpdatingData ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
             updateTimeLabel.isHidden = isUpdatingData
         }
@@ -81,12 +81,12 @@ class StatsView: UIView {
         guard let report = report else { return }
         recoveredCountLabel.transition { [weak self] in
             self?.recoveredCountLabel.text = self?.showPercents == true ?
-                report.stat.recoveredPercent.percentFormatted :
+            report.stat.recoveredPercent.percentFormatted:
                 report.stat.recoveredCountString
         }
         deathsCountLabel.transition { [weak self] in
             self?.deathsCountLabel.text = self?.showPercents == true ?
-                report.stat.deathPercent.percentFormatted :
+            report.stat.deathPercent.percentFormatted:
                 report.stat.deathCountString
         }
     }

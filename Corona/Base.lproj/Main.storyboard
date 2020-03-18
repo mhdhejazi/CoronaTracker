@@ -586,7 +586,7 @@ Deaths</string>
                                             <constraint firstAttribute="height" constant="25" id="7Yx-Hq-fzG"/>
                                             <constraint firstAttribute="width" constant="25" id="H8u-0M-faI"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="favorite"/>
                                         <connections>
                                             <action selector="favoriteButtonTapped:" destination="bGw-3g-OPq" eventType="touchUpInside" id="hBf-Cn-0ax"/>
