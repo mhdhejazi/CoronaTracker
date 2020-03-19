@@ -56,6 +56,18 @@ extension UIView {
 						  animations: animations,
 						  completion: nil)
 	}
+
+	public func snapEdgesToSuperview() {
+		snapEdges(to: superview!)
+	}
+
+	public func snapEdges(to view: UIView) {
+		translatesAutoresizingMaskIntoConstraints = false
+		leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+		topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+	}
 }
 
 extension UIViewController {

@@ -22,6 +22,7 @@ class RegionContainerController: UIViewController {
 			view.transition(duration: 0.25) {
 				self.labelTitle.isHidden = self.isSearching
 				self.labelUpdated.isHidden = self.isSearching
+				self.buttonMenu.isHidden = self.isSearching
 				self.buttonSearch.isHidden = self.isSearching
 				self.searchBar.isHidden = !self.isSearching
 				self.regionListController.view.superview?.isHidden = !self.isSearching
@@ -44,6 +45,7 @@ class RegionContainerController: UIViewController {
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelUpdated: UILabel!
+	@IBOutlet var buttonMenu: UIButton!
 	@IBOutlet var buttonSearch: UIButton!
 	@IBOutlet var searchBar: UISearchBar!
 
@@ -100,6 +102,14 @@ class RegionContainerController: UIViewController {
 
 	@IBAction func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
+	}
+
+	@IBAction func buttonMenuTapped(_ sender: Any) {
+		Menu.show(above: self, sourceView: buttonMenu, items: [
+			MenuItem(title: "Update", image: UIImage(named: "Search")!, action: {
+				MapController.instance.downloadIfNeeded()
+			}),
+		])
 	}
 }
 
