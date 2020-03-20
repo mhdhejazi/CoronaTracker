@@ -80,8 +80,8 @@ class RegionAnnotationView: MKAnnotationView {
 		didSet {
 			configure()
             
-            // BUG FIX: the data within detailAccessoryView would become stale in some cases. To address this, we now ensure that the report text is set each time the annotation is updated
-            detailAccessoryView?.attributedText = detailsString
+			/// Ensure that the report text is set each time the annotation is updated
+			detailAccessoryView?.attributedText = detailsString
 		}
 	}
 

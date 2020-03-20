@@ -175,7 +175,7 @@ class MapController: UIViewController {
 	@IBAction func buttonUpdateTapped(_ sender: Any) {
 		let alertController = UIAlertController.init(
 			title: "New Version Available",
-			message: "Please update from https://github.com/MhdHejazi/CoronaTracker",
+			message: "Please update from \(App.updateURL.absoluteString)",
 			preferredStyle: .alert)
 
 		#if targetEnvironment(macCatalyst)
