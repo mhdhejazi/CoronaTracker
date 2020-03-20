@@ -10,7 +10,7 @@ import Foundation
 
 public class Region: Codable {
     static let favoriteRegionFileName = "favorite.json"
-    static let favoriteGroupContainerName = "group.pbeodev.corona"
+    static let favoriteGroupContainerName = "group.samabox.corona"
 
 	public let level: Level
 	public let name: String

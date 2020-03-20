@@ -51,8 +51,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        self.worldwideStatView.isUpdatingData = true
         self.favoriteStatView.isUpdatingData = true
+        self.worldwideStatView.isUpdatingData = true
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
             DataManager.instance.load { [weak self] success in
