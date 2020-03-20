@@ -225,7 +225,6 @@ extension RegionController {
 		action.backgroundColor = UIColor.black.withAlphaComponent(0.001)
 
 		let config = UISwipeActionsConfiguration(actions: [action])
-		config.performsFirstActionWithFullSwipe = false
 		return config
 	}
 
