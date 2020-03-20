@@ -23,7 +23,7 @@ public class SimpleMarkerView: BalloonMarker {
 
 	public init(chartView: ChartViewBase, block: Block? = nil) {
 		if block == nil {
-			self.xValueFormatter = chartView is PieChartView ? nil : xValueFormatter
+			self.xValueFormatter = chartView is PieChartView ? nil : chartView.xAxis.valueFormatter
 			self.yValueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter.groupingFormatter)
 		} else {
 			self.block = block

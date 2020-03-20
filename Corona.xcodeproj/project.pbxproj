@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1114CFC82423F8CC00B1CF85 /* ImageItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114CFC62423F8CC00B1CF85 /* ImageItemSource.swift */; };
+		1114CFC92423F8CC00B1CF85 /* TextItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1114CFC72423F8CC00B1CF85 /* TextItemSource.swift */; };
 		111C76B62412C90500368F08 /* SystemColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C76B52412C90500368F08 /* SystemColor.swift */; };
+		1124F64624224E240002641D /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124F64524224E240002641D /* MenuController.swift */; };
+		1124F64A242386A30002641D /* MenuSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124F649242386A30002641D /* MenuSegue.swift */; };
+		1124F64C24238C600002641D /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124F64B24238C600002641D /* Menu.swift */; };
 		1151868B241FA9AA00EBC83E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* UIExtensions.swift */; };
 		1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868A241FA9AA00EBC83E /* UIExtensions.swift */; };
 		1151869C241FAF6200EBC83E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151869B241FAF6200EBC83E /* Extensions.swift */; };
@@ -90,7 +95,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1114CFC62423F8CC00B1CF85 /* ImageItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemSource.swift; sourceTree = "<group>"; };
+		1114CFC72423F8CC00B1CF85 /* TextItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemSource.swift; sourceTree = "<group>"; };
 		111C76B52412C90500368F08 /* SystemColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemColor.swift; sourceTree = "<group>"; };
+		1124F64524224E240002641D /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		1124F649242386A30002641D /* MenuSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSegue.swift; sourceTree = "<group>"; };
+		1124F64B24238C600002641D /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		1151868A241FA9AA00EBC83E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1151868E241FAECB00EBC83E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		11518690241FAECB00EBC83E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -159,6 +169,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1114CFC52423F8CC00B1CF85 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				1114CFC62423F8CC00B1CF85 /* ImageItemSource.swift */,
+				1114CFC72423F8CC00B1CF85 /* TextItemSource.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		1124F64D242394BB0002641D /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1124F64B24238C600002641D /* Menu.swift */,
+				1124F649242386A30002641D /* MenuSegue.swift */,
+				1124F64524224E240002641D /* MenuController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		1151868D241FAECB00EBC83E /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,10 +242,11 @@
 			isa = PBXGroup;
 			children = (
 				1151868D241FAECB00EBC83E /* Data */,
-				1151868F241FAECB00EBC83E /* Model */,
 				11518695241FAECB00EBC83E /* Service */,
+				1151868F241FAECB00EBC83E /* Model */,
 				1162D15F240FA85300647002 /* Map */,
 				1162D151240F934000647002 /* Chart */,
+				1124F64D242394BB0002641D /* Menu */,
 				11EB2CA224140D24001769B2 /* Controller */,
 				1162D16C240FC56F00647002 /* Main */,
 				1162D16B240FC55F00647002 /* Util */,
@@ -255,6 +285,7 @@
 		1162D16B240FC55F00647002 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				1114CFC52423F8CC00B1CF85 /* Share */,
 				1151869B241FAF6200EBC83E /* Extensions.swift */,
 				1151868A241FA9AA00EBC83E /* UIExtensions.swift */,
 				111C76B52412C90500368F08 /* SystemColor.swift */,
@@ -431,20 +462,25 @@
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
 				1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */,
+				1124F64624224E240002641D /* MenuController.swift in Sources */,
 				1162D145240EB86400647002 /* RegionAnnotation.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
 				115186A0241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
+				1114CFC82423F8CC00B1CF85 /* ImageItemSource.swift in Sources */,
 				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,
+				1114CFC92423F8CC00B1CF85 /* TextItemSource.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
 				3447B4BD241E7790003914AF /* App.swift in Sources */,
 				115186C024203D5100EBC83E /* Change.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
+				1124F64A242386A30002641D /* MenuSegue.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				3447B4BB241E7631003914AF /* RegionListController.swift in Sources */,
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
 				115186A3241FAFCA00EBC83E /* Region.swift in Sources */,
 				115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
+				1124F64C24238C600002641D /* Menu.swift in Sources */,
 				115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
@@ -633,7 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Corona/Info.plist;
@@ -641,8 +677,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -657,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = NTZJ67Y5QC;
 				INFOPLIST_FILE = Corona/Info.plist;
@@ -665,8 +701,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pbeodev.corona;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;

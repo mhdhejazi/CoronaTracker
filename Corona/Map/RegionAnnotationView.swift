@@ -79,6 +79,9 @@ class RegionAnnotationView: MKAnnotationView {
 	override var annotation: MKAnnotation? {
 		didSet {
 			configure()
+            
+			/// Ensure that the report text is set each time the annotation is updated
+			detailAccessoryView?.attributedText = detailsString
 		}
 	}
 
@@ -92,7 +95,7 @@ class RegionAnnotationView: MKAnnotationView {
 	}()
 	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
 
-	private lazy var detailAccessoryView: UIView? = {
+	private lazy var detailAccessoryView: UILabel? = {
 		let label = UILabel()
 		label.textColor = .systemGray
 		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)

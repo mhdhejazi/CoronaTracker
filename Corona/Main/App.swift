@@ -10,6 +10,12 @@ import UIKit
 import SafariServices
 
 class App {
+	#if targetEnvironment(macCatalyst)
+	static let updateURL = URL(string: "https://coronatracker.samabox.com/")!
+	#else
+	static let updateURL = URL(string: "https://github.com/MhdHejazi/CoronaTracker")!
+	#endif
+
 	static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
 		let checkForUpdateURL = URL(string: "https://api.github.com/repos/MhdHejazi/CoronaTracker/releases/latest")!
 		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { (data, response, error) in
@@ -33,8 +39,7 @@ class App {
 	}
 
 	public static func openUpdatePage(viewController: UIViewController) {
-		let url = URL(string: "https://github.com/MhdHejazi/CoronaTracker/releases/latest")!
-		let safariController = SFSafariViewController(url: url)
+		let safariController = SFSafariViewController(url: updateURL)
 		safariController.modalPresentationStyle = .pageSheet
 		viewController.present(safariController, animated: true)
 	}

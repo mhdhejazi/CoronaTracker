@@ -52,8 +52,8 @@ class TopCountriesChartView: BarChartView {
 		noDataFont = .systemFont(ofSize: 15)
 
 		let simpleMarker = SimpleMarkerView(chartView: self) { (entry, highlight) in
-			guard let report = entry.data as? Report else { return entry.y.kmFormatted }
-			return report.stat.description
+			guard let region = entry.data as? Region else { return entry.y.kmFormatted }
+			return region.report?.stat.description ?? entry.y.kmFormatted
 		}
 		simpleMarker.timeout = 5
 		marker = simpleMarker
@@ -95,8 +95,8 @@ class TopCountriesChartView: BarChartView {
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
 		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
-			guard let report = entry.data as? Report else { return value.kmFormatted }
-			return report.stat.confirmedCount.kmFormatted
+			guard let region = entry.data as? Region else { return value.kmFormatted }
+			return region.report?.stat.confirmedCount.kmFormatted ?? value.kmFormatted
 		})
 
 		if isLogarithmic {

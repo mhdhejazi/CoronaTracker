@@ -16,6 +16,8 @@ class CurrentStateChartView: PieChartView {
 
 		usePercentValuesEnabled = true
 		holeColor = nil
+		holeRadiusPercent = 0.5
+		transparentCircleRadiusPercent = 0.6
 		rotationAngle = 0
 		drawEntryLabelsEnabled = false
 		setExtraOffsets(left: 0, top: 5, right: 0, bottom: -10)
