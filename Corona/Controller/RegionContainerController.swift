@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Disk
 
 class RegionContainerController: UIViewController {
 	private lazy var buttonDone: UIButton = {
@@ -133,6 +134,20 @@ class RegionContainerController: UIViewController {
 
 		return image
 	}
+
+    func showInWidgetButtonTapped() {
+        guard let region = self.regionController.region else {
+            return
+        }
+        let actualFavorite = try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
+
+        var regionToSave: Region? = region
+        if region == actualFavorite {
+            regionToSave = nil
+        }
+
+        try? Disk.save(regionToSave, to: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.favoriteRegionFileName)
+    }
 }
 
 extension RegionContainerController {
@@ -149,6 +164,9 @@ extension RegionContainerController {
 				MapController.instance.showRegionScreen()
 				self.regionController.setEditing(true, animated: true)
 			}),
+            MenuItem(title: "Show in widget", image: UIImage(named: "Star")!, action: {
+                self.showInWidgetButtonTapped()
+            })
 		])
 	}
 
