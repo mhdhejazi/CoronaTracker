@@ -114,6 +114,8 @@ extension Int {
 	public var groupingFormatted: String {
 		NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
+
+	public static func random() -> Int { random(in: 1..<max) }
 }
 
 extension NumberFormatter {
@@ -131,5 +133,14 @@ extension NumberFormatter {
 		formatter.maximumFractionDigits = 1
 		formatter.multiplier = 1
 		return formatter
+	}()
+}
+
+extension FileManager {
+	static let cachesDirectoryURL: URL? = {
+		return try? FileManager.default.url(for: .cachesDirectory,
+											in: .userDomainMask,
+											appropriateFor: nil,
+											create: true)
 	}()
 }

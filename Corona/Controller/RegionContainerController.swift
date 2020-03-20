@@ -9,6 +9,18 @@
 import UIKit
 
 class RegionContainerController: UIViewController {
+	private lazy var buttonDone: UIButton = {
+		let button = UIButton(type: .system)
+		button.titleLabel?.font = .boldSystemFont(ofSize: 17)
+		button.setTitle("Done", for: .normal)
+		button.addTarget(self, action: #selector(buttonDoneTapped(_:)), for: .touchUpInside)
+		viewHeader.addSubview(button)
+		button.translatesAutoresizingMaskIntoConstraints = false
+		button.trailingAnchor.constraint(equalTo: viewHeader.trailingAnchor, constant: -18).isActive = true
+		button.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
+		return button
+	}()
+
 	var regionListController: RegionListController!
 	var regionController: RegionController!
 	var isUpdating: Bool = false {
@@ -43,6 +55,7 @@ class RegionContainerController: UIViewController {
 
 	@IBOutlet var effectViewBackground: UIVisualEffectView!
 	@IBOutlet var effectViewHeader: UIVisualEffectView!
+	@IBOutlet var viewHeader: UIView!
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelUpdated: UILabel!
 	@IBOutlet var buttonMenu: UIButton!
@@ -83,10 +96,20 @@ class RegionContainerController: UIViewController {
 		}
 	}
 
+	override func setEditing(_ editing: Bool, animated: Bool) {
+		super.setEditing(editing, animated: animated)
+
+		viewHeader.transition(duration: 0.25) {
+			self.buttonDone.isHidden = !editing
+			self.buttonMenu.isHidden = editing
+			self.buttonSearch.isHidden = editing
+		}
+	}
+
 	func update(region: Region?) {
-		UIView.transition(with: view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+		viewHeader.transition(duration: 0.25) {
 			self.labelTitle.text = region?.longName ?? "N/A"
-		}, completion: nil)
+		}
 
 		updateTime()
 	}
@@ -100,16 +123,38 @@ class RegionContainerController: UIViewController {
 		self.labelUpdated.text = self.regionController.region?.report?.lastUpdate.relativeTimeString
 	}
 
+	func snapshotHeader(hideTitle: Bool = false) -> UIImage {
+		if hideTitle {
+			labelTitle.isHidden = true
+		}
+		buttonDone.isHidden = true
+		let image = viewHeader.snapshot()
+		labelTitle.isHidden = false
+
+		return image
+	}
+}
+
+extension RegionContainerController {
 	@IBAction func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
 	}
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMenu, items: [
-			MenuItem(title: "Update", image: UIImage(named: "Search")!, action: {
+			MenuItem(title: "Update", image: UIImage(named: "Reload")!, action: {
 				MapController.instance.downloadIfNeeded()
 			}),
+			MenuItem(title: "Share", image: UIImage(named: "Share")!, action: {
+				MapController.instance.showRegionScreen()
+				self.regionController.setEditing(true, animated: true)
+			}),
 		])
+	}
+
+	@objc func buttonDoneTapped(_ sender: Any) {
+		setEditing(false, animated: true)
+		regionController.setEditing(false, animated: true)
 	}
 }
 

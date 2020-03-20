@@ -57,6 +57,10 @@ extension UIView {
 						  completion: nil)
 	}
 
+	public func snapshot() -> UIImage {
+		UIGraphicsImageRenderer(bounds: bounds).image { layer.render(in: $0.cgContext) }
+	}
+
 	public func snapEdgesToSuperview() {
 		snapEdges(to: superview!)
 	}
@@ -104,5 +108,66 @@ extension UIViewController {
 			alertController.addAction(.init(title: "OK", style: .default))
 			self.present(alertController, animated: true)
 		}
+	}
+}
+
+extension UIImage {
+	enum ImageType: String {
+		case jpeg = "jpg"
+		case png = "png"
+	}
+
+	func saveToFile(fileName: String = "image", imageType: ImageType = .jpeg) -> URL? {
+		guard let directoryURL = FileManager.cachesDirectoryURL else { return nil }
+
+		let imageURL = directoryURL.appendingPathComponent("\(fileName).\(imageType.rawValue)")
+		print(imageURL)
+
+		var data: Data?
+
+		switch imageType {
+		case .jpeg:
+			data = self.jpegData(compressionQuality: 1)
+		case .png:
+			data = self.pngData()
+		}
+
+		guard let imageData = data else { return nil }
+
+		do {
+			try imageData.write(to: imageURL)
+		} catch {
+			return nil
+		}
+
+		return imageURL
+	}
+
+	func scaledToAspectFit(size: CGSize) -> UIImage {
+		let imageSize = self.size
+		let imageAspectRatio = imageSize.width / imageSize.height
+		let canvasAspectRatio = size.width / size.height
+
+		var resizeFactor: CGFloat
+
+		if imageAspectRatio > canvasAspectRatio {
+			resizeFactor = size.width / imageSize.width
+		} else {
+			resizeFactor = size.height / imageSize.height
+		}
+
+		if resizeFactor > 1 {
+			return self
+		}
+
+		let scaledSize = CGSize(width: imageSize.width * resizeFactor, height: imageSize.height * resizeFactor)
+
+		UIGraphicsBeginImageContextWithOptions(scaledSize, false, 0)
+		draw(in: CGRect(origin: .zero, size: scaledSize))
+
+		let scaledImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
+		UIGraphicsEndImageContext()
+
+		return scaledImage
 	}
 }
