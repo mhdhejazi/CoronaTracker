@@ -24,9 +24,18 @@ class MapController: UIViewController {
 	private var panelController: FloatingPanelController!
 	private var regionContainerController: RegionContainerController!
 
+	var mode: Statistic.Kind = .confirmed {
+		didSet {
+			update()
+		}
+	}
+
 	@IBOutlet var mapView: MKMapView!
 	@IBOutlet var effectView: UIVisualEffectView!
 	@IBOutlet var buttonUpdate: UIButton!
+	@IBOutlet var viewOptions: UIView!
+	@IBOutlet var effectViewOptions: UIVisualEffectView!
+	@IBOutlet var buttonMode: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -62,6 +71,9 @@ class MapController: UIViewController {
 	}
 
 	private func initializeView() {
+		effectViewOptions.layer.cornerRadius = 10
+		viewOptions.enableShadow()
+
 		buttonUpdate.layer.cornerRadius = buttonUpdate.bounds.height / 2
 
 		if #available(iOS 13.0, *) {
@@ -121,12 +133,12 @@ class MapController: UIViewController {
 
 	private func update() {
 		allAnnotations = DataManager.instance.regions(of: .province)
-			.filter({ $0.report?.stat.confirmedCount ?? 0 > 0 })
-			.map({ RegionAnnotation(region: $0) })
+			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
+			.map({ RegionAnnotation(region: $0, mode: mode) })
 
 		countryAnnotations = DataManager.instance.regions(of: .country)
-			.filter({ $0.report?.stat.confirmedCount ?? 0 > 0 })
-			.map({ RegionAnnotation(region: $0) })
+			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
+			.map({ RegionAnnotation(region: $0, mode: mode) })
 
 		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
 
@@ -190,6 +202,23 @@ class MapController: UIViewController {
 		present(alertController, animated: true)
 
 		buttonUpdate.isHidden = true
+	}
+
+	@IBAction func buttonModeTapped(_ sender: Any) {
+		Menu.show(above: self, sourceView: buttonMode, width: 150, items: [
+			MenuItem(title: "Confirmed", image: nil, selected: mode == .confirmed, action: {
+				self.view.transition { self.mode = .confirmed }
+			}),
+			MenuItem(title: "Active", image: nil, selected: mode == .active, action: {
+				self.view.transition { self.mode = .active }
+			}),
+			MenuItem(title: "Recovered", image: nil, selected: mode == .recovered, action: {
+				self.view.transition { self.mode = .recovered }
+			}),
+			MenuItem(title: "Deaths", image: nil, selected: mode == .deaths, action: {
+				self.view.transition { self.mode = .deaths }
+			}),
+		])
 	}
 }
 

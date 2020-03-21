@@ -141,7 +141,7 @@ extension RegionContainerController {
 	}
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
-		Menu.show(above: self, sourceView: buttonMenu, items: [
+		Menu.show(above: self, sourceView: buttonMenu, width: 175, items: [
 			MenuItem(title: "Update", image: UIImage(named: "Reload")!, action: {
 				MapController.instance.downloadIfNeeded()
 			}),

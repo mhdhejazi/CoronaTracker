@@ -10,9 +10,11 @@ import UIKit
 
 class MenuController: UITableViewController {
 	let items: [MenuItem]
+	var width: CGFloat
 
-	init(items: [MenuItem]) {
+	init(items: [MenuItem], width: CGFloat = 200) {
 		self.items = items
+		self.width = width
 
 		super.init(style: .plain)
 	}
@@ -32,7 +34,7 @@ class MenuController: UITableViewController {
 		tableView.rowHeight = 44
 
 		tableView.separatorEffect = UIBlurEffect()
-		preferredContentSize = CGSize(width: 200,
+		preferredContentSize = CGSize(width: width,
 									  height: tableView.rowHeight * CGFloat(items.count) - 1)
     }
 
@@ -46,8 +48,13 @@ class MenuController: UITableViewController {
 		cell.backgroundColor = .clear
 		cell.textLabel?.text = item.title
 		cell.textLabel?.font = .preferredFont(forTextStyle: .callout)
-		cell.accessoryView = UIImageView(image: item.image)
-		cell.accessoryView?.tintColor = SystemColor.secondaryLabel
+		if item.selected {
+			cell.accessoryType = .checkmark
+			cell.tintColor = SystemColor.secondaryLabel
+		} else {
+			cell.accessoryView = UIImageView(image: item.image)
+			cell.accessoryView?.tintColor = SystemColor.secondaryLabel
+		}
 
 		return cell
 	}
