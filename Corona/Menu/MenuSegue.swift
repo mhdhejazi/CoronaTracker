@@ -128,7 +128,7 @@ private class Presenter: NSObject, UIViewControllerAnimatedTransitioning {
 		if let sourceView = sourceView {
 			let sourceViewRect = sourceView.convert(sourceView.bounds, to: containerView)
 			right = round(containerView.bounds.maxX - sourceViewRect.maxX)
-			top = round(min(sourceViewRect.maxY, maxY - size.height))
+			top = round(min(sourceViewRect.maxY, maxY - size.height)) + 3
 		}
 		containerView.addSubview(shadowView)
 		shadowView.widthAnchor.constraint(equalToConstant: size.width).isActive = true

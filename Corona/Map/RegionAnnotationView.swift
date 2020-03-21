@@ -26,23 +26,30 @@ class RegionAnnotationView: MKAnnotationView {
 	}()
 
 	private var radius: CGFloat {
-		guard let annotation = annotation as? RegionAnnotation else { return 1 }
-		let number = CGFloat(annotation.region.report?.stat.confirmedCount ?? 0)
-		return 10 + log( 1 + number) * CGFloat(mapZoomLevel - 2.2)
+		let value = CGFloat(number ?? 0)
+		return 10 + log( 1 + value) * CGFloat(mapZoomLevel - 2.2)
 	}
 
 	private var color: UIColor {
-		guard let annotation = annotation as? RegionAnnotation else { return .clear }
-		let number = CGFloat(annotation.region.report?.stat.confirmedCount ?? 0)
-		let level = log10(number + 10) * 2
+		switch mode {
+		case .active: return SystemColor.systemOrange.withAlphaComponent(0.8)
+		case .recovered: return SystemColor.systemGreen.withAlphaComponent(0.8)
+		case .deaths: return SystemColor.systemRed.withAlphaComponent(0.8)
+		default: break
+		}
+
+		let value = CGFloat(number ?? 0)
+		let level = log10(value + 10) * 2
 		let brightness = max(0, 255 - level * 40) / 255;
 		let saturation = brightness > 0 ? 1 : max(0, 255 - ((level * 40) - 255)) / 255;
 		return UIColor(red: saturation, green: brightness, blue: brightness * 0.4, alpha: 0.8)
 	}
 
-	var region: Region? {
-		(annotation as? RegionAnnotation)?.region
-	}
+	var region: Region? { (annotation as? RegionAnnotation)?.region }
+
+	var mode: Statistic.Kind { (annotation as? RegionAnnotation)?.mode ?? .confirmed }
+
+	private var number: Int? { region?.report?.stat.number(for: mode) }
 
 	private var detailsString: NSAttributedString? {
 		let descriptor = UIFontDescriptor
@@ -78,6 +85,10 @@ class RegionAnnotationView: MKAnnotationView {
 
 	override var annotation: MKAnnotation? {
 		didSet {
+			guard annotation != nil else {
+				return
+			}
+
 			configure()
             
 			/// Ensure that the report text is set each time the annotation is updated
@@ -119,9 +130,8 @@ class RegionAnnotationView: MKAnnotationView {
 	}
 
 	func configure() {
-		guard let region = region else { return }
 		if self.mapZoomLevel > 4 {
-			self.countLabel.text = region.report?.stat.confirmedCountString
+			self.countLabel.text = number?.groupingFormatted
 			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
 			self.countLabel.alpha = 1
 		}

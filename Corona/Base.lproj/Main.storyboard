@@ -23,7 +23,7 @@
                                 </connections>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
-                                <rect key="frame" x="330" y="54" width="74" height="27"/>
+                                <rect key="frame" x="10" y="54" width="74" height="27"/>
                                 <color key="backgroundColor" red="0.10443064439999999" green="0.59553691789999996" blue="0.28788988450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <inset key="contentEdgeInsets" minX="13" minY="6" maxX="13" maxY="6"/>
@@ -42,13 +42,50 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aR-P0-eo7">
+                                <rect key="frame" x="360" y="54" width="44" height="44"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7n8-Lj-1bQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="76u-fk-1OK">
+                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="systemUltraThinMaterial"/>
+                                    </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="led-U9-o8H">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="OJG-MB-Bis"/>
+                                            <constraint firstAttribute="width" constant="44" id="Tns-LH-f1y"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="buttonModeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D8M-9M-gLP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="led-U9-o8H" firstAttribute="leading" secondItem="9aR-P0-eo7" secondAttribute="leading" id="8xY-Oo-2fs"/>
+                                    <constraint firstItem="7n8-Lj-1bQ" firstAttribute="leading" secondItem="9aR-P0-eo7" secondAttribute="leading" id="9rW-Mg-dBi"/>
+                                    <constraint firstAttribute="bottom" secondItem="7n8-Lj-1bQ" secondAttribute="bottom" id="9xj-by-EJu"/>
+                                    <constraint firstAttribute="trailing" secondItem="7n8-Lj-1bQ" secondAttribute="trailing" id="N2W-0F-Jh1"/>
+                                    <constraint firstItem="7n8-Lj-1bQ" firstAttribute="top" secondItem="9aR-P0-eo7" secondAttribute="top" id="TXW-gM-vCc"/>
+                                    <constraint firstItem="led-U9-o8H" firstAttribute="top" secondItem="9aR-P0-eo7" secondAttribute="top" id="aAM-Pl-jYW"/>
+                                    <constraint firstAttribute="bottom" secondItem="led-U9-o8H" secondAttribute="bottom" id="idm-kC-EZo"/>
+                                    <constraint firstAttribute="trailing" secondItem="led-U9-o8H" secondAttribute="trailing" id="wug-Rl-UtE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ABL-K8-Ghe" secondAttribute="trailing" id="DS4-y1-Bnk"/>
                             <constraint firstItem="ABL-K8-Ghe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FN2-Wr-Y3j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="HgJ-0T-Lcr"/>
-                            <constraint firstItem="nPj-BL-8DR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Mg2-HV-MWy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="HgJ-0T-Lcr"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Mg2-HV-MWy"/>
+                            <constraint firstItem="9aR-P0-eo7" firstAttribute="top" secondItem="xZx-3p-KzT" secondAttribute="bottom" constant="10" id="O1U-72-4qM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9aR-P0-eo7" secondAttribute="trailing" constant="10" id="Opv-x4-qvu"/>
                             <constraint firstItem="ABL-K8-Ghe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xkn-am-sqj"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="a3J-6Z-LWE"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cDy-Ki-Gc7"/>
@@ -60,14 +97,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonMode" destination="led-U9-o8H" id="PRX-xq-tuj"/>
                         <outlet property="buttonUpdate" destination="nPj-BL-8DR" id="R1A-RR-Zu3"/>
                         <outlet property="effectView" destination="xZx-3p-KzT" id="F3B-TY-TcE"/>
+                        <outlet property="effectViewOptions" destination="7n8-Lj-1bQ" id="i71-VR-1EP"/>
                         <outlet property="mapView" destination="ABL-K8-Ghe" id="9z9-v7-SwG"/>
+                        <outlet property="viewOptions" destination="9aR-P0-eo7" id="uzF-bZ-7xA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801" y="-549"/>
+            <point key="canvasLocation" x="800.00000000000011" y="-549.10714285714278"/>
         </scene>
         <!--Region Controller-->
         <scene sceneID="QjW-3Y-ZfF">

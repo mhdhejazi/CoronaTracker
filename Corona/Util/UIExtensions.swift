@@ -72,6 +72,16 @@ extension UIView {
 		topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 		bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 	}
+
+	public func enableShadow(radius: CGFloat = 3,
+							 opacity: Float = 0.2,
+							 color: UIColor = .black,
+							 offset: CGSize = .zero) {
+		layer.shadowRadius = radius
+		layer.shadowOpacity = opacity
+		layer.shadowColor = color.cgColor
+		layer.shadowOffset = offset
+	}
 }
 
 extension UIViewController {

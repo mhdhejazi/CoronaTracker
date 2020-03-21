@@ -23,6 +23,21 @@ public struct Statistic: Codable {
 	public var deathCountString: String { deathCount.groupingFormatted }
 }
 
+extension Statistic {
+	public enum Kind {
+		case confirmed, active, recovered, deaths
+	}
+
+	public func number(for kind: Kind) -> Int {
+		switch kind {
+		case .confirmed: return confirmedCount
+		case .active: return activeCount
+		case .recovered: return recoveredCount
+		case .deaths: return deathCount
+		}
+	}
+}
+
 extension Statistic: CustomStringConvertible {
 	public var description: String {
 		"""
