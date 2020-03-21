@@ -58,17 +58,17 @@ class RegionAnnotationView: MKAnnotationView {
 		let boldFont = UIFont(descriptor: descriptor!, size: 0)
 
 		let string = NSMutableAttributedString()
-		string.append(.init(string: "Confirmed: "))
 		string.append(.init(string: region?.report?.stat.confirmedCountString ?? "",
-			attributes: [.foregroundColor: UIColor.systemOrange, .font: boldFont]))
+							attributes: [.foregroundColor: UIColor.systemOrange, .font: boldFont]))
 
-		string.append(.init(string: "\nRecovered: "))
-		string.append(.init(string: region?.report?.stat.recoveredCountString ?? "",
-			attributes: [.foregroundColor : UIColor.systemGreen, .font: boldFont]))
+		string.append(.init(string: "\n" + (region?.report?.stat.activeCountString ?? ""),
+							attributes: [.foregroundColor : UIColor.systemYellow, .font: boldFont]))
 
-		string.append(.init(string: "\nDeath: "))
-		string.append(.init(string: region?.report?.stat.deathCountString ?? "",
-			attributes: [.foregroundColor : UIColor.systemRed, .font: boldFont]))
+		string.append(.init(string: "\n" + (region?.report?.stat.recoveredCountString ?? ""),
+							attributes: [.foregroundColor : UIColor.systemGreen, .font: boldFont]))
+
+		string.append(.init(string: "\n" + (region?.report?.stat.deathCountString ?? ""),
+							attributes: [.foregroundColor : UIColor.systemRed, .font: boldFont]))
 
 		return string
 	}
@@ -92,7 +92,7 @@ class RegionAnnotationView: MKAnnotationView {
 			configure()
             
 			/// Ensure that the report text is set each time the annotation is updated
-			detailAccessoryView?.attributedText = detailsString
+			detailsLabel?.attributedText = detailsString
 		}
 	}
 
@@ -106,13 +106,37 @@ class RegionAnnotationView: MKAnnotationView {
 	}()
 	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
 
-	private lazy var detailAccessoryView: UILabel? = {
+	private lazy var detailsLabel: UILabel! = {
+		let label = UILabel()
+		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
+		label.attributedText = detailsString
+		label.numberOfLines = 0
+		return label
+	}()
+
+	private lazy var detailAccessoryView: UIView? = {
 		let label = UILabel()
 		label.textColor = .systemGray
 		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
-		label.attributedText = detailsString
-		label.numberOfLines = 10
-		return label
+		label.text = "Confirmed:\nActive:\nRecovered:\nDeaths:"
+		label.numberOfLines = 0
+
+		let view = UIView()
+
+		label.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(label)
+		label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+		label.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+
+		detailsLabel.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(detailsLabel)
+		detailsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+		detailsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+		label.trailingAnchor.constraint(equalTo: detailsLabel.leadingAnchor, constant: -5).isActive = true
+
+		return view
 	}()
 	override var detailCalloutAccessoryView: UIView? { get { detailAccessoryView } set {} }
 

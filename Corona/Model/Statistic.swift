@@ -21,6 +21,7 @@ public struct Statistic: Codable {
 	public var confirmedCountString: String { confirmedCount.groupingFormatted }
 	public var recoveredCountString: String { recoveredCount.groupingFormatted }
 	public var deathCountString: String { deathCount.groupingFormatted }
+	public var activeCountString: String { activeCount.groupingFormatted }
 }
 
 extension Statistic {
