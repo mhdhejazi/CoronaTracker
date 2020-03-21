@@ -10,7 +10,7 @@ import UIKit
 
 class StatsView: UIView {
 
-    @IBOutlet var titleLabel: UILabel!
+	@IBOutlet var titleLabel: UILabel!
     @IBOutlet var confirmedCountLabel: UILabel!
     @IBOutlet var recoveredCountLabel: UILabel!
     @IBOutlet var deathsCountLabel: UILabel!
@@ -24,70 +24,70 @@ class StatsView: UIView {
     private var switchPercentsTask: DispatchWorkItem?
 
     var isUpdatingData: Bool = true {
-        didSet {
-            isUpdatingData ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
-            updateTimeLabel.isHidden = isUpdatingData
-        }
+	didSet {
+	    isUpdatingData ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
+	    updateTimeLabel.isHidden = isUpdatingData
+	}
     }
 
     override func awakeFromNib() {
-        super.awakeFromNib()
-        initializeView()
+	super.awakeFromNib()
+	initializeView()
     }
 
     private func initializeView() {
-        dataViews.forEach { view in
-            view.layer.cornerRadius = 8
-        }
-        dataLabels.forEach { label in
-            label.textColor = .white
-        }
-        updateTimeLabel.textColor = SystemColor.secondaryLabel
-        if #available(iOSApplicationExtension 13.0, *) {
-            activityIndicatorView.style = .medium
-        }
+	dataViews.forEach { view in
+	    view.layer.cornerRadius = 8
+	}
+	dataLabels.forEach { label in
+	    label.textColor = .white
+	}
+	updateTimeLabel.textColor = SystemColor.secondaryLabel
+	if #available(iOSApplicationExtension 13.0, *) {
+	    activityIndicatorView.style = .medium
+	}
     }
 
     func update(region: Region) {
-        guard let report = region.report else {
-            return
-        }
+	guard let report = region.report else {
+	    return
+	}
 
-        transition { [weak self] in
-            self?.titleLabel.text = region.name
-            self?.confirmedCountLabel.text = report.stat.confirmedCountString
-            self?.recoveredCountLabel.text = report.stat.recoveredCountString
-            self?.deathsCountLabel.text = report.stat.deathCountString
-            self?.updateTimeLabel.text = report.lastUpdate.relativeTimeString
-        }
+	transition { [weak self] in
+	    self?.titleLabel.text = region.name
+	    self?.confirmedCountLabel.text = report.stat.confirmedCountString
+	    self?.recoveredCountLabel.text = report.stat.recoveredCountString
+	    self?.deathsCountLabel.text = report.stat.deathCountString
+	    self?.updateTimeLabel.text = report.lastUpdate.relativeTimeString
+	}
 
-        updateStats(report: report)
+	updateStats(report: report)
     }
 
     private func updateStats(report: Report?, reset: Bool = false) {
-        switchPercentsTask?.cancel()
-        let task = DispatchWorkItem { [weak self] in
-            self?.showPercents = !(self?.showPercents ?? false)
-            self?.updateStats(report: report)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Self.numberPercentSwitchInterval, execute: task)
-        switchPercentsTask = task
+	switchPercentsTask?.cancel()
+	let task = DispatchWorkItem { [weak self] in
+	    self?.showPercents = !(self?.showPercents ?? false)
+	    self?.updateStats(report: report)
+	}
+	DispatchQueue.main.asyncAfter(deadline: .now() + Self.numberPercentSwitchInterval, execute: task)
+	switchPercentsTask = task
 
-        if reset {
-            showPercents = false
-            return
-        }
+	if reset {
+	    showPercents = false
+	    return
+	}
 
-        guard let report = report else { return }
-        recoveredCountLabel.transition { [weak self] in
-            self?.recoveredCountLabel.text = self?.showPercents == true ?
-            report.stat.recoveredPercent.percentFormatted:
-                report.stat.recoveredCountString
-        }
-        deathsCountLabel.transition { [weak self] in
-            self?.deathsCountLabel.text = self?.showPercents == true ?
-            report.stat.deathPercent.percentFormatted:
-                report.stat.deathCountString
-        }
+	guard let report = report else { return }
+	recoveredCountLabel.transition { [weak self] in
+	    self?.recoveredCountLabel.text = self?.showPercents == true ?
+	    report.stat.recoveredPercent.percentFormatted:
+		report.stat.recoveredCountString
+	}
+	deathsCountLabel.transition { [weak self] in
+	    self?.deathsCountLabel.text = self?.showPercents == true ?
+	    report.stat.deathPercent.percentFormatted:
+		report.stat.deathCountString
+	}
     }
 }
