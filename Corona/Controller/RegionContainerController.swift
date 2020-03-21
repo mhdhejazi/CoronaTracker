@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Disk
 
 class RegionContainerController: UIViewController {
 	private lazy var buttonDone: UIButton = {
@@ -133,6 +134,20 @@ class RegionContainerController: UIViewController {
 
 		return image
 	}
+
+    func showInWidgetButtonTapped() {
+        guard let region = self.regionController.region else {
+            return
+        }
+        let currentFavorite = try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
+
+        var regionToSave: Region? = region
+        if region == currentFavorite {
+            regionToSave = nil
+        }
+
+        try? Disk.save(regionToSave, to: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.favoriteRegionFileName)
+    }
 }
 
 extension RegionContainerController {
@@ -141,21 +156,41 @@ extension RegionContainerController {
 	}
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
-		Menu.show(above: self, sourceView: buttonMenu, width: 175, items: [
-			MenuItem(title: "Update", image: UIImage(named: "Reload")!, action: {
-				MapController.instance.downloadIfNeeded()
-			}),
-			MenuItem(title: "Share", image: UIImage(named: "Share")!, action: {
-				MapController.instance.showRegionScreen()
-				self.regionController.setEditing(true, animated: true)
-			}),
-		])
+        var items = [
+            MenuItem(title: "Update", image: UIImage(named: "Reload")!, action: {
+                MapController.instance.downloadIfNeeded()
+            }),
+            MenuItem(title: "Share", image: UIImage(named: "Share")!, action: {
+                MapController.instance.showRegionScreen()
+                self.regionController.setEditing(true, animated: true)
+            })
+        ]
+        addShowInWidget(items: &items)
+        Menu.show(above: self, sourceView: buttonMenu, items: items)
 	}
 
 	@objc func buttonDoneTapped(_ sender: Any) {
 		setEditing(false, animated: true)
 		regionController.setEditing(false, animated: true)
 	}
+
+    func addShowInWidget(items: inout [MenuItem]) {
+        guard let region = self.regionController.region else {
+            return
+        }
+
+        guard region != .world else {
+            return
+        }
+
+        let actualAdded = try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
+
+        let isAdded = actualAdded == region
+
+        items.append(MenuItem(title: isAdded ? "Hide in widget" : "Show in widget", image: UIImage(named: "Star")!, action: {
+            self.showInWidgetButtonTapped()
+        }))
+    }
 }
 
 extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {

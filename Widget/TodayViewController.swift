@@ -8,100 +8,61 @@
 
 import UIKit
 import NotificationCenter
+import Disk
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
 
-	private var report: Report?
-	private var showPercents = false
-	private var switchPercentsTask: DispatchWorkItem?
+    @IBOutlet var worldwideStatView: StatsView!
+    @IBOutlet var favoriteStatView: StatsView!
 
-	@IBOutlet var worldwideTitleLabel: UILabel!
-    @IBOutlet var confirmedCountLabel: UILabel!
-    @IBOutlet var recoveredCountLabel: UILabel!
-    @IBOutlet var deathsCountLabel: UILabel!
-	@IBOutlet var dataViews: [UIView]!
-	@IBOutlet var dataLabels: [UILabel]!
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
-	@IBOutlet var updateTimeLabel: UILabel!
+    private var savedFavoriteRegion: Region? {
+        return try? Disk.retrieve(Region.favoriteRegionFileName, from: .sharedContainer(appGroupName: Region.favoriteGroupContainerName), as: Region.self)
+    }
+
+    private var favorite: Region? {
+        return DataManager.instance.regions(of: .country).first(where: { $0 == savedFavoriteRegion })
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let hasFavorite = savedFavoriteRegion != nil
+        self.extensionContext?.widgetLargestAvailableDisplayMode = hasFavorite ? .expanded : .compact
+        self.favoriteStatView.isHidden = !hasFavorite
 
-        initializeView()
+        DataManager.instance.load { [weak self] success in
+            self?.worldwideStatView.update(region: DataManager.instance.world)
 
-		DataManager.instance.load { [weak self] success in
-			self?.report = DataManager.instance.world.report
-			self?.update()
-		}
-    }
-
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        activityIndicatorView.startAnimating()
-		updateTimeLabel.isHidden = true
-        DataManager.instance.download { [weak self] success in
-            completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { [weak self] success in
-				self?.report = DataManager.instance.world.report
-                self?.activityIndicatorView.stopAnimating()
-				self?.updateTimeLabel.isHidden = false
-                self?.update()
+            if let favorite = self?.favorite {
+                self?.favoriteStatView.update(region: favorite)
             }
         }
     }
 
-	private func initializeView() {
-		dataViews.forEach { view in
-			view.layer.cornerRadius = 8
-		}
-		dataLabels.forEach { label in
-			label.textColor = .white
-		}
-		updateTimeLabel.textColor = SystemColor.secondaryLabel
-		if #available(iOSApplicationExtension 13.0, *) {
-			activityIndicatorView.style = .medium
-		}
-	}
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
 
-    private func update() {
-        guard let report = report else {
-            return
+        self.favoriteStatView.isHidden = activeDisplayMode == NCWidgetDisplayMode.compact
+        if activeDisplayMode == NCWidgetDisplayMode.compact {
+            //compact
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 110)
+        } else {
+            //extended
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 220)
         }
-
-		view.transition { [weak self] in
-			self?.confirmedCountLabel.text = report.stat.confirmedCountString
-			self?.recoveredCountLabel.text = report.stat.recoveredCountString
-			self?.deathsCountLabel.text = report.stat.deathCountString
-			self?.updateTimeLabel.text = report.lastUpdate.relativeTimeString
-		}
-
-		updateStats()
     }
 
-	private func updateStats(reset: Bool = false) {
-		switchPercentsTask?.cancel()
-		let task = DispatchWorkItem { [weak self] in
-			self?.showPercents = !(self?.showPercents ?? false)
-			self?.updateStats()
-		}
-		DispatchQueue.main.asyncAfter(deadline: .now() + Self.numberPercentSwitchInterval, execute: task)
-		switchPercentsTask = task
-
-		if reset {
-			showPercents = false
-			return
-		}
-
-		guard let report = report else { return }
-		recoveredCountLabel.transition { [weak self] in
-			self?.recoveredCountLabel.text = self?.showPercents == true ?
-				report.stat.recoveredPercent.percentFormatted :
-				report.stat.recoveredCountString
-		}
-		deathsCountLabel.transition { [weak self] in
-			self?.deathsCountLabel.text = self?.showPercents == true ?
-				report.stat.deathPercent.percentFormatted :
-				report.stat.deathCountString
-		}
-	}
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        self.favoriteStatView.isUpdatingData = true
+        self.worldwideStatView.isUpdatingData = true
+        DataManager.instance.download { [weak self] success in
+            completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
+            DataManager.instance.load { [weak self] success in
+                self?.worldwideStatView.isUpdatingData = false
+                self?.favoriteStatView.isUpdatingData = false
+                self?.worldwideStatView.update(region: DataManager.instance.world)
+                if let favorite = self?.favorite {
+                    self?.favoriteStatView.update(region: favorite)
+                }
+            }
+        }
+    }
 }
