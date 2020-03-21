@@ -145,8 +145,8 @@ class RegionAnnotationView: MKAnnotationView {
 
 		canShowCallout = true
 
-		layer.borderColor = UIColor.white.cgColor
-		layer.borderWidth = 2
+//		layer.borderColor = UIColor.white.cgColor
+//		layer.borderWidth = 2
 	}
 
 	required init?(coder aDecoder: NSCoder) {
