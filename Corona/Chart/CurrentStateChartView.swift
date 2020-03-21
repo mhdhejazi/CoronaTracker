@@ -51,14 +51,19 @@ class CurrentStateChartView: PieChartView {
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.recoveredCount), label: "Recovered"))
 
 		let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-		dataSet.colors = [.systemGray, .systemRed, .systemGreen]
+		dataSet.colors = [.systemYellow, .systemRed, .systemGreen]
+		dataSet.valueColors = [
+			UIColor(hue: 0.13, saturation: 1.0, brightness: 0.4, alpha: 1.0),
+			UIColor(hue: 0.03, saturation: 0.2, brightness: 1.0, alpha: 1.0),
+			UIColor(hue: 0.3, saturation: 0.2, brightness: 1.0, alpha: 1.0)
+		]
 		dataSet.sliceSpace = 2
 		dataSet.xValuePosition = .outsideSlice
 		dataSet.yValuePosition = .insideSlice
-		dataSet.valueTextColor = .white
 		dataSet.entryLabelColor = .black
 		dataSet.valueFont = .systemFont(ofSize: 14, weight: .bold)
 		dataSet.valueFormatter = PercentValueFormatter()
+		dataSet.selectionShift = 8
 
 		data = PieChartData(dataSet: dataSet)
 
