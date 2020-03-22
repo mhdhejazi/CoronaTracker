@@ -82,7 +82,7 @@ extension Region {
 }
 
 extension Region {
-	public static var world: Region { Region(level: .world, name: "Worldwide", parentName: nil, location: .zero) }
+	public static var world: Region { Region(level: .world, name: L10n.Region.world, parentName: nil, location: .zero) }
 
 	public static func join(subRegions: [Region]) -> Region? {
 		guard let firstRegion = subRegions.first else { return nil }

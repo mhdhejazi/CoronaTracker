@@ -408,11 +408,14 @@
                         <outlet property="chartViewHistory" destination="a8U-m1-EOW" id="y1d-WP-3f1"/>
                         <outlet property="chartViewTopCountries" destination="71d-xP-f0E" id="UrQ-4p-RH0"/>
                         <outlet property="labelConfirmed" destination="Qx6-QW-GSL" id="VlY-fm-0et"/>
+                        <outlet property="labelConfirmedTitle" destination="aPD-ho-0hr" id="eKE-h7-uxs"/>
                         <outlet property="labelDeaths" destination="ywS-vK-Jre" id="d35-57-jTR"/>
+                        <outlet property="labelDeathsTitle" destination="px0-7U-ePK" id="BgJ-8x-1ig"/>
                         <outlet property="labelNewConfirmed" destination="x2M-RC-4I7" id="Yp0-vv-Gfb"/>
                         <outlet property="labelNewDeaths" destination="lrq-2S-mlv" id="2rr-8e-CcT"/>
                         <outlet property="labelNewRecovered" destination="B6U-yh-xxH" id="Bnt-N0-r26"/>
                         <outlet property="labelRecovered" destination="59t-UT-5AT" id="TP4-1D-vJN"/>
+                        <outlet property="labelRecoveredTitle" destination="9tZ-vG-Acf" id="6Hc-3Z-Ulv"/>
                         <outlet property="labelTitle" destination="ttR-vI-ja0" id="Ic6-gQ-xhh"/>
                         <outlet property="labelUpdated" destination="Q0A-p0-mUG" id="Vny-dy-Y1n"/>
                         <outlet property="stackViewStats" destination="ebv-hY-32O" id="puW-Py-ddA"/>

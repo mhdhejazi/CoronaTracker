@@ -159,7 +159,7 @@ class MapController: UIViewController {
 	func downloadIfNeeded() {
 		let showSpinner = allAnnotations.isEmpty
 		if showSpinner {
-			showHUD(message: "Updating...")
+			showHUD(message: L10n.Data.updating)
 		}
 		regionContainerController.isUpdating = true
 
@@ -173,8 +173,8 @@ class MapController: UIViewController {
 				}
 				else {
 					if showSpinner {
-						self.showMessage(title: "Can't update the data",
-										 message: "Please make sure you're connected to the internet.")
+						self.showMessage(title: L10n.Data.errorTitle,
+										 message: L10n.Data.errorMessage)
 					}
 				}
 			}
@@ -193,17 +193,17 @@ class MapController: UIViewController {
 
 	@IBAction func buttonUpdateTapped(_ sender: Any) {
 		let alertController = UIAlertController.init(
-			title: "New Version Available",
-			message: "Please update from \(App.updateURL.absoluteString)",
+			title: L10n.App.newVersionTitle,
+			message: L10n.App.newVersionMessage(App.updateURL.absoluteString),
 			preferredStyle: .alert)
 
 		#if targetEnvironment(macCatalyst)
-		alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-		alertController.addAction(UIAlertAction(title: "Open", style: .default, handler: { _ in
+		alertController.addAction(UIAlertAction(title: L10n.Message.cancel, style: .cancel))
+		alertController.addAction(UIAlertAction(title: L10n.Message.open, style: .default, handler: { _ in
 			App.openUpdatePage(viewController: self)
 		}))
 		#else
-		alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
+		alertController.addAction(UIAlertAction(title: L10n.Message.ok, style: .cancel))
 		#endif
 
 		present(alertController, animated: true)
@@ -213,16 +213,16 @@ class MapController: UIViewController {
 
 	@IBAction func buttonModeTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMode, width: 150, items: [
-			MenuItem(title: "Confirmed", image: nil, selected: mode == .confirmed, action: {
+			MenuItem(title: L10n.Case.confirmed, image: nil, selected: mode == .confirmed, action: {
 				self.view.transition { self.mode = .confirmed }
 			}),
-			MenuItem(title: "Active", image: nil, selected: mode == .active, action: {
+			MenuItem(title: L10n.Case.active, image: nil, selected: mode == .active, action: {
 				self.view.transition { self.mode = .active }
 			}),
-			MenuItem(title: "Recovered", image: nil, selected: mode == .recovered, action: {
+			MenuItem(title: L10n.Case.recovered, image: nil, selected: mode == .recovered, action: {
 				self.view.transition { self.mode = .recovered }
 			}),
-			MenuItem(title: "Deaths", image: nil, selected: mode == .deaths, action: {
+			MenuItem(title: L10n.Case.deaths, image: nil, selected: mode == .deaths, action: {
 				self.view.transition { self.mode = .deaths }
 			}),
 		])

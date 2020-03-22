@@ -87,7 +87,7 @@ class TopCountriesChartView: BarChartView {
 			entries.append(entry)
 		}
 
-		let label = isLogarithmic ? "Most Affected (Logarithmic)" : "Most Affected Countries"
+		let label = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
 		let dataSet = BarChartDataSet(entries: entries, label: label)
 		dataSet.colors = ChartColorTemplates.pastel()
 

@@ -69,7 +69,7 @@ class HistoryChartView: LineChartView {
 		}
 
 		let entries = [confirmedEntries, deathsEntries, recoveredEntries]
-		let labels = ["Confirmed", "Deaths", "Recovered"]
+		let labels = [L10n.Case.confirmed, L10n.Case.deaths, L10n.Case.recovered]
 		let colors = [UIColor.systemOrange, .systemRed, .systemGreen]
 
 		var dataSets = [LineChartDataSet]()

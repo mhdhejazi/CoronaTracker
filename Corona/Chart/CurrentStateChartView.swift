@@ -46,9 +46,9 @@ class CurrentStateChartView: PieChartView {
 		}
 
 		var dataEntries: [PieChartDataEntry] = []
-		dataEntries.append(PieChartDataEntry(value: Double(report.stat.activeCount), label: "Active"))
-		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: "Deaths"))
-		dataEntries.append(PieChartDataEntry(value: Double(report.stat.recoveredCount), label: "Recovered"))
+		dataEntries.append(PieChartDataEntry(value: Double(report.stat.activeCount), label: L10n.Case.active))
+		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: L10n.Case.deaths))
+		dataEntries.append(PieChartDataEntry(value: Double(report.stat.recoveredCount), label: L10n.Case.recovered))
 
 		let dataSet = PieChartDataSet(entries: dataEntries, label: "")
 		dataSet.colors = [.systemYellow, .systemRed, .systemGreen]

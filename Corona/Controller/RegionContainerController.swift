@@ -12,7 +12,7 @@ class RegionContainerController: UIViewController {
 	private lazy var buttonDone: UIButton = {
 		let button = UIButton(type: .system)
 		button.titleLabel?.font = .boldSystemFont(ofSize: 17)
-		button.setTitle("Done", for: .normal)
+		button.setTitle(L10n.Message.done, for: .normal)
 		button.addTarget(self, action: #selector(buttonDoneTapped(_:)), for: .touchUpInside)
 		viewHeader.addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
@@ -116,7 +116,7 @@ class RegionContainerController: UIViewController {
 
 	func updateTime() {
 		if isUpdating {
-			self.labelUpdated.text = "Updating..."
+			self.labelUpdated.text = L10n.Data.updating
 			return
 		}
 
@@ -142,10 +142,10 @@ extension RegionContainerController {
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMenu, width: 175, items: [
-			MenuItem(title: "Update", image: UIImage(named: "Reload")!, action: {
+			MenuItem(title: L10n.Menu.update, image: UIImage(named: "Reload")!, action: {
 				MapController.instance.downloadIfNeeded()
 			}),
-			MenuItem(title: "Share", image: UIImage(named: "Share")!, action: {
+			MenuItem(title: L10n.Menu.share, image: UIImage(named: "Share")!, action: {
 				MapController.instance.showRegionScreen()
 				self.regionController.setEditing(true, animated: true)
 			}),

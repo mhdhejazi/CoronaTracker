@@ -17,9 +17,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	private var switchPercentsTask: DispatchWorkItem?
 
 	@IBOutlet var worldwideTitleLabel: UILabel!
-    @IBOutlet var confirmedCountLabel: UILabel!
-    @IBOutlet var recoveredCountLabel: UILabel!
-    @IBOutlet var deathsCountLabel: UILabel!
+	@IBOutlet var confirmedLabel: UILabel!
+	@IBOutlet var confirmedCountLabel: UILabel!
+	@IBOutlet var recoveredLabel: UILabel!
+	@IBOutlet var recoveredCountLabel: UILabel!
+	@IBOutlet var deathsLabel: UILabel!
+	@IBOutlet var deathsCountLabel: UILabel!
 	@IBOutlet var dataViews: [UIView]!
 	@IBOutlet var dataLabels: [UILabel]!
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
@@ -61,6 +64,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		if #available(iOSApplicationExtension 13.0, *) {
 			activityIndicatorView.style = .medium
 		}
+
+		worldwideTitleLabel.text = L10n.Region.world
+		confirmedLabel.text = L10n.Case.confirmed
+		recoveredLabel.text = L10n.Case.recovered
+		deathsLabel.text = L10n.Case.deaths
 	}
 
     private func update() {

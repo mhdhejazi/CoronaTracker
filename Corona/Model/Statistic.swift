@@ -42,9 +42,9 @@ extension Statistic {
 extension Statistic: CustomStringConvertible {
 	public var description: String {
 		"""
-		Confirmed: \(confirmedCountString)
-		Recovered: \(recoveredCountString) (\(recoveredPercent.percentFormatted))
-		Deaths: \(deathCountString) (\(deathPercent.percentFormatted))
+		\(L10n.Case.confirmed): \(confirmedCountString)
+		\(L10n.Case.recovered): \(recoveredCountString) (\(recoveredPercent.percentFormatted))
+		\(L10n.Case.deaths): \(deathCountString) (\(deathPercent.percentFormatted))
 		"""
 	}
 }

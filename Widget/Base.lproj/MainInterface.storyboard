@@ -159,8 +159,11 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="OFI-dB-YMc" id="bTZ-yl-Dpl"/>
                         <outlet property="confirmedCountLabel" destination="LO4-9a-4YB" id="PlW-88-YFf"/>
+                        <outlet property="confirmedLabel" destination="ag1-kU-s0i" id="I2X-vZ-noa"/>
                         <outlet property="deathsCountLabel" destination="iwT-mN-mNn" id="DfU-jm-vMA"/>
+                        <outlet property="deathsLabel" destination="bwB-dW-jy7" id="SCV-X3-zmb"/>
                         <outlet property="recoveredCountLabel" destination="0gj-nh-MWj" id="iGl-C4-uOL"/>
+                        <outlet property="recoveredLabel" destination="GLu-jo-d8c" id="Uet-5Q-II7"/>
                         <outlet property="updateTimeLabel" destination="b5R-nJ-GV1" id="Aip-SH-xNj"/>
                         <outlet property="worldwideTitleLabel" destination="D3Y-ey-Vef" id="3o7-l1-Jsq"/>
                         <outletCollection property="dataLabels" destination="LO4-9a-4YB" collectionClass="NSMutableArray" id="Fex-Ct-Qau"/>

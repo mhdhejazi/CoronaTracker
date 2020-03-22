@@ -115,7 +115,7 @@ extension UIViewController {
 	func showMessage(title: String?, message: String?) {
 		hideHUD(animated: false) {
 			let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-			alertController.addAction(.init(title: "OK", style: .default))
+			alertController.addAction(.init(title: L10n.Message.ok, style: .default))
 			self.present(alertController, animated: true)
 		}
 	}

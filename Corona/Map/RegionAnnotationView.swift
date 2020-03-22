@@ -182,7 +182,7 @@ private class DetailsView: UIView {
 		let label = UILabel()
 		label.textColor = .systemGray
 		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
-		label.text = ["Confirmed:", "Active:", "Recovered:", "Deaths:"].joined(separator: "\n")
+		label.text = "\(L10n.Case.confirmed):\n\(L10n.Case.active):\n\(L10n.Case.recovered):\n\(L10n.Case.deaths):"
 		label.numberOfLines = 0
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label

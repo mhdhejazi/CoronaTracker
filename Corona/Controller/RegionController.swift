@@ -27,8 +27,11 @@ class RegionController: UITableViewController {
 
 	@IBOutlet var stackViewStats: UIStackView!
 	@IBOutlet var labelTitle: UILabel!
+	@IBOutlet var labelConfirmedTitle: UILabel!
 	@IBOutlet var labelConfirmed: UILabel!
+	@IBOutlet var labelRecoveredTitle: UILabel!
 	@IBOutlet var labelRecovered: UILabel!
+	@IBOutlet var labelDeathsTitle: UILabel!
 	@IBOutlet var labelDeaths: UILabel!
 	@IBOutlet var labelNewConfirmed: UILabel!
 	@IBOutlet var labelNewRecovered: UILabel!
@@ -55,6 +58,10 @@ class RegionController: UITableViewController {
 			labelDeaths.font = .systemFont(ofSize: 24)
 		}
 
+		labelConfirmedTitle.text = L10n.Case.confirmed
+		labelRecoveredTitle.text = L10n.Case.recovered
+		labelDeathsTitle.text = L10n.Case.deaths
+
 		update()
 	}
 
@@ -80,7 +87,7 @@ class RegionController: UITableViewController {
 			self.labelNewRecovered.text = self.region?.dailyChange?.newRecoveredString ?? "-"
 			self.labelNewDeaths.text = self.region?.dailyChange?.newDeathsString ?? "-"
 
-			self.labelUpdated.text = "Last updated: \(self.region?.report?.lastUpdate.relativeDateString ?? "-")"
+			self.labelUpdated.text = "\(L10n.Data.updateDate) \(self.region?.report?.lastUpdate.relativeDateString ?? "-")"
 		}, completion: nil)
 
 		chartViewCurrent.update(report: region?.report)
@@ -244,10 +251,10 @@ class RegionInfoCell: UITableViewCell {
 
 		var title: String {
 			switch self {
-			case .stats: return "Coronavirus live update (via CoronaTracker)"
-			case .chartCurrent: return "Coronavirus live update (via CoronaTracker)"
-			case .chartHistory: return "Coronavirus growth chart (via CoronaTracker)"
-			case .chartTop: return "Top affected countries (via CoronaTracker)"
+			case .stats: return L10n.Share.current
+			case .chartCurrent: return L10n.Share.current
+			case .chartHistory: return L10n.Share.chartHistory
+			case .chartTop: return L10n.Chart.topCountries
 			}
 		}
 	}
