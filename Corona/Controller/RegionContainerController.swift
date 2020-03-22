@@ -142,10 +142,10 @@ extension RegionContainerController {
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMenu, width: 175, items: [
-			MenuItem(title: L10n.Menu.update, image: UIImage(named: "Reload")!, action: {
+			MenuItem(title: L10n.Menu.update, image: Asset.reload.image, action: {
 				MapController.instance.downloadIfNeeded()
 			}),
-			MenuItem(title: L10n.Menu.share, image: UIImage(named: "Share")!, action: {
+			MenuItem(title: L10n.Menu.share, image: Asset.share.image, action: {
 				MapController.instance.showRegionScreen()
 				self.regionController.setEditing(true, animated: true)
 			}),

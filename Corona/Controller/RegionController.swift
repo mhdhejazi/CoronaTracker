@@ -150,9 +150,9 @@ class RegionController: UITableViewController {
 
 		let cellImage = cell.snapshot()
 		let headerImage = container!.snapshotHeader(hideTitle: row == .chartTop)
-		var logoImage = UIImage(named: "Icon-Small")
+		var logoImage = Asset.iconSmall.image
 		if #available(iOS 13.0, *) {
-			logoImage = logoImage?.withTintColor(SystemColor.secondaryLabel)
+			logoImage = logoImage.withTintColor(SystemColor.secondaryLabel)
 		}
 
 		let newSize = CGSize(width: cellImage.size.width, height: cellImage.size.height + headerImage.size.height)
@@ -162,7 +162,7 @@ class RegionController: UITableViewController {
 			rendererContext.fill(newBounds)
 
 			headerImage.draw(at: .zero)
-			logoImage?.draw(at: .init(x: headerImage.size.width - 60, y: 22))
+			logoImage.draw(at: .init(x: headerImage.size.width - 60, y: 22))
 			cellImage.draw(at: .init(x: 0, y: headerImage.size.height))
 		}
 
@@ -228,7 +228,7 @@ extension RegionController {
 			completion(true)
 			self.shareImage(for: cell)
 		}
-		action.image = UIImage(named: "Share-Circle")
+		action.image = Asset.shareCircle.image
 		action.backgroundColor = UIColor.black.withAlphaComponent(0.001)
 
 		let config = UISwipeActionsConfiguration(actions: [action])
@@ -261,7 +261,7 @@ class RegionInfoCell: UITableViewCell {
 
 	private lazy var buttonShare: UIButton = {
 		let button = UIButton(type: .custom)
-		button.setImage(UIImage(named: "Share-Circle"), for: .normal)
+		button.setImage(Asset.shareCircle.image, for: .normal)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.widthAnchor.constraint(equalToConstant: 50).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 50).isActive = true

@@ -58,8 +58,10 @@
 		116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EC0A72410DF48006E4559 /* RegionContainerController.swift */; };
 		117C84DA2427E3E200688459 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 117C84DD2427E3E200688459 /* Localizable.strings */; };
 		117C84DB2427E3E200688459 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 117C84DD2427E3E200688459 /* Localizable.strings */; };
-		117C84E12427E64300688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E02427E64300688459 /* Strings.swift */; };
-		117C84E22427E64300688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E02427E64300688459 /* Strings.swift */; };
+		117C84E82428119600688459 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E62428119600688459 /* Assets.swift */; };
+		117C84E92428119600688459 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E62428119600688459 /* Assets.swift */; };
+		117C84EA2428119600688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E72428119600688459 /* Strings.swift */; };
+		117C84EB2428119600688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E72428119600688459 /* Strings.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
@@ -133,9 +135,10 @@
 		11672A1D2411494F000B2466 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
 		116EC0A72410DF48006E4559 /* RegionContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionContainerController.swift; sourceTree = "<group>"; };
 		117C84DF2427E43F00688459 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		117C84E02427E64300688459 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		117C84E32427F52D00688459 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		117C84E42427F54C00688459 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		117C84E62428119600688459 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		117C84E72428119600688459 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -255,12 +258,13 @@
 				11EB2CA224140D24001769B2 /* Controller */,
 				1162D16C240FC56F00647002 /* Main */,
 				1162D16B240FC55F00647002 /* Util */,
+				117C84DE2427E3F200688459 /* Localization */,
+				117C84E52428114C00688459 /* Generated */,
 				1162D131240D05F600647002 /* Main.storyboard */,
 				1162D134240D05FA00647002 /* Assets.xcassets */,
 				1162D136240D05FA00647002 /* LaunchScreen.storyboard */,
 				1162D139240D05FA00647002 /* Info.plist */,
 				11BF32B024166E5C00270130 /* App.entitlements */,
-				117C84DE2427E3F200688459 /* Localization */,
 			);
 			path = Corona;
 			sourceTree = "<group>";
@@ -312,10 +316,18 @@
 		117C84DE2427E3F200688459 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				117C84E02427E64300688459 /* Strings.swift */,
 				117C84DD2427E3E200688459 /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		117C84E52428114C00688459 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				117C84E62428119600688459 /* Assets.swift */,
+				117C84E72428119600688459 /* Strings.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		11EB2CA224140D24001769B2 /* Controller */ = {
@@ -477,7 +489,9 @@
 				1151868B241FA9AA00EBC83E /* UIExtensions.swift in Sources */,
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
+				117C84E82428119600688459 /* Assets.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
+				117C84EA2428119600688459 /* Strings.swift in Sources */,
 				1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */,
 				1124F64624224E240002641D /* MenuController.swift in Sources */,
 				1162D145240EB86400647002 /* RegionAnnotation.swift in Sources */,
@@ -496,7 +510,6 @@
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
 				115186A3241FAFCA00EBC83E /* Region.swift in Sources */,
 				115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */,
-				117C84E12427E64300688459 /* Strings.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionContainerController.swift in Sources */,
 				1124F64C24238C600002641D /* Menu.swift in Sources */,
 				115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
@@ -513,13 +526,14 @@
 			files = (
 				115186AC241FAFCE00EBC83E /* DataService.swift in Sources */,
 				115186AE241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
+				117C84EB2428119600688459 /* Strings.swift in Sources */,
 				344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */,
 				115186A5241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
 				1151869E241FAFC500EBC83E /* DataManager.swift in Sources */,
 				115186A8241FAFCA00EBC83E /* Region.swift in Sources */,
 				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
-				117C84E22427E64300688459 /* Strings.swift in Sources */,
 				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,
+				117C84E92428119600688459 /* Assets.swift in Sources */,
 				115186BA242005E900EBC83E /* SystemColor.swift in Sources */,
 				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
