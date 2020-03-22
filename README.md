@@ -6,7 +6,8 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 ![iOS](https://img.shields.io/badge/iOS-10%20-blue)
 ![macOS](https://img.shields.io/badge/macOS-10.15-blue)
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
-![image](https://user-images.githubusercontent.com/121827/76356430-fe06ff80-6326-11ea-8107-60f900a73016.png)
+
+![image](https://user-images.githubusercontent.com/121827/77246699-e25efb80-6c3a-11ea-8a49-30bd87ff33c0.png)
 
 ## Features
 * __Live data__: Shows the most recent data, and updates automatically.
@@ -18,30 +19,32 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
    * __Timeline chart__ for all countries (and cities).
    * __Top affected countries__ chart with info about every country.
   * Option for using a __logarithmic__ scale.
+* __Search__ for countries & cities.
+* __Share__ stats & charts as images.
 * __Today widget__ for worldwide stats (Contributed by [Piotr Ożóg](https://github.com/pbeo)).
 * __Red color scale__: Reflects the number of confirmed cases. In addition to increasing circle size.
 * __Statistics__: Including the number of confirmed, recovered, and deaths, in addition to percents.
 * __iPad__ & __macOS__ support.
 
-<details>
-  <summary><b>Screenshots</b></summary> 
-  <img src="https://user-images.githubusercontent.com/121827/76356895-bd5bb600-6327-11ea-8433-06bede40a799.png" />
-  <img src="https://user-images.githubusercontent.com/121827/76235095-af306b80-623b-11ea-89df-5e5942318935.png" />
-</details>
+![image](https://user-images.githubusercontent.com/121827/77246980-a6796580-6c3d-11ea-80dd-57833a7c386a.png)
+![image](https://user-images.githubusercontent.com/121827/77247007-03751b80-6c3e-11ea-91fc-b3d535fda6a2.png)
 
 ## How to Use
+### 1. iOS App
+#### Build from source code
 1. Clone/Download the repo.
 2. Open `Corona.xcodeproj` in Xcode.
 3. Choose the right target (iOS or macOS).
 4. Build & run!
+
+### 2. macOS App
+[Download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
 
 Or install via [brew](http://brew.sh):
 
   ```bash
   brew cask install corona-tracker
   ```
-
-Or [download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
 
 ## Contribute
 Please feel free to contribute pull requests or create issues for bugs and feature requests.
