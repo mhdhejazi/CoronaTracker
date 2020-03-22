@@ -114,9 +114,6 @@ class RegionAnnotationView: MKAnnotationView {
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 
 		canShowCallout = true
-
-//		layer.borderColor = UIColor.white.cgColor
-//		layer.borderWidth = 2
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -124,7 +121,7 @@ class RegionAnnotationView: MKAnnotationView {
 	}
 
 	func configure() {
-		if self.mapZoomLevel > 4 {
+		if round(self.mapZoomLevel) > 4 {
 			self.countLabel.text = number?.groupingFormatted
 			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
 			self.countLabel.alpha = 1

@@ -39,8 +39,7 @@ public class DataManager {
 	}
 
 	public func allRegions() -> [Region] {
-		var result = [Region]()
-		result.append(contentsOf: regions(of: .country))
+		var result = regions(of: .country)
 		result.append(contentsOf: regions(of: .province).filter { !result.contains($0) })
 		return result
 	}

@@ -12,7 +12,7 @@ import MapKit
 import FloatingPanel
 
 class MapController: UIViewController {
-	private static let cityZoomLevel = CGFloat(5)
+	private static let cityZoomLevel = (UIScreen.main.bounds.width > 1000) ? CGFloat(5) : CGFloat(4)
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var instance: MapController!
