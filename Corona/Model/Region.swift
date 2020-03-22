@@ -87,10 +87,13 @@ extension Region {
 	public static func join(subRegions: [Region]) -> Region? {
 		guard let firstRegion = subRegions.first else { return nil }
 
-		return Region(level: firstRegion.level.parent,
-					  name: subRegions.first!.parentName ?? "N/A",
-					  parentName: nil,
-					  location: Coordinate.center(of: subRegions.map { $0.location }))
+		let region = Region(level: firstRegion.level.parent,
+							name: firstRegion.parentName ?? "N/A",
+							parentName: nil,
+							location: (subRegions.max() ?? firstRegion).location)
+
+		region.subRegions = subRegions
+		return region
 	}
 }
 

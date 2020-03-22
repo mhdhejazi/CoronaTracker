@@ -41,7 +41,7 @@ class RegionContainerController: UIViewController {
 				self.regionController.view.isHidden = self.isSearching
 
 				if self.isSearching {
-					self.regionListController.regions = DataManager.instance.regions(of: .province).sorted().reversed()
+					self.regionListController.regions = DataManager.instance.allRegions().sorted().reversed()
 					self.searchBar.text = ""
 					self.searchBar.becomeFirstResponder()
 					MapController.instance.showRegionScreen()
@@ -164,7 +164,7 @@ extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
 	}
 
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		var regions: [Region] = DataManager.instance.regions(of: .province).sorted().reversed()
+		var regions: [Region] = DataManager.instance.allRegions().sorted().reversed()
 
 		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
 		if !query.isEmpty {

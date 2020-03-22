@@ -12,7 +12,7 @@ import MapKit
 import FloatingPanel
 
 class MapController: UIViewController {
-	private static let cityZoomLevel = CGFloat(4)
+	private static let cityZoomLevel = CGFloat(5)
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var instance: MapController!
@@ -120,14 +120,21 @@ class MapController: UIViewController {
 	}
 
 	func showRegionOnMap(region: Region) {
+		let spanDelta = region.subRegions.isEmpty ? 12.0 : 60.0
 		let coordinateRegion = MKCoordinateRegion(center: region.location.clLocation,
-												  span: MKCoordinateSpan(latitudeDelta: 12, longitudeDelta: 12))
+												  span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
+		mapView.selectedAnnotations = []
 		mapView.setRegion(coordinateRegion, animated: true)
+		updateRegionScreen(region: region)
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-			if let annotation = self.currentAnnotations.first(where: { $0.region == region }) {
-				self.mapView.selectAnnotation(annotation, animated: true)
-			}
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+			self.selectAnnotation(for: region)
+		}
+	}
+
+	func selectAnnotation(for region: Region) {
+		if let annotation = self.currentAnnotations.first(where: { $0.region == region }) {
+			self.mapView.selectAnnotation(annotation, animated: true)
 		}
 	}
 
@@ -256,8 +263,11 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+		var annotationToSelect: MKAnnotation? = nil
+
 		if mapView.zoomLevel > Self.cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
+				annotationToSelect = mapView.selectedAnnotations.first
 				mapView.removeAnnotations(mapView.annotations)
 				currentAnnotations = allAnnotations
 				mapView.addAnnotations(currentAnnotations)
@@ -265,10 +275,15 @@ extension MapController: MKMapViewDelegate {
 		}
 		else {
 			if currentAnnotations.count != countryAnnotations.count {
+				annotationToSelect = mapView.selectedAnnotations.first
 				mapView.removeAnnotations(mapView.annotations)
 				currentAnnotations = countryAnnotations
 				mapView.addAnnotations(currentAnnotations)
 			}
+		}
+
+		if let region = (annotationToSelect as? RegionAnnotation)?.region {
+			selectAnnotation(for: region)
 		}
 	}
 

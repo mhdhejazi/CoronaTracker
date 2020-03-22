@@ -9,11 +9,11 @@
 import MapKit
 
 extension MKMapView {
+	public static let maxZoom: CGFloat = 20
 	public var zoomLevel: CGFloat {
-		let maxZoom: CGFloat = 20
 		let zoomScale = self.visibleMapRect.size.width / Double(self.frame.size.width)
 		let zoomExponent = log2(zoomScale)
-		return maxZoom - CGFloat(zoomExponent)
+		return Self.maxZoom - CGFloat(zoomExponent)
 	}
 }
 

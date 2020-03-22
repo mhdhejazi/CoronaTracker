@@ -38,6 +38,13 @@ public class DataManager {
 		}
 	}
 
+	public func allRegions() -> [Region] {
+		var result = [Region]()
+		result.append(contentsOf: regions(of: .country))
+		result.append(contentsOf: regions(of: .province).filter { !result.contains($0) })
+		return result
+	}
+
 	public func load(completion: @escaping (Bool) -> ()) {
 		DispatchQueue.global().async {
 
@@ -82,13 +89,9 @@ extension DataManager {
 				}), by: { region in
 					region.parentName
 				}).forEach { (key, value) in
-					let countryRegion = Region(level: .country,
-											   name: key ?? "N/A",
-											   parentName: nil,
-											   location: .center(of: value.map({ $0.location })))
-
-					countryRegion.subRegions = value
-					countries.append(countryRegion)
+					if let countryRegion = Region.join(subRegions: value) {
+						countries.append(countryRegion)
+					}
 				}
 
 				/// World
