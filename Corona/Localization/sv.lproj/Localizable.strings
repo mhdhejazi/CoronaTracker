@@ -6,24 +6,24 @@
   Copyright © 2020 Samabox. All rights reserved.
 */
 
-"case.confirmed" = "Confirmed";
-"case.active" = "Active";
-"case.recovered" = "Recovered";
-"case.deaths" = "Deaths";
-"region.world" = "Worldwide";
-"chart.topCountries" = "Most Affected Countries";
-"chart.logarithmic" = "Logarithmic Scale";
-"data.updating" = "Updating...";
-"data.updateDate" = "Last updated:";
-"data.errorTitle" = "Can't update the data";
-"data.errorMessage" = "Please make sure you're connected to the internet.";
-"app.newVersionTitle" = "New Version Available";
-"app.newVersionMessage" = "Please update from %@";
-"message.cancel" = "Cancel";
-"message.open" = "Open";
+"case.confirmed" = "Bekräftade";
+"case.active" = "Aktiva";
+"case.recovered" = "Tillfrisknade";
+"case.deaths" = "Avlidna";
+"region.world" = "Hela Världen";
+"chart.topCountries" = "Mest Drabbade Länderna";
+"chart.logarithmic" = "Logaritmisk Skala";
+"data.updating" = "Uppdaterar...";
+"data.updateDate" = "Senast Uppdaterad:";
+"data.errorTitle" = "Kan Inte Uppdatera Data";
+"data.errorMessage" = "Vänligen se till att du är ansluten till internet.";
+"app.newVersionTitle" = "Ny Version Tillgänglig";
+"app.newVersionMessage" = "Vänligen uppdatera från %@";
+"message.cancel" = "Avbryt";
+"message.open" = "Öppna";
 "message.ok" = "OK";
-"message.done" = "Done";
-"menu.update" = "Update";
-"menu.share" = "Share";
-"share.current" = "Coronavirus live update";
-"share.chartHistory" = "Coronavirus growth chart";
+"message.done" = "Klar";
+"menu.update" = "Uppdatera";
+"menu.share" = "Dela";
+"share.current" = "Coronavirus direktuppdatering";
+"share.chartHistory" = "Coronavirus tillväxtdiagram";
