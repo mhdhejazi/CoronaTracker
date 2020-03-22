@@ -92,7 +92,7 @@ class RegionAnnotationView: MKAnnotationView {
 			configure()
             
 			/// Ensure that the report text is set each time the annotation is updated
-			detailsLabel?.attributedText = detailsString
+			detailAccessoryView?.detailsLabel?.attributedText = detailsString
 		}
 	}
 
@@ -106,38 +106,8 @@ class RegionAnnotationView: MKAnnotationView {
 	}()
 	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
 
-	private lazy var detailsLabel: UILabel! = {
-		let label = UILabel()
-		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
-		label.attributedText = detailsString
-		label.numberOfLines = 0
-		return label
-	}()
+	private lazy var detailAccessoryView: DetailsView? = { DetailsView() }()
 
-	private lazy var detailAccessoryView: UIView? = {
-		let label = UILabel()
-		label.textColor = .systemGray
-		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
-		label.text = "Confirmed:\nActive:\nRecovered:\nDeaths:"
-		label.numberOfLines = 0
-
-		let view = UIView()
-
-		label.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(label)
-		label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-		label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-		label.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-
-		detailsLabel.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(detailsLabel)
-		detailsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-		detailsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-
-		label.trailingAnchor.constraint(equalTo: detailsLabel.leadingAnchor, constant: -5).isActive = true
-
-		return view
-	}()
 	override var detailCalloutAccessoryView: UIView? { get { detailAccessoryView } set {} }
 
 	override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
@@ -207,5 +177,50 @@ extension RegionAnnotationView { // Pressable view
 		super.touchesCancelled(touches, with: event)
 
 		setTouched(false)
+	}
+}
+
+private class DetailsView: UIView {
+	private lazy var titleLabel: UILabel! = {
+		let label = UILabel()
+		label.textColor = .systemGray
+		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
+		label.text = ["Confirmed:", "Active:", "Recovered:", "Deaths:"].joined(separator: "\n")
+		label.numberOfLines = 0
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+
+	lazy var detailsLabel: UILabel! = {
+		let label = UILabel()
+		label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .footnote), size: 0)
+		label.numberOfLines = 0
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
+
+	override var forFirstBaselineLayout: UIView { titleLabel }
+
+	init() {
+		super.init(frame: .zero)
+
+		initializeView()
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	private func initializeView() {
+		addSubview(titleLabel)
+		titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+		titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		titleLabel.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+
+		addSubview(detailsLabel)
+		detailsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+		detailsLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
+		titleLabel.trailingAnchor.constraint(equalTo: detailsLabel.leadingAnchor, constant: -5).isActive = true
 	}
 }
