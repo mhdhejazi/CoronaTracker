@@ -200,6 +200,7 @@ private class DetailsView: UIView {
 	}()
 
 	override var forFirstBaselineLayout: UIView { titleLabel }
+	override var forLastBaselineLayout: UIView { titleLabel }
 
 	init() {
 		super.init(frame: .zero)
