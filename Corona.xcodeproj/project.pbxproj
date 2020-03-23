@@ -869,10 +869,10 @@
 		};
 		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts";
+			repositoryURL = "https://github.com/MhdHejazi/Charts";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.4.0;
+				branch = "half-pie";
+				kind = branch;
 			};
 		};
 		11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {

@@ -11,7 +11,11 @@ import Foundation
 import Charts
 
 class PercentValueFormatter: DefaultValueFormatter {
-	override init() {
+	let minPercent: Double
+
+	init(minPercent: Double = 8) {
+		self.minPercent = minPercent
+
 		super.init(formatter: .percentFormatter)
 	}
 
@@ -19,7 +23,7 @@ class PercentValueFormatter: DefaultValueFormatter {
 								 entry: ChartDataEntry,
 								 dataSetIndex: Int,
 								 viewPortHandler: ViewPortHandler?) -> String {
-		if value < 4 {
+		if value < minPercent {
 			return ""
 		}
 

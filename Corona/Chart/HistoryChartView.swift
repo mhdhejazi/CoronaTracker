@@ -80,7 +80,7 @@ class HistoryChartView: LineChartView {
 			dataSet.colors = [colors[i]]
 
 //			dataSet.drawCirclesEnabled = false
-			dataSet.circleRadius = 2.5
+			dataSet.circleRadius = 2
 			dataSet.circleColors = [colors[i].withAlphaComponent(0.75)]
 
 			dataSet.drawCircleHoleEnabled = false

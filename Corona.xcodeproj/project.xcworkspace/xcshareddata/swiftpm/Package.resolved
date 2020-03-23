@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Charts",
-        "repositoryURL": "https://github.com/danielgindi/Charts",
+        "repositoryURL": "https://github.com/MhdHejazi/Charts",
         "state": {
-          "branch": null,
-          "revision": "dbf7fa2891270f88aeafc872ea0beddb344af94b",
-          "version": "3.4.0"
+          "branch": "half-pie",
+          "revision": "5a2efdaa494c8f1185b0e60a821a814ff39d8f71",
+          "version": null
         }
       },
       {

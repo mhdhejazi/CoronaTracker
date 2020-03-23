@@ -76,12 +76,6 @@ class DeltaChartView: BarChartView {
 		dataSet.colors = [.systemOrange]
 
 		dataSet.drawValuesEnabled = false
-//		dataSet.valueTextColor = SystemColor.secondaryLabel
-//		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
-//		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
-//			guard let region = entry.data as? Region else { return value.kmFormatted }
-//			return region.report?.stat.confirmedCount.kmFormatted ?? value.kmFormatted
-//		})
 
 		data = BarChartData(dataSet: dataSet)
 

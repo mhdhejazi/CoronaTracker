@@ -18,9 +18,12 @@ class CurrentStateChartView: PieChartView {
 		holeColor = nil
 		holeRadiusPercent = 0.5
 		transparentCircleRadiusPercent = 0.6
-		rotationAngle = 0
+		maxAngle = 180
+		rotationAngle = 180
 		drawEntryLabelsEnabled = false
-		setExtraOffsets(left: 0, top: 5, right: 0, bottom: -10)
+		setExtraOffsets(left: 0, top: 100, right: 0, bottom: -300)
+
+		rotationEnabled = false
 
 		noDataTextColor = .systemGray
 		noDataFont = .systemFont(ofSize: 15)
@@ -47,15 +50,15 @@ class CurrentStateChartView: PieChartView {
 
 		var dataEntries: [PieChartDataEntry] = []
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.activeCount), label: L10n.Case.active))
-		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: L10n.Case.deaths))
 		dataEntries.append(PieChartDataEntry(value: Double(report.stat.recoveredCount), label: L10n.Case.recovered))
+		dataEntries.append(PieChartDataEntry(value: Double(report.stat.deathCount), label: L10n.Case.deaths))
 
 		let dataSet = PieChartDataSet(entries: dataEntries, label: "")
-		dataSet.colors = [.systemYellow, .systemRed, .systemGreen]
+		dataSet.colors = [.systemYellow, .systemGreen, .systemRed]
 		dataSet.valueColors = [
 			UIColor(hue: 0.13, saturation: 1.0, brightness: 0.4, alpha: 1.0),
-			UIColor(hue: 0.03, saturation: 0.2, brightness: 1.0, alpha: 1.0),
-			UIColor(hue: 0.3, saturation: 0.2, brightness: 1.0, alpha: 1.0)
+			UIColor(hue: 0.3, saturation: 0.2, brightness: 1.0, alpha: 1.0),
+			UIColor(hue: 0.03, saturation: 0.2, brightness: 1.0, alpha: 1.0)
 		]
 		dataSet.sliceSpace = 2
 		dataSet.xValuePosition = .outsideSlice
