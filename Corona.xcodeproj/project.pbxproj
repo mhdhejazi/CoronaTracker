@@ -150,6 +150,7 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED327241AC7AA004C4EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48207FE3242833F900BC84B4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		48C8B39C2428307D00E182DA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,6 +438,7 @@
 				de,
 				sv,
 				"pt-BR",
+				"pt-PT",
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -580,6 +582,7 @@
 				117C84E32427F52D00688459 /* de */,
 				117C84E42427F54C00688459 /* sv */,
 				48C8B39C2428307D00E182DA /* pt-BR */,
+				48207FE3242833F900BC84B4 /* pt-PT */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
