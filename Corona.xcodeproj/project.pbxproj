@@ -62,6 +62,8 @@
 		117C84E92428119600688459 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E62428119600688459 /* Assets.swift */; };
 		117C84EA2428119600688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E72428119600688459 /* Strings.swift */; };
 		117C84EB2428119600688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E72428119600688459 /* Strings.swift */; };
+		117C84F52428D3AA00688459 /* ISO-Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84F42428D3AA00688459 /* ISO-Country.swift */; };
+		117C84F62428D3AA00688459 /* ISO-Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84F42428D3AA00688459 /* ISO-Country.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
@@ -140,6 +142,7 @@
 		117C84E62428119600688459 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		117C84E72428119600688459 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		117C84EC2428907F00688459 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		117C84F42428D3AA00688459 /* ISO-Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ISO-Country.swift"; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -263,8 +266,8 @@
 				1162D16B240FC55F00647002 /* Util */,
 				117C84DE2427E3F200688459 /* Localization */,
 				117C84E52428114C00688459 /* Generated */,
+				117C84F02428D04000688459 /* Resources */,
 				1162D131240D05F600647002 /* Main.storyboard */,
-				1162D134240D05FA00647002 /* Assets.xcassets */,
 				1162D136240D05FA00647002 /* LaunchScreen.storyboard */,
 				1162D139240D05FA00647002 /* Info.plist */,
 				11BF32B024166E5C00270130 /* App.entitlements */,
@@ -329,8 +332,17 @@
 			children = (
 				117C84E62428119600688459 /* Assets.swift */,
 				117C84E72428119600688459 /* Strings.swift */,
+				117C84F42428D3AA00688459 /* ISO-Country.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		117C84F02428D04000688459 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1162D134240D05FA00647002 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		11EB2CA224140D24001769B2 /* Controller */ = {
@@ -493,6 +505,7 @@
 				1151869D241FAFC200EBC83E /* DataManager.swift in Sources */,
 				1151869F241FAFCA00EBC83E /* Report.swift in Sources */,
 				1151868B241FA9AA00EBC83E /* UIExtensions.swift in Sources */,
+				117C84F52428D3AA00688459 /* ISO-Country.swift in Sources */,
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				117C84E82428119600688459 /* Assets.swift in Sources */,
@@ -543,6 +556,7 @@
 				115186BA242005E900EBC83E /* SystemColor.swift in Sources */,
 				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,
+				117C84F62428D3AA00688459 /* ISO-Country.swift in Sources */,
 				115186AD241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
 				115186A7241FAFCA00EBC83E /* Statistic.swift in Sources */,
 				115186C124203D6800EBC83E /* Change.swift in Sources */,
