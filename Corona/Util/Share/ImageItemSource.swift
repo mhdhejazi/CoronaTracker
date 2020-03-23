@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 
 class ImageItemSource: NSObject, UIActivityItemSource {
+
 	private let image: UIImage
 	private let imageName: String
 	private var imageURL: URL?
@@ -17,9 +18,7 @@ class ImageItemSource: NSObject, UIActivityItemSource {
 	init(image: UIImage, imageName: String) {
 		self.image = image
 		self.imageName = imageName
-
 		super.init()
-
 		imageURL = image.saveToFile(fileName: imageName, imageType: .png)
 	}
 
@@ -27,7 +26,6 @@ class ImageItemSource: NSObject, UIActivityItemSource {
 		if let imageURL = imageURL {
 			return imageURL
 		}
-
 		return image
 	}
 

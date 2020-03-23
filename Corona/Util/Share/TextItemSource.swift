@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 
 class TextItemSource: NSObject, UIActivityItemSource {
+
 	private let text: String
 
 	init(text: String) {
@@ -21,7 +22,9 @@ class TextItemSource: NSObject, UIActivityItemSource {
 		text
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
 		if activityType?.rawValue.starts(with: "net.whatsapp.WhatsApp.") == true {
 			return nil
 		}

@@ -75,6 +75,7 @@ open class BalloonMarker: MarkerImage {
         return offset
     }
 
+    // swiftlint:disable function_body_length
     open override func draw(context: CGContext, point: CGPoint) {
         guard let label = label else { return }
 
@@ -167,6 +168,7 @@ open class BalloonMarker: MarkerImage {
 
         context.restoreGState()
     }
+    // swiftlint:enable function_body_length
 
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
         setLabel(String(entry.y))

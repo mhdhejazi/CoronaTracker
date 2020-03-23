@@ -301,11 +301,15 @@ extension MapController: MKMapViewDelegate {
 
 extension MapController: FloatingPanelControllerDelegate {
 
+  // swiftlint:disable identifier_name
 	func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-		(newCollection.userInterfaceIdiom == .pad ||
-			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
+		(newCollection.userInterfaceIdiom == .pad || newCollection.verticalSizeClass == .compact)
+      ? LandscapePanelLayout()
+      : PanelLayout()
 	}
+  // swiftlint:enable identifier_name
 
+  // swiftlint:disable identifier_name
 	func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
 		let currentPosition = vc.position
 
@@ -313,8 +317,10 @@ extension MapController: FloatingPanelControllerDelegate {
 		if currentPosition == .full, regionContainerController.isSearching {
 			// Reset to region container's default mode then hide the keyboard
 			self.regionContainerController.isSearching = false
-        }
     }
+  }
+  // swiftlint:enable identifier_name
+
 }
 
 class PanelLayout: FloatingPanelLayout {

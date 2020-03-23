@@ -6,6 +6,8 @@
 
 import UIKit
 
+// swiftlint:disable type_body_length
+// swiftlint:disable file_length
 public enum SystemColor {
 
     /// The color for text labels containing primary content.
@@ -498,3 +500,5 @@ public enum SystemColor {
         }
     }
 }
+// swiftlint:enable type_body_length
+// swiftlint:enable file_length
