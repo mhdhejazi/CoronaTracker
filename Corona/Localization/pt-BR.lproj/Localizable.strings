@@ -13,6 +13,8 @@
 "region.world" = "Mundo";
 "chart.topCountries" = "Países mais afetados";
 "chart.logarithmic" = "Escala logaritimica";
+"data.providerFormat" = "Data: %1$@";
+"data.providerJHU" = "The Center for Systems Science and Engineering at Johns Hopkins";
 "data.updating" = "Atualizando...";
 "data.updateDate" = "Atualizado:";
 "data.errorTitle" = "Não foi possível atualizar os dados";

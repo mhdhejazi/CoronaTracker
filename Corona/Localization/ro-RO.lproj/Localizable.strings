@@ -13,6 +13,8 @@
 "region.world" = "La nivel mondial";
 "chart.topCountries" = "Cele mai afectate țări";
 "chart.logarithmic" = "Cele mai afectate țări (scală logaritmică)";
+"data.providerFormat" = "Sursa datelor: %1$@";
+"data.providerJHU" = "Centrul pentru Știința și Ingineria Sistemelor (CSSE), John Hopkins";
 "data.updating" = "Se actualizează...";
 "data.updateDate" = "Ultima actualizare:";
 "data.errorTitle" = "Nu se pot actualiza datele";

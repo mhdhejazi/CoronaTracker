@@ -48,6 +48,13 @@ internal enum L10n {
     internal static let updateDate = L10n.tr("Localizable", "data.updateDate")
     /// Updating...
     internal static let updating = L10n.tr("Localizable", "data.updating")
+    /// Data: %@
+    internal static func getDataProvider(name providerName: String) -> String {
+      return L10n.tr("Localizable", "data.providerFormat", providerName)
+    }
+    /// The Center for Systems Science and Engineering at Johns Hopkins
+    internal static let dataProviderJHU = L10n.tr("Localizable", "data.providerJHU")
+
   }
 
   internal enum Menu {

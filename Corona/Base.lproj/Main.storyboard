@@ -409,6 +409,7 @@
                         <outlet property="chartViewTopCountries" destination="71d-xP-f0E" id="UrQ-4p-RH0"/>
                         <outlet property="labelConfirmed" destination="Qx6-QW-GSL" id="VlY-fm-0et"/>
                         <outlet property="labelConfirmedTitle" destination="aPD-ho-0hr" id="eKE-h7-uxs"/>
+                        <outlet property="labelDataProvider" destination="Mdl-LP-xBX" id="XeE-0p-N7d"/>
                         <outlet property="labelDeaths" destination="ywS-vK-Jre" id="d35-57-jTR"/>
                         <outlet property="labelDeathsTitle" destination="px0-7U-ePK" id="BgJ-8x-1ig"/>
                         <outlet property="labelNewConfirmed" destination="x2M-RC-4I7" id="Yp0-vv-Gfb"/>

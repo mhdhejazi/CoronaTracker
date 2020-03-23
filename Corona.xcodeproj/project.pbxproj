@@ -156,8 +156,6 @@
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48207FE3242833F900BC84B4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		48C8B39C2428307D00E182DA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		6B26FFF02428F29000320513 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Main.strings"; sourceTree = "<group>"; };
-		6B26FFF12428F29000320513 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		6B26FFF22428F29100320513 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -583,7 +581,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				1162D132240D05F600647002 /* Base */,
-				6B26FFF02428F29000320513 /* ro-RO */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -614,7 +611,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				344ED327241AC7AA004C4EA8 /* Base */,
-				6B26FFF12428F29000320513 /* ro-RO */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";

@@ -13,6 +13,8 @@
 "region.world" = "Hela Världen";
 "chart.topCountries" = "Mest Drabbade Länderna";
 "chart.logarithmic" = "Logaritmisk Skala";
+"data.providerFormat" = "Data: %1$@";
+"data.providerJHU" = "The Center for Systems Science and Engineering at Johns Hopkins";
 "data.updating" = "Uppdaterar...";
 "data.updateDate" = "Senast Uppdaterad:";
 "data.errorTitle" = "Kan Inte Uppdatera Data";

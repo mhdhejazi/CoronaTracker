@@ -13,6 +13,8 @@
 "region.world" = "Worldwide";
 "chart.topCountries" = "Most Affected Countries";
 "chart.logarithmic" = "Logarithmic Scale";
+"data.providerFormat" = "Data: %1$@";
+"data.providerJHU" = "The Center for Systems Science and Engineering at Johns Hopkins";
 "data.updating" = "Updating...";
 "data.updateDate" = "Last updated:";
 "data.errorTitle" = "Can't update the data";

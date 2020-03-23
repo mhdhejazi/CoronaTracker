@@ -40,6 +40,7 @@ class RegionController: UITableViewController {
 	@IBOutlet var chartViewHistory: HistoryChartView!
 	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
 	@IBOutlet var labelUpdated: UILabel!
+    @IBOutlet var labelDataProvider: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -61,6 +62,8 @@ class RegionController: UITableViewController {
 		labelConfirmedTitle.text = L10n.Case.confirmed
 		labelRecoveredTitle.text = L10n.Case.recovered
 		labelDeathsTitle.text = L10n.Case.deaths
+
+        labelDataProvider.text = L10n.Data.getDataProvider(name: L10n.Data.dataProviderJHU)
 
 		update()
 	}

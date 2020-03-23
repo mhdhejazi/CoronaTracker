@@ -14,6 +14,8 @@
 "region.world" = "Weltweit";
 "chart.topCountries" = "Am meisten betroffene Länder";
 "chart.logarithmic" = "Logarithmische Darstellung";
+"data.providerFormat" = "Data: %1$@";
+"data.providerJHU" = "The Center for Systems Science and Engineering at Johns Hopkins";
 "data.updating" = "Aktualisieren...";
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
