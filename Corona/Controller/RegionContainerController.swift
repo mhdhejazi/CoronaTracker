@@ -9,6 +9,7 @@
 import UIKit
 
 class RegionContainerController: UIViewController {
+
 	private lazy var buttonDone: UIButton = {
 		let button = UIButton(type: .system)
 		button.titleLabel?.font = .boldSystemFont(ofSize: 17)
@@ -23,6 +24,7 @@ class RegionContainerController: UIViewController {
 
 	var regionListController: RegionListController!
 	var regionController: RegionController!
+
 	var isUpdating: Bool = false {
 		didSet {
 			updateTime()
@@ -75,7 +77,6 @@ class RegionContainerController: UIViewController {
 		if #available(iOS 11.0, *) {
 			labelTitle.font = .preferredFont(forTextStyle: .largeTitle)
 		} else {
-			/// iOS 10
 			labelTitle.font = .boldSystemFont(ofSize: 24)
 		}
 
@@ -90,8 +91,7 @@ class RegionContainerController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.destination is RegionController {
 			regionController = segue.destination as? RegionController
-		}
-		else if segue.destination is RegionListController {
+		} else if segue.destination is RegionListController {
 			regionListController = segue.destination as? RegionListController
 		}
 	}
@@ -148,7 +148,7 @@ extension RegionContainerController {
 			MenuItem(title: L10n.Menu.share, image: Asset.share.image, action: {
 				MapController.instance.showRegionScreen()
 				self.regionController.setEditing(true, animated: true)
-			}),
+			})
 		])
 	}
 

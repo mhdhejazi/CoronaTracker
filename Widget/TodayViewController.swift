@@ -33,7 +33,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         initializeView()
 
-		DataManager.instance.load { [weak self] success in
+		DataManager.instance.load { [weak self] _ in
 			self?.report = DataManager.instance.world.report
 			self?.update()
 		}
@@ -44,7 +44,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		updateTimeLabel.isHidden = true
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { [weak self] success in
+            DataManager.instance.load { [weak self] _ in
 				self?.report = DataManager.instance.world.report
                 self?.activityIndicatorView.stopAnimating()
 				self?.updateTimeLabel.isHidden = false

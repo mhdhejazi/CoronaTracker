@@ -12,7 +12,11 @@ import MapKit
 import FloatingPanel
 
 class MapController: UIViewController {
-	private static let cityZoomLevel = (UIScreen.main.bounds.width > 1000) ? CGFloat(5) : CGFloat(4)
+
+  private static let cityZoomLevel: CGFloat =
+    UIScreen.main.bounds.width > 1000
+      ? 5.0
+      : 4.0
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var instance: MapController!
@@ -121,8 +125,9 @@ class MapController: UIViewController {
 
 	func showRegionOnMap(region: Region) {
 		let spanDelta = region.subRegions.isEmpty ? 12.0 : 60.0
-		let coordinateRegion = MKCoordinateRegion(center: region.location.clLocation,
-												  span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
+		let coordinateRegion = MKCoordinateRegion(
+      center: region.location.clLocation,
+      span: MKCoordinateSpan(latitudeDelta: spanDelta, longitudeDelta: spanDelta))
 		mapView.selectedAnnotations = []
 		mapView.setRegion(coordinateRegion, animated: true)
 		updateRegionScreen(region: region)
@@ -170,8 +175,7 @@ class MapController: UIViewController {
 				if success {
 					self.hideHUD()
 					self.update()
-				}
-				else {
+				} else {
 					if showSpinner {
 						self.showMessage(title: L10n.Data.errorTitle,
 										 message: L10n.Data.errorMessage)
@@ -224,7 +228,7 @@ class MapController: UIViewController {
 			}),
 			MenuItem(title: L10n.Case.deaths, image: nil, selected: mode == .deaths, action: {
 				self.view.transition { self.mode = .deaths }
-			}),
+			})
 		])
 	}
 }
@@ -263,7 +267,7 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		var annotationToSelect: MKAnnotation? = nil
+		var annotationToSelect: MKAnnotation?
 
 		if mapView.zoomLevel > Self.cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
@@ -272,8 +276,7 @@ extension MapController: MKMapViewDelegate {
 				currentAnnotations = allAnnotations
 				mapView.addAnnotations(currentAnnotations)
 			}
-		}
-		else {
+		} else {
 			if currentAnnotations.count != countryAnnotations.count {
 				annotationToSelect = mapView.selectedAnnotations.first
 				mapView.removeAnnotations(mapView.annotations)
@@ -297,6 +300,7 @@ extension MapController: MKMapViewDelegate {
 }
 
 extension MapController: FloatingPanelControllerDelegate {
+
 	func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
 		(newCollection.userInterfaceIdiom == .pad ||
 			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
@@ -331,13 +335,13 @@ class PanelLayout: FloatingPanelLayout {
 		if #available(iOS 11.0, *) {
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0),
-				surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0)
 			]
 		} else {
 			/// iOS 10
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
-				surfaceView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0)
 			]
 		}
 	}
@@ -352,13 +356,13 @@ class LandscapePanelLayout: PanelLayout {
 		if #available(iOS 11.0, *) {
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
-				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400)
 			]
 		} else {
 			/// iOS 10
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0),
-				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400)
 			]
 		}
 	}

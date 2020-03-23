@@ -9,14 +9,14 @@
 import MapKit
 
 public struct TimeSeries: Codable {
-	public let series: [Date : Statistic]
+	public let series: [Date: Statistic]
 }
 
 extension TimeSeries {
 	static func join(subSerieses: [TimeSeries]) -> TimeSeries? {
 		guard let firstSubSeries = subSerieses.first else { return nil }
 
-		var series: [Date : Statistic] = [:]
+		var series: [Date: Statistic] = [:]
 		firstSubSeries.series.keys.forEach { key in
 			let subData = subSerieses.compactMap { $0.series[key] }
 			let superData = Statistic.sum(subData: subData)

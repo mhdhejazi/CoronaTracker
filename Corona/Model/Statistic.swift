@@ -14,7 +14,12 @@ public struct Statistic: Codable {
 	public let deathCount: Int
 	public var activeCount: Int { confirmedCount - recoveredCount - deathCount }
 
-	public var recoveredPercent: Double { confirmedCount == 0 ? 0 : 100.0 * Double(recoveredCount) / Double(confirmedCount) }
+	public var recoveredPercent: Double {
+    confirmedCount == 0
+      ? 0
+      : 100.0 * Double(recoveredCount) / Double(confirmedCount)
+  }
+
 	public var deathPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(deathCount) / Double(confirmedCount) }
 	public var activePercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(activeCount) / Double(confirmedCount) }
 

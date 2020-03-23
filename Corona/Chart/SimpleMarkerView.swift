@@ -43,16 +43,15 @@ public class SimpleMarkerView: BalloonMarker {
 		var result: String
 		if let block = block {
 			result = block(entry, highlight)
-		}
-		else {
+		} else {
 			result = ""
 			if let xValueFormatter = xValueFormatter {
-				let x = xValueFormatter.stringForValue(entry.x, axis: nil)
-				result += "\(x): "
+				let xString = xValueFormatter.stringForValue(entry.x, axis: nil)
+				result += "\(xString): "
 			}
 			if let yValueFormatter = yValueFormatter {
-				let y = yValueFormatter.stringForValue(entry.y, axis: nil)
-				result += "\(y)"
+				let yString = yValueFormatter.stringForValue(entry.y, axis: nil)
+				result += "\(yString)"
 			}
 		}
 		setLabel(result)

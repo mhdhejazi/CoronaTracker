@@ -29,15 +29,22 @@ class TextItemSource: NSObject, UIActivityItemSource {
 		return text
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
 		text
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    thumbnailImageForActivityType activityType: UIActivity.ActivityType?,
+    suggestedSize size: CGSize) -> UIImage? {
 		nil
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
 		String(kUTTypePlainText)
 	}
 }

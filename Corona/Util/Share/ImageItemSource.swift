@@ -31,7 +31,9 @@ class ImageItemSource: NSObject, UIActivityItemSource {
 		return image
 	}
 
-	func activityViewController (_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+	func activityViewController (
+    _ activityViewController: UIActivityViewController,
+    itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
 		if activityType == .message ||
 			activityType?.rawValue.starts(with: "com.skype.skype.") == true {
 			return image.pngData()
@@ -44,15 +46,22 @@ class ImageItemSource: NSObject, UIActivityItemSource {
 		return image
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
 		imageName
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    thumbnailImageForActivityType activityType: UIActivity.ActivityType?,
+    suggestedSize size: CGSize) -> UIImage? {
 		image.scaledToAspectFit(size: size)
 	}
 
-	func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
+	func activityViewController(
+    _ activityViewController: UIActivityViewController,
+    dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
 		String(kUTTypePNG)
 	}
 }

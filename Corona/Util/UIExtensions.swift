@@ -28,7 +28,7 @@ extension CLLocationCoordinate2D {
 }
 
 extension UIControl {
-	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
+	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
 		let sleeve = ClosureSleeve(closure)
 		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
 		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -37,9 +37,9 @@ extension UIControl {
 
 /// WARNING: This solution causes memory leaks
 @objc class ClosureSleeve: NSObject {
-	let closure: () -> ()
+	let closure: () -> Void
 
-	init (_ closure: @escaping () -> ()) {
+	init (_ closure: @escaping () -> Void) {
 		self.closure = closure
 	}
 
@@ -73,10 +73,11 @@ extension UIView {
 		bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 	}
 
-	public func enableShadow(radius: CGFloat = 3,
-							 opacity: Float = 0.2,
-							 color: UIColor = .black,
-							 offset: CGSize = .zero) {
+	public func enableShadow(
+    radius: CGFloat = 3,
+    opacity: Float = 0.2,
+    color: UIColor = .black,
+    offset: CGSize = .zero) {
 		layer.shadowRadius = radius
 		layer.shadowOpacity = opacity
 		layer.shadowColor = color.cgColor

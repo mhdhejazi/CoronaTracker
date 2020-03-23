@@ -24,7 +24,7 @@ class HistoryChartView: LineChartView {
 		leftAxis.gridColor = .lightGray
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
-		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			value.kmFormatted
 		}
 
@@ -73,15 +73,15 @@ class HistoryChartView: LineChartView {
 		let colors = [UIColor.systemOrange, .systemRed, .systemGreen]
 
 		var dataSets = [LineChartDataSet]()
-		for i in entries.indices {
-			let dataSet = LineChartDataSet(entries: entries[i], label: labels[i])
+		for index in entries.indices {
+			let dataSet = LineChartDataSet(entries: entries[index], label: labels[index])
 			dataSet.mode = .cubicBezier
 			dataSet.drawValuesEnabled = false
-			dataSet.colors = [colors[i]]
+			dataSet.colors = [colors[index]]
 
 //			dataSet.drawCirclesEnabled = false
 			dataSet.circleRadius = 2.5
-			dataSet.circleColors = [colors[i].withAlphaComponent(0.75)]
+			dataSet.circleColors = [colors[index].withAlphaComponent(0.75)]
 
 			dataSet.drawCircleHoleEnabled = false
 			dataSet.circleHoleRadius = 1

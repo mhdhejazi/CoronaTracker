@@ -25,7 +25,7 @@ class TopCountriesChartView: BarChartView {
 		xAxis.drawGridLinesEnabled = false
 		xAxis.labelPosition = .bottom
 		xAxis.labelTextColor = SystemColor.secondaryLabel
-		xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
+		xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, _ in
 			guard let entry = self.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
 				let region = entry.data as? Region else { return value.description }
 
@@ -36,7 +36,7 @@ class TopCountriesChartView: BarChartView {
 		leftAxis.gridColor = .lightGray
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
-		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
@@ -51,7 +51,7 @@ class TopCountriesChartView: BarChartView {
 		noDataTextColor = .systemGray
 		noDataFont = .systemFont(ofSize: 15)
 
-		let simpleMarker = SimpleMarkerView(chartView: self) { (entry, highlight) in
+		let simpleMarker = SimpleMarkerView(chartView: self) { (entry, _) in
 			guard let region = entry.data as? Region else { return entry.y.kmFormatted }
 			return region.report?.stat.description ?? entry.y.kmFormatted
 		}
@@ -76,13 +76,13 @@ class TopCountriesChartView: BarChartView {
 		let regions = DataManager.instance.topCountries
 
 		var entries = [BarChartDataEntry]()
-		for i in regions.indices {
-			let region = regions[i]
+		for index in regions.indices {
+			let region = regions[index]
 			var value = Double(region.report?.stat.confirmedCount ?? 0)
 			if isLogarithmic {
 				value = log10(value)
 			}
-			let entry = BarChartDataEntry(x: Double(i), y: value)
+			let entry = BarChartDataEntry(x: Double(index), y: value)
 			entry.data = region
 			entries.append(entry)
 		}
@@ -94,7 +94,7 @@ class TopCountriesChartView: BarChartView {
 //		dataSet.drawValuesEnabled = false
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
-		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
+		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, _, _ in
 			guard let region = entry.data as? Region else { return value.kmFormatted }
 			return region.report?.stat.confirmedCount.kmFormatted ?? value.kmFormatted
 		})
@@ -103,8 +103,7 @@ class TopCountriesChartView: BarChartView {
 			leftAxis.axisMinimum = 2
 			leftAxis.axisMaximum = 6
 			leftAxis.labelCount = 4
-		}
-		else {
+		} else {
 			leftAxis.resetCustomAxisMin()
 			leftAxis.resetCustomAxisMax()
 		}

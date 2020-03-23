@@ -18,7 +18,7 @@ class App {
 
 	static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
 		let checkForUpdateURL = URL(string: "https://api.github.com/repos/MhdHejazi/CoronaTracker/releases/latest")!
-		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { (data, response, error) in
+		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data,

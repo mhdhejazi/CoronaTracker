@@ -28,7 +28,7 @@ public class DataManager {
 		case .province:
 			var regions = [Region]()
 			for country in world.subRegions {
-				if (country.subRegions.isEmpty) {
+				if country.subRegions.isEmpty {
 					regions.append(country)
 				} else {
 					regions.append(contentsOf: country.subRegions)
@@ -44,36 +44,35 @@ public class DataManager {
 		return result
 	}
 
-	public func load(completion: @escaping (Bool) -> ()) {
+	public func load(completion: @escaping (Bool) -> Void) {
 		DispatchQueue.global().async {
 
 			var result: Bool
 			do {
 				self.world = try Disk.retrieve(Self.dataFileName, from: .caches, as: Region.self)
 				result = true
-			}
-			catch {
+			} catch {
 				print("Unexpected error: \(error).")
 				try? Disk.clear(.caches)
 				result = false
 			}
 
 			DispatchQueue.main.async {
-				completion(result);
+				completion(result)
 			}
 		}
 	}
 }
 
 extension DataManager {
-	public func download(completion: @escaping (Bool) -> ()) {
-		JHUWebDataService.instance.fetchReports { (regions, error) in
+	public func download(completion: @escaping (Bool) -> Void) {
+		JHUWebDataService.instance.fetchReports { (regions, _) in
 			guard let regions = regions else {
 				completion(false)
 				return
 			}
 
-			JHURepoDataService.instance.fetchTimeSerieses { (timeSeriesRegions, error) in
+			JHURepoDataService.instance.fetchTimeSerieses { (timeSeriesRegions, _) in
 				if let timeSeriesRegions = timeSeriesRegions {
 					for timeSeriesRegion in timeSeriesRegions {
 						regions.first { $0 == timeSeriesRegion }?.timeSeries = timeSeriesRegion.timeSeries
@@ -87,7 +86,7 @@ extension DataManager {
 					region.isProvince
 				}), by: { region in
 					region.parentName
-				}).forEach { (key, value) in
+				}).forEach { (_, value) in
 					if let countryRegion = Region.join(subRegions: value) {
 						countries.append(countryRegion)
 					}

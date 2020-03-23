@@ -40,8 +40,8 @@ class RegionAnnotationView: MKAnnotationView {
 
 		let value = CGFloat(number ?? 0)
 		let level = log10(value + 10) * 2
-		let brightness = max(0, 255 - level * 40) / 255;
-		let saturation = brightness > 0 ? 1 : max(0, 255 - ((level * 40) - 255)) / 255;
+		let brightness = max(0, 255 - level * 40) / 255
+		let saturation = brightness > 0 ? 1 : max(0, 255 - ((level * 40) - 255)) / 255
 		return UIColor(red: saturation, green: brightness, blue: brightness * 0.4, alpha: 0.8)
 	}
 
@@ -62,13 +62,13 @@ class RegionAnnotationView: MKAnnotationView {
 							attributes: [.foregroundColor: UIColor.systemOrange, .font: boldFont]))
 
 		string.append(.init(string: "\n" + (region?.report?.stat.activeCountString ?? ""),
-							attributes: [.foregroundColor : UIColor.systemYellow, .font: boldFont]))
+							attributes: [.foregroundColor: UIColor.systemYellow, .font: boldFont]))
 
 		string.append(.init(string: "\n" + (region?.report?.stat.recoveredCountString ?? ""),
-							attributes: [.foregroundColor : UIColor.systemGreen, .font: boldFont]))
+							attributes: [.foregroundColor: UIColor.systemGreen, .font: boldFont]))
 
 		string.append(.init(string: "\n" + (region?.report?.stat.deathCountString ?? ""),
-							attributes: [.foregroundColor : UIColor.systemRed, .font: boldFont]))
+							attributes: [.foregroundColor: UIColor.systemRed, .font: boldFont]))
 
 		return string
 	}
@@ -90,8 +90,6 @@ class RegionAnnotationView: MKAnnotationView {
 			}
 
 			configure()
-            
-			/// Ensure that the report text is set each time the annotation is updated
 			detailAccessoryView?.detailsLabel?.attributedText = detailsString
 		}
 	}
@@ -104,11 +102,17 @@ class RegionAnnotationView: MKAnnotationView {
 		}
 		return button
 	}()
-	override var rightCalloutAccessoryView: UIView? { get { rightAccessoryView } set {} }
+	override var rightCalloutAccessoryView: UIView? {
+    get { rightAccessoryView }
+    set { _ = newValue }
+  }
 
 	private lazy var detailAccessoryView: DetailsView? = { DetailsView() }()
 
-	override var detailCalloutAccessoryView: UIView? { get { detailAccessoryView } set {} }
+	override var detailCalloutAccessoryView: UIView? {
+    get { detailAccessoryView }
+    set { _ = newValue }
+  }
 
 	override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -125,8 +129,7 @@ class RegionAnnotationView: MKAnnotationView {
 			self.countLabel.text = number?.groupingFormatted
 			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
 			self.countLabel.alpha = 1
-		}
-		else {
+		} else {
 			self.countLabel.alpha = 0
 		}
 

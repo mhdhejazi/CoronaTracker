@@ -11,6 +11,7 @@ import Foundation
 import Disk
 
 public class JHUWebDataService: DataService {
+
 	enum FetchError: Error {
 		case noNewData
 		case invalidData
@@ -20,16 +21,21 @@ public class JHUWebDataService: DataService {
 	private static let reportsFileName = "JHUWebDataService-Reports.json"
 	private static let globalTimeSeriesFileName = "JHUWebDataService-GlobalTimeSeries.json"
 
+  // swiftlint:disable line_length
 	private static var reportsURL: URL { URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=Confirmed%20%3E%200&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Confirmed%20desc%2CCountry_Region%20asc%2CProvince_State%20asc&resultOffset=0&resultRecordCount=500&cacheHint=false&rnd=\(Int.random())")!
 	}
+  // swiftlint:enable line_length
+
+  // swiftlint:disable line_length
 	private static let globalTimeSeriesURL = URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/cases_time_v3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Report_Date_String%20asc&outSR=102100&resultOffset=0&resultRecordCount=2000&cacheHint=true")!
+  // swiftlint:enable line_length
 
 	static let instance = JHUWebDataService()
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		print("Calling API")
 		let request = URLRequest(url: Self.reportsURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
-		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+		_ = URLSession.shared.dataTask(with: request) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data else {
@@ -41,7 +47,7 @@ public class JHUWebDataService: DataService {
 
 			DispatchQueue.global(qos: .default).async {
 				let oldData = try? Disk.retrieve(Self.reportsFileName, from: .caches, as: Data.self)
-				if (oldData == data) {
+				if oldData == data {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
@@ -61,8 +67,7 @@ public class JHUWebDataService: DataService {
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
 			let regions = result.features.map { $0.attributes.region }
 			completion(regions, nil)
-		}
-		catch {
+		} catch {
 			print("Unexpected error: \(error).")
 			completion(nil, error)
 		}
@@ -71,7 +76,7 @@ public class JHUWebDataService: DataService {
 	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		print("Calling API")
 		let request = URLRequest(url: Self.globalTimeSeriesURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
-		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+		_ = URLSession.shared.dataTask(with: request) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data else {
@@ -83,7 +88,7 @@ public class JHUWebDataService: DataService {
 
 			DispatchQueue.global(qos: .default).async {
 				let oldData = try? Disk.retrieve(Self.globalTimeSeriesFileName, from: .caches, as: Data.self)
-				if (oldData == data) {
+				if oldData == data {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
@@ -103,8 +108,7 @@ public class JHUWebDataService: DataService {
 			let result = try decoder.decode(GlobalTimeSeriesCallResult.self, from: data)
 			let region = result.region
 			completion([region], nil)
-		}
-		catch {
+		} catch {
 			print("Unexpected error: \(error).")
 			completion(nil, error)
 		}
@@ -120,26 +124,26 @@ private struct ReportFeature: Decodable {
 }
 
 private struct ReportAttributes: Decodable {
-	let Province_State: String?
-	let Country_Region: String
-	let Last_Update: Int
-	let Lat: Double
-	let Long_: Double
-	let Confirmed: Int?
-	let Deaths: Int?
-	let Recovered: Int?
+	let provinceState: String?
+	let countryRegion: String
+	let lastUpdate: Int
+	let latitude: Double
+	let longitude: Double
+	let confirmed: Int?
+	let deaths: Int?
+	let recovered: Int?
 
 	var region: Region {
-		let location = Coordinate(latitude: Lat, longitude: Long_)
-		let lastUpdate = Date(timeIntervalSince1970: Double(Last_Update) / 1000)
-		let stat = Statistic(confirmedCount: Confirmed ?? 0, recoveredCount: Recovered ?? 0, deathCount: Deaths ?? 0)
-		let report = Report(lastUpdate: lastUpdate, stat: stat)
+		let location = Coordinate(latitude: latitude, longitude: longitude)
+		let lastUpdateMilli = Date(timeIntervalSince1970: Double(lastUpdate) / 1000)
+		let stat = Statistic(confirmedCount: confirmed ?? 0, recoveredCount: recovered ?? 0, deathCount: deaths ?? 0)
+		let report = Report(lastUpdate: lastUpdateMilli, stat: stat)
 
 		var region: Region
-		if let name = Province_State {
-			region = Region(level: .province, name: name, parentName: Country_Region, location: location)
+		if let name = provinceState {
+			region = Region(level: .province, name: name, parentName: countryRegion, location: location)
 		} else {
-			region = Region(level: .country, name: Country_Region, parentName: nil, location: location)
+			region = Region(level: .country, name: countryRegion, parentName: nil, location: location)
 		}
 		region.report = report
 
@@ -151,7 +155,7 @@ private struct GlobalTimeSeriesCallResult: Decodable {
 	let features: [GlobalTimeSeriesFeature]
 
 	var region: Region {
-		let series = [Date : Statistic](
+		let series = [Date: Statistic](
 			uniqueKeysWithValues: zip(
 				features.map({ $0.attributes.date }),
 				features.map({ $0.attributes.stat })
@@ -171,17 +175,20 @@ private struct GlobalTimeSeriesFeature: Decodable {
 }
 
 private struct GlobalTimeSeriesAttributes: Decodable {
-	let Report_Date: Int
-	let Report_Date_String: String
-	let Total_Confirmed: Int?
-	let Total_Recovered: Int?
-	let Delta_Confirmed: Int?
-	let Delta_Recovered: Int?
+
+	let reportDate: Int
+	let reportDateString: String
+	let totalConfirmed: Int?
+	let totalRecovered: Int?
+	let deltaConfirmed: Int?
+	let deltaRecovered: Int?
 
 	var date: Date {
-		Date(timeIntervalSince1970: Double(Report_Date) / 1000)
+		Date(timeIntervalSince1970: Double(reportDate) / 1000)
 	}
+
 	var stat: Statistic {
-		Statistic(confirmedCount: Total_Confirmed ?? 0, recoveredCount: Total_Recovered ?? 0, deathCount: 0)
+		Statistic(confirmedCount: totalConfirmed ?? 0, recoveredCount: totalRecovered ?? 0, deathCount: 0)
 	}
+
 }

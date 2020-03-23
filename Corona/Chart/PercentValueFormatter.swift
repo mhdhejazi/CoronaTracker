@@ -15,14 +15,18 @@ class PercentValueFormatter: DefaultValueFormatter {
 		super.init(formatter: .percentFormatter)
 	}
 
-	override func stringForValue(_ value: Double,
-								 entry: ChartDataEntry,
-								 dataSetIndex: Int,
-								 viewPortHandler: ViewPortHandler?) -> String {
+	override func stringForValue(
+    _ value: Double,
+    entry: ChartDataEntry,
+    dataSetIndex: Int,
+    viewPortHandler: ViewPortHandler?) -> String {
 		if value < 4 {
 			return ""
 		}
-
-		return super.stringForValue(value, entry: entry, dataSetIndex: dataSetIndex, viewPortHandler: viewPortHandler)
+		return super.stringForValue(
+      value,
+      entry: entry,
+      dataSetIndex: dataSetIndex,
+      viewPortHandler: viewPortHandler)
 	}
 }

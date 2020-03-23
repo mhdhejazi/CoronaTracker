@@ -64,4 +64,3 @@ class MenuController: UITableViewController {
 		item.action()
 	}
 }
-
