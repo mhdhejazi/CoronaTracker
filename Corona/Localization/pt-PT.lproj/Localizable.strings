@@ -1,0 +1,29 @@
+/*
+  Localizable.strings
+  Corona
+
+  Created by Mohammad on 3/22/20.
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Confirmados";
+"case.active" = "Ativos";
+"case.recovered" = "Recuperados";
+"case.deaths" = "Mortos";
+"region.world" = "Mundo";
+"chart.topCountries" = "Países mais afetados";
+"chart.logarithmic" = "Escala logaritimica";
+"data.updating" = "Atualizando...";
+"data.updateDate" = "Atualizado:";
+"data.errorTitle" = "Não foi possível atualizar os dados";
+"data.errorMessage" = "Por favor, verifique a sua conexão com a internet.";
+"app.newVersionTitle" = "Nova versão disponível";
+"app.newVersionMessage" = "Por favor atualize de %@";
+"message.cancel" = "Cancelar";
+"message.open" = "Abrir";
+"message.ok" = "OK";
+"message.done" = "Feito";
+"menu.update" = "Atualizar";
+"menu.share" = "Compartilhar";
+"share.current" = "Atualização ao vivo do Coronavírus";
+"share.chartHistory" = "Gráfico de crescimento do Coronavírus";
