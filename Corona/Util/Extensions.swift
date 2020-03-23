@@ -10,6 +10,19 @@ import Foundation
 
 extension Locale {
 	public static let posix = Locale(identifier: "en_US_POSIX")
+
+	static func isoCode(from englishCountryName: String) -> String? {
+		Locale.isoRegionCodes.first { code in
+			code == englishCountryName || posix.localizedString(forRegionCode: code) == englishCountryName
+		}
+	}
+
+	static func translateCountryName(_ englishCountryName: String) -> String? {
+		guard let code = isoCode(from: englishCountryName) else { return englishCountryName }
+		return Locale.current.localizedString(forRegionCode: code)
+	}
+
+	var isEnglish: Bool { languageCode == "en" }
 }
 
 extension Calendar {

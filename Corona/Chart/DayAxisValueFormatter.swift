@@ -20,7 +20,7 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
 	public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
 		let date = Date.fromReferenceDays(days: Int(value))
 		let formatter = DateFormatter()
-		formatter.locale = .posix
+		formatter.timeZone = .utc
 
 		if let chartView = chartView, chartView.visibleXRange > 30 * 6 {
 			formatter.dateFormat = "MMM yyyy"

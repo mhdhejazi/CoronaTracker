@@ -77,7 +77,7 @@ class RegionController: UITableViewController {
 		}
 
 		UIView.transition(with: stackViewStats, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelTitle.text = self.region?.longName ?? "-"
+			self.labelTitle.text = self.region?.localizedLongName ?? "-"
 
 			self.labelConfirmed.text = self.region?.report?.stat.confirmedCountString ?? "-"
 			self.labelRecovered.text = self.region?.report?.stat.recoveredCountString ?? "-"

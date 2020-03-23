@@ -108,7 +108,7 @@ class RegionContainerController: UIViewController {
 
 	func update(region: Region?) {
 		viewHeader.transition(duration: 0.25) {
-			self.labelTitle.text = region?.longName ?? "N/A"
+			self.labelTitle.text = region?.localizedLongName ?? "N/A"
 		}
 
 		updateTime()
@@ -169,7 +169,7 @@ extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
 		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
 		if !query.isEmpty {
 			regions = regions.filter({ region in
-				region.longName.lowercased().contains(query)
+				region.localizedLongName.lowercased().contains(query)
 			})
 		}
 

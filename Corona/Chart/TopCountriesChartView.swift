@@ -29,8 +29,12 @@ class TopCountriesChartView: BarChartView {
 			guard let entry = self.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
 				let region = entry.data as? Region else { return value.description }
 
-			return region.name.replacingOccurrences(of: " ", with: "\n")
+			return region.localizedName.replacingOccurrences(of: " ", with: "\n")
 		})
+		/// Rotate labels in other languages
+		if !Locale.current.isEnglish {
+			xAxis.labelRotationAngle = 45
+		}
 
 //		leftAxis.drawGridLinesEnabled = false
 		leftAxis.gridColor = .lightGray

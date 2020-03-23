@@ -72,6 +72,20 @@ extension Region {
 	public var isProvince: Bool { level == .province }
 	public var longName: String { isProvince ? "\(name), \(parentName ?? "-")" : name }
 
+	public var localizedName: String {
+		if name == Region.world.name {
+			return L10n.Region.world
+		}
+
+		return Locale.translateCountryName(name) ?? name
+	}
+	public var localizedLongName: String {
+		guard isProvince else { return localizedName }
+
+		let localizedParentName = Locale.translateCountryName(parentName ?? "-") ?? "-"
+		return "\(name), \(localizedParentName)"
+	}
+
 	public func find(region: Region) -> Region? {
 		if region == self {
 			return self
@@ -82,7 +96,7 @@ extension Region {
 }
 
 extension Region {
-	public static var world: Region { Region(level: .world, name: L10n.Region.world, parentName: nil, location: .zero) }
+	public static var world: Region { Region(level: .world, name: "Worldwide", parentName: nil, location: .zero) }
 
 	public static func join(subRegions: [Region]) -> Region? {
 		guard let firstRegion = subRegions.first else { return nil }

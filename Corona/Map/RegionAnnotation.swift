@@ -18,6 +18,6 @@ class RegionAnnotation: NSObject, MKAnnotation {
 		self.region = region
 		self.mode = mode
 		self.coordinate = region.location.clLocation
-		self.title = region.longName
+		self.title = region.localizedLongName
 	}
 }

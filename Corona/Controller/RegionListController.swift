@@ -50,7 +50,7 @@ class RegionListController: UITableViewController {
 class RegionCell: UITableViewCell {
 	var region: Region? {
 		didSet {
-			labelName.text = region?.longName
+			labelName.text = region?.localizedLongName
 			labelStats.text = region?.report?.stat.confirmedCountString
 		}
 	}
