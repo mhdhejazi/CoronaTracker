@@ -25,4 +25,20 @@ extension TimeSeries {
 
 		return TimeSeries(series: series)
 	}
+
+	public func changes() -> [Date : Change] {
+		var result = [Date : Change]()
+		let dates = series.keys.sorted()
+		for i in dates.indices {
+			let date = dates[i]
+			if i == 0 {
+				result[date] = Change(currentStat: series[date]!, lastStat: .zero)
+				continue
+			}
+			let previousDate = dates[i - 1]
+			result[date] = Change(currentStat: series[date]!, lastStat: series[previousDate]!)
+		}
+
+		return result
+	}
 }

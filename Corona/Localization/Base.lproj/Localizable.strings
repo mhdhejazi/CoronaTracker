@@ -13,6 +13,7 @@
 "region.world" = "Worldwide";
 "chart.topCountries" = "Most Affected Countries";
 "chart.logarithmic" = "Logarithmic Scale";
+"chart.delta" = "Daily New Cases";
 "data.updating" = "Updating...";
 "data.updateDate" = "Last updated:";
 "data.errorTitle" = "Can't update the data";

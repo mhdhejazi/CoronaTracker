@@ -50,6 +50,8 @@ extension Statistic: CustomStringConvertible {
 }
 
 extension Statistic {
+	public static let zero = Statistic(confirmedCount: 0, recoveredCount: 0, deathCount: 0)
+
 	public static func sum(subData: [Statistic]) -> Statistic {
 		Statistic(confirmedCount: subData.reduce(0) { $0 + $1.confirmedCount },
 				  recoveredCount: subData.reduce(0) { $0 + $1.recoveredCount },

@@ -64,6 +64,7 @@
 		117C84EB2428119600688459 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84E72428119600688459 /* Strings.swift */; };
 		117C84F52428D3AA00688459 /* ISO-Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84F42428D3AA00688459 /* ISO-Country.swift */; };
 		117C84F62428D3AA00688459 /* ISO-Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C84F42428D3AA00688459 /* ISO-Country.swift */; };
+		1186BC5D24291D4000097E9E /* DeltaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC5C24291D4000097E9E /* DeltaChartView.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
@@ -144,6 +145,7 @@
 		117C84EC2428907F00688459 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		117C84F42428D3AA00688459 /* ISO-Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ISO-Country.swift"; sourceTree = "<group>"; };
 		117C84FC24290AE100688459 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1186BC5C24291D4000097E9E /* DeltaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaChartView.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */,
 				11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */,
 				11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */,
+				1186BC5C24291D4000097E9E /* DeltaChartView.swift */,
 				1162D153240F934000647002 /* BalloonMarker.swift */,
 				1162D152240F934000647002 /* SimpleMarkerView.swift */,
 				11672A1B24114922000B2466 /* PercentValueFormatter.swift */,
@@ -531,6 +534,7 @@
 				1124F64C24238C600002641D /* Menu.swift in Sources */,
 				115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
+				1186BC5D24291D4000097E9E /* DeltaChartView.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
 				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,
 				11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */,

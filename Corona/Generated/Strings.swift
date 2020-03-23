@@ -33,6 +33,8 @@ internal enum L10n {
   }
 
   internal enum Chart {
+    /// Daily New Cases
+    internal static let delta = L10n.tr("Localizable", "chart.delta")
     /// Logarithmic Scale
     internal static let logarithmic = L10n.tr("Localizable", "chart.logarithmic")
     /// Most Affected Countries

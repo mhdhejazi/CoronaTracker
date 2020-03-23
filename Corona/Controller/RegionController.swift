@@ -37,6 +37,7 @@ class RegionController: UITableViewController {
 	@IBOutlet var labelNewRecovered: UILabel!
 	@IBOutlet var labelNewDeaths: UILabel!
 	@IBOutlet var chartViewCurrent: CurrentStateChartView!
+	@IBOutlet var chartViewDelta: DeltaChartView!
 	@IBOutlet var chartViewHistory: HistoryChartView!
 	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
 	@IBOutlet var labelUpdated: UILabel!
@@ -91,6 +92,7 @@ class RegionController: UITableViewController {
 		}, completion: nil)
 
 		chartViewCurrent.update(report: region?.report)
+		chartViewDelta.update(series: region?.timeSeries)
 		chartViewHistory.update(series: region?.timeSeries)
 		chartViewTopCountries.update()
 
