@@ -139,6 +139,7 @@
 		117C84E42427F54C00688459 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		117C84E62428119600688459 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		117C84E72428119600688459 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		117C84EC2428907F00688459 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -439,6 +440,7 @@
 				sv,
 				"pt-BR",
 				"pt-PT",
+				it,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -583,6 +585,7 @@
 				117C84E42427F54C00688459 /* sv */,
 				48C8B39C2428307D00E182DA /* pt-BR */,
 				48207FE3242833F900BC84B4 /* pt-PT */,
+				117C84EC2428907F00688459 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
