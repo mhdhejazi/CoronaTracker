@@ -143,6 +143,7 @@
 		117C84E72428119600688459 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		117C84EC2428907F00688459 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		117C84F42428D3AA00688459 /* ISO-Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ISO-Country.swift"; sourceTree = "<group>"; };
+		117C84FC24290AE100688459 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -154,8 +155,6 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED327241AC7AA004C4EA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48207FE3242833F900BC84B4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		48C8B39C2428307D00E182DA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,9 +449,8 @@
 				Base,
 				de,
 				sv,
-				"pt-BR",
-				"pt-PT",
 				it,
+				pt,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -597,9 +595,8 @@
 				117C84DF2427E43F00688459 /* Base */,
 				117C84E32427F52D00688459 /* de */,
 				117C84E42427F54C00688459 /* sv */,
-				48C8B39C2428307D00E182DA /* pt-BR */,
-				48207FE3242833F900BC84B4 /* pt-PT */,
 				117C84EC2428907F00688459 /* it */,
+				117C84FC24290AE100688459 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
