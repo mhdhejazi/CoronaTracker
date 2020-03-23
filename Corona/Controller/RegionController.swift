@@ -63,7 +63,7 @@ class RegionController: UITableViewController {
 		labelRecoveredTitle.text = L10n.Case.recovered
 		labelDeathsTitle.text = L10n.Case.deaths
 
-        labelDataProvider.text = L10n.Data.getDataProvider(name: L10n.Data.dataProviderJHU)
+        labelDataProvider.text = L10n.Data.providerFormat(L10n.Data.providerJHU)
 
 		update()
 	}
