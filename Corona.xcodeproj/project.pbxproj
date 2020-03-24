@@ -156,9 +156,6 @@
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48207FE3242833F900BC84B4 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		48C8B39C2428307D00E182DA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		EBD636ED2429964600AF6DC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		EBD636EE2429964600AF6DC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainInterface.strings; sourceTree = "<group>"; };
-		EBD636EF2429964700AF6DC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,7 +453,6 @@
 				"pt-BR",
 				"pt-PT",
 				it,
-				fr,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -583,7 +579,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				1162D132240D05F600647002 /* Base */,
-				EBD636ED2429964600AF6DC1 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -605,7 +600,6 @@
 				48C8B39C2428307D00E182DA /* pt-BR */,
 				48207FE3242833F900BC84B4 /* pt-PT */,
 				117C84EC2428907F00688459 /* it */,
-				EBD636EF2429964700AF6DC1 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -614,7 +608,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				344ED327241AC7AA004C4EA8 /* Base */,
-				EBD636EE2429964600AF6DC1 /* fr */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
