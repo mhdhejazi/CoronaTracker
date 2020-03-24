@@ -62,7 +62,7 @@ class DeltaChartView: BarChartView {
 		}
 
 		let changes = series.changes()
-		let dates = changes.keys.sorted()
+		let dates = changes.keys.sorted().drop { changes[$0]?.isZero == true }
 
 		var entries = [BarChartDataEntry]()
 		for date in dates {

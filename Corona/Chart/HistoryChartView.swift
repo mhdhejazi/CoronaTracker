@@ -57,7 +57,7 @@ class HistoryChartView: LineChartView {
 			return
 		}
 
-		let dates = series.series.keys.sorted()
+		let dates = series.series.keys.sorted().drop { series.series[$0]?.isZero == true }
 		let confirmedEntries = dates.map {
 			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.confirmedCount ?? 0))
 		}

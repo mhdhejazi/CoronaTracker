@@ -12,6 +12,9 @@ public struct Statistic: Codable {
 	public let confirmedCount: Int
 	public let recoveredCount: Int
 	public let deathCount: Int
+}
+
+extension Statistic {
 	public var activeCount: Int { confirmedCount - recoveredCount - deathCount }
 
 	public var recoveredPercent: Double { confirmedCount == 0 ? 0 : 100.0 * Double(recoveredCount) / Double(confirmedCount) }
@@ -22,6 +25,8 @@ public struct Statistic: Codable {
 	public var recoveredCountString: String { recoveredCount.groupingFormatted }
 	public var deathCountString: String { deathCount.groupingFormatted }
 	public var activeCountString: String { activeCount.groupingFormatted }
+
+	public var isZero: Bool { confirmedCount == 0 && recoveredCount == 0 && deathCount == 0 }
 }
 
 extension Statistic {

@@ -43,6 +43,8 @@ extension Change {
 	public var confirmedGrowthString: String { "↑\(confirmedGrowthPercent.kmFormatted)%" }
 	public var recoveredGrowthString: String { "↑\(recoveredGrowthPercent.kmFormatted)%" }
 	public var deathsGrowthString: String { "↑\(deathsGrowthPercent.kmFormatted)%" }
+
+	public var isZero: Bool { newConfirmed == 0 && newRecovered == 0 && newDeaths == 0 }
 }
 
 extension Change {
