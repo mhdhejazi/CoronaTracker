@@ -6,24 +6,24 @@
   Copyright © 2020 Samabox. All rights reserved.
 */
 
-"case.confirmed" = "Confirmed";
-"case.active" = "Active";
-"case.recovered" = "Recovered";
-"case.deaths" = "Deaths";
-"region.world" = "Worldwide";
-"chart.topCountries" = "Most Affected Countries";
-"chart.logarithmic" = "Logarithmic Scale";
-"data.updating" = "Updating...";
-"data.updateDate" = "Last updated:";
-"data.errorTitle" = "Can't update the data";
-"data.errorMessage" = "Please make sure you're connected to the internet.";
-"app.newVersionTitle" = "New Version Available";
-"app.newVersionMessage" = "Please update from %@";
-"message.cancel" = "Cancel";
-"message.open" = "Open";
+"case.confirmed" = "Confermati";
+"case.active" = "Attivi";
+"case.recovered" = "Ricoverati";
+"case.deaths" = "Deceduti";
+"region.world" = "Tutto il mondo";
+"chart.topCountries" = "Nazioni Maggiormente Colpite";
+"chart.logarithmic" = "Scala Logaritmica";
+"data.updating" = "Aggiornamento...";
+"data.updateDate" = "Ultimo aggiornamento:";
+"data.errorTitle" = "Impossibile aggiornare i dati";
+"data.errorMessage" = "Controlla la connessione internet.";
+"app.newVersionTitle" = "Nuova Versione Disponibile";
+"app.newVersionMessage" = "Aggiorna dalla versione %@";
+"message.cancel" = "Cancella";
+"message.open" = "Apri";
 "message.ok" = "OK";
-"message.done" = "Done";
-"menu.update" = "Update";
-"menu.share" = "Share";
-"share.current" = "Coronavirus live update";
-"share.chartHistory" = "Coronavirus growth chart";
+"message.done" = "Fatto";
+"menu.update" = "Aggiorna";
+"menu.share" = "Condividi";
+"share.current" = "aggiornamento Coronavirus in tempo reale";
+"share.chartHistory" = "grafico di crescita Coronavirus";
