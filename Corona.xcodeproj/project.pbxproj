@@ -66,6 +66,7 @@
 		1186BC642429FCF800097E9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC622429FCF800097E9E /* LaunchScreen.storyboard */; };
 		1186BC652429FCF800097E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC632429FCF800097E9E /* Main.storyboard */; };
 		1186BC672429FD7200097E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC662429FD7200097E9E /* Main.storyboard */; };
+		1186BC69242A5C9E00097E9E /* EstimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC68242A5C9E00097E9E /* EstimationController.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
@@ -147,6 +148,7 @@
 		1186BC622429FCF800097E9E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1186BC632429FCF800097E9E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1186BC662429FD7200097E9E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1186BC68242A5C9E00097E9E /* EstimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimationController.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				116EC0A72410DF48006E4559 /* RegionContainerController.swift */,
 				1162D16D240FCDAB00647002 /* RegionController.swift */,
 				1195F19D241D2E7900FE718F /* RegionListController.swift */,
+				1186BC68242A5C9E00097E9E /* EstimationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				1124F64A242386A30002641D /* MenuSegue.swift in Sources */,
 				1162D16E240FCDAB00647002 /* RegionController.swift in Sources */,
 				3447B4BB241E7631003914AF /* RegionListController.swift in Sources */,
+				1186BC69242A5C9E00097E9E /* EstimationController.swift in Sources */,
 				11672A1C24114922000B2466 /* PercentValueFormatter.swift in Sources */,
 				115186A3241FAFCA00EBC83E /* Region.swift in Sources */,
 				115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */,

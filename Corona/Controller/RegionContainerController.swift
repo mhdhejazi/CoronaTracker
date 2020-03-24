@@ -149,6 +149,16 @@ extension RegionContainerController {
 				MapController.instance.showRegionScreen()
 				self.regionController.setEditing(true, animated: true)
 			}),
+			MenuItem(title: "Experimental", image: Asset.lab.image, action: {
+				if let estimationController = self.storyboard?
+					.instantiateViewController(withIdentifier: "EstimationController") as? EstimationController {
+
+					estimationController.region = self.regionController.region
+					let navigationController = UINavigationController(rootViewController: estimationController)
+					self.present(navigationController, animated: true)
+					return
+				}
+			}),
 		])
 	}
 
