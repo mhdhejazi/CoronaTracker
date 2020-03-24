@@ -1,0 +1,72 @@
+
+/* Class = "UILabel"; text = "10,253\n5,452\n1,741"; ObjectID = "0tA-gx-oZv"; */
+"0tA-gx-oZv.text" = "10,253\n5,452\n1,741";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "2P9-9f-x4I"; */
+"2P9-9f-x4I.text" = "Pays";
+
+/* Class = "UILabel"; text = "50,788"; ObjectID = "59t-UT-5AT"; */
+"59t-UT-5AT.text" = "50,788";
+
+/* Class = "UILabel"; text = "China"; ObjectID = "9mw-6g-4tZ"; */
+"9mw-6g-4tZ.text" = "Chine";
+
+/* Class = "UILabel"; text = "Recovered"; ObjectID = "9tZ-vG-Acf"; */
+"9tZ-vG-Acf.text" = "Réanimés";
+
+/* Class = "UILabel"; text = "+1,458"; ObjectID = "B6U-yh-xxH"; */
+"B6U-yh-xxH.text" = "+1,458";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "KiP-gh-bP4"; */
+"KiP-gh-bP4.text" = "Pays";
+
+/* Class = "UILabel"; text = "Data: The Center for Systems Science and Engineering at Johns Hopkins"; ObjectID = "Mdl-LP-xBX"; */
+"Mdl-LP-xBX.text" = "Données : Centre pour la science et l'ingénierie des systèmes de Johns-Hopkins";
+
+/* Class = "UILabel"; text = "Deaths"; ObjectID = "PBC-3D-UlQ"; */
+"PBC-3D-UlQ.text" = "Morts";
+
+/* Class = "UILabel"; text = "Last updated: 3 hours ago"; ObjectID = "Q0A-p0-mUG"; */
+"Q0A-p0-mUG.text" = "Dernière mise à jour : il y a 3 heures";
+
+/* Class = "UILabel"; text = "100,252"; ObjectID = "Qx6-QW-GSL"; */
+"Qx6-QW-GSL.text" = "100,252";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "ZLn-gr-tSd"; */
+"ZLn-gr-tSd.text" = "Pays";
+
+/* Class = "UILabel"; text = "Confirmed"; ObjectID = "aPD-ho-0hr"; */
+"aPD-ho-0hr.text" = "Confirmés";
+
+/* Class = "UILabel"; text = "Confirmed"; ObjectID = "dgW-q4-72A"; */
+"dgW-q4-72A.text" = "Confirmés";
+
+/* Class = "UILabel"; text = "Recovered"; ObjectID = "h8P-dp-aBk"; */
+"h8P-dp-aBk.text" = "Réanimés";
+
+/* Class = "UILabel"; text = "Confirmed\nRecovered\nDeaths"; ObjectID = "kut-2h-T9c"; */
+"kut-2h-T9c.text" = "Confirmés\nRéanimés\nMorts";
+
+/* Class = "UILabel"; text = "+521"; ObjectID = "lrq-2S-mlv"; */
+"lrq-2S-mlv.text" = "+521";
+
+/* Class = "UIButton"; normalTitle = "UPDATE"; ObjectID = "nPj-BL-8DR"; */
+"nPj-BL-8DR.normalTitle" = "UPDATE";
+
+/* Class = "UILabel"; text = "Deaths"; ObjectID = "px0-7U-ePK"; */
+"px0-7U-ePK.text" = "Morts";
+
+/* Class = "UILabel"; text = "China"; ObjectID = "ttR-vI-ja0"; */
+"ttR-vI-ja0.text" = "Chine";
+
+/* Class = "UILabel"; text = "+5,243"; ObjectID = "x2M-RC-4I7"; */
+"x2M-RC-4I7.text" = "+5,243";
+
+/* Class = "UILabel"; text = "20 min. ago"; ObjectID = "x3z-gb-5Us"; */
+"x3z-gb-5Us.text" = "il y a 20 min.";
+
+/* Class = "UILabel"; text = "10,253"; ObjectID = "xul-Y2-u6z"; */
+"xul-Y2-u6z.text" = "10,253";
+
+/* Class = "UILabel"; text = "1,051"; ObjectID = "ywS-vK-Jre"; */
+"ywS-vK-Jre.text" = "1,051";

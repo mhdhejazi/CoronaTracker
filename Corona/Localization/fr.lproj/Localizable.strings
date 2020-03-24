@@ -1,0 +1,30 @@
+/*
+  Localizable.strings
+  Corona
+
+  Created by Mohammad on 3/22/20.
+  Translation by Clément Knoderer - github.com/Risengan
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Confirmés";
+"case.active" = "Hospitalisés";
+"case.recovered" = "Réanimés";
+"case.deaths" = "Morts";
+"region.world" = "Monde";
+"chart.topCountries" = "Pays les plus touchés";
+"chart.logarithmic" = "Échelle logarithmique";
+"data.updating" = "Mise à jour...";
+"data.updateDate" = "Dernière mise à jour :";
+"data.errorTitle" = "Impossible de mettre à jour les données";
+"data.errorMessage" = "Veuillez vous assurer que vous êtes connecté à Internet.";
+"app.newVersionTitle" = "Nouvelle version disponible";
+"app.newVersionMessage" = "Veuillez mettre à jour à partir de %@";
+"message.cancel" = "Annuler";
+"message.open" = "Ouvrir";
+"message.ok" = "OK";
+"message.done" = "OK";
+"menu.update" = "Actualiser";
+"menu.share" = "Partager";
+"share.current" = "Mise à jour en direct du coronavirus";
+"share.chartHistory" = "Courbe de croissance du coronavirus";
