@@ -147,6 +147,7 @@
 		1186BC622429FCF800097E9E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1186BC632429FCF800097E9E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1186BC662429FD7200097E9E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1186BC6A242A743000097E9E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -456,6 +457,7 @@
 				it,
 				pt,
 				ru,
+				fr,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -588,6 +590,7 @@
 				117C84EC2428907F00688459 /* it */,
 				117C84FC24290AE100688459 /* pt */,
 				18CAD032242A5E1200CA1CEE /* ru */,
+				1186BC6A242A743000097E9E /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
