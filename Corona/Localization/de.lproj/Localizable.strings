@@ -14,6 +14,7 @@
 "region.world" = "Weltweit";
 "chart.topCountries" = "Am meisten betroffene Länder";
 "chart.logarithmic" = "Logarithmische Darstellung";
+"chart.delta" = "Neue Fälle pro Tag";
 "data.updating" = "Aktualisieren...";
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
