@@ -19,6 +19,7 @@
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
 "data.errorMessage" = "Bitte Internetverbindung überprüfen.";
+"data.source" = "Quelle: %@";
 "app.newVersionTitle" = "Neue Version verfügbar";
 "app.newVersionMessage" = "Bitte von %@ aktualisieren";
 "message.cancel" = "Abbrechen";
