@@ -47,12 +47,17 @@ class DeltaChartView: BarChartView {
 	private func initializeLegend(_ legend: Legend) {
 		legend.textColor = SystemColor.secondaryLabel
 		legend.font = .systemFont(ofSize: 12, weight: .regular)
-		legend.form = .none
-		legend.formSize = 0
+		legend.form = .circle
+		legend.formSize = 12
 		legend.horizontalAlignment = .center
-		legend.xEntrySpace = 0
-		legend.formToTextSpace = 0
-		legend.stackSpace = 0
+		legend.setCustom(entries: [
+			LegendEntry(label: L10n.Chart.delta, form: .none, formSize: 12,
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
+			LegendEntry(label: "↑", form: .circle, formSize: 12,
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemOrange),
+			LegendEntry(label: "↓", form: .circle, formSize: 12,
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
+		])
 	}
 
 	func update(series: TimeSeries?, animated: Bool) {
@@ -71,9 +76,22 @@ class DeltaChartView: BarChartView {
 			entries.append(entry)
 		}
 
+		var colors = [UIColor]()
+		for i in entries.indices.reversed() {
+			var color = UIColor.systemOrange
+			if i > 0 {
+				let currentEntry = entries[i]
+				let previousEntry = entries[i - 1]
+				if currentEntry.y < previousEntry.y {
+					color = .systemBlue
+				}
+			}
+			colors.append(color)
+		}
+
 		let label = L10n.Chart.delta
 		let dataSet = BarChartDataSet(entries: entries, label: label)
-		dataSet.colors = [.systemOrange]
+		dataSet.colors = colors.reversed()
 
 		dataSet.drawValuesEnabled = false
 

@@ -35,6 +35,7 @@ extension Calendar {
 	public static let posix: Calendar = {
 		var calendar = Calendar(identifier: .gregorian)
 		calendar.locale = .posix
+		calendar.timeZone = .utc
 		return calendar
 	}()
 }
