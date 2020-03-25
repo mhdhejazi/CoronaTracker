@@ -66,6 +66,7 @@
 		1186BC652429FCF800097E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC632429FCF800097E9E /* Main.storyboard */; };
 		1186BC672429FD7200097E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC662429FD7200097E9E /* Main.storyboard */; };
 		1186BC6E242B608200097E9E /* RegionDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC6D242B608200097E9E /* RegionDataController.swift */; };
+		1186BC72242B64FE00097E9E /* RegionDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC71242B64FE00097E9E /* RegionDataCell.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
@@ -148,6 +149,7 @@
 		1186BC662429FD7200097E9E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1186BC6A242A743000097E9E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1186BC6D242B608200097E9E /* RegionDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionDataController.swift; sourceTree = "<group>"; };
+		1186BC71242B64FE00097E9E /* RegionDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDataCell.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				1162D12F240D05F600647002 /* MapController.swift */,
 				116EC0A72410DF48006E4559 /* RegionPanelController.swift */,
 				1186BC6D242B608200097E9E /* RegionDataController.swift */,
+				1186BC71242B64FE00097E9E /* RegionDataCell.swift */,
 				1195F19D241D2E7900FE718F /* RegionListController.swift */,
 			);
 			path = Controller;
@@ -514,6 +517,7 @@
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
 				117C84E82428119600688459 /* Assets.swift in Sources */,
+				1186BC72242B64FE00097E9E /* RegionDataCell.swift in Sources */,
 				1162D155240F934000647002 /* SimpleMarkerView.swift in Sources */,
 				117C84EA2428119600688459 /* Strings.swift in Sources */,
 				1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */,
