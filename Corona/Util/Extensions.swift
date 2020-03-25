@@ -111,7 +111,7 @@ extension TimeZone {
 
 extension Double {
 	public var kmFormatted: String {
-		if self >= 10_000, self < 1_000_000 {
+		if self >= 1_000, self < 1_000_000 {
 			return String(format: "%.1fk", locale: .posix, self / 1_000).replacingOccurrences(of: ".0", with: "")
 		}
 

@@ -9,8 +9,8 @@
 import UIKit
 
 class RegionDataController: UITableViewController {
-	private typealias Cell = (type: RegionDataCell.Type, height: CGFloat)
-	private let cells: [Cell] = [
+	private typealias Row = (type: RegionDataCell.Type, height: CGFloat)
+	private let rows: [Row] = [
 		(type: StatsCell.self, height: 150),
 		(type: CurrentChartCell.self, height: 250),
 		(type: DeltaChartCell.self, height: 250),
@@ -95,11 +95,11 @@ class RegionDataController: UITableViewController {
 
 extension RegionDataController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		cells.count
+		rows.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cellType = cells[indexPath.row].type
+		let cellType = rows[indexPath.row].type
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath)
 		if let cell = cell as? RegionDataCell {
 			cell.region = region
@@ -112,7 +112,7 @@ extension RegionDataController {
 	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		cells[indexPath.row].height
+		rows[indexPath.row].height
 	}
 
 	override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {

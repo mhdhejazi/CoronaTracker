@@ -309,8 +309,8 @@ extension MapController: FloatingPanelControllerDelegate {
 		if currentPosition == .full, regionPanelController.isSearching {
 			// Reset to region container's default mode then hide the keyboard
 			self.regionPanelController.isSearching = false
-        }
-    }
+		}
+	}
 }
 
 class PanelLayout: FloatingPanelLayout {

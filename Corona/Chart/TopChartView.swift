@@ -1,5 +1,5 @@
 //
-//  CurrentStateChart.swift
+//  TopChartView.swift
 //  Corona Tracker
 //
 //  Created by Mohammad on 3/7/20.
@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class TopCountriesChartView: BarChartView {
+class TopChartView: BarChartView {
 	var isLogarithmic = false {
 		didSet {
 			self.clear()
@@ -116,7 +116,7 @@ class TopCountriesChartView: BarChartView {
 		data = BarChartData(dataSet: dataSet)
 
 		if animated {
-			animate(yAxisDuration: 2)
+			animate(yAxisDuration: 2, easingOption: .easeOutCubic)
 		}
 	}
 }

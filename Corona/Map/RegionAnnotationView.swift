@@ -90,7 +90,7 @@ class RegionAnnotationView: MKAnnotationView {
 			}
 
 			configure()
-            
+			
 			/// Ensure that the report text is set each time the annotation is updated
 			detailAccessoryView?.detailsLabel?.attributedText = detailsString
 		}

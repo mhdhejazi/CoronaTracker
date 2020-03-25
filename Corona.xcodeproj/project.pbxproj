@@ -69,9 +69,9 @@
 		1186BC72242B64FE00097E9E /* RegionDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC71242B64FE00097E9E /* RegionDataCell.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
-		11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */; };
+		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
-		11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */; };
+		11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopChartView.swift */; };
 		3447B4BB241E7631003914AF /* RegionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195F19D241D2E7900FE718F /* RegionListController.swift */; };
 		3447B4BD241E7790003914AF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3447B4BC241E7790003914AF /* App.swift */; };
 		344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */; };
@@ -152,9 +152,9 @@
 		1186BC71242B64FE00097E9E /* RegionDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDataCell.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
-		11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateChartView.swift; sourceTree = "<group>"; };
+		11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
-		11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCountriesChartView.swift; sourceTree = "<group>"; };
+		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
 		18CAD032242A5E1200CA1CEE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3447B4BC241E7790003914AF /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		344ED31F241AC7AA004C4EA8 /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,12 +218,12 @@
 		1151868F241FAECB00EBC83E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				11518694241FAECB00EBC83E /* Region.swift */,
 				11518690241FAECB00EBC83E /* Report.swift */,
 				11518691241FAECB00EBC83E /* TimeSeries.swift */,
 				11518692241FAECB00EBC83E /* Coordinate.swift */,
 				11518693241FAECB00EBC83E /* Statistic.swift */,
 				115186BE242019EE00EBC83E /* Change.swift */,
-				11518694241FAECB00EBC83E /* Region.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,10 +283,10 @@
 		1162D151240F934000647002 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				11EB2C9C2413F7E9001769B2 /* CurrentStateChartView.swift */,
-				11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */,
-				11EB2CA0241400EF001769B2 /* TopCountriesChartView.swift */,
+				11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */,
 				1186BC5C24291D4000097E9E /* DeltaChartView.swift */,
+				11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */,
+				11EB2CA0241400EF001769B2 /* TopChartView.swift */,
 				1162D153240F934000647002 /* BalloonMarker.swift */,
 				1162D152240F934000647002 /* SimpleMarkerView.swift */,
 				11672A1B24114922000B2466 /* PercentValueFormatter.swift */,
@@ -528,7 +528,7 @@
 				1114CFC82423F8CC00B1CF85 /* ImageItemSource.swift in Sources */,
 				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,
 				1114CFC92423F8CC00B1CF85 /* TextItemSource.swift in Sources */,
-				11EB2CA1241400EF001769B2 /* TopCountriesChartView.swift in Sources */,
+				11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */,
 				3447B4BD241E7790003914AF /* App.swift in Sources */,
 				115186C024203D5100EBC83E /* Change.swift in Sources */,
 				1186BC6E242B608200097E9E /* RegionDataController.swift in Sources */,
@@ -545,7 +545,7 @@
 				1186BC5D24291D4000097E9E /* DeltaChartView.swift in Sources */,
 				1162D12E240D05F600647002 /* SceneDelegate.swift in Sources */,
 				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,
-				11EB2C9D2413F7E9001769B2 /* CurrentStateChartView.swift in Sources */,
+				11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

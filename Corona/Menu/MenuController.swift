@@ -23,8 +23,8 @@ class MenuController: UITableViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		tableView.isScrollEnabled = false
 		tableView.showsVerticalScrollIndicator = false
@@ -36,7 +36,7 @@ class MenuController: UITableViewController {
 		tableView.separatorEffect = UIBlurEffect()
 		preferredContentSize = CGSize(width: width,
 									  height: tableView.rowHeight * CGFloat(items.count) - 1)
-    }
+	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		items.count

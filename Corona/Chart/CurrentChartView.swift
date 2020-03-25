@@ -1,5 +1,5 @@
 //
-//  CurrentStateChart.swift
+//  CurrentChartView.swift
 //  Corona Tracker
 //
 //  Created by Mohammad on 3/7/20.
@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class CurrentStateChartView: PieChartView {
+class CurrentChartView: PieChartView {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 

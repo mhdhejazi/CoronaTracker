@@ -194,47 +194,47 @@ class StatsCell: RegionDataCell {
 }
 
 class CurrentChartCell: RegionDataCell {
-	@IBOutlet var chartViewCurrent: CurrentStateChartView!
+	@IBOutlet var chartView: CurrentChartView!
 
 	override var shareable: Shareable? { .chartCurrent }
 
 	override func update(animated: Bool) {
-		chartViewCurrent.update(report: region?.report, animated: animated)
+		chartView.update(report: region?.report, animated: animated)
 	}
 }
 
 class DeltaChartCell: RegionDataCell {
-	@IBOutlet var chartViewDelta: DeltaChartView!
+	@IBOutlet var chartView: DeltaChartView!
 
 	override var shareable: Shareable? { .chartDelta }
 
 	override func update(animated: Bool) {
-		chartViewDelta.update(series: region?.timeSeries, animated: animated)
+		chartView.update(series: region?.timeSeries, animated: animated)
 	}
 }
 
 class HistoryChartCell: RegionDataCell {
-	@IBOutlet var chartViewHistory: HistoryChartView!
+	@IBOutlet var chartView: HistoryChartView!
 
 	override var shareable: Shareable? { .chartHistory }
 
 	override func update(animated: Bool) {
-		chartViewHistory.update(series: region?.timeSeries, animated: animated)
+		chartView.update(series: region?.timeSeries, animated: animated)
 	}
 }
 
 class TopChartCell: RegionDataCell {
-	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
+	@IBOutlet var chartView: TopChartView!
 
 	override var shareable: Shareable? { .chartTop }
 
 	override func update(animated: Bool) {
-		chartViewTopCountries.update(animated: animated)
+		chartView.update(animated: animated)
 	}
 
 	@IBAction func buttonLogarithmicTapped(_ sender: Any) {
-		UIView.transition(with: chartViewTopCountries, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.chartViewTopCountries.isLogarithmic = !self.chartViewTopCountries.isLogarithmic
+		UIView.transition(with: chartView, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+			self.chartView.isLogarithmic = !self.chartView.isLogarithmic
 		}, completion: nil)
 	}
 }
