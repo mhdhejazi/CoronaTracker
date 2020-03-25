@@ -1,5 +1,5 @@
 //
-//  RegionContainerController.swift
+//  RegionPanelController.swift
 //  Corona
 //
 //  Created by Mohammad on 3/5/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegionContainerController: UIViewController {
+class RegionPanelController: UIViewController {
 	private lazy var buttonDone: UIButton = {
 		let button = UIButton(type: .system)
 		button.titleLabel?.font = .boldSystemFont(ofSize: 17)
@@ -22,7 +22,7 @@ class RegionContainerController: UIViewController {
 	}()
 
 	var regionListController: RegionListController!
-	var regionController: RegionController!
+	var regionDataController: RegionDataController!
 	var isUpdating: Bool = false {
 		didSet {
 			updateTime()
@@ -38,7 +38,7 @@ class RegionContainerController: UIViewController {
 				self.buttonSearch.isHidden = self.isSearching
 				self.searchBar.isHidden = !self.isSearching
 				self.regionListController.view.superview?.isHidden = !self.isSearching
-				self.regionController.view.isHidden = self.isSearching
+				self.regionDataController.view.isHidden = self.isSearching
 
 				if self.isSearching {
 					self.regionListController.regions = DataManager.instance.allRegions().sorted().reversed()
@@ -88,8 +88,8 @@ class RegionContainerController: UIViewController {
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.destination is RegionController {
-			regionController = segue.destination as? RegionController
+		if segue.destination is RegionDataController {
+			regionDataController = segue.destination as? RegionDataController
 		}
 		else if segue.destination is RegionListController {
 			regionListController = segue.destination as? RegionListController
@@ -120,7 +120,7 @@ class RegionContainerController: UIViewController {
 			return
 		}
 
-		self.labelUpdated.text = self.regionController.region?.report?.lastUpdate.relativeTimeString
+		self.labelUpdated.text = self.regionDataController.region?.report?.lastUpdate.relativeTimeString
 	}
 
 	func snapshotHeader(hideTitle: Bool = false) -> UIImage {
@@ -135,7 +135,7 @@ class RegionContainerController: UIViewController {
 	}
 }
 
-extension RegionContainerController {
+extension RegionPanelController {
 	@IBAction func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
 	}
@@ -147,18 +147,18 @@ extension RegionContainerController {
 			}),
 			MenuItem(title: L10n.Menu.share, image: Asset.share.image, action: {
 				MapController.instance.showRegionScreen()
-				self.regionController.setEditing(true, animated: true)
+				self.regionDataController.setEditing(true, animated: true)
 			}),
 		])
 	}
 
 	@objc func buttonDoneTapped(_ sender: Any) {
 		setEditing(false, animated: true)
-		regionController.setEditing(false, animated: true)
+		regionDataController.setEditing(false, animated: true)
 	}
 }
 
-extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
+extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		isSearching = false
 	}
@@ -179,8 +179,8 @@ extension RegionContainerController: UISearchBarDelegate, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let region = regionListController.regions[indexPath.row]
 
-		regionController.region = region
-		regionController.update()
+		regionDataController.region = region
+		regionDataController.update()
 
 		isSearching = false
 

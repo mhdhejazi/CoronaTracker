@@ -1,5 +1,5 @@
 //
-//  RegionController.swift
+//  RegionDataController.swift
 //  Corona
 //
 //  Created by Mohammad on 3/4/20.
@@ -11,8 +11,8 @@ import SafariServices
 
 import Charts
 
-class RegionController: UITableViewController {
-	private typealias Cell = (type: RegionInfoCell.Type, height: CGFloat)
+class RegionDataController: UITableViewController {
+	private typealias Cell = (type: RegionDataCell.Type, height: CGFloat)
 	private let cells: [Cell] = [
 		(type: StatsCell.self, height: 150),
 		(type: CurrentChartCell.self, height: 250),
@@ -30,7 +30,7 @@ class RegionController: UITableViewController {
 			}
 		}
 	}
-	private var container: RegionContainerController? { parent as? RegionContainerController }
+	private var container: RegionPanelController? { parent as? RegionPanelController }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,7 +51,7 @@ class RegionController: UITableViewController {
 		}
 
 		for cell in tableView.visibleCells {
-			(cell as? RegionInfoCell)?.region = region
+			(cell as? RegionDataCell)?.region = region
 		}
 
 		updateParent()
@@ -61,7 +61,7 @@ class RegionController: UITableViewController {
 		container?.update(region: region)
 	}
 
-	private func shareImage(for cell: RegionInfoCell?) {
+	private func shareImage(for cell: RegionDataCell?) {
 		guard let cell = cell, let shareable = cell.shareable else { return }
 
 		let cellImage = cell.snapshot()
@@ -96,7 +96,7 @@ class RegionController: UITableViewController {
 	}
 }
 
-extension RegionController {
+extension RegionDataController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		cells.count
 	}
@@ -104,7 +104,7 @@ extension RegionController {
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cellType = cells[indexPath.row].type
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath)
-		if let cell = cell as? RegionInfoCell {
+		if let cell = cell as? RegionDataCell {
 			cell.region = region
 			cell.shareAction = {
 				self.setEditing(false, animated: true)
@@ -128,7 +128,7 @@ extension RegionController {
 
 	@available(iOS 11.0, *)
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-		let cell = tableView.cellForRow(at: indexPath) as? RegionInfoCell
+		let cell = tableView.cellForRow(at: indexPath) as? RegionDataCell
 		let action = UIContextualAction(style: .normal, title: nil) { action, sourceView, completion in
 			completion(true)
 			self.shareImage(for: cell)
@@ -147,7 +147,7 @@ extension RegionController {
 	}
 }
 
-class RegionInfoCell: UITableViewCell {
+class RegionDataCell: UITableViewCell {
 	class var reuseIdentifier: String { String(describing: Self.self) }
 
 	enum Shareable {
@@ -228,7 +228,7 @@ class RegionInfoCell: UITableViewCell {
 	}
 }
 
-class StatsCell: RegionInfoCell {
+class StatsCell: RegionDataCell {
 	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
 
 	private var showPercents = false
@@ -329,7 +329,7 @@ class StatsCell: RegionInfoCell {
 	}
 }
 
-class CurrentChartCell: RegionInfoCell {
+class CurrentChartCell: RegionDataCell {
 	@IBOutlet var chartViewCurrent: CurrentStateChartView!
 
 	override var shareable: Shareable? { .chartCurrent }
@@ -339,7 +339,7 @@ class CurrentChartCell: RegionInfoCell {
 	}
 }
 
-class DeltaChartCell: RegionInfoCell {
+class DeltaChartCell: RegionDataCell {
 	@IBOutlet var chartViewDelta: DeltaChartView!
 
 	override var shareable: Shareable? { .chartDelta }
@@ -349,7 +349,7 @@ class DeltaChartCell: RegionInfoCell {
 	}
 }
 
-class HistoryChartCell: RegionInfoCell {
+class HistoryChartCell: RegionDataCell {
 	@IBOutlet var chartViewHistory: HistoryChartView!
 
 	override var shareable: Shareable? { .chartHistory }
@@ -359,7 +359,7 @@ class HistoryChartCell: RegionInfoCell {
 	}
 }
 
-class TopChartCell: RegionInfoCell {
+class TopChartCell: RegionDataCell {
 	@IBOutlet var chartViewTopCountries: TopCountriesChartView!
 
 	override var shareable: Shareable? { .chartTop }
@@ -375,7 +375,7 @@ class TopChartCell: RegionInfoCell {
 	}
 }
 
-class UpdateTimeCell: RegionInfoCell {
+class UpdateTimeCell: RegionDataCell {
 	@IBOutlet var labelUpdated: UILabel!
 
 	override func update(animated: Bool) {
@@ -383,7 +383,7 @@ class UpdateTimeCell: RegionInfoCell {
 	}
 }
 
-class DataSourceCell: RegionInfoCell {
+class DataSourceCell: RegionDataCell {
 	@IBAction func buttonInfoTapped(_ sender: Any) {
 		let url = URL(string: "https://arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61")!
 		let safariController = SFSafariViewController(url: url)

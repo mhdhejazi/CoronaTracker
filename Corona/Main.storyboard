@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="800.00000000000011" y="-549.10714285714278"/>
         </scene>
-        <!--Region Controller-->
+        <!--Region Data Controller-->
         <scene sceneID="QjW-3Y-ZfF">
             <objects>
-                <tableViewController storyboardIdentifier="RegionController" id="Pk4-iK-Cch" customClass="RegionController" customModule="Corona_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RegionDataController" id="Pk4-iK-Cch" customClass="RegionDataController" customModule="Corona_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g3Q-0s-6LW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="821"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -554,10 +554,10 @@ Deaths</string>
             </objects>
             <point key="canvasLocation" x="801" y="828"/>
         </scene>
-        <!--Region Container Controller-->
+        <!--Region Panel Controller-->
         <scene sceneID="z6c-2Z-WFk">
             <objects>
-                <viewController storyboardIdentifier="RegionContainerController" id="bGw-3g-OPq" customClass="RegionContainerController" customModule="Corona_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegionPanelController" id="bGw-3g-OPq" customClass="RegionPanelController" customModule="Corona_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="De6-gr-Z57">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

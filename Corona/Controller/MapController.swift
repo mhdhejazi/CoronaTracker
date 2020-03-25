@@ -22,7 +22,7 @@ class MapController: UIViewController {
 	private var currentAnnotations: [RegionAnnotation] = []
 
 	private var panelController: FloatingPanelController!
-	private var regionContainerController: RegionContainerController!
+	private var regionPanelController: RegionPanelController!
 
 	var mode: Statistic.Kind = .confirmed {
 		didSet {
@@ -61,7 +61,7 @@ class MapController: UIViewController {
 		super.viewDidAppear(animated)
 
 		panelController.addPanel(toParent: self, animated: true)
-		regionContainerController.regionController.tableView.setContentOffset(.zero, animated: false)
+		regionPanelController.regionDataController.tableView.setContentOffset(.zero, animated: false)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -88,16 +88,16 @@ class MapController: UIViewController {
 	}
 
 	private func initializeBottomSheet() {
-		let identifier = String(describing: RegionContainerController.self)
-		regionContainerController = storyboard?.instantiateViewController(
-			withIdentifier: identifier) as? RegionContainerController
+		let identifier = String(describing: RegionPanelController.self)
+		regionPanelController = storyboard?.instantiateViewController(
+			withIdentifier: identifier) as? RegionPanelController
 
 		panelController = FloatingPanelController()
 		panelController.delegate = self
 		panelController.surfaceView.cornerRadius = 12
 		panelController.surfaceView.shadowHidden = false
-		panelController.set(contentViewController: regionContainerController)
-		panelController.track(scrollView: regionContainerController.regionController.tableView)
+		panelController.set(contentViewController: regionPanelController)
+		panelController.track(scrollView: regionPanelController.regionDataController.tableView)
 		panelController.surfaceView.backgroundColor = .clear
 		panelController.surfaceView.contentView.backgroundColor = .clear
 
@@ -107,8 +107,8 @@ class MapController: UIViewController {
 	}
 
 	func updateRegionScreen(region: Region?) {
-		regionContainerController.regionController.region = region
-		regionContainerController.regionController.update()
+		regionPanelController.regionDataController.region = region
+		regionPanelController.regionDataController.update()
 	}
 
 	func showRegionScreen() {
@@ -152,8 +152,8 @@ class MapController: UIViewController {
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(currentAnnotations)
 
-		regionContainerController.regionController.region = nil
-		regionContainerController.regionController.update()
+		regionPanelController.regionDataController.region = nil
+		regionPanelController.regionDataController.update()
 	}
 
 	func downloadIfNeeded() {
@@ -161,11 +161,11 @@ class MapController: UIViewController {
 		if showSpinner {
 			showHUD(message: L10n.Data.updating)
 		}
-		regionContainerController.isUpdating = true
+		regionPanelController.isUpdating = true
 
 		DataManager.instance.download { success in
 			DispatchQueue.main.async {
-				self.regionContainerController.isUpdating = false
+				self.regionPanelController.isUpdating = false
 
 				if success {
 					self.hideHUD()
@@ -306,9 +306,9 @@ extension MapController: FloatingPanelControllerDelegate {
 		let currentPosition = vc.position
 
 		// currentPosition == .full means deceleration will start from top to bottom (i.e. user dragging the panel down)
-		if currentPosition == .full, regionContainerController.isSearching {
+		if currentPosition == .full, regionPanelController.isSearching {
 			// Reset to region container's default mode then hide the keyboard
-			self.regionContainerController.isSearching = false
+			self.regionPanelController.isSearching = false
         }
     }
 }
