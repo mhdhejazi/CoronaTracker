@@ -47,6 +47,10 @@ class RegionDataController: UITableViewController {
 			region = DataManager.instance.world
 		}
 
+		/// Update row heights ti show/hide some rows
+		tableView.beginUpdates()
+		tableView.endUpdates()
+
 		for cell in tableView.visibleCells {
 			(cell as? RegionDataCell)?.region = region
 		}
@@ -112,7 +116,15 @@ extension RegionDataController {
 	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		rows[indexPath.row].height
+		let row = rows[indexPath.row]
+
+		if row.type == DeltaChartCell.self || row.type == HistoryChartCell.self {
+			if region?.timeSeries == nil {
+				return 0
+			}
+		}
+
+		return row.height
 	}
 
 	override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {

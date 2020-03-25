@@ -103,12 +103,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		guard let report = report else { return }
 		recoveredCountLabel.transition { [weak self] in
 			self?.recoveredCountLabel.text = self?.showPercents == true ?
-				report.stat.recoveredPercent.percentFormatted :
+				report.stat.recoveredPercentString :
 				report.stat.recoveredCountString
 		}
 		deathsCountLabel.transition { [weak self] in
 			self?.deathsCountLabel.text = self?.showPercents == true ?
-				report.stat.deathPercent.percentFormatted :
+				report.stat.deathPercentString :
 				report.stat.deathCountString
 		}
 	}

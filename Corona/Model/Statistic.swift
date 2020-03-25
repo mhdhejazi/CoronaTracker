@@ -22,9 +22,13 @@ extension Statistic {
 	public var activePercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(activeCount) / Double(confirmedCount) }
 
 	public var confirmedCountString: String { confirmedCount.groupingFormatted }
-	public var recoveredCountString: String { recoveredCount.groupingFormatted }
+	public var recoveredCountString: String { recoveredCount == 0 ? "-" : recoveredCount.groupingFormatted }
 	public var deathCountString: String { deathCount.groupingFormatted }
 	public var activeCountString: String { activeCount.groupingFormatted }
+
+	public var recoveredPercentString: String { recoveredCount == 0 ? "-" : recoveredPercent.percentFormatted }
+	public var deathPercentString: String { deathPercent.percentFormatted }
+	public var activePercentString: String { activePercent.percentFormatted }
 
 	public var isZero: Bool { confirmedCount == 0 && recoveredCount == 0 && deathCount == 0 }
 }

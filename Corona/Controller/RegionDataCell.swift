@@ -162,12 +162,12 @@ class StatsCell: RegionDataCell {
 		guard let report = region?.report else { return }
 		labelRecovered.transition {
 			self.labelRecovered.text = self.showPercents ?
-				report.stat.recoveredPercent.percentFormatted :
+				report.stat.recoveredPercentString :
 				report.stat.recoveredCountString
 		}
 		labelDeaths.transition {
 			self.labelDeaths.text = self.showPercents ?
-				report.stat.deathPercent.percentFormatted :
+				report.stat.deathPercentString :
 				report.stat.deathCountString
 		}
 		labelNewConfirmed.transition {
