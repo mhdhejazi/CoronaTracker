@@ -24,14 +24,12 @@ public class JHURepoDataService: DataService {
 	private static let maxOldDataAge = 10 // Days
 	private static let dailyReportFileName = "JHURepoDataService-DailyReport.csv"
 	private static let confirmedTimeSeriesFileName = "JHURepoDataService-TS-Confirmed.csv"
-	private static let recoveredTimeSeriesFileName = "JHURepoDataService-TS-Recovered.csv"
 	private static let deathsTimeSeriesFileName = "JHURepoDataService-TS-Deaths.csv"
 
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
 	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
-	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", relativeTo: baseURL)!
-	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Recovered.csv", relativeTo: baseURL)!
-	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_19-covid-Deaths.csv", relativeTo: baseURL)!
+	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", relativeTo: baseURL)!
+	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_deaths_global.csv", relativeTo: baseURL)!
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		let today = Date()
@@ -93,7 +91,7 @@ public class JHURepoDataService: DataService {
 
 	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		let dispatchGroup = DispatchGroup()
-		var result = [Data?](repeating: nil, count: 3)
+		var result = [Data?](repeating: nil, count: 2)
 
 		dispatchGroup.enter()
 		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { data in
@@ -102,20 +100,14 @@ public class JHURepoDataService: DataService {
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { data in
-			result[1] = data
-			dispatchGroup.leave()
-		}
-
-		dispatchGroup.enter()
 		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
-			result[2] = data
+			result[1] = data
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.notify(queue: .main) {
 			let result = result.compactMap { $0 }
-			if result.count != 3 {
+			if result.count != 2 {
 				completion(nil, FetchError.downloadError)
 				return
 			}
@@ -127,7 +119,7 @@ public class JHURepoDataService: DataService {
 	}
 
 	private func parseTimeSerieses(data: [Data], completion: @escaping FetchResultBlock) {
-		assert(data.count == 3)
+		assert(data.count == 2)
 
 		/// All time serieses
 		guard let (confirmed, headers) = parseTimeSeries(data: data[0]) else {
@@ -135,12 +127,7 @@ public class JHURepoDataService: DataService {
 			return
 		}
 
-		guard let (recovered, _) = parseTimeSeries(data: data[1]) else {
-			completion(nil, FetchError.invalidData)
-			return
-		}
-
-		guard let (deaths, _) = parseTimeSeries(data: data[2]) else {
+		guard let (deaths, _) = parseTimeSeries(data: data[1]) else {
 			completion(nil, FetchError.invalidData)
 			return
 		}
@@ -155,7 +142,6 @@ public class JHURepoDataService: DataService {
 		var regions: [Region] = []
 		for row in confirmed.indices {
 			let confirmedTimeSeries = confirmed[row]
-			let recoveredTimeSeries = recovered[row]
 			let deathsTimeSeries = deaths[row]
 
 			var series: [Date : Statistic] = [:]
@@ -164,7 +150,7 @@ public class JHURepoDataService: DataService {
 				if let date = dateFormatter.date(from: dateString) {
 					let stat = Statistic(
 						confirmedCount: confirmedTimeSeries.values[column],
-						recoveredCount: recoveredTimeSeries.values[column],
+						recoveredCount: 0,
 						deathCount: deathsTimeSeries.values[column]
 					)
 					series[date] = stat

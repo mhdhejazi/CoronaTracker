@@ -74,10 +74,8 @@ extension DataManager {
 			}
 
 			JHURepoDataService.instance.fetchTimeSerieses { (timeSeriesRegions, error) in
-				if let timeSeriesRegions = timeSeriesRegions {
-					for timeSeriesRegion in timeSeriesRegions {
-						regions.first { $0 == timeSeriesRegion }?.timeSeries = timeSeriesRegion.timeSeries
-					}
+				timeSeriesRegions?.forEach { timeSeriesRegion in
+					regions.first { $0 == timeSeriesRegion }?.timeSeries = timeSeriesRegion.timeSeries
 				}
 
 				/// Countries
@@ -91,6 +89,11 @@ extension DataManager {
 					if let countryRegion = Region.join(subRegions: value) {
 						countries.append(countryRegion)
 					}
+				}
+
+				/// Update US time series
+				if let timeSeriesRegion = timeSeriesRegions?.first(where: { $0.name == "US" }) {
+					countries.first { $0.name == "US" }?.timeSeries = timeSeriesRegion.timeSeries
 				}
 
 				/// World
