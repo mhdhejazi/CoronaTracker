@@ -839,23 +839,23 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		115186AF241FAFF300EBC83E /* XCRemoteSwiftPackageReference "Disk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/saoudrizwan/Disk";
+			repositoryURL = "https://github.com/mhdhejazi/Disk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.4;
+				branch = "dynamic";
+				kind = branch;
 			};
 		};
 		115186B2241FB00000EBC83E /* XCRemoteSwiftPackageReference "CSV" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yaslab/CSV.swift";
+			repositoryURL = "https://github.com/mhdhejazi/CSV.swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.3;
+				branch = "dynamic";
+				kind = branch;
 			};
 		};
 		1162D14B240EE5B800647002 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MhdHejazi/Charts";
+			repositoryURL = "https://github.com/mhdhejazi/Charts";
 			requirement = {
 				branch = "half-pie";
 				kind = branch;
@@ -863,7 +863,7 @@
 		};
 		11BF32A824156AE500270130 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MhdHejazi/FloatingPanel";
+			repositoryURL = "https://github.com/mhdhejazi/FloatingPanel";
 			requirement = {
 				branch = master;
 				kind = branch;

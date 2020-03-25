@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "Charts",
-        "repositoryURL": "https://github.com/MhdHejazi/Charts",
+        "repositoryURL": "https://github.com/mhdhejazi/Charts",
         "state": {
           "branch": "half-pie",
           "revision": "5a2efdaa494c8f1185b0e60a821a814ff39d8f71",
@@ -12,25 +12,25 @@
       },
       {
         "package": "CSV.swift",
-        "repositoryURL": "https://github.com/yaslab/CSV.swift",
+        "repositoryURL": "https://github.com/mhdhejazi/CSV.swift",
         "state": {
-          "branch": null,
-          "revision": "81d2874c51db364d7e1d71b0d99018a294c87ac1",
-          "version": "2.4.3"
+          "branch": "dynamic",
+          "revision": "f13cbf050b29b0f55c4d126f5ad4647e497ae4fa",
+          "version": null
         }
       },
       {
         "package": "Disk",
-        "repositoryURL": "https://github.com/saoudrizwan/Disk",
+        "repositoryURL": "https://github.com/mhdhejazi/Disk",
         "state": {
-          "branch": null,
-          "revision": "b0cb4fdf23e51849cc2460bdc6de795c3bcca99d",
-          "version": "0.6.4"
+          "branch": "dynamic",
+          "revision": "804d20a82d84e9dce6309c147d5d871b2bcbb48a",
+          "version": null
         }
       },
       {
         "package": "FloatingPanel",
-        "repositoryURL": "https://github.com/MhdHejazi/FloatingPanel",
+        "repositoryURL": "https://github.com/mhdhejazi/FloatingPanel",
         "state": {
           "branch": "master",
           "revision": "09dd385be2877288055ed8e07ffa8b197f8902e7",
