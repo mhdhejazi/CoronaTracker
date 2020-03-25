@@ -13,10 +13,12 @@
 "region.world" = "Tutto il mondo";
 "chart.topCountries" = "Nazioni Maggiormente Colpite";
 "chart.logarithmic" = "Scala Logaritmica";
+"chart.delta" = "Nuovi Casi Giornalieri";
 "data.updating" = "Aggiornamento...";
 "data.updateDate" = "Ultimo aggiornamento:";
 "data.errorTitle" = "Impossibile aggiornare i dati";
 "data.errorMessage" = "Controlla la connessione internet.";
+"data.source" = "Source: %@";
 "app.newVersionTitle" = "Nuova Versione Disponibile";
 "app.newVersionMessage" = "Aggiorna dalla versione %@";
 "message.cancel" = "Cancella";
@@ -25,5 +27,5 @@
 "message.done" = "Fatto";
 "menu.update" = "Aggiorna";
 "menu.share" = "Condividi";
-"share.current" = "aggiornamento Coronavirus in tempo reale";
-"share.chartHistory" = "grafico di crescita Coronavirus";
+"share.current" = "Aggiornamento Coronavirus in tempo reale";
+"share.chartHistory" = "Grafico di crescita Coronavirus";
