@@ -46,6 +46,10 @@ internal enum L10n {
     internal static let errorMessage = L10n.tr("Localizable", "data.errorMessage")
     /// Can't update the data
     internal static let errorTitle = L10n.tr("Localizable", "data.errorTitle")
+    /// Source: %@
+    internal static func source(_ p1: String) -> String {
+      return L10n.tr("Localizable", "data.source", p1)
+    }
     /// Last updated:
     internal static let updateDate = L10n.tr("Localizable", "data.updateDate")
     /// Updating...

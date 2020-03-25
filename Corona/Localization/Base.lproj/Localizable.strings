@@ -18,6 +18,7 @@
 "data.updateDate" = "Last updated:";
 "data.errorTitle" = "Can't update the data";
 "data.errorMessage" = "Please make sure you're connected to the internet.";
+"data.source" = "Source: %@";
 "app.newVersionTitle" = "New Version Available";
 "app.newVersionMessage" = "Please update from %@";
 "message.cancel" = "Cancel";
