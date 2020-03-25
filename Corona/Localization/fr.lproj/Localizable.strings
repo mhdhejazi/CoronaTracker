@@ -14,10 +14,12 @@
 "region.world" = "Monde";
 "chart.topCountries" = "Pays les plus touchés";
 "chart.logarithmic" = "Échelle logarithmique";
+"chart.delta" = "Nouveaux cas quotidiens";
 "data.updating" = "Mise à jour...";
 "data.updateDate" = "Dernière mise à jour :";
 "data.errorTitle" = "Impossible de mettre à jour les données";
 "data.errorMessage" = "Veuillez vous assurer que vous êtes connecté à Internet.";
+"data.source" = "Source : %@";
 "app.newVersionTitle" = "Nouvelle version disponible";
 "app.newVersionMessage" = "Veuillez mettre à jour à partir de %@";
 "message.cancel" = "Annuler";
