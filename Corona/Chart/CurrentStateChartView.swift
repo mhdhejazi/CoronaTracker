@@ -42,7 +42,7 @@ class CurrentStateChartView: PieChartView {
 		legend.xEntrySpace = 10
 	}
 
-	func update(report: Report?) {
+	func update(report: Report?, animated: Bool) {
 		guard let report = report else {
 			data = nil
 			return
@@ -70,6 +70,8 @@ class CurrentStateChartView: PieChartView {
 
 		data = PieChartData(dataSet: dataSet)
 
-		animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
+		if animated {
+			animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
+		}
 	}
 }

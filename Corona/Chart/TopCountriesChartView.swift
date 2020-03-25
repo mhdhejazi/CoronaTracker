@@ -14,7 +14,7 @@ class TopCountriesChartView: BarChartView {
 	var isLogarithmic = false {
 		didSet {
 			self.clear()
-			self.update()
+			self.update(animated: true)
 		}
 	}
 
@@ -76,7 +76,7 @@ class TopCountriesChartView: BarChartView {
 		legend.stackSpace = 0
 	}
 
-	func update() {
+	func update(animated: Bool) {
 		let regions = DataManager.instance.topCountries
 
 		var entries = [BarChartDataEntry]()
@@ -115,6 +115,8 @@ class TopCountriesChartView: BarChartView {
 
 		data = BarChartData(dataSet: dataSet)
 
-		animate(yAxisDuration: 2)
+		if animated {
+			animate(yAxisDuration: 2)
+		}
 	}
 }

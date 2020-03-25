@@ -55,7 +55,7 @@ class DeltaChartView: BarChartView {
 		legend.stackSpace = 0
 	}
 
-	func update(series: TimeSeries?) {
+	func update(series: TimeSeries?, animated: Bool) {
 		guard let series = series else {
 			data = nil
 			return
@@ -79,6 +79,8 @@ class DeltaChartView: BarChartView {
 
 		data = BarChartData(dataSet: dataSet)
 
-		animate(yAxisDuration: 2)
+		if animated {
+			animate(yAxisDuration: 2)
+		}
 	}
 }

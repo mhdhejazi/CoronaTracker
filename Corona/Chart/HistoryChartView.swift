@@ -51,7 +51,7 @@ class HistoryChartView: LineChartView {
 		legend.xEntrySpace = 10
 	}
 
-	func update(series: TimeSeries?) {
+	func update(series: TimeSeries?, animated: Bool) {
 		guard let series = series else {
 			data = nil
 			return
@@ -94,6 +94,8 @@ class HistoryChartView: LineChartView {
 
 		data = LineChartData(dataSets: dataSets)
 
-		animate(xAxisDuration: 2)
+		if animated {
+			animate(xAxisDuration: 2)
+		}
 	}
 }
