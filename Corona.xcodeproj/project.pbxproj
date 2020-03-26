@@ -77,6 +77,10 @@
 		344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */; };
 		344ED32C241AC7AA004C4EA8 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 344ED31F241AC7AA004C4EA8 /* Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344ED324241AC7AA004C4EA8 /* TodayViewController.swift */; };
+		CDA50DE0242C7D330055BE4A /* CSV in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B3241FB00000EBC83E /* CSV */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CDA50DE2242C7D350055BE4A /* Disk in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B0241FAFF300EBC83E /* Disk */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CDA50DE3242C7D3C0055BE4A /* CSV in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B7241FB04200EBC83E /* CSV */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		CDA50DE5242C7D3D0055BE4A /* Disk in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B5241FB03F00EBC83E /* Disk */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,30 @@
 				344ED32C241AC7AA004C4EA8 /* Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDA50DE1242C7D330055BE4A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDA50DE0242C7D330055BE4A /* CSV in Embed Frameworks */,
+				CDA50DE2242C7D350055BE4A /* Disk in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDA50DE4242C7D3C0055BE4A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDA50DE3242C7D3C0055BE4A /* CSV in Embed Frameworks */,
+				CDA50DE5242C7D3D0055BE4A /* Disk in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -392,6 +420,7 @@
 				1162D125240D05F600647002 /* Frameworks */,
 				1162D126240D05F600647002 /* Resources */,
 				344ED32D241AC7AA004C4EA8 /* Embed App Extensions */,
+				CDA50DE1242C7D330055BE4A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -416,6 +445,7 @@
 				344ED31B241AC7AA004C4EA8 /* Sources */,
 				344ED31C241AC7AA004C4EA8 /* Frameworks */,
 				344ED31D241AC7AA004C4EA8 /* Resources */,
+				CDA50DE4242C7D3C0055BE4A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -841,7 +871,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Disk";
 			requirement = {
-				branch = "dynamic";
+				branch = dynamic;
 				kind = branch;
 			};
 		};
@@ -849,7 +879,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/CSV.swift";
 			requirement = {
-				branch = "dynamic";
+				branch = dynamic;
 				kind = branch;
 			};
 		};
