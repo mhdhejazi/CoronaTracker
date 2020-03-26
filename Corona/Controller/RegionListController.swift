@@ -19,15 +19,29 @@ class RegionListController: UITableViewController {
 		super.viewDidLoad()
 
 		tableView.rowHeight = 55
+
+		let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(tableViewPanned(_:)))
+		panRecognizer.delegate = self
+		tableView.addGestureRecognizer(panRecognizer)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 	}
+}
 
-	// MARK: - Table view data source
+extension RegionListController: UIGestureRecognizerDelegate {
+	@objc func tableViewPanned(_ sender: Any) {
+		MapController.instance.view.endEditing(false)
+	}
 
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		true
+	}
+}
+
+extension RegionListController {
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
