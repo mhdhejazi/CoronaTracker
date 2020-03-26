@@ -85,6 +85,14 @@ class MapController: UIViewController {
 			mapView.register(RegionAnnotationView.self,
 							 forAnnotationViewWithReuseIdentifier: RegionAnnotationView.reuseIdentifier)
 		}
+
+		/// Workaround for hiding the iPhone frame that appears on app start
+		#if targetEnvironment(macCatalyst)
+		mapView.isHidden = true
+		DispatchQueue.main.async {
+			self.mapView.isHidden = false
+		}
+		#endif
 	}
 
 	private func initializeBottomSheet() {
