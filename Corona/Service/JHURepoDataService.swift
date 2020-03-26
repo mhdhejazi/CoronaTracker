@@ -24,11 +24,13 @@ public class JHURepoDataService: DataService {
 	private static let maxOldDataAge = 10 // Days
 	private static let dailyReportFileName = "JHURepoDataService-DailyReport.csv"
 	private static let confirmedTimeSeriesFileName = "JHURepoDataService-TS-Confirmed.csv"
+	private static let recoveredTimeSeriesFileName = "JHURepoDataService-TS-Recovered.csv"
 	private static let deathsTimeSeriesFileName = "JHURepoDataService-TS-Deaths.csv"
 
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
 	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
 	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", relativeTo: baseURL)!
+	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_recovered_global.csv", relativeTo: baseURL)!
 	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_deaths_global.csv", relativeTo: baseURL)!
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
@@ -91,7 +93,7 @@ public class JHURepoDataService: DataService {
 
 	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		let dispatchGroup = DispatchGroup()
-		var result = [Data?](repeating: nil, count: 2)
+		var result = [Data?](repeating: nil, count: 3)
 
 		dispatchGroup.enter()
 		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { data in
@@ -100,14 +102,20 @@ public class JHURepoDataService: DataService {
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
+		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { data in
 			result[1] = data
+			dispatchGroup.leave()
+		}
+
+		dispatchGroup.enter()
+		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
+			result[2] = data
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.notify(queue: .main) {
 			let result = result.compactMap { $0 }
-			if result.count != 2 {
+			if result.count != 3 {
 				completion(nil, FetchError.downloadError)
 				return
 			}
@@ -119,7 +127,7 @@ public class JHURepoDataService: DataService {
 	}
 
 	private func parseTimeSerieses(data: [Data], completion: @escaping FetchResultBlock) {
-		assert(data.count == 2)
+		assert(data.count == 3)
 
 		/// All time serieses
 		guard let (confirmed, headers) = parseTimeSeries(data: data[0]) else {
@@ -127,7 +135,12 @@ public class JHURepoDataService: DataService {
 			return
 		}
 
-		guard let (deaths, _) = parseTimeSeries(data: data[1]) else {
+		guard let (recovered, _) = parseTimeSeries(data: data[1]) else {
+			completion(nil, FetchError.invalidData)
+			return
+		}
+
+		guard let (deaths, _) = parseTimeSeries(data: data[2]) else {
 			completion(nil, FetchError.invalidData)
 			return
 		}
@@ -140,18 +153,26 @@ public class JHURepoDataService: DataService {
 		let dateStrings = headers.dropFirst(4)
 
 		var regions: [Region] = []
-		for row in confirmed.indices {
-			let confirmedTimeSeries = confirmed[row]
-			let deathsTimeSeries = deaths[row]
+		for confirmedTimeSeries in confirmed {
+			let recoveredTimeSeries = recovered.first { $0.region == confirmedTimeSeries.region }
+			let deathsTimeSeries = deaths.first { $0.region == confirmedTimeSeries.region }
 
 			var series: [Date : Statistic] = [:]
 			for column in confirmedTimeSeries.values.indices {
 				let dateString = dateStrings[dateStrings.startIndex + column]
 				if let date = dateFormatter.date(from: dateString) {
+					var recoveredCount = 0
+					if let recoveredTimeSeries = recoveredTimeSeries {
+						recoveredCount = recoveredTimeSeries.values[min(column, recoveredTimeSeries.values.count - 1)]
+					}
+					var deathCount = 0
+					if let deathsTimeSeries = deathsTimeSeries {
+						deathCount = deathsTimeSeries.values[min(column, deathsTimeSeries.values.count - 1)]
+					}
 					let stat = Statistic(
 						confirmedCount: confirmedTimeSeries.values[column],
-						recoveredCount: 0,
-						deathCount: deathsTimeSeries.values[column]
+						recoveredCount: recoveredCount,
+						deathCount: deathCount
 					)
 					series[date] = stat
 				}
