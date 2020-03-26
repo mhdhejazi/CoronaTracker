@@ -64,6 +64,10 @@ class RegionDataCell: UITableViewCell {
 		contentView.addSubview(buttonShare)
 		buttonShare.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		buttonShare.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+
+		if #available(iOS 13.0, *) {
+			addInteraction(UIContextMenuInteraction(delegate: self))
+		}
 	}
 
 	override func setEditing(_ editing: Bool, animated: Bool) {
@@ -89,6 +93,27 @@ class RegionDataCell: UITableViewCell {
 	}
 
 	func update(animated: Bool = true) {
+	}
+}
+
+@available(iOS 13.0, *)
+extension RegionDataCell: UIContextMenuInteractionDelegate {
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+		guard shareable != nil, !isEditing else { return nil }
+
+		return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
+			UIMenu(title: "", children: [
+				UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
+					self.shareAction?()
+				}
+			])
+		})
+	}
+
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+		let parameters = UIPreviewParameters()
+		parameters.backgroundColor = .clear
+		return UITargetedPreview(view: self, parameters: parameters)
 	}
 }
 

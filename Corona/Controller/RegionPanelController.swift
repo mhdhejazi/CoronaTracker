@@ -128,7 +128,11 @@ class RegionPanelController: UIViewController {
 			labelTitle.isHidden = true
 		}
 		buttonDone.isHidden = true
+		buttonSearch.isHidden = true
+		buttonMenu.isHidden = true
 		let image = viewHeader.snapshot()
+		buttonSearch.isHidden = false
+		buttonMenu.isHidden = false
 		labelTitle.isHidden = false
 
 		return image

@@ -42,6 +42,12 @@ class RegionDataController: UITableViewController {
 		updateParent()
 	}
 
+	override func setEditing(_ editing: Bool, animated: Bool) {
+		super.setEditing(editing, animated: animated)
+
+		container?.setEditing(editing, animated: animated)
+	}
+
 	func update() {
 		if region == nil {
 			region = DataManager.instance.world
@@ -147,11 +153,5 @@ extension RegionDataController {
 
 		let config = UISwipeActionsConfiguration(actions: [action])
 		return config
-	}
-
-	override func setEditing(_ editing: Bool, animated: Bool) {
-		super.setEditing(editing, animated: animated)
-
-		container?.setEditing(editing, animated: animated)
 	}
 }
