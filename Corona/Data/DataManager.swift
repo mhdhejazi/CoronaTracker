@@ -74,10 +74,10 @@ extension DataManager {
 			}
 
 			/// Don't download the time serieses if they are not old enough. Currently, they are updated from the data source every 24 hours.
-			if self.world.timeSeries?.lastUpdate?.ageDays ?? 0 < 2 {
-				self.update(regions: regions, timeSeriesRegions: self.regions(of: .province), completion: completion)
-				return
-			}
+//			if self.world.timeSeries?.lastUpdate?.ageDays ?? 0 < 2 {
+//				self.update(regions: regions, timeSeriesRegions: self.regions(of: .province), completion: completion)
+//				return
+//			}
 
 			JHURepoDataService.instance.fetchTimeSerieses { (timeSeriesRegions, error) in
 				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
