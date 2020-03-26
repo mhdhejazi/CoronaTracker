@@ -83,16 +83,6 @@
 		CDA50DE5242C7D3D0055BE4A /* Disk in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B5241FB03F00EBC83E /* Disk */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		344ED32A241AC7AA004C4EA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1162D120240D05F600647002 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 344ED31E241AC7AA004C4EA8;
-			remoteInfo = CoronaTrackerWidget;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		344ED32D241AC7AA004C4EA8 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -425,7 +415,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				344ED32B241AC7AA004C4EA8 /* PBXTargetDependency */,
 			);
 			name = "Corona Tracker";
 			packageProductDependencies = (
@@ -604,15 +593,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		344ED32B241AC7AA004C4EA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 344ED31E241AC7AA004C4EA8 /* Widget */;
-			targetProxy = 344ED32A241AC7AA004C4EA8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		117C84DD2427E3E200688459 /* Localizable.strings */ = {
