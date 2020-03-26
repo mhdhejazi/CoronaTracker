@@ -149,8 +149,10 @@ class MapController: UIViewController {
 
 		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
 
-		mapView.removeAnnotations(mapView.annotations)
-		mapView.addAnnotations(currentAnnotations)
+		view.transition {
+			self.mapView.removeAnnotations(self.mapView.annotations)
+			self.mapView.addAnnotations(self.currentAnnotations)
+		}
 
 		regionPanelController.regionDataController.region = nil
 		regionPanelController.regionDataController.update()
@@ -214,16 +216,16 @@ class MapController: UIViewController {
 	@IBAction func buttonModeTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMode, width: 150, items: [
 			MenuItem(title: L10n.Case.confirmed, image: nil, selected: mode == .confirmed, action: {
-				self.view.transition { self.mode = .confirmed }
+				self.mode = .confirmed
 			}),
 			MenuItem(title: L10n.Case.active, image: nil, selected: mode == .active, action: {
-				self.view.transition { self.mode = .active }
+				self.mode = .active
 			}),
 			MenuItem(title: L10n.Case.recovered, image: nil, selected: mode == .recovered, action: {
-				self.view.transition { self.mode = .recovered }
+				self.mode = .recovered
 			}),
 			MenuItem(title: L10n.Case.deaths, image: nil, selected: mode == .deaths, action: {
-				self.view.transition { self.mode = .deaths }
+				self.mode = .deaths
 			}),
 		])
 	}
