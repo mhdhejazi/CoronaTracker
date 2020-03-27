@@ -124,7 +124,10 @@ class MapController: UIViewController {
 	}
 
 	func hideRegionScreen() {
+		#if targetEnvironment(macCatalyst)
+		#else
 		panelController.move(to: .half, animated: true)
+		#endif
 	}
 
 	func showRegionOnMap(region: Region) {
@@ -333,7 +336,11 @@ extension MapController: FloatingPanelControllerDelegate {
 
 class PanelLayout: FloatingPanelLayout {
 	public var initialPosition: FloatingPanelPosition {
+		#if targetEnvironment(macCatalyst)
+		return .full
+		#else
 		return .half
+		#endif
 	}
 
 	public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
