@@ -33,7 +33,7 @@ public class Region: Codable {
 	}
 
 	private func generateDailyChange() -> Change? {
-		if !subRegions.isEmpty {
+		if !isCountry, !subRegions.isEmpty {
 			return Change.sum(subChanges: subRegions.compactMap { $0.dailyChange })
 		}
 
@@ -43,7 +43,7 @@ public class Region: Codable {
 		var yesterdayStat: Statistic
 		var dates = timeSeries.series.keys.sorted()
 		guard let lastDate = dates.popLast(),
-			lastDate.ageDays < 2,
+			lastDate.ageDays <= 3,
 			let lastStat = timeSeries.series[lastDate] else { return nil }
 
 		yesterdayStat = lastStat

@@ -24,19 +24,16 @@ public class JHUWebDataService: DataService {
 	}
 	private static let globalTimeSeriesURL = URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/cases_time_v3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Report_Date_String%20asc&outSR=102100&resultOffset=0&resultRecordCount=2000&cacheHint=true")!
 
+	private static let usRecoveredCasesURL = URL(string: "https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/Nc2JKvYFoAEOFCG5JSI6/FeatureServer/1/query?f=json&where=Country_Region%3D%27US%27&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&outSR=102100&cacheHint=true")!
+
 	static let instance = JHUWebDataService()
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		print("Calling API")
-		let request = URLRequest(url: Self.reportsURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
-		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
-			guard let response = response as? HTTPURLResponse,
-				response.statusCode == 200,
-				let data = data else {
-
-					print("Failed API call")
-					completion(nil, FetchError.downloadError)
-					return
+		requestAPI(url: Self.reportsURL) { data, error in
+			guard let data = data else {
+				completion(nil, error)
+				return
 			}
 
 			DispatchQueue.global(qos: .default).async {
@@ -50,9 +47,22 @@ public class JHUWebDataService: DataService {
 				print("Download success")
 				try? Disk.save(data, to: .caches, as: Self.reportsFileName)
 
-				self.parseReports(data: data, completion: completion)
+				self.parseReports(data: data) { result, error in
+					/// Update recovered cases for US
+					self.requestAPI(url: Self.usRecoveredCasesURL) { data, error in
+						var result = result
+						if let recoveredCount = self.parseRecoveredCount(data: data) {
+							/// Workaround: Add the recovered data as a dummy province since we don't have US region at this level
+							let dummyRegion = Region(level: .province, name: "Recovered", parentName: "US", location: .zero)
+							let dummyStat = Statistic(confirmedCount: 0, recoveredCount: recoveredCount, deathCount: 0)
+							dummyRegion.report = Report(lastUpdate: Date().yesterday, stat: dummyStat)
+							result?.append(dummyRegion)
+						}
+						completion(result, error)
+					}
+				}
 			}
-		}.resume()
+		}
 	}
 
 	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
@@ -68,17 +78,26 @@ public class JHUWebDataService: DataService {
 		}
 	}
 
+	private func parseRecoveredCount(data: Data?) -> Int? {
+		guard let data = data else { return nil }
+
+		do {
+			let decoder = JSONDecoder()
+			let result = try decoder.decode(USRecoveredCallResult.self, from: data)
+			return result.value
+		}
+		catch {
+			print("Unexpected error: \(error).")
+			return nil
+		}
+	}
+
 	public func fetchTimeSerieses(completion: @escaping FetchResultBlock) {
 		print("Calling API")
-		let request = URLRequest(url: Self.globalTimeSeriesURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
-		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
-			guard let response = response as? HTTPURLResponse,
-				response.statusCode == 200,
-				let data = data else {
-
-					print("Failed API call")
-					completion(nil, FetchError.downloadError)
-					return
+		requestAPI(url: Self.globalTimeSeriesURL) { data, error in
+			guard let data = data else {
+				completion(nil, error)
+				return
 			}
 
 			DispatchQueue.global(qos: .default).async {
@@ -94,7 +113,7 @@ public class JHUWebDataService: DataService {
 
 				self.parseTimeSerieses(data: data, completion: completion)
 			}
-		}.resume()
+		}
 	}
 
 	private func parseTimeSerieses(data: Data, completion: @escaping FetchResultBlock) {
@@ -109,7 +128,27 @@ public class JHUWebDataService: DataService {
 			completion(nil, error)
 		}
 	}
+
+	private func requestAPI(url: URL, completion: @escaping (Data?, Error?) -> Void) {
+		var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
+		request.setValue(url.host, forHTTPHeaderField: "referer")
+		_ = URLSession.shared.dataTask(with: request) { (data, response, error) in
+			guard let response = response as? HTTPURLResponse,
+				response.statusCode == 200,
+				let data = data else {
+
+					print("Failed API call")
+					completion(nil, FetchError.downloadError)
+					return
+			}
+
+			completion(data, nil)
+		}.resume()
+	}
 }
+
+//MARK: - Decodable entities. DON'T change property names
+//MARK: - Global Report API
 
 private struct ReportsCallResult: Decodable {
 	let features: [ReportFeature]
@@ -146,6 +185,8 @@ private struct ReportAttributes: Decodable {
 		return region
 	}
 }
+
+//MARK: - Global Time Series API
 
 private struct GlobalTimeSeriesCallResult: Decodable {
 	let features: [GlobalTimeSeriesFeature]
@@ -184,4 +225,20 @@ private struct GlobalTimeSeriesAttributes: Decodable {
 	var stat: Statistic {
 		Statistic(confirmedCount: Total_Confirmed ?? 0, recoveredCount: Total_Recovered ?? 0, deathCount: 0)
 	}
+}
+
+//MARK: - US Recovered API
+
+private struct USRecoveredCallResult: Decodable {
+	let features: [USRecoveredFeature]
+
+	var value: Int? { features.first?.attributes.value }
+}
+
+private struct USRecoveredFeature: Decodable {
+	let attributes: USRecoveredAttributes
+}
+
+private struct USRecoveredAttributes: Decodable {
+	let value: Int?
 }
