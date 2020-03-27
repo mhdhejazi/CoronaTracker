@@ -170,10 +170,10 @@ extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		var regions: [Region] = DataManager.instance.allRegions().sorted().reversed()
 
-		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 		if !query.isEmpty {
 			regions = regions.filter({ region in
-				region.localizedLongName.lowercased().contains(query)
+				region.localizedLongName.range(of: query, options: [.diacriticInsensitive, .caseInsensitive]) != nil
 			})
 		}
 
