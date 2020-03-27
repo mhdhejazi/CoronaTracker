@@ -8,8 +8,8 @@
 */
 
 "case.confirmed" = "Confirmés";
-"case.active" = "Hospitalisés";
-"case.recovered" = "Réanimés";
+"case.active" = "Actifs";
+"case.recovered" = "Guéris";
 "case.deaths" = "Morts";
 "region.world" = "Monde";
 "chart.topCountries" = "Pays les plus touchés";
