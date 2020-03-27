@@ -55,7 +55,7 @@ extension Change: CustomStringConvertible {
 
 extension Change {
 	public static func sum(subChanges: [Change]) -> Change {
-		Change(currentStat: Statistic.sum(subData: subChanges.map { $0.currentStat }),
-			   lastStat: Statistic.sum(subData: subChanges.map { $0.lastStat }))
+		Change(currentStat: Statistic.sum(subData: subChanges.map(\.currentStat)),
+			   lastStat: Statistic.sum(subData: subChanges.map(\.lastStat)))
 	}
 }

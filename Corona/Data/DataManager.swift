@@ -93,11 +93,7 @@ extension DataManager {
 		/// Countries
 		var countries = [Region]()
 		countries.append(contentsOf: regions.filter({ !$0.isProvince }))
-		Dictionary(grouping: regions.filter({ region in
-			region.isProvince
-		}), by: { region in
-			region.parentName
-		}).forEach { (key, value) in
+		Dictionary(grouping: regions.filter(\.isProvince), by: \.parentName).forEach { (key, value) in
 			if let countryRegion = Region.join(subRegions: value) {
 				countries.append(countryRegion)
 			}

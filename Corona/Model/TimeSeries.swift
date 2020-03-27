@@ -24,7 +24,7 @@ extension TimeSeries {
 
 		var series: [Date : Statistic] = [:]
 		firstSubSeries.series.keys.forEach { key in
-			let subData = subSerieses.compactMap { $0.series[key] }
+			let subData = subSerieses.compactMap(\.series[key])
 			let superData = Statistic.sum(subData: subData)
 			series[key] = superData
 		}

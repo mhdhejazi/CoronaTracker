@@ -20,8 +20,8 @@ public class Region: Codable {
 
 	public var subRegions: [Region] = [] {
 		didSet {
-			report = Report.join(subReports: subRegions.compactMap { $0.report })
-			timeSeries = TimeSeries.join(subSerieses: subRegions.compactMap { $0.timeSeries })
+			report = Report.join(subReports: subRegions.compactMap(\.report))
+			timeSeries = TimeSeries.join(subSerieses: subRegions.compactMap(\.timeSeries))
 		}
 	}
 
@@ -34,7 +34,7 @@ public class Region: Codable {
 
 	private func generateDailyChange() -> Change? {
 		if !isCountry, !subRegions.isEmpty {
-			return Change.sum(subChanges: subRegions.compactMap { $0.dailyChange })
+			return Change.sum(subChanges: subRegions.compactMap(\.dailyChange))
 		}
 
 		guard let todayReport = report,
