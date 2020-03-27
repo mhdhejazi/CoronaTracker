@@ -9,6 +9,8 @@
 import UIKit
 import SafariServices
 
+import Disk
+
 class App {
 	#if targetEnvironment(macCatalyst)
 	static let updateURL = URL(string: "https://coronatracker.samabox.com/")!
@@ -16,7 +18,9 @@ class App {
 	static let updateURL = URL(string: "https://github.com/MhdHejazi/CoronaTracker")!
 	#endif
 
-	static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
+	static let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+
+	public static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
 		let checkForUpdateURL = URL(string: "https://api.github.com/repos/MhdHejazi/CoronaTracker/releases/latest")!
 		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { (data, response, error) in
 			guard let response = response as? HTTPURLResponse,
@@ -29,7 +33,7 @@ class App {
 					return
 			}
 
-			guard let currentVersion = Bundle.main.infoDictionary?["CFBundleVersion"], tagName != "v\(currentVersion)" else {
+			guard let currentVersion = Self.version, tagName != "v\(currentVersion)" else {
 				completion(false)
 				return
 			}
@@ -42,5 +46,17 @@ class App {
 		let safariController = SFSafariViewController(url: updateURL)
 		safariController.modalPresentationStyle = .pageSheet
 		viewController.present(safariController, animated: true)
+	}
+
+	public static func upgrade() {
+		let appVersionKey = "appVersion"
+		let oldAppVersion = UserDefaults.standard.string(forKey: appVersionKey)
+		let newAppVersion = Self.version
+		guard oldAppVersion != newAppVersion else { return }
+
+		/// Clear cache on app update
+		try? Disk.clear(.caches)
+
+		UserDefaults.standard.set(newAppVersion, forKey: appVersionKey)
 	}
 }
