@@ -48,3 +48,9 @@ extension TimeSeries {
 		return result
 	}
 }
+
+extension TimeSeries: CustomStringConvertible {
+	public var description: String {
+		"TimeSeries: \(lastUpdate?.description ?? "-"): \(lastStatistic?.description ?? "-")"
+	}
+}

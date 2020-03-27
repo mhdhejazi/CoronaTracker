@@ -123,3 +123,9 @@ extension Region: Comparable {
 		lhs.report?.stat.confirmedCount ?? 0 < rhs.report?.stat.confirmedCount ?? 0
 	}
 }
+
+extension Region: CustomStringConvertible {
+	public var description: String {
+		"Region: \(name) @\(parentName ?? "-") #\(report?.description ?? "-") ##\(timeSeries?.description ?? "-")"
+	}
+}

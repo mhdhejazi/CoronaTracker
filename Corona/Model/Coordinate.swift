@@ -42,3 +42,9 @@ extension Coordinate: Equatable {
 			Int(lhs.longitude * 1000) == Int(rhs.longitude * 1000)
 	}
 }
+
+extension Coordinate: CustomStringConvertible {
+	public var description: String {
+		"Coordinate: \(latitude),\(longitude)"
+	}
+}

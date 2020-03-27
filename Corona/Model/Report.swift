@@ -19,3 +19,9 @@ extension Report {
 			   stat: Statistic.sum(subData: subReports.map { $0.stat }))
 	}
 }
+
+extension Report: CustomStringConvertible {
+	public var description: String {
+		"Report: \(lastUpdate): \(stat)"
+	}
+}
