@@ -1,0 +1,32 @@
+/*
+  Localizable.strings
+  Corona
+
+  Created by Mohammad on 3/22/20.
+  Translated by Erick Li (erickzli) on 3/28/2020.
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "已确诊";
+"case.active" = "治疗中";
+"case.recovered" = "已恢复";
+"case.deaths" = "已死亡";
+"region.world" = "全球";
+"chart.topCountries" = "最多确诊个案国家";
+"chart.logarithmic" = "最多确诊个案国家（对数）";
+"chart.delta" = "每日新增";
+"data.updating" = "更新中...";
+"data.updateDate" = "最后更新于:";
+"data.errorTitle" = "无法获取数据";
+"data.errorMessage" = "请检查您的互联网连接.";
+"data.source" = "数据来源: %@";
+"app.newVersionTitle" = "有新版本下载";
+"app.newVersionMessage" = "请更新 %@";
+"message.cancel" = "取消";
+"message.open" = "打开";
+"message.ok" = "确定";
+"message.done" = "完成";
+"menu.update" = "更新";
+"menu.share" = "分享";
+"share.current" = "冠状病毒病实时更新";
+"share.chartHistory" = "冠状病毒病增长曲线";
