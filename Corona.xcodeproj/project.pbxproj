@@ -172,6 +172,7 @@
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11DE76842430AB2900381C0A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11DE76852430AB9100381C0A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		11DE76862430AE6600381C0A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
@@ -484,6 +485,7 @@
 				fr,
 				es,
 				"zh-Hans",
+				ja,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -611,6 +613,7 @@
 				1186BC6A242A743000097E9E /* fr */,
 				11DE76842430AB2900381C0A /* es */,
 				11DE76852430AB9100381C0A /* zh-Hans */,
+				11DE76862430AE6600381C0A /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
