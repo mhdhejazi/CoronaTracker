@@ -182,6 +182,7 @@
 		344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34C02EBB2431246C00AE80FE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +487,7 @@
 				es,
 				"zh-Hans",
 				ja,
+				pl,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -614,6 +616,7 @@
 				11DE76842430AB2900381C0A /* es */,
 				11DE76852430AB9100381C0A /* zh-Hans */,
 				11DE76862430AE6600381C0A /* ja */,
+				34C02EBB2431246C00AE80FE /* pl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
