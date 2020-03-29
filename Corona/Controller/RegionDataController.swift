@@ -13,9 +13,10 @@ class RegionDataController: UITableViewController {
 	private let rows: [Row] = [
 		(type: StatsCell.self, height: 150),
 		(type: CurrentChartCell.self, height: 250),
-		(type: DeltaChartCell.self, height: 250),
+		(type: DeltaChartCell.self, height: 275),
 		(type: HistoryChartCell.self, height: 300),
-		(type: TopChartCell.self, height: 350),
+		(type: TopChartCell.self, height: 300),
+		(type: TrendlineChartCell.self, height: 350),
 		(type: UpdateTimeCell.self, height: 40),
 		(type: DataSourceCell.self, height: 50)
 	]
@@ -72,7 +73,7 @@ class RegionDataController: UITableViewController {
 		guard let cell = cell, let shareable = cell.shareable else { return }
 
 		let cellImage = cell.snapshot()
-		let headerImage = container!.snapshotHeader(hideTitle: shareable == .chartTop)
+		let headerImage = container!.snapshotHeader(hideTitle: shareable == .chartTop || shareable == .chartTrendline)
 		var logoImage = Asset.iconSmall.image
 		if #available(iOS 13.0, *) {
 			logoImage = logoImage.withTintColor(SystemColor.secondaryLabel)

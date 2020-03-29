@@ -11,22 +11,23 @@ import UIKit
 import Charts
 
 public class SimpleMarkerView: BalloonMarker {
-	public typealias Block = (_ entry: ChartDataEntry, _ highlight: Highlight) -> String
+	public typealias ContentCallback = (_ entry: ChartDataEntry, _ highlight: Highlight) -> String
+	public typealias VisibilityCallback = (_ entry: ChartDataEntry, _ visible: Bool) -> Void
 
 	private var xValueFormatter: IAxisValueFormatter?
 	private var yValueFormatter: IAxisValueFormatter?
-	private var block: Block?
-
+	private var contentCallback: ContentCallback?
 	private var unhighlightTask: DispatchWorkItem?
 
-	var timeout: TimeInterval = 2 /// Seconds
+	public var timeout: TimeInterval = 2 /// Seconds
+	public var visibilityCallback: VisibilityCallback?
 
-	public init(chartView: ChartViewBase, block: Block? = nil) {
-		if block == nil {
+	public init(chartView: ChartViewBase, contentCallback: ContentCallback? = nil) {
+		if contentCallback == nil {
 			self.xValueFormatter = chartView is PieChartView ? nil : chartView.xAxis.valueFormatter
 			self.yValueFormatter = DefaultAxisValueFormatter(formatter: NumberFormatter.groupingFormatter)
 		} else {
-			self.block = block
+			self.contentCallback = contentCallback
 		}
 
 		super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
@@ -41,8 +42,8 @@ public class SimpleMarkerView: BalloonMarker {
 
 	public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
 		var result: String
-		if let block = block {
-			result = block(entry, highlight)
+		if let contentCallback = contentCallback {
+			result = contentCallback(entry, highlight)
 		}
 		else {
 			result = ""
@@ -58,9 +59,11 @@ public class SimpleMarkerView: BalloonMarker {
 		setLabel(result)
 
 		/// Auto hide the marker after timeout
+		visibilityCallback?(entry, true)
 		unhighlightTask?.cancel()
 		let task = DispatchWorkItem {
 			self.chartView?.highlightValues(nil)
+			self.visibilityCallback?(entry, false)
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + timeout, execute: task)
 		unhighlightTask = task

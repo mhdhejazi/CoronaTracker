@@ -67,6 +67,7 @@
 		1186BC672429FD7200097E9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1186BC662429FD7200097E9E /* Main.storyboard */; };
 		1186BC6E242B608200097E9E /* RegionDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC6D242B608200097E9E /* RegionDataController.swift */; };
 		1186BC72242B64FE00097E9E /* RegionDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1186BC71242B64FE00097E9E /* RegionDataCell.swift */; };
+		119043B9242F6F2B0080E405 /* TrendlineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119043B8242F6F2B0080E405 /* TrendlineChartView.swift */; };
 		1195F1A5241EC1FB00FE718F /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1195F1A4241EC1FB00FE718F /* Charts */; };
 		11BF32AA24156AE500270130 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 11BF32A924156AE500270130 /* FloatingPanel */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
@@ -168,6 +169,7 @@
 		1186BC6A242A743000097E9E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1186BC6D242B608200097E9E /* RegionDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionDataController.swift; sourceTree = "<group>"; };
 		1186BC71242B64FE00097E9E /* RegionDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDataCell.swift; sourceTree = "<group>"; };
+		119043B8242F6F2B0080E405 /* TrendlineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendlineChartView.swift; sourceTree = "<group>"; };
 		1195F19D241D2E7900FE718F /* RegionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionListController.swift; sourceTree = "<group>"; };
 		11BF32B024166E5C00270130 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		11DE76842430AB2900381C0A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				1186BC5C24291D4000097E9E /* DeltaChartView.swift */,
 				11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */,
 				11EB2CA0241400EF001769B2 /* TopChartView.swift */,
+				119043B8242F6F2B0080E405 /* TrendlineChartView.swift */,
 				1162D153240F934000647002 /* BalloonMarker.swift */,
 				1162D152240F934000647002 /* SimpleMarkerView.swift */,
 				11672A1B24114922000B2466 /* PercentValueFormatter.swift */,
@@ -548,6 +551,7 @@
 				1162D161240FA87E00647002 /* RegionAnnotationView.swift in Sources */,
 				1124F64624224E240002641D /* MenuController.swift in Sources */,
 				1162D145240EB86400647002 /* RegionAnnotation.swift in Sources */,
+				119043B9242F6F2B0080E405 /* TrendlineChartView.swift in Sources */,
 				11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */,
 				115186A0241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
 				1114CFC82423F8CC00B1CF85 /* ImageItemSource.swift in Sources */,

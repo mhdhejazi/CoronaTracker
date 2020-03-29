@@ -11,6 +11,43 @@ import UIKit
 import Charts
 
 class TopChartView: BarChartView {
+	private lazy var switchButton: UIButton = {
+		let button = UIButton(type: .custom)
+		button.setImage(Asset.switch.image, for: .normal)
+		button.addTarget(self, action: #selector(switchButtonTapped(_:)), for: .touchUpInside)
+
+		button.translatesAutoresizingMaskIntoConstraints = false
+		self.addSubview(button)
+		button.topAnchor.constraint(equalTo: self.topAnchor, constant: -10).isActive = true
+		button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = true
+		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+		return button
+	}()
+
+	private lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = SystemColor.label.withAlphaComponent(0.75)
+		label.font = .systemFont(ofSize: 13)
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		
+		label.translatesAutoresizingMaskIntoConstraints = false
+		self.addSubview(label)
+		label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+		label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+
+		return label
+	}()
+
+	private var title: String? = nil {
+		didSet {
+			titleLabel.text = title?.uppercased()
+			extraTopOffset = titleLabel.sizeThatFits(.zero).height + 20
+		}
+	}
+
 	var isLogarithmic = false {
 		didSet {
 			self.clear()
@@ -37,7 +74,7 @@ class TopChartView: BarChartView {
 		}
 
 //		leftAxis.drawGridLinesEnabled = false
-		leftAxis.gridColor = .lightGray
+		leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
 		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
@@ -68,22 +105,14 @@ class TopChartView: BarChartView {
 		simpleMarker.timeout = 5
 		marker = simpleMarker
 
-		initializeLegend(legend)
-	}
-
-	private func initializeLegend(_ legend: Legend) {
-		legend.textColor = SystemColor.secondaryLabel
-		legend.font = .systemFont(ofSize: 12, weight: .regular)
-		legend.form = .none
-		legend.formSize = 0
-		legend.horizontalAlignment = .center
-		legend.xEntrySpace = 0
-		legend.formToTextSpace = 0
-		legend.stackSpace = 0
+		legend.enabled = false
 	}
 
 	func update(animated: Bool) {
 		let regions = DataManager.instance.topCountries
+
+		title = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
+		_ = switchButton
 
 		var entries = [BarChartDataEntry]()
 		for i in regions.indices {
@@ -124,5 +153,11 @@ class TopChartView: BarChartView {
 		if animated {
 			animate(yAxisDuration: 2, easingOption: .easeOutCubic)
 		}
+	}
+
+	@objc func switchButtonTapped(_ sender: Any) {
+		UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+			self.isLogarithmic = !self.isLogarithmic
+		}, completion: nil)
 	}
 }

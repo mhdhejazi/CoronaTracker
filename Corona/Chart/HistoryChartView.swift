@@ -11,17 +11,39 @@ import UIKit
 import Charts
 
 class HistoryChartView: LineChartView {
+	private lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = SystemColor.label.withAlphaComponent(0.75)
+		label.font = .systemFont(ofSize: 13)
+		label.numberOfLines = 0
+		label.textAlignment = .center
+
+		label.translatesAutoresizingMaskIntoConstraints = false
+		self.addSubview(label)
+		label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+		label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+
+		return label
+	}()
+
+	private var title: String? = nil {
+		didSet {
+			titleLabel.text = title?.uppercased()
+			extraTopOffset = titleLabel.sizeThatFits(.zero).height + 20
+		}
+	}
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		xAxis.gridColor = .lightGray
+		xAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		xAxis.gridLineDashLengths = [3, 3]
 		xAxis.labelPosition = .bottom
 		xAxis.labelTextColor = SystemColor.secondaryLabel
 		xAxis.valueFormatter = DayAxisValueFormatter(chartView: self)
 
 //		leftAxis.drawGridLinesEnabled = false
-		leftAxis.gridColor = .lightGray
+		leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
 		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
@@ -57,6 +79,8 @@ class HistoryChartView: LineChartView {
 			return
 		}
 
+		title = L10n.Chart.history
+
 		let dates = series.series.keys.sorted().drop { series.series[$0]?.isZero == true }
 		let confirmedEntries = dates.map {
 			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.confirmedCount ?? 0))
@@ -77,11 +101,11 @@ class HistoryChartView: LineChartView {
 			let dataSet = LineChartDataSet(entries: entries[i], label: labels[i])
 			dataSet.mode = .cubicBezier
 			dataSet.drawValuesEnabled = false
-			dataSet.colors = [colors[i]]
+			dataSet.colors = [colors[i].withAlphaComponent(0.75)]
 
 //			dataSet.drawCirclesEnabled = false
-			dataSet.circleRadius = confirmedEntries.count < 60 ? 3 : 2
-			dataSet.circleColors = [colors[i].withAlphaComponent(0.75)]
+			dataSet.circleRadius = confirmedEntries.count < 60 ? 2 : 1.8
+			dataSet.circleColors = [colors[i]]
 
 			dataSet.drawCircleHoleEnabled = false
 			dataSet.circleHoleRadius = 1

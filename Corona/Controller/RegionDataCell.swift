@@ -19,6 +19,7 @@ class RegionDataCell: UITableViewCell {
 		case chartCurrent
 		case chartDelta
 		case chartHistory
+		case chartTrendline
 		case chartTop
 
 		var title: String {
@@ -27,6 +28,7 @@ class RegionDataCell: UITableViewCell {
 			case .chartCurrent: return L10n.Chart.delta
 			case .chartDelta: return L10n.Share.current
 			case .chartHistory: return L10n.Share.chartHistory
+			case .chartTrendline: return L10n.Chart.trendline
 			case .chartTop: return L10n.Chart.topCountries
 			}
 		}
@@ -248,6 +250,16 @@ class HistoryChartCell: RegionDataCell {
 	}
 }
 
+class TrendlineChartCell: RegionDataCell {
+	@IBOutlet var chartView: TrendlineChartView!
+
+	override var shareable: Shareable? { .chartTrendline }
+
+	override func update(animated: Bool) {
+		chartView.update(region: region, animated: animated)
+	}
+}
+
 class TopChartCell: RegionDataCell {
 	@IBOutlet var chartView: TopChartView!
 
@@ -255,12 +267,6 @@ class TopChartCell: RegionDataCell {
 
 	override func update(animated: Bool) {
 		chartView.update(animated: animated)
-	}
-
-	@IBAction func buttonLogarithmicTapped(_ sender: Any) {
-		UIView.transition(with: chartView, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.chartView.isLogarithmic = !self.chartView.isLogarithmic
-		}, completion: nil)
 	}
 }
 

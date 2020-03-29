@@ -339,7 +339,7 @@ class PanelLayout: FloatingPanelLayout {
 		#if targetEnvironment(macCatalyst)
 		return .full
 		#else
-		return .half
+		return UIDevice.current.userInterfaceIdiom == .pad ? .full : .half
 		#endif
 	}
 

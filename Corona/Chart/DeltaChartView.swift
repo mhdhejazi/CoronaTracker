@@ -11,6 +11,28 @@ import UIKit
 import Charts
 
 class DeltaChartView: BarChartView {
+	private lazy var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = SystemColor.label.withAlphaComponent(0.75)
+		label.font = .systemFont(ofSize: 13)
+		label.numberOfLines = 0
+		label.textAlignment = .center
+
+		label.translatesAutoresizingMaskIntoConstraints = false
+		self.addSubview(label)
+		label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+		label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+
+		return label
+	}()
+
+	private var title: String? = nil {
+		didSet {
+			titleLabel.text = title?.uppercased()
+			extraTopOffset = titleLabel.sizeThatFits(.zero).height + 20
+		}
+	}
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
@@ -21,7 +43,7 @@ class DeltaChartView: BarChartView {
 		xAxis.valueFormatter = DayAxisValueFormatter(chartView: self)
 
 //		leftAxis.drawGridLinesEnabled = false
-		leftAxis.gridColor = .lightGray
+		leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		leftAxis.gridLineDashLengths = [3, 3]
 		leftAxis.labelTextColor = SystemColor.secondaryLabel
 		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
@@ -51,11 +73,9 @@ class DeltaChartView: BarChartView {
 		legend.formSize = 12
 		legend.horizontalAlignment = .center
 		legend.setCustom(entries: [
-			LegendEntry(label: L10n.Chart.delta, form: .none, formSize: 12,
-						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
-			LegendEntry(label: "↑", form: .circle, formSize: 12,
+			LegendEntry(label: "↑ " + L10n.Chart.Delta.increasing, form: .circle, formSize: 12,
 						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemOrange),
-			LegendEntry(label: "↓", form: .circle, formSize: 12,
+			LegendEntry(label: "↓ " + L10n.Chart.Delta.decreasing, form: .circle, formSize: 12,
 						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
 		])
 	}
@@ -65,6 +85,8 @@ class DeltaChartView: BarChartView {
 			data = nil
 			return
 		}
+
+		title = L10n.Chart.delta
 
 		let changes = series.changes()
 		let dates = changes.keys.sorted().drop { changes[$0]?.isZero == true }

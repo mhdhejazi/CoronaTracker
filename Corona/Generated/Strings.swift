@@ -35,10 +35,26 @@ internal enum L10n {
   internal enum Chart {
     /// Daily New Cases
     internal static let delta = L10n.tr("Localizable", "chart.delta")
+    /// Growth of Cases
+    internal static let history = L10n.tr("Localizable", "chart.history")
     /// Logarithmic Scale
     internal static let logarithmic = L10n.tr("Localizable", "chart.logarithmic")
     /// Most Affected Countries
     internal static let topCountries = L10n.tr("Localizable", "chart.topCountries")
+    /// Confirmed cases since 100th case
+    internal static let trendline = L10n.tr("Localizable", "chart.trendline")
+    internal enum Axis {
+      /// %d Days
+      internal static func days(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "chart.axis.days", p1)
+      }
+    }
+    internal enum Delta {
+      /// Decreasing
+      internal static let decreasing = L10n.tr("Localizable", "chart.delta.decreasing")
+      /// Increasing
+      internal static let increasing = L10n.tr("Localizable", "chart.delta.increasing")
+    }
   }
 
   internal enum Data {
