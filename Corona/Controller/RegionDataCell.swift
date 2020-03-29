@@ -220,54 +220,39 @@ class StatsCell: RegionDataCell {
 	}
 }
 
-class CurrentChartCell: RegionDataCell {
-	@IBOutlet var chartView: CurrentChartView!
+class ChartDataCell<C: RegionChartView>: RegionDataCell {
+	lazy var chartView = C()
 
-	override var shareable: Shareable? { .chartCurrent }
+	override func awakeFromNib() {
+		super.awakeFromNib()
 
-	override func update(animated: Bool) {
-		chartView.update(report: region?.report, animated: animated)
+		contentView.addSubview(chartView)
+		chartView.snapEdgesToSuperview()
 	}
-}
-
-class DeltaChartCell: RegionDataCell {
-	@IBOutlet var chartView: DeltaChartView!
-
-	override var shareable: Shareable? { .chartDelta }
-
-	override func update(animated: Bool) {
-		chartView.update(series: region?.timeSeries, animated: animated)
-	}
-}
-
-class HistoryChartCell: RegionDataCell {
-	@IBOutlet var chartView: HistoryChartView!
-
-	override var shareable: Shareable? { .chartHistory }
-
-	override func update(animated: Bool) {
-		chartView.update(series: region?.timeSeries, animated: animated)
-	}
-}
-
-class TrendlineChartCell: RegionDataCell {
-	@IBOutlet var chartView: TrendlineChartView!
-
-	override var shareable: Shareable? { .chartTrendline }
 
 	override func update(animated: Bool) {
 		chartView.update(region: region, animated: animated)
 	}
 }
 
-class TopChartCell: RegionDataCell {
-	@IBOutlet var chartView: TopChartView!
+class CurrentChartCell: ChartDataCell<CurrentChartView> {
+	override var shareable: Shareable? { .chartCurrent }
+}
 
+class DeltaChartCell: ChartDataCell<DeltaChartView> {
+	override var shareable: Shareable? { .chartDelta }
+}
+
+class HistoryChartCell: ChartDataCell<HistoryChartView> {
+	override var shareable: Shareable? { .chartHistory }
+}
+
+class TopChartCell: ChartDataCell<TopChartView> {
 	override var shareable: Shareable? { .chartTop }
+}
 
-	override func update(animated: Bool) {
-		chartView.update(animated: animated)
-	}
+class TrendlineChartCell: ChartDataCell<TrendlineChartView> {
+	override var shareable: Shareable? { .chartTrendline }
 }
 
 class UpdateTimeCell: RegionDataCell {

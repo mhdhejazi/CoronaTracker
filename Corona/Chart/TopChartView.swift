@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class TopChartView: BarChartView {
+class TopChartView: BaseBarChartView, RegionChartView {
 	private lazy var switchButton: UIButton = {
 		let button = UIButton(type: .custom)
 		button.setImage(Asset.switch.image, for: .normal)
@@ -18,81 +18,42 @@ class TopChartView: BarChartView {
 
 		button.translatesAutoresizingMaskIntoConstraints = false
 		self.addSubview(button)
-		button.topAnchor.constraint(equalTo: self.topAnchor, constant: -10).isActive = true
-		button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = true
+		button.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+		button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
 		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
 
 		return button
 	}()
 
-	private lazy var titleLabel: UILabel = {
-		let label = UILabel()
-		label.textColor = SystemColor.label.withAlphaComponent(0.75)
-		label.font = .systemFont(ofSize: 13)
-		label.numberOfLines = 0
-		label.textAlignment = .center
-		
-		label.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(label)
-		label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-		label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-
-		return label
-	}()
-
-	private var title: String? = nil {
-		didSet {
-			titleLabel.text = title?.uppercased()
-			extraTopOffset = titleLabel.sizeThatFits(.zero).height + 20
-		}
-	}
-
 	var isLogarithmic = false {
 		didSet {
-			self.clear()
-			self.update(animated: true)
+			self.chartView.clear()
+			self.update(region: nil, animated: true)
 		}
 	}
 
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	override func initializeView() {
+		super.initializeView()
 
-//		xAxis.drawGridLinesEnabled = false
-		xAxis.drawGridLinesEnabled = false
-		xAxis.labelPosition = .bottom
-		xAxis.labelTextColor = SystemColor.secondaryLabel
-		xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
-			guard let entry = self.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
+		chartView.xAxis.drawGridLinesEnabled = false
+		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
+			guard let entry = self.chartView.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
 				let region = entry.data as? Region else { return value.description }
 
 			return region.localizedName.replacingOccurrences(of: " ", with: "\n")
 		})
+
 		/// Rotate labels in other languages
 		if !Locale.current.isEnglish {
-			xAxis.labelRotationAngle = 45
+			chartView.xAxis.labelRotationAngle = 45
 		}
 
-//		leftAxis.drawGridLinesEnabled = false
-		leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
-		leftAxis.gridLineDashLengths = [3, 3]
-		leftAxis.labelTextColor = SystemColor.secondaryLabel
-		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
 			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
-		rightAxis.enabled = false
-
-		dragEnabled = false
-		scaleXEnabled = false
-		scaleYEnabled = false
-
-		fitBars = true
-
-		noDataTextColor = .systemGray
-		noDataFont = .systemFont(ofSize: 15)
-
-		let simpleMarker = SimpleMarkerView(chartView: self) { (entry, highlight) in
+		let simpleMarker = SimpleMarkerView(chartView: chartView) { (entry, highlight) in
 			guard let region = entry.data as? Region,
 				let report = region.report else { return entry.y.kmFormatted }
 
@@ -103,12 +64,12 @@ class TopChartView: BarChartView {
 			"""
 		}
 		simpleMarker.timeout = 5
-		marker = simpleMarker
+		chartView.marker = simpleMarker
 
-		legend.enabled = false
+		chartView.legend.enabled = false
 	}
 
-	func update(animated: Bool) {
+	func update(region: Region?, animated: Bool) {
 		let regions = DataManager.instance.topCountries
 
 		title = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
@@ -139,19 +100,19 @@ class TopChartView: BarChartView {
 		})
 
 		if isLogarithmic {
-			leftAxis.axisMinimum = 2
-			leftAxis.axisMaximum = 6
-			leftAxis.labelCount = 4
+			chartView.leftAxis.axisMinimum = 2
+			chartView.leftAxis.axisMaximum = 6
+			chartView.leftAxis.labelCount = 4
 		}
 		else {
-			leftAxis.resetCustomAxisMin()
-			leftAxis.resetCustomAxisMax()
+			chartView.leftAxis.resetCustomAxisMin()
+			chartView.leftAxis.resetCustomAxisMax()
 		}
 
-		data = BarChartData(dataSet: dataSet)
+		chartView.data = BarChartData(dataSet: dataSet)
 
 		if animated {
-			animate(yAxisDuration: 2, easingOption: .easeOutCubic)
+			chartView.animate(yAxisDuration: 2, easingOption: .easeOutCubic)
 		}
 	}
 

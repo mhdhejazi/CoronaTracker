@@ -61,16 +61,16 @@ extension UIView {
 		UIGraphicsImageRenderer(bounds: bounds).image { layer.render(in: $0.cgContext) }
 	}
 
-	public func snapEdgesToSuperview() {
-		snapEdges(to: superview!)
+	public func snapEdgesToSuperview(constant: CGFloat = 0) {
+		snapEdges(to: superview!, constant: constant)
 	}
 
-	public func snapEdges(to view: UIView) {
+	public func snapEdges(to view: UIView, constant: CGFloat = 0) {
 		translatesAutoresizingMaskIntoConstraints = false
-		leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-		trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-		topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-		bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+		leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
+		trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constant).isActive = true
+		topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+		bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -constant).isActive = true
 	}
 
 	public func enableShadow(radius: CGFloat = 3,

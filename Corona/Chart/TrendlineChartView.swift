@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class TrendlineChartView: LineChartView {
+class TrendlineChartView: BaseLineChartView, RegionChartView {
 	private static let maxItems = 6
 	private static let colors = [
 		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
@@ -46,43 +46,19 @@ class TrendlineChartView: LineChartView {
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 
 		self.addSubview(stackView)
-		stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-		stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-		stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+		stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+		stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40).isActive = true
+		stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40).isActive = true
 
 		stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(legendTapped(_:))))
 		return stackView
 	}()
 
-	private lazy var titleLabel: UILabel = {
-		let label = UILabel()
-		label.textColor = SystemColor.label.withAlphaComponent(0.75)
-		label.font = .systemFont(ofSize: 13)
-		label.numberOfLines = 0
-		label.textAlignment = .center
-
-		label.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(label)
-		label.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-		label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-		label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-
-		return label
-	}()
-
-	private var title: String? = nil {
-		didSet {
-			titleLabel.text = title?.uppercased()
-			extraTopOffset = titleLabel.sizeThatFits(.zero).height + 20
-		}
-	}
-
 	private var selectedIndex = -1 {
 		didSet {
 			guard selectedIndex != oldValue else { return }
 
-			if let dataSets = self.data?.dataSets as? [LineChartDataSet] {
+			if let dataSets = chartView.data?.dataSets as? [LineChartDataSet] {
 				for i in dataSets.indices {
 					let dataSet = dataSets[i]
 					var color = Self.colors[i % Self.colors.count]
@@ -94,56 +70,35 @@ class TrendlineChartView: LineChartView {
 					dataSet.circleColors = [color]
 				}
 				DispatchQueue.main.async {
-					self.data?.notifyDataChanged()
-					self.notifyDataSetChanged()
+					self.chartView.data?.notifyDataChanged()
+					self.chartView.notifyDataSetChanged()
 				}
 			}
 		}
 	}
 
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	override func initializeView() {
+		super.initializeView()
 
-		xAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
-		xAxis.gridLineDashLengths = [3, 3]
-		xAxis.labelPosition = .bottom
-		xAxis.labelTextColor = SystemColor.secondaryLabel
-		xAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
 			L10n.Chart.Axis.days(Int(value))
 		}
 
-//		leftAxis.drawGridLinesEnabled = false
-		leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
-		leftAxis.gridLineDashLengths = [3, 3]
-		leftAxis.labelTextColor = SystemColor.secondaryLabel
-		leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			value.kmFormatted
-		}
-
-		rightAxis.enabled = false
-
-		dragEnabled = false
-		scaleXEnabled = false
-		scaleYEnabled = false
-
-		noDataTextColor = .systemGray
-		noDataFont = .systemFont(ofSize: 15)
-
-		let simpleMarker = SimpleMarkerView(chartView: self)
+		let simpleMarker = SimpleMarkerView(chartView: chartView)
 		simpleMarker.visibilityCallback = { entry, visible in
 			let index = (entry.data as? Int) ?? -1
 			self.selectedIndex = visible ? index : -1
 			print(index)
 		}
-		marker = simpleMarker
+		chartView.marker = simpleMarker
 
-		legend.enabled = false
+		chartView.legend.enabled = false
 	}
 
 	func update(region: Region?, animated: Bool) {
 		var regions = DataManager.instance.topCountries.filter { $0.timeSeries != nil }
 		guard regions.count > 2 else {
-			data = nil
+			chartView.data = nil
 			return
 		}
 
@@ -196,10 +151,10 @@ class TrendlineChartView: LineChartView {
 
 		updateLegend(regions: regions)
 
-		data = LineChartData(dataSets: dataSets)
+		chartView.data = LineChartData(dataSets: dataSets)
 
 		if animated {
-			animate(xAxisDuration: 2, easingOption: .linear)
+			chartView.animate(xAxisDuration: 2, easingOption: .linear)
 		}
 	}
 
@@ -213,7 +168,7 @@ class TrendlineChartView: LineChartView {
 
 		legendStack.layoutIfNeeded()
 		legendStack.setNeedsLayout()
-		extraBottomOffset = legendStack.bounds.height + 10
+		chartView.extraBottomOffset = legendStack.bounds.height + 10
 	}
 
 	@objc func legendTapped(_ recognizer: UITapGestureRecognizer) {
@@ -221,7 +176,7 @@ class TrendlineChartView: LineChartView {
 		let index = legendStack.arrangedSubviews.firstIndex { view in
 			view.point(inside: view.convert(point, from: legendStack), with: nil)
 		} ?? -1
-		highlightValues(nil)
+		chartView.highlightValues(nil)
 		selectedIndex = (selectedIndex == index) ? -1 : index
 	}
 }

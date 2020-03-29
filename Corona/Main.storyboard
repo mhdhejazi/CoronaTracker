@@ -230,128 +230,53 @@
                                     <outlet property="labelRecoveredTitle" destination="9tZ-vG-Acf" id="MLE-lr-qkw"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentChartCell" rowHeight="250" id="3iZ-xE-q67" customClass="CurrentChartCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="178" width="414" height="250"/>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentChartCell" rowHeight="50" id="3iZ-xE-q67" customClass="CurrentChartCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="178" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3iZ-xE-q67" id="Sop-ag-oCY">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZx-82-PuJ" customClass="CurrentChartView" customModule="Corona_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="374" height="210"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="VZx-82-PuJ" firstAttribute="leading" secondItem="Sop-ag-oCY" secondAttribute="leading" constant="20" symbolic="YES" id="5YM-jg-x8P"/>
-                                        <constraint firstItem="VZx-82-PuJ" firstAttribute="top" secondItem="Sop-ag-oCY" secondAttribute="top" constant="20" symbolic="YES" id="XJS-ON-ISB"/>
-                                        <constraint firstAttribute="trailing" secondItem="VZx-82-PuJ" secondAttribute="trailing" constant="20" symbolic="YES" id="Xk6-Rm-0Eu"/>
-                                        <constraint firstAttribute="bottom" secondItem="VZx-82-PuJ" secondAttribute="bottom" constant="20" symbolic="YES" id="jjd-Le-YCY"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="chartView" destination="VZx-82-PuJ" id="lyz-zi-qnE"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeltaChartCell" rowHeight="250" id="bNI-r6-c0N" customClass="DeltaChartCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="222" width="414" height="250"/>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeltaChartCell" rowHeight="50" id="bNI-r6-c0N" customClass="DeltaChartCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bNI-r6-c0N" id="7l3-yE-cHz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlc-W0-j2h" customClass="DeltaChartView" customModule="Corona_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="374" height="210"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="mlc-W0-j2h" secondAttribute="trailing" constant="20" symbolic="YES" id="4pi-Iw-uhN"/>
-                                        <constraint firstItem="mlc-W0-j2h" firstAttribute="top" secondItem="7l3-yE-cHz" secondAttribute="top" constant="20" symbolic="YES" id="hPw-Jf-yK7"/>
-                                        <constraint firstAttribute="bottom" secondItem="mlc-W0-j2h" secondAttribute="bottom" constant="20" symbolic="YES" id="kTS-5Z-k6E"/>
-                                        <constraint firstItem="mlc-W0-j2h" firstAttribute="leading" secondItem="7l3-yE-cHz" secondAttribute="leading" constant="20" symbolic="YES" id="utN-yk-wkP"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="chartView" destination="mlc-W0-j2h" id="i7W-hh-Sj0"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryChartCell" rowHeight="300" id="0ul-CC-Weu" customClass="HistoryChartCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="472" width="414" height="300"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryChartCell" rowHeight="50" id="0ul-CC-Weu" customClass="HistoryChartCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="278" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ul-CC-Weu" id="650-ek-nwC">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8U-m1-EOW" customClass="HistoryChartView" customModule="Corona_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="374" height="260"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="a8U-m1-EOW" secondAttribute="bottom" constant="20" symbolic="YES" id="8rx-zi-sGU"/>
-                                        <constraint firstItem="a8U-m1-EOW" firstAttribute="top" secondItem="650-ek-nwC" secondAttribute="top" constant="20" symbolic="YES" id="BSc-Az-shn"/>
-                                        <constraint firstItem="a8U-m1-EOW" firstAttribute="leading" secondItem="650-ek-nwC" secondAttribute="leading" constant="20" symbolic="YES" id="auH-J8-vIS"/>
-                                        <constraint firstAttribute="trailing" secondItem="a8U-m1-EOW" secondAttribute="trailing" constant="20" symbolic="YES" id="iVC-NN-LSD"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="chartView" destination="a8U-m1-EOW" id="8OU-o8-iou"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrendlineChartCell" rowHeight="300" id="wtj-L8-Jqo" customClass="TrendlineChartCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="772" width="414" height="300"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrendlineChartCell" rowHeight="50" id="wtj-L8-Jqo" customClass="TrendlineChartCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="328" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wtj-L8-Jqo" id="371-pa-e6H">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-ou-CAD" customClass="TrendlineChartView" customModule="Corona_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="374" height="260"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="llQ-ou-CAD" firstAttribute="leading" secondItem="371-pa-e6H" secondAttribute="leading" constant="20" symbolic="YES" id="P8k-0N-3At"/>
-                                        <constraint firstAttribute="trailing" secondItem="llQ-ou-CAD" secondAttribute="trailing" constant="20" symbolic="YES" id="Rdr-lq-J81"/>
-                                        <constraint firstAttribute="bottom" secondItem="llQ-ou-CAD" secondAttribute="bottom" constant="20" symbolic="YES" id="ThH-9a-smt"/>
-                                        <constraint firstItem="llQ-ou-CAD" firstAttribute="top" secondItem="371-pa-e6H" secondAttribute="top" constant="20" symbolic="YES" id="Z4p-Fl-NIP"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="chartView" destination="llQ-ou-CAD" id="FCg-nK-Ugz"/>
-                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopChartCell" rowHeight="350" id="M89-3e-QJ7" customClass="TopChartCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1278" width="414" height="350"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopChartCell" rowHeight="50" id="M89-3e-QJ7" customClass="TopChartCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="378" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M89-3e-QJ7" id="jG2-zw-QBx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71d-xP-f0E" customClass="TopChartView" customModule="Corona_Tracker" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="20" width="374" height="310"/>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="71d-xP-f0E" secondAttribute="trailing" constant="20" symbolic="YES" id="4VC-ca-EhJ"/>
-                                        <constraint firstAttribute="bottom" secondItem="71d-xP-f0E" secondAttribute="bottom" constant="20" symbolic="YES" id="Brh-M5-hgQ"/>
-                                        <constraint firstItem="71d-xP-f0E" firstAttribute="leading" secondItem="jG2-zw-QBx" secondAttribute="leading" constant="20" symbolic="YES" id="TOX-2j-xuW"/>
-                                        <constraint firstItem="71d-xP-f0E" firstAttribute="top" secondItem="jG2-zw-QBx" secondAttribute="top" constant="20" symbolic="YES" id="bsL-PL-fWS"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="chartView" destination="71d-xP-f0E" id="jJZ-iU-OsM"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpdateTimeCell" rowHeight="40" id="ce0-b4-Yib" customClass="UpdateTimeCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1628" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="428" width="414" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ce0-b4-Yib" id="H1I-0u-7Do">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -376,7 +301,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataSourceCell" rowHeight="50" id="PyN-Ks-IkV" customClass="DataSourceCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1668" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="468" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PyN-Ks-IkV" id="sfr-T1-3kB">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>

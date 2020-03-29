@@ -10,41 +10,29 @@ import UIKit
 
 import Charts
 
-class CurrentChartView: PieChartView {
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+class CurrentChartView: ChartView<PieChartView>, RegionChartView {
+	override var hasTitle: Bool { false }
 
-		usePercentValuesEnabled = true
-		holeColor = nil
-		holeRadiusPercent = 0.5
-		transparentCircleRadiusPercent = 0.6
-		maxAngle = 180
-		rotationAngle = 180
-		drawEntryLabelsEnabled = false
-		setExtraOffsets(left: 0, top: 100, right: 0, bottom: -300)
+	override func initializeView() {
+		super.initializeView()
 
-		rotationEnabled = false
+		chartView.usePercentValuesEnabled = true
+		chartView.holeColor = nil
+		chartView.holeRadiusPercent = 0.5
+		chartView.transparentCircleRadiusPercent = 0.6
+		chartView.maxAngle = 180
+		chartView.rotationAngle = 180
+		chartView.drawEntryLabelsEnabled = false
+		chartView.setExtraOffsets(left: 0, top: 100, right: 0, bottom: -300)
 
-		noDataTextColor = .systemGray
-		noDataFont = .systemFont(ofSize: 15)
+		chartView.rotationEnabled = false
 
-		marker = SimpleMarkerView(chartView: self)
-
-		initializeLegend(legend)
+		chartView.marker = SimpleMarkerView(chartView: chartView)
 	}
 
-	private func initializeLegend(_ legend: Legend) {
-		legend.textColor = SystemColor.secondaryLabel
-		legend.font = .systemFont(ofSize: 12, weight: .regular)
-		legend.form = .circle
-		legend.formSize = 12
-		legend.horizontalAlignment = .center
-		legend.xEntrySpace = 10
-	}
-
-	func update(report: Report?, animated: Bool) {
-		guard let report = report else {
-			data = nil
+	func update(region: Region?, animated: Bool) {
+		guard let report = region?.report else {
+			chartView.data = nil
 			return
 		}
 
@@ -68,10 +56,10 @@ class CurrentChartView: PieChartView {
 		dataSet.valueFormatter = PercentValueFormatter()
 		dataSet.selectionShift = 8
 
-		data = PieChartData(dataSet: dataSet)
+		chartView.data = PieChartData(dataSet: dataSet)
 
 		if animated {
-			animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
+			chartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
 		}
 	}
 }
