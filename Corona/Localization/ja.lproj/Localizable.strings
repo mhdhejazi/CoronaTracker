@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Corona
 
@@ -6,26 +6,26 @@
   Copyright © 2020 Samabox. All rights reserved.
 */
 
-"case.confirmed" = "Confirmed";
-"case.active" = "Active";
-"case.recovered" = "Recovered";
-"case.deaths" = "Deaths";
-"region.world" = "Worldwide";
-"chart.topCountries" = "Most Affected Countries";
-"chart.logarithmic" = "Logarithmic Scale";
-"chart.delta" = "Daily New Cases";
-"data.updating" = "Updating...";
-"data.updateDate" = "Last updated:";
-"data.errorTitle" = "Can't update the data";
-"data.errorMessage" = "Please make sure you're connected to the internet.";
-"data.source" = "Source: %@";
-"app.newVersionTitle" = "New Version Available";
-"app.newVersionMessage" = "Please update from %@";
-"message.cancel" = "Cancel";
-"message.open" = "Open";
+"case.confirmed" = "累計感染者数";
+"case.active" = "治療中/非回復";
+"case.recovered" = "回復者数";
+"case.deaths" = "死亡者数";
+"region.world" = "世界";
+"chart.topCountries" = "感染者数の多い国";
+"chart.logarithmic" = "対数スケール";
+"chart.delta" = "新規罹患者数";
+"data.updating" = "更新中...";
+"data.updateDate" = "最終更新:";
+"data.errorTitle" = "データを更新できませんでした";
+"data.errorMessage" = "インターネットに接続できませんでした";
+"data.source" = "データソース: %@";
+"app.newVersionTitle" = "新しいバージョンが利用可能です";
+"app.newVersionMessage" = "%@ からアップデートしてください";
+"message.cancel" = "キャンセル";
+"message.open" = "開く";
 "message.ok" = "OK";
-"message.done" = "Done";
-"menu.update" = "Update";
-"menu.share" = "Share";
-"share.current" = "Coronavirus live update";
-"share.chartHistory" = "Coronavirus growth chart";
+"message.done" = "完了";
+"menu.update" = "更新";
+"menu.share" = "共有";
+"share.current" = "コロナウイルス最新感染状況";
+"share.chartHistory" = "コロナウイルス感染者推移";
