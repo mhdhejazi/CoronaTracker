@@ -15,6 +15,12 @@
 "chart.topCountries" = "Najbardziej dotknięte kraje";
 "chart.logarithmic" = "Skala logarytmiczna";
 "chart.delta" = "Dzienne nowe przypadki";
+"chart.delta.deaths" = "Dzienne nowe zgony";
+"chart.delta.increasing" = "Wzrastający";
+"chart.delta.decreasing" = "Malejący";
+"chart.trendline" = "Potwierdzone przypadki od setnego";
+"chart.history" = "Wzrost liczby przypadków";
+"chart.axis.days" = "%d dni";
 "data.updating" = "Aktualizuję...";
 "data.updateDate" = "Ostatnio aktualizowane:";
 "data.errorTitle" = "Nie udało sie zaktualizować danych";
