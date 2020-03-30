@@ -89,18 +89,7 @@ extension RegionDataCell: UIContextMenuInteractionDelegate {
 			UIMenu(title: "", children: [
 				UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
 					self.shareAction?()
-				},
-				UIAction(title: L10n.Menu.share, image: Asset.share.image, state: .on) { _ in
-					self.shareAction?()
-				},
-				UIMenu(title: "", options: .displayInline, children: [
-					UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
-						self.shareAction?()
-					},
-					UIAction(title: L10n.Menu.share, image: Asset.share.image, state: .on) { _ in
-						self.shareAction?()
-					}
-				])
+				}
 			])
 		})
 	}
