@@ -18,6 +18,7 @@
 "data.updateDate" = "Обновлено:";
 "data.errorTitle" = "Не удаётся обновить данные";
 "data.errorMessage" = "Пожалуйста, убедитесь, что интернет соединение активно.";
+"data.source" = "Источник: %@";
 "app.newVersionTitle" = "Новая версия доступна";
 "app.newVersionMessage" = "Пожалуйста, обновитесь %@";
 "message.cancel" = "Отмена";
