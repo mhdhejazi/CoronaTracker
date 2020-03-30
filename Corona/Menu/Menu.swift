@@ -22,9 +22,17 @@ class Menu {
 	}
 }
 
-struct MenuItem {
-	var title: String?
-	var image: UIImage?
-	var selected: Bool = false
-	var action: () -> Void
+enum MenuItem {
+	case regular(title: String?, image: UIImage?, action: () -> Void)
+	case option(title: String?, selected: Bool, action: () -> Void)
+	case separator
+
+	var height: CGFloat {
+		switch self {
+		case .regular(_, _, _), .option(_, _, _):
+			return 44
+		case .separator:
+			return 8
+		}
+	}
 }

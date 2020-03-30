@@ -230,18 +230,18 @@ class MapController: UIViewController {
 
 	@IBAction func buttonModeTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMode, width: 150, items: [
-			MenuItem(title: L10n.Case.confirmed, image: nil, selected: mode == .confirmed, action: {
+			.option(title: L10n.Case.confirmed, selected: mode == .confirmed) {
 				self.mode = .confirmed
-			}),
-			MenuItem(title: L10n.Case.active, image: nil, selected: mode == .active, action: {
+			},
+			.option(title: L10n.Case.active, selected: mode == .active) {
 				self.mode = .active
-			}),
-			MenuItem(title: L10n.Case.recovered, image: nil, selected: mode == .recovered, action: {
+			},
+			.option(title: L10n.Case.recovered, selected: mode == .recovered) {
 				self.mode = .recovered
-			}),
-			MenuItem(title: L10n.Case.deaths, image: nil, selected: mode == .deaths, action: {
+			},
+			.option(title: L10n.Case.deaths, selected: mode == .deaths) {
 				self.mode = .deaths
-			}),
+			},
 		])
 	}
 }

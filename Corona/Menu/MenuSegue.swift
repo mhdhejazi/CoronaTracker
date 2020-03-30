@@ -119,7 +119,7 @@ private class Presenter: NSObject, UIViewControllerAnimatedTransitioning {
 
 		/// Add shadow view
 		let size = presentedViewController.preferredContentSize
-		var maxY = containerView.bounds.maxY
+		var maxY = containerView.bounds.maxY - 10
 		if #available(iOS 11.0, *) {
 			maxY -= containerView.safeAreaInsets.bottom
 		}
