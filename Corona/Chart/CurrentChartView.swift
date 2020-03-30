@@ -10,9 +10,7 @@ import UIKit
 
 import Charts
 
-class CurrentChartView: ChartView<PieChartView>, RegionChartView {
-	override var hasTitle: Bool { false }
-
+class CurrentChartView: ChartView<PieChartView> {
 	override func initializeView() {
 		super.initializeView()
 
@@ -30,7 +28,9 @@ class CurrentChartView: ChartView<PieChartView>, RegionChartView {
 		chartView.marker = SimpleMarkerView(chartView: chartView)
 	}
 
-	func update(region: Region?, animated: Bool) {
+	override func update(region: Region?, animated: Bool) {
+		super.update(region: region, animated: animated)
+
 		guard let report = region?.report else {
 			chartView.data = nil
 			return

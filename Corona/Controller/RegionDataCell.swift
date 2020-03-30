@@ -14,26 +14,6 @@ import Charts
 class RegionDataCell: UITableViewCell {
 	class var reuseIdentifier: String { String(describing: Self.self) }
 
-	enum Shareable {
-		case stats
-		case chartCurrent
-		case chartDelta
-		case chartHistory
-		case chartTrendline
-		case chartTop
-
-		var title: String {
-			switch self {
-			case .stats: return L10n.Share.current
-			case .chartCurrent: return L10n.Chart.delta
-			case .chartDelta: return L10n.Share.current
-			case .chartHistory: return L10n.Share.chartHistory
-			case .chartTrendline: return L10n.Chart.trendline
-			case .chartTop: return L10n.Chart.topCountries
-			}
-		}
-	}
-
 	private lazy var buttonShare: UIButton = {
 		let button = UIButton(type: .custom)
 		button.setImage(Asset.shareCircle.image, for: .normal)
@@ -47,9 +27,11 @@ class RegionDataCell: UITableViewCell {
 		}
 		return button
 	}()
-	var shareAction: (() -> Void)? = nil
 
-	var shareable: Shareable? { nil }
+	var shareAction: (() -> Void)? = nil
+	var shareableImage: UIImage? { nil }
+	var shareableText: String? { nil }
+
 	var region: Region? {
 		didSet {
 			guard region !== oldValue else { return }
@@ -75,7 +57,7 @@ class RegionDataCell: UITableViewCell {
 	override func setEditing(_ editing: Bool, animated: Bool) {
 		super.setEditing(editing, animated: animated)
 
-		guard shareable != nil, superview is UITableView else { return }
+		guard shareableText != nil, superview is UITableView else { return }
 
 		UIView.animate(withDuration: editing ? 0.5 : 0.25,
 					   delay: 0,
@@ -101,13 +83,24 @@ class RegionDataCell: UITableViewCell {
 @available(iOS 13.0, *)
 extension RegionDataCell: UIContextMenuInteractionDelegate {
 	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-		guard shareable != nil, !isEditing else { return nil }
+		guard shareableText != nil, !isEditing else { return nil }
 
 		return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
 			UIMenu(title: "", children: [
 				UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
 					self.shareAction?()
-				}
+				},
+				UIAction(title: L10n.Menu.share, image: Asset.share.image, state: .on) { _ in
+					self.shareAction?()
+				},
+				UIMenu(title: "", options: .displayInline, children: [
+					UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
+						self.shareAction?()
+					},
+					UIAction(title: L10n.Menu.share, image: Asset.share.image, state: .on) { _ in
+						self.shareAction?()
+					}
+				])
 			])
 		})
 	}
@@ -135,7 +128,8 @@ class StatsCell: RegionDataCell {
 	@IBOutlet var labelDeaths: UILabel!
 	@IBOutlet var labelNewDeaths: UILabel!
 
-	override var shareable: Shareable? { .stats }
+	override var shareableImage: UIImage? { snapshot() }
+	override var shareableText: String? { L10n.Share.current }
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -223,6 +217,20 @@ class StatsCell: RegionDataCell {
 class ChartDataCell<C: RegionChartView>: RegionDataCell {
 	lazy var chartView = C()
 
+	override var shareAction: (() -> Void)? {
+		didSet {
+			chartView.shareAction = shareAction
+		}
+	}
+
+	override var shareableImage: UIImage? {
+		var image: UIImage? = nil
+		chartView.prepareForShare {
+			image = self.snapshot()
+		}
+		return image
+	}
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 
@@ -236,23 +244,23 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 }
 
 class CurrentChartCell: ChartDataCell<CurrentChartView> {
-	override var shareable: Shareable? { .chartCurrent }
+	override var shareableText: String? { L10n.Share.current }
 }
 
 class DeltaChartCell: ChartDataCell<DeltaChartView> {
-	override var shareable: Shareable? { .chartDelta }
+	override var shareableText: String? { L10n.Chart.delta }
 }
 
 class HistoryChartCell: ChartDataCell<HistoryChartView> {
-	override var shareable: Shareable? { .chartHistory }
+	override var shareableText: String? { L10n.Share.chartHistory }
 }
 
 class TopChartCell: ChartDataCell<TopChartView> {
-	override var shareable: Shareable? { .chartTop }
+	override var shareableText: String? { L10n.Chart.topCountries }
 }
 
 class TrendlineChartCell: ChartDataCell<TrendlineChartView> {
-	override var shareable: Shareable? { .chartTrendline }
+	override var shareableText: String? { L10n.Chart.trendline }
 }
 
 class UpdateTimeCell: RegionDataCell {

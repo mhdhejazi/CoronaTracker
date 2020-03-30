@@ -50,6 +50,8 @@ internal enum L10n {
       }
     }
     internal enum Delta {
+      /// Daily New Deaths
+      internal static let deaths = L10n.tr("Localizable", "chart.delta.deaths")
       /// Decreasing
       internal static let decreasing = L10n.tr("Localizable", "chart.delta.decreasing")
       /// Increasing

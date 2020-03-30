@@ -129,7 +129,17 @@ extension Double {
 }
 
 extension Int {
-	public var kmFormatted: String { Double(self).kmFormatted }
+	public var kmFormatted: String {
+		if self >= 1_000, self < 1_000_000 {
+			return String(format: "%dk", locale: .posix, self / 1_000)
+		}
+
+		if self >= 1_000_000 {
+			return String(format: "%dm", locale: .posix, self / 1_000_000)
+		}
+
+		return NumberFormatter.posixFormatter.string(from: NSNumber(value: self))!
+	}
 
 	public var groupingFormatted: String {
 		NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
@@ -152,6 +162,12 @@ extension NumberFormatter {
 		formatter.numberStyle = .percent
 		formatter.maximumFractionDigits = 1
 		formatter.multiplier = 1
+		return formatter
+	}()
+
+	public static let posixFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.locale = .posix
 		return formatter
 	}()
 }

@@ -10,7 +10,11 @@ import UIKit
 
 import Charts
 
-class DeltaChartView: BaseBarChartView, RegionChartView {
+class DeltaChartView: BaseBarChartView {
+	override var supportedModes: [Statistic.Kind] {
+		[.confirmed, .deaths]
+	}
+
 	override func initializeView() {
 		super.initializeView()
 
@@ -18,40 +22,45 @@ class DeltaChartView: BaseBarChartView, RegionChartView {
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			value.kmFormatted
+			Int(value).kmFormatted
 		}
 
 		chartView.marker = SimpleMarkerView(chartView: chartView)
-
-		chartView.legend.setCustom(entries: [
-			LegendEntry(label: "↑ " + L10n.Chart.Delta.increasing, form: .circle, formSize: 12,
-						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemOrange),
-			LegendEntry(label: "↓ " + L10n.Chart.Delta.decreasing, form: .circle, formSize: 12,
-						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
-		])
 	}
 
-	func update(region: Region?, animated: Bool) {
+	override func update(region: Region?, animated: Bool) {
+		super.update(region: region, animated: animated)
+
 		guard let series = region?.timeSeries else {
 			chartView.data = nil
 			return
 		}
 
-		title = L10n.Chart.delta
+		let showNewDeaths = mode == .deaths
+
+		title = showNewDeaths ? L10n.Chart.Delta.deaths : L10n.Chart.delta
+
+		let increasingColor = showNewDeaths ? UIColor.systemRed : UIColor.systemOrange
+		chartView.legend.setCustom(entries: [
+			LegendEntry(label: "↑ " + L10n.Chart.Delta.increasing, form: .circle, formSize: 12,
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: increasingColor),
+			LegendEntry(label: "↓ " + L10n.Chart.Delta.decreasing, form: .circle, formSize: 12,
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
+		])
 
 		let changes = series.changes()
 		let dates = changes.keys.sorted().drop { changes[$0]?.isZero == true }
 
 		var entries = [BarChartDataEntry]()
 		for date in dates {
-			let value = Double(changes[date]!.newConfirmed)
+			let value = Double(showNewDeaths ? changes[date]!.newDeaths : changes[date]!.newConfirmed)
 			let entry = BarChartDataEntry(x: Double(date.referenceDays), y: value)
 			entries.append(entry)
 		}
 
 		var colors = [UIColor]()
 		for i in entries.indices.reversed() {
-			var color = UIColor.systemOrange
+			var color = increasingColor
 			if i > 0 {
 				let currentEntry = entries[i]
 				let previousEntry = entries[i - 1]

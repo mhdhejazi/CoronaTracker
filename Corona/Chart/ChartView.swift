@@ -11,10 +11,14 @@ import UIKit
 import Charts
 
 protocol RegionChartView: UIView {
+	var shareAction: (() -> Void)? { get set }
+
 	func update(region: Region?, animated: Bool)
+
+	func prepareForShare(shareCallback: () -> Void)
 }
 
-class ChartView<C: ChartViewBase>: UIView {
+class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 	var hasTitle: Bool { true }
 
 	lazy var titleLabel: UILabel = {
@@ -24,6 +28,7 @@ class ChartView<C: ChartViewBase>: UIView {
 		label.numberOfLines = 0
 		label.textAlignment = .center
 		label.translatesAutoresizingMaskIntoConstraints = false
+		label.isUserInteractionEnabled = true
 		return label
 	}()
 
@@ -34,11 +39,32 @@ class ChartView<C: ChartViewBase>: UIView {
 		}
 	}
 
+	lazy var menuButton: UIButton = {
+		let button = UIButton(type: .custom)
+		button.setImage(Asset.more.image, for: .normal)
+		button.tintColor = SystemColor.secondaryLabel
+		button.addTarget(self, action: #selector(menuButtonTapped(_:)), for: .touchUpInside)
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
+	}()
+
+	var mode: Statistic.Kind = .confirmed {
+		didSet {
+			update(region: region, animated: true)
+		}
+	}
+
+	var supportedModes: [Statistic.Kind] { [] }
+
+	var shareAction: (() -> Void)?
+
 	lazy var chartView: C = {
 		let chartView = C()
 		chartView.translatesAutoresizingMaskIntoConstraints = false
 		return chartView
 	}()
+
+	var region: Region?
 
 	init() {
 		super.init(frame: .zero)
@@ -58,9 +84,16 @@ class ChartView<C: ChartViewBase>: UIView {
 			titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
 			titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
 			titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+
+			self.addSubview(menuButton)
+			menuButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+			menuButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
+			menuButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+			menuButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
 		}
 
 		self.addSubview(chartView)
+		self.sendSubviewToBack(chartView)
 		chartView.snapEdgesToSuperview(constant: 20)
 
 		if !(chartView is PieChartView) {
@@ -81,8 +114,40 @@ class ChartView<C: ChartViewBase>: UIView {
 		chartView.legend.xEntrySpace = 10
 	}
 
-	func createChartView() -> ChartViewBase {
-		fatalError()
+	func update(region: Region?, animated: Bool) {
+		self.region = region
+	}
+
+	func prepareForShare(shareCallback: () -> Void) {
+		menuButton.isHidden = true
+		shareCallback()
+		menuButton.isHidden = false
+	}
+
+	@objc func menuButtonTapped(_ sender: Any) {
+		var menuItems: [MenuItem] = supportedModes.map { mode in
+			let title: String
+			switch mode {
+			case .confirmed: title = L10n.Case.confirmed
+			case .active: title = L10n.Case.active
+			case .recovered: title = L10n.Case.recovered
+			case .deaths: title = L10n.Case.deaths
+			}
+
+			return MenuItem.option(title: title, selected: self.mode == mode) {
+				self.mode = mode
+			}
+		}
+
+		if !menuItems.isEmpty {
+			menuItems.append(.separator)
+		}
+
+		menuItems.append(.regular(title: L10n.Menu.share, image: Asset.share.image) {
+			self.shareAction?()
+		})
+
+		Menu.show(above: MapController.instance, sourceView: menuButton, width: 150, items: menuItems)
 	}
 }
 
@@ -112,7 +177,7 @@ class BaseLineChartView: ChartView<LineChartView> {
 		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			value.kmFormatted
+			Int(value).kmFormatted
 		}
 
 		chartView.rightAxis.enabled = false

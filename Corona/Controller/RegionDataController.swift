@@ -70,10 +70,12 @@ class RegionDataController: UITableViewController {
 	}
 
 	private func shareImage(for cell: RegionDataCell?) {
-		guard let cell = cell, let shareable = cell.shareable else { return }
+		guard let cell = cell,
+			let shareableImage = cell.shareableImage else { return }
 
-		let cellImage = cell.snapshot()
-		let headerImage = container!.snapshotHeader(hideTitle: shareable == .chartTop || shareable == .chartTrendline)
+		let cellImage = shareableImage
+		let hideTitle = cell is TopChartCell || cell is TrendlineChartCell
+		let headerImage = container!.snapshotHeader(hideTitle: hideTitle)
 		var logoImage = Asset.iconSmall.image
 		if #available(iOS 13.0, *) {
 			logoImage = logoImage.withTintColor(SystemColor.secondaryLabel)
@@ -90,8 +92,10 @@ class RegionDataController: UITableViewController {
 			cellImage.draw(at: .init(x: 0, y: headerImage.size.height))
 		}
 
-		var items: [Any] = [ImageItemSource(image: image, imageName: "Corona Tracker")]
-		items.append(TextItemSource(text: shareable.title))
+		let items: [Any] = [
+			ImageItemSource(image: image, imageName: "Corona Tracker"),
+			TextItemSource(text: cell.shareableText ?? "")
+		]
 
 		let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
 

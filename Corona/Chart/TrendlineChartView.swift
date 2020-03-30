@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class TrendlineChartView: BaseLineChartView, RegionChartView {
+class TrendlineChartView: BaseLineChartView {
 	private static let maxItems = 6
 	private static let colors = [
 		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
@@ -95,7 +95,9 @@ class TrendlineChartView: BaseLineChartView, RegionChartView {
 		chartView.legend.enabled = false
 	}
 
-	func update(region: Region?, animated: Bool) {
+	override func update(region: Region?, animated: Bool) {
+		super.update(region: region, animated: animated)
+		
 		var regions = DataManager.instance.topCountries.filter { $0.timeSeries != nil }
 		guard regions.count > 2 else {
 			chartView.data = nil

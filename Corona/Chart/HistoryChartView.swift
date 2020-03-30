@@ -10,7 +10,7 @@ import UIKit
 
 import Charts
 
-class HistoryChartView: BaseLineChartView, RegionChartView {
+class HistoryChartView: BaseLineChartView {
 	override func initializeView() {
 		super.initializeView()
 
@@ -19,7 +19,9 @@ class HistoryChartView: BaseLineChartView, RegionChartView {
 		chartView.marker = SimpleMarkerView(chartView: chartView)
 	}
 
-	func update(region: Region?, animated: Bool) {
+	override func update(region: Region?, animated: Bool) {
+		super.update(region: region, animated: animated)
+
 		guard let series = region?.timeSeries else {
 			chartView.data = nil
 			return

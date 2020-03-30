@@ -14,6 +14,7 @@
 "chart.topCountries" = "Most Affected Countries";
 "chart.logarithmic" = "Logarithmic Scale";
 "chart.delta" = "Daily New Cases";
+"chart.delta.deaths" = "Daily New Deaths";
 "chart.delta.increasing" = "Increasing";
 "chart.delta.decreasing" = "Decreasing";
 "chart.trendline" = "Confirmed cases since 100th case";

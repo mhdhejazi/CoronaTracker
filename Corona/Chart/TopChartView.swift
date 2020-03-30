@@ -10,21 +10,20 @@ import UIKit
 
 import Charts
 
-class TopChartView: BaseBarChartView, RegionChartView {
-	private lazy var switchButton: UIButton = {
-		let button = UIButton(type: .custom)
-		button.setImage(Asset.switch.image, for: .normal)
-		button.addTarget(self, action: #selector(switchButtonTapped(_:)), for: .touchUpInside)
+class TopChartView: BaseBarChartView {
+	private var colors: [UIColor] {
+		switch mode {
+		case .confirmed: return ChartColorTemplates.pastel()
+		case .active: return [.systemYellow]
+		case .recovered: return [.systemGreen]
+		case .deaths: return [.systemRed]
+		}
+	}
 
-		button.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(button)
-		button.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-		button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
-		button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-		button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+	override var supportedModes: [Statistic.Kind] {
+		[.confirmed, .recovered, .deaths]
+	}
 
-		return button
-	}()
 
 	var isLogarithmic = false {
 		didSet {
@@ -50,7 +49,7 @@ class TopChartView: BaseBarChartView, RegionChartView {
 		}
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
+			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
 		}
 
 		let simpleMarker = SimpleMarkerView(chartView: chartView) { (entry, highlight) in
@@ -69,16 +68,17 @@ class TopChartView: BaseBarChartView, RegionChartView {
 		chartView.legend.enabled = false
 	}
 
-	func update(region: Region?, animated: Bool) {
+	override func update(region: Region?, animated: Bool) {
+		super.update(region: region, animated: animated)
+
 		let regions = DataManager.instance.topCountries
 
-		title = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
-		_ = switchButton
+		title = L10n.Chart.topCountries + (mode == .confirmed ? "" : " (\(mode))")
 
 		var entries = [BarChartDataEntry]()
 		for i in regions.indices {
 			let region = regions[i]
-			var value = Double(region.report?.stat.confirmedCount ?? 0)
+			var value = Double(region.report?.stat.number(for: mode) ?? 0)
 			if isLogarithmic {
 				value = log10(value)
 			}
@@ -89,14 +89,14 @@ class TopChartView: BaseBarChartView, RegionChartView {
 
 		let label = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
 		let dataSet = BarChartDataSet(entries: entries, label: label)
-		dataSet.colors = ChartColorTemplates.pastel()
+		dataSet.colors = colors
 
 //		dataSet.drawValuesEnabled = false
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12, weight: .regular)
 		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
-			guard let region = entry.data as? Region else { return value.kmFormatted }
-			return region.report?.stat.confirmedCount.kmFormatted ?? value.kmFormatted
+			guard let region = entry.data as? Region else { return Int(value).kmFormatted }
+			return region.report?.stat.number(for: self.mode).kmFormatted ?? Int(value).kmFormatted
 		})
 
 		if isLogarithmic {
@@ -114,11 +114,5 @@ class TopChartView: BaseBarChartView, RegionChartView {
 		if animated {
 			chartView.animate(yAxisDuration: 2, easingOption: .easeOutCubic)
 		}
-	}
-
-	@objc func switchButtonTapped(_ sender: Any) {
-		UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.isLogarithmic = !self.isLogarithmic
-		}, completion: nil)
 	}
 }
