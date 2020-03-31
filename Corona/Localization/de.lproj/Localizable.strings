@@ -13,7 +13,7 @@
 "case.recovered" = "Genesen";
 "case.deaths" = "Gestorben";
 "region.world" = "Weltweit";
-"chart.axis.days" = "% Tage";
+"chart.axis.days" = "%d Tage";
 "chart.history" = "Entwicklung der Fälle";
 "chart.topCountries" = "Am meisten betroffene Länder";
 "chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
