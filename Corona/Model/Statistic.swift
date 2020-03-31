@@ -37,6 +37,8 @@ extension Statistic {
 	public enum Kind: CustomStringConvertible {
 		case confirmed, active, recovered, deaths
 
+		public static let all: [Kind] = [.confirmed, .active, .recovered, .deaths]
+
 		public var description: String {
 			switch self {
 			case .confirmed: return L10n.Case.confirmed
