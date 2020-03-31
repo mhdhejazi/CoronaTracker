@@ -14,6 +14,12 @@
 "chart.topCountries" = "Nazioni Maggiormente Colpite";
 "chart.logarithmic" = "Scala Logaritmica";
 "chart.delta" = "Nuovi Casi Giornalieri";
+"chart.delta.deaths" = "Nuovi Decessi Giornalieri";
+"chart.delta.increasing" = "Incremento";
+"chart.delta.decreasing" = "Decremento";
+"chart.trendline" = "Casi confermati dal 100 in poi";
+"chart.history" = "Crescita dei casi";
+"chart.axis.days" = "%d Giorni";
 "data.updating" = "Aggiornamento...";
 "data.updateDate" = "Ultimo aggiornamento:";
 "data.errorTitle" = "Impossibile aggiornare i dati";
