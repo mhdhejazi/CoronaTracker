@@ -4,6 +4,7 @@
 
   Created by Mohammad on 3/22/20.
   Translation by Sebastian Binder - github.com/sebastianbinder
+  and Jakob Fuchs - https://github.com/jsf030
   Copyright © 2020 Samabox. All rights reserved.
 */
 
@@ -12,9 +13,15 @@
 "case.recovered" = "Genesen";
 "case.deaths" = "Gestorben";
 "region.world" = "Weltweit";
+"chart.axis.days" = "% Tage";
+"chart.history" = "Entwicklung der Fälle";
 "chart.topCountries" = "Am meisten betroffene Länder";
+"chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
 "chart.logarithmic" = "Logarithmische Darstellung";
 "chart.delta" = "Neue Fälle pro Tag";
+"chart.delta.deaths" = "Täglich gestorben";
+"chart.delta.increasing" = "Zunehmend";
+"chart.delta.decreasing" = "Abnehmend";
 "data.updating" = "Aktualisieren...";
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
