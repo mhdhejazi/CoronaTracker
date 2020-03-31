@@ -69,9 +69,9 @@ class RegionDataController: UITableViewController {
 		container?.update(region: region)
 	}
 
-	private func shareImage(for cell: RegionDataCell?) {
+	private func createShareImage(for cell: RegionDataCell?) -> UIImage? {
 		guard let cell = cell,
-			let shareableImage = cell.shareableImage else { return }
+			let shareableImage = cell.shareableImage else { return nil }
 
 		let cellImage = shareableImage
 		let hideTitle = cell is TopChartCell || cell is TrendlineChartCell
@@ -92,6 +92,13 @@ class RegionDataController: UITableViewController {
 			cellImage.draw(at: .init(x: 0, y: headerImage.size.height))
 		}
 
+		return image
+	}
+
+	private func shareImage(for cell: RegionDataCell?) {
+		guard let cell = cell,
+			let image = createShareImage(for: cell) else { return }
+
 		let items: [Any] = [
 			ImageItemSource(image: image, imageName: "Corona Tracker"),
 			TextItemSource(text: cell.shareableText ?? "")
@@ -105,6 +112,12 @@ class RegionDataController: UITableViewController {
 			activityController.popoverPresentationController?.sourceRect = cell.bounds
 		}
 		present(activityController, animated: true, completion: nil)
+	}
+
+	private func copyImage(for cell: RegionDataCell?) {
+		guard let image = createShareImage(for: cell) else { return }
+
+		UIPasteboard.general.image = image
 	}
 }
 
@@ -121,6 +134,9 @@ extension RegionDataController {
 			cell.shareAction = {
 				self.setEditing(false, animated: true)
 				self.shareImage(for: cell)
+			}
+			cell.copyAction = {
+				self.copyImage(for: cell)
 			}
 		}
 		return cell

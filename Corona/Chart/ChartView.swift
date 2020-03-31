@@ -11,6 +11,9 @@ import UIKit
 import Charts
 
 protocol RegionChartView: UIView {
+	@available(iOS 13.0, *)
+	var contextMenuActions: [UIMenuElement] { get }
+
 	var shareAction: (() -> Void)? { get set }
 
 	func update(region: Region?, animated: Bool)
@@ -55,6 +58,15 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 	}
 
 	var supportedModes: [Statistic.Kind] { [] }
+
+	@available(iOS 13.0, *)
+	var contextMenuActions: [UIMenuElement] {
+		supportedModes.map { mode in
+			UIAction(title: mode.description, state: self.mode == mode ? .on : .off) { _ in
+				self.mode = mode
+			}
+		}
+	}
 
 	var shareAction: (() -> Void)?
 

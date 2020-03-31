@@ -28,6 +28,24 @@ class RegionDataCell: UITableViewCell {
 		return button
 	}()
 
+	@available(iOS 13.0, *)
+	var contextMenuActions: [UIMenuElement] {
+		var items = [UIMenuElement]()
+
+		#if targetEnvironment(macCatalyst)
+		items.append(UIMenu(title: "", options: .displayInline, children: [
+			UIAction(title: "Copy") { _ in self.copyAction?() }
+		]))
+		#endif
+
+		items.append(UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
+			self.shareAction?()
+		})
+
+		return items
+	}
+
+	var copyAction: (() -> Void)? = nil
 	var shareAction: (() -> Void)? = nil
 	var shareableImage: UIImage? { nil }
 	var shareableText: String? { nil }
@@ -86,11 +104,7 @@ extension RegionDataCell: UIContextMenuInteractionDelegate {
 		guard shareableText != nil, !isEditing else { return nil }
 
 		return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
-			UIMenu(title: "", children: [
-				UIAction(title: L10n.Menu.share, image: Asset.share.image) { _ in
-					self.shareAction?()
-				}
-			])
+			UIMenu(title: "", children: self.contextMenuActions)
 		})
 	}
 
@@ -205,6 +219,18 @@ class StatsCell: RegionDataCell {
 
 class ChartDataCell<C: RegionChartView>: RegionDataCell {
 	lazy var chartView = C()
+
+	@available(iOS 13.0, *)
+	override var contextMenuActions: [UIMenuElement] {
+		var actions = chartView.contextMenuActions
+		if !actions.isEmpty {
+			actions = [
+				UIMenu(title: "", options: .displayInline, children: actions)
+			]
+		}
+		actions.append(contentsOf: super.contextMenuActions)
+		return actions
+	}
 
 	override var shareAction: (() -> Void)? {
 		didSet {
