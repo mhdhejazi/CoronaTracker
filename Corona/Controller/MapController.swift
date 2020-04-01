@@ -123,13 +123,6 @@ class MapController: UIViewController {
 		panelController.move(to: .full, animated: true)
 	}
 
-	func hideRegionScreen() {
-		#if targetEnvironment(macCatalyst)
-		#else
-		panelController.move(to: .half, animated: true)
-		#endif
-	}
-
 	func showRegionOnMap(region: Region) {
 		let spanDelta = region.subRegions.isEmpty ? 12.0 : 60.0
 		let coordinateRegion = MKCoordinateRegion(center: region.location.clLocation,

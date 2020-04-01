@@ -188,7 +188,6 @@ extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 
 		isSearching = false
 
-		MapController.instance.hideRegionScreen()
 		MapController.instance.showRegionOnMap(region: region)
 	}
 }
