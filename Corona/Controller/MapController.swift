@@ -157,7 +157,7 @@ class MapController: UIViewController {
 
 		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
 
-		view.transition {
+		mapView.superview?.transition {
 			self.mapView.removeAnnotations(self.mapView.annotations)
 			self.mapView.addAnnotations(self.currentAnnotations)
 		}
@@ -277,7 +277,7 @@ extension MapController: MKMapViewDelegate {
 
 		if mapView.zoomLevel > Self.cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
-				view.transition {
+				mapView.superview?.transition {
 					annotationToSelect = mapView.selectedAnnotations.first
 					mapView.removeAnnotations(mapView.annotations)
 					self.currentAnnotations = self.allAnnotations
@@ -287,7 +287,7 @@ extension MapController: MKMapViewDelegate {
 		}
 		else {
 			if currentAnnotations.count != countryAnnotations.count {
-				view.transition {
+				mapView.superview?.transition {
 					annotationToSelect = mapView.selectedAnnotations.first
 					mapView.removeAnnotations(mapView.annotations)
 					self.currentAnnotations = self.countryAnnotations

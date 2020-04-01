@@ -16,12 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABL-K8-Ghe">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeS-9C-v7O">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ITt-fQ-LdM"/>
-                                </connections>
-                            </mapView>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABL-K8-Ghe">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="ITt-fQ-LdM"/>
+                                        </connections>
+                                    </mapView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ABL-K8-Ghe" secondAttribute="trailing" id="1rw-73-ur9"/>
+                                    <constraint firstItem="ABL-K8-Ghe" firstAttribute="top" secondItem="qeS-9C-v7O" secondAttribute="top" id="F4k-iF-lA4"/>
+                                    <constraint firstItem="ABL-K8-Ghe" firstAttribute="leading" secondItem="qeS-9C-v7O" secondAttribute="leading" id="VQO-HG-teZ"/>
+                                    <constraint firstItem="ABL-K8-Ghe" firstAttribute="bottom" secondItem="qeS-9C-v7O" secondAttribute="bottom" id="tyM-0q-2ch"/>
+                                </constraints>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
                                 <rect key="frame" x="10" y="54" width="74" height="27"/>
                                 <color key="backgroundColor" red="0.10443064439999999" green="0.59553691789999996" blue="0.28788988450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,19 +92,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ABL-K8-Ghe" secondAttribute="trailing" id="DS4-y1-Bnk"/>
-                            <constraint firstItem="ABL-K8-Ghe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FN2-Wr-Y3j"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="HgJ-0T-Lcr"/>
+                            <constraint firstItem="qeS-9C-v7O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KxX-74-s0j"/>
                             <constraint firstItem="nPj-BL-8DR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Mg2-HV-MWy"/>
                             <constraint firstItem="9aR-P0-eo7" firstAttribute="top" secondItem="xZx-3p-KzT" secondAttribute="bottom" constant="10" id="O1U-72-4qM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9aR-P0-eo7" secondAttribute="trailing" constant="10" id="Opv-x4-qvu"/>
-                            <constraint firstItem="ABL-K8-Ghe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xkn-am-sqj"/>
+                            <constraint firstAttribute="bottom" secondItem="qeS-9C-v7O" secondAttribute="bottom" id="YRk-uz-VDe"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="a3J-6Z-LWE"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cDy-Ki-Gc7"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dRa-y1-qq1"/>
-                            <constraint firstItem="ABL-K8-Ghe" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="iRn-O2-6bG"/>
+                            <constraint firstItem="qeS-9C-v7O" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="sOW-cD-NyO"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="un6-8O-SDk"/>
                             <constraint firstItem="nPj-BL-8DR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="xCo-zG-tv8"/>
+                            <constraint firstItem="qeS-9C-v7O" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ymW-JY-5eI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
