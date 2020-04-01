@@ -113,6 +113,16 @@ extension RegionDataCell: UIContextMenuInteractionDelegate {
 		parameters.backgroundColor = .clear
 		return UITargetedPreview(view: self, parameters: parameters)
 	}
+
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+		self.backgroundColor = SystemColor.secondarySystemBackground
+	}
+
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+		UIView.animate(withDuration: 0.25) {
+			self.backgroundColor = .clear
+		}
+	}
 }
 
 class StatsCell: RegionDataCell {
