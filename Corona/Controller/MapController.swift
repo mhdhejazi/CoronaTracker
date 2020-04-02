@@ -12,11 +12,11 @@ import MapKit
 import FloatingPanel
 
 class MapController: UIViewController {
-	private static let cityZoomLevel = (UIScreen.main.bounds.width > 1000) ? CGFloat(5) : CGFloat(4)
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var instance: MapController!
 
+	private var cityZoomLevel: CGFloat { (view.bounds.width > 1000) ? 5 : 4 }
 	private var allAnnotations: [RegionAnnotation] = []
 	private var countryAnnotations: [RegionAnnotation] = []
 	private var currentAnnotations: [RegionAnnotation] = []
@@ -155,7 +155,7 @@ class MapController: UIViewController {
 			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
 			.map({ RegionAnnotation(region: $0, mode: mode) })
 
-		currentAnnotations = mapView.zoomLevel > Self.cityZoomLevel ? allAnnotations : countryAnnotations
+		currentAnnotations = mapView.zoomLevel > cityZoomLevel ? allAnnotations : countryAnnotations
 
 		mapView.superview?.transition {
 			self.mapView.removeAnnotations(self.mapView.annotations)
@@ -275,7 +275,7 @@ extension MapController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		var annotationToSelect: MKAnnotation? = nil
 
-		if mapView.zoomLevel > Self.cityZoomLevel {
+		if mapView.zoomLevel > cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
 				mapView.superview?.transition {
 					annotationToSelect = mapView.selectedAnnotations.first
