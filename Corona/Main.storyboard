@@ -34,12 +34,15 @@
                                     <constraint firstItem="ABL-K8-Ghe" firstAttribute="bottom" secondItem="qeS-9C-v7O" secondAttribute="bottom" id="tyM-0q-2ch"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
-                                <rect key="frame" x="10" y="54" width="74" height="27"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
+                                <rect key="frame" x="314" y="58" width="36" height="36"/>
                                 <color key="backgroundColor" red="0.10443064439999999" green="0.59553691789999996" blue="0.28788988450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                <inset key="contentEdgeInsets" minX="13" minY="6" maxX="13" maxY="6"/>
-                                <state key="normal" title="UPDATE">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="AZQ-5B-931"/>
+                                    <constraint firstAttribute="width" constant="36" id="dBn-fc-T3g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="↑">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -92,18 +95,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="HgJ-0T-Lcr"/>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KxX-74-s0j"/>
-                            <constraint firstItem="nPj-BL-8DR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Mg2-HV-MWy"/>
+                            <constraint firstItem="9aR-P0-eo7" firstAttribute="leading" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="NkO-ch-INj"/>
                             <constraint firstItem="9aR-P0-eo7" firstAttribute="top" secondItem="xZx-3p-KzT" secondAttribute="bottom" constant="10" id="O1U-72-4qM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9aR-P0-eo7" secondAttribute="trailing" constant="10" id="Opv-x4-qvu"/>
                             <constraint firstAttribute="bottom" secondItem="qeS-9C-v7O" secondAttribute="bottom" id="YRk-uz-VDe"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="a3J-6Z-LWE"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cDy-Ki-Gc7"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="centerY" secondItem="led-U9-o8H" secondAttribute="centerY" id="d4l-EV-Gwj"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dRa-y1-qq1"/>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="sOW-cD-NyO"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="un6-8O-SDk"/>
-                            <constraint firstItem="nPj-BL-8DR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="xCo-zG-tv8"/>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ymW-JY-5eI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
