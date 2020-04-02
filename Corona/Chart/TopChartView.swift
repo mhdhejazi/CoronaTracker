@@ -11,9 +11,18 @@ import UIKit
 import Charts
 
 class TopChartView: BaseBarChartView {
+	public static let defaultColors = [
+		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
+		UIColor(hue: 0.8, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.2, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.1, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.95, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.4, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+	]
+
 	private var colors: [UIColor] {
 		switch mode {
-		case .confirmed: return ChartColorTemplates.pastel()
+		case .confirmed: return Self.defaultColors
 		case .active: return [.systemYellow]
 		case .recovered: return [.systemGreen]
 		case .deaths: return [.systemRed]
