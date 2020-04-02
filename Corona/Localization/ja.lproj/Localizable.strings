@@ -7,7 +7,7 @@
 */
 
 "case.confirmed" = "累計感染者数";
-"case.active" = "治療中/非回復";
+"case.active" = "患者数";
 "case.recovered" = "回復者数";
 "case.deaths" = "死亡者数";
 "region.world" = "世界";
