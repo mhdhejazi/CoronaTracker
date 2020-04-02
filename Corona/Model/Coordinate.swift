@@ -29,6 +29,8 @@ extension Coordinate {
 		}!
 	}
 
+	public var isZero: Bool { latitude == 0 && longitude == 0 }
+
 	public var clLocation: CLLocationCoordinate2D { CLLocationCoordinate2D(latitude: latitude, longitude: longitude) }
 
 	func distance(from other: Coordinate) -> Double {

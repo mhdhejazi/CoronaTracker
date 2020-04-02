@@ -162,14 +162,14 @@ private struct ReportAttributes: Decodable {
 	let Province_State: String?
 	let Country_Region: String
 	let Last_Update: Int
-	let Lat: Double
-	let Long_: Double
+	let Lat: Double?
+	let Long_: Double?
 	let Confirmed: Int?
 	let Deaths: Int?
 	let Recovered: Int?
 
 	var region: Region {
-		let location = Coordinate(latitude: Lat, longitude: Long_)
+		let location = Coordinate(latitude: Lat ?? 0, longitude: Long_ ?? 0)
 		let lastUpdate = Date(timeIntervalSince1970: Double(Last_Update) / 1000)
 		let stat = Statistic(confirmedCount: Confirmed ?? 0, recoveredCount: Recovered ?? 0, deathCount: Deaths ?? 0)
 		let report = Report(lastUpdate: lastUpdate, stat: stat)
