@@ -12,9 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+    lazy var synchronizationManager: SynchronizationManager = {
+        return SynchronizationManager()
+    }()
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		App.upgrade()
+        synchronizationManager.configure()
 		return true
 	}
 
@@ -39,5 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			MapController.instance.downloadIfNeeded()
 		}
 	}
+
+    // MARK: - Background fetch
+
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        synchronizationManager.application(application, performFetchWithCompletionHandler: completionHandler)
+    }
 }
 

@@ -74,6 +74,7 @@
 		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopChartView.swift */; };
+		3431441D24367DD30027DE91 /* SynchronizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3431441C24367DD30027DE91 /* SynchronizationManager.swift */; };
 		3447B4BB241E7631003914AF /* RegionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195F19D241D2E7900FE718F /* RegionListController.swift */; };
 		3447B4BD241E7790003914AF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3447B4BC241E7790003914AF /* App.swift */; };
 		344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */; };
@@ -181,6 +182,7 @@
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
 		18CAD032242A5E1200CA1CEE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3431441C24367DD30027DE91 /* SynchronizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationManager.swift; sourceTree = "<group>"; };
 		3447B4BC241E7790003914AF /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		344ED31F241AC7AA004C4EA8 /* Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				1151868E241FAECB00EBC83E /* DataManager.swift */,
+				3431441C24367DD30027DE91 /* SynchronizationManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3431441D24367DD30027DE91 /* SynchronizationManager.swift in Sources */,
 				111C76B62412C90500368F08 /* SystemColor.swift in Sources */,
 				115186AA241FAFCE00EBC83E /* JHUWebDataService.swift in Sources */,
 				115186A9241FAFCE00EBC83E /* DataService.swift in Sources */,
