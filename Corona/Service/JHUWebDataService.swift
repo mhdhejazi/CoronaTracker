@@ -69,7 +69,7 @@ public class JHUWebDataService: DataService {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
-			let regions = result.features.map(\.attributes.region)
+			let regions = result.features.map { $0.attributes.region }
 			completion(regions, nil)
 		}
 		catch {
@@ -194,8 +194,8 @@ private struct GlobalTimeSeriesCallResult: Decodable {
 	var region: Region {
 		let series = [Date : Statistic](
 			uniqueKeysWithValues: zip(
-				features.map(\.attributes.date),
-				features.map(\.attributes.stat)
+				features.map({ $0.attributes.date }),
+				features.map({ $0.attributes.stat })
 			)
 		)
 		let timeSeries = TimeSeries(series: series)
