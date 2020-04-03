@@ -10,7 +10,7 @@ import UIKit
 
 class RegionDataController: UITableViewController {
 	private typealias Row = (type: RegionDataCell.Type, height: CGFloat)
-	private let rows: [Row] = [
+	private let allRows: [Row] = [
 		(type: StatsCell.self, height: 150),
 		(type: CurrentChartCell.self, height: 250),
 		(type: DeltaChartCell.self, height: 275),
@@ -20,6 +20,7 @@ class RegionDataController: UITableViewController {
 		(type: UpdateTimeCell.self, height: 40),
 		(type: DataSourceCell.self, height: 50)
 	]
+	private var currentRows: [Row] = []
 
 	var region: Region? {
 		didSet {
@@ -54,13 +55,12 @@ class RegionDataController: UITableViewController {
 			region = DataManager.instance.world
 		}
 
-		/// Update row heights ti show/hide some rows
-		tableView.beginUpdates()
-		tableView.endUpdates()
-
-		for cell in tableView.visibleCells {
-			(cell as? RegionDataCell)?.region = region
+		if region?.timeSeries == nil {
+			currentRows = allRows.filter { $0.type != DeltaChartCell.self && $0.type != HistoryChartCell.self }
+		} else {
+			currentRows = allRows
 		}
+		tableView.reloadData()
 
 		updateParent()
 	}
@@ -123,11 +123,11 @@ class RegionDataController: UITableViewController {
 
 extension RegionDataController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		rows.count
+		currentRows.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cellType = rows[indexPath.row].type
+		let cellType = currentRows[indexPath.row].type
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath)
 		if let cell = cell as? RegionDataCell {
 			cell.region = region
@@ -143,15 +143,7 @@ extension RegionDataController {
 	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let row = rows[indexPath.row]
-
-		if row.type == DeltaChartCell.self || row.type == HistoryChartCell.self {
-			if region?.timeSeries == nil {
-				return 0
-			}
-		}
-
-		return row.height
+		currentRows[indexPath.row].height
 	}
 
 	override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
