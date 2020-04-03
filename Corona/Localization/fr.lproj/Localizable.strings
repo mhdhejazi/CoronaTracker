@@ -18,7 +18,7 @@
 "chart.delta.deaths" = "Nouveaux décès quotidiens";
 "chart.delta.increasing" = "Augmentation";
 "chart.delta.decreasing" = "Diminution";
-"chart.trendline" = "Cas confirmés depuis le 100ème";
+"chart.trendline" = "Cas confirmés depuis le 100ème cas";
 "chart.history" = "Évolution des cas";
 "chart.axis.days" = "%d Jours";
 "data.updating" = "Mise à jour...";
