@@ -34,7 +34,7 @@ class RegionDataCell: UITableViewCell {
 
 		#if targetEnvironment(macCatalyst)
 		items.append(UIMenu(title: "", options: .displayInline, children: [
-			UIAction(title: "Copy") { _ in self.copyAction?() }
+			UIAction(title: L10n.Menu.copy) { _ in self.copyAction?() }
 		]))
 		#endif
 
