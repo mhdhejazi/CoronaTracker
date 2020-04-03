@@ -15,6 +15,12 @@
 "chart.topCountries" = "Pays les plus touchés";
 "chart.logarithmic" = "Échelle logarithmique";
 "chart.delta" = "Nouveaux cas quotidiens";
+"chart.delta.deaths" = "Nouveaux décès quotidiens";
+"chart.delta.increasing" = "Augmentation";
+"chart.delta.decreasing" = "Diminution";
+"chart.trendline" = "Cas confirmés depuis le 100ème";
+"chart.history" = "Évolution des cas";
+"chart.axis.days" = "%d Jours";
 "data.updating" = "Mise à jour...";
 "data.updateDate" = "Dernière mise à jour :";
 "data.errorTitle" = "Impossible de mettre à jour les données";
@@ -26,6 +32,7 @@
 "message.open" = "Ouvrir";
 "message.ok" = "OK";
 "message.done" = "OK";
+"menu.copy" = "Copier";
 "menu.update" = "Actualiser";
 "menu.share" = "Partager";
 "share.current" = "Mise à jour en direct du coronavirus";
