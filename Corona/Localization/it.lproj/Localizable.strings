@@ -31,6 +31,7 @@
 "message.open" = "Apri";
 "message.ok" = "OK";
 "message.done" = "Fatto";
+"menu.copy" = "Copia";
 "menu.update" = "Aggiorna";
 "menu.share" = "Condividi";
 "share.current" = "Aggiornamento Coronavirus in tempo reale";
