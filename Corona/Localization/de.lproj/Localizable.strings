@@ -15,7 +15,7 @@
 "region.world" = "Weltweit";
 "chart.axis.days" = "%d Tage";
 "chart.history" = "Entwicklung der Fälle";
-"chart.topCountries" = "Am meisten betroffene Länder";
+"chart.topCountries" = "Am stärksten betroffene Länder";
 "chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
 "chart.logarithmic" = "Logarithmische Darstellung";
 "chart.delta" = "Neue Fälle pro Tag";
@@ -25,7 +25,7 @@
 "data.updating" = "Aktualisieren...";
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
-"data.errorMessage" = "Bitte Internetverbindung überprüfen.";
+"data.errorMessage" = "Bitte Internetverbindung überprüfen";
 "data.source" = "Quelle: %@";
 "app.newVersionTitle" = "Neue Version verfügbar";
 "app.newVersionMessage" = "Bitte von %@ aktualisieren";
@@ -33,7 +33,8 @@
 "message.open" = "Öffnen";
 "message.ok" = "OK";
 "message.done" = "Fertig";
+"menu.copy" = "Kopieren";
 "menu.update" = "Aktualisieren";
 "menu.share" = "Teilen";
-"share.current" = "Corona-Virus Aktuell";
-"share.chartHistory" = "Corona-Virus Verbreitung";
+"share.current" = "Corona-Virus aktuell";
+"share.chartHistory" = "Ausbreitung des Corona-Virus";
