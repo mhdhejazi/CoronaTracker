@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Corona
+
+  Created by Mohammad on 3/22/20.
+  Translation by Heidi Duchting - https://github.com/hdatteln
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Bevestigd";
+"case.active" = "Actief";
+"case.recovered" = "Hersteld";
+"case.deaths" = "Overleden";
+"region.world" = "Wereldwijd";
+"chart.axis.days" = "%d dagen";
+"chart.history" = "Verloop epidemie";
+"chart.topCountries" = "Meest getroffen landen";
+"chart.trendline" = "Bevestigde besmettingen vanaf de 100ste besmetting";
+"chart.logarithmic" = "Logaritmische representatie";
+"chart.delta" = "Nieuwe gevallen per dag";
+"chart.delta.deaths" = "Sterfgevallen per dag";
+"chart.delta.increasing" = "Toenemend";
+"chart.delta.decreasing" = "Afnemend";
+"data.updating" = "Bijwerken...";
+"data.updateDate" = "Laatst bijgewerkt:";
+"data.errorTitle" = "Kan niet worden bijgewerkt";
+"data.errorMessage" = "Controleer uw internetverbinding";
+"data.source" = "Bron: %@";
+"app.newVersionTitle" = "Nieuwe versie beschikbaar";
+"app.newVersionMessage" = "Update vanaf %@";
+"message.cancel" = "Annuleren";
+"message.open" = "Openen";
+"message.ok" = "OK";
+"message.done" = "Klaar";
+"menu.copy" = "Kopiëren";
+"menu.update" = "Bijwerken";
+"menu.share" = "Delen";
+"share.current" = "Coronavirus live update";
+"share.chartHistory" = "Coronavirus groeicurve";
