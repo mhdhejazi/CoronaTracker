@@ -74,7 +74,7 @@ class RegionDataController: UITableViewController {
 			let shareableImage = cell.shareableImage else { return nil }
 
 		let cellImage = shareableImage
-		let hideTitle = cell is TopChartCell || cell is TrendlineChartCell
+		let hideTitle = cell is TopChartCell && region?.isWorld != true
 		let headerImage = container!.snapshotHeader(hideTitle: hideTitle)
 		var logoImage = Asset.iconSmall.image
 		if #available(iOS 13.0, *) {

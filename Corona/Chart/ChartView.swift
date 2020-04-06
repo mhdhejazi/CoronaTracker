@@ -18,6 +18,10 @@ protocol RegionChartView: UIView {
 
 	var shareAction: (() -> Void)? { get set }
 
+	var interactive: Bool { get set }
+
+	init(fontScale: CGFloat)
+
 	func update(region: Region?, animated: Bool)
 
 	func prepareForShare(shareCallback: () -> Void)
@@ -99,7 +103,7 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		self.init(fontScale: 1)
 	}
 
-	init(fontScale: CGFloat = 1) {
+	required init(fontScale: CGFloat) {
 		self.fontScale = fontScale
 		super.init(frame: .zero)
 

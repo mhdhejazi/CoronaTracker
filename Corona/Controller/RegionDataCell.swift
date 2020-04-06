@@ -265,10 +265,23 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 
 		contentView.addSubview(chartView)
 		chartView.snapEdgesToSuperview()
+		chartView.isUserInteractionEnabled = false
+
+		contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:))))
 	}
 
 	override func update(animated: Bool) {
 		chartView.update(region: region, animated: animated)
+	}
+
+	@objc func cellTapped(_ sender: Any) {
+		guard let chartController = App.topViewController.storyboard?.instantiateViewController(
+			withIdentifier: String(describing: ChartController.self)) as? ChartController else { return }
+
+		chartController.region = region
+		chartController.chartViewType = C.self
+
+		App.topViewController.present(chartController, animated: true)
 	}
 }
 

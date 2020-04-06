@@ -52,7 +52,7 @@ class CurrentChartView: ChartView<PieChartView> {
 			UIColor(hue: 0.3, saturation: 0.2, brightness: 1.0, alpha: 1.0),
 			UIColor(hue: 0.03, saturation: 0.2, brightness: 1.0, alpha: 1.0)
 		]
-		dataSet.sliceSpace = 2
+		dataSet.sliceSpace = 2 * pow(fontScale, 2)
 		dataSet.xValuePosition = .outsideSlice
 		dataSet.yValuePosition = .insideSlice
 		dataSet.entryLabelColor = .black

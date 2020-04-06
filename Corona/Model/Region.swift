@@ -68,6 +68,7 @@ public class Region: Codable {
 }
 
 extension Region {
+	public var isWorld: Bool { level == .world }
 	public var isCountry: Bool { level == .country }
 	public var isProvince: Bool { level == .province }
 	public var longName: String { isProvince ? "\(name), \(parentName ?? "-")" : name }
