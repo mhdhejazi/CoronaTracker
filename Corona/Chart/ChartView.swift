@@ -22,12 +22,21 @@ protocol RegionChartView: UIView {
 }
 
 class ChartView<C: ChartViewBase>: UIView, RegionChartView {
+	public let defaultColors = [
+		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
+		UIColor(hue: 0.8, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.2, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.1, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.95, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.4, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+	]
+
 	var hasTitle: Bool { true }
 
 	lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.textColor = SystemColor.label.withAlphaComponent(0.75)
-		label.font = .systemFont(ofSize: 13)
+		label.font = .systemFont(ofSize: 13 * fontScale)
 		label.numberOfLines = 0
 		label.textAlignment = .center
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,15 +85,25 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		return chartView
 	}()
 
+	var interactive: Bool = false
+
+	let fontScale: CGFloat
+
 	var region: Region?
 
-	init() {
+	convenience init() {
+		self.init(fontScale: 1)
+	}
+
+	init(fontScale: CGFloat = 1) {
+		self.fontScale = fontScale
 		super.init(frame: .zero)
 
 		initializeView()
 	}
 
 	required init?(coder: NSCoder) {
+		self.fontScale = 1
 		super.init(coder: coder)
 
 		initializeView()
@@ -113,13 +132,14 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 			chartView.xAxis.gridLineDashLengths = [3, 3]
 			chartView.xAxis.labelPosition = .bottom
 			chartView.xAxis.labelTextColor = SystemColor.secondaryLabel
+			chartView.xAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
 		}
 
 		chartView.noDataTextColor = .systemGray
-		chartView.noDataFont = .systemFont(ofSize: 15)
+		chartView.noDataFont = .systemFont(ofSize: 15 * fontScale)
 
 		chartView.legend.textColor = SystemColor.secondaryLabel
-		chartView.legend.font = .systemFont(ofSize: 12, weight: .regular)
+		chartView.legend.font = .systemFont(ofSize: 12 * fontScale, weight: .regular)
 		chartView.legend.form = .circle
 		chartView.legend.formSize = 12
 		chartView.legend.horizontalAlignment = .center
@@ -159,17 +179,27 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 			self.shareAction?()
 		})
 
-		Menu.show(above: MapController.instance, sourceView: menuButton, width: 150, items: menuItems)
+		let topViewController = MapController.instance.presentedViewController ?? MapController.instance
+		Menu.show(above: topViewController!, sourceView: menuButton, width: 150, items: menuItems)
 	}
 }
 
 class BaseBarChartView: ChartView<BarChartView> {
+	override var interactive: Bool {
+		didSet {
+			chartView.pinchZoomEnabled = interactive
+			chartView.dragEnabled = interactive
+			chartView.setScaleEnabled(interactive)
+		}
+	}
+
 	override func initializeView() {
 		super.initializeView()
 
 		chartView.leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
+		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
 
 		chartView.rightAxis.enabled = false
 
@@ -182,12 +212,21 @@ class BaseBarChartView: ChartView<BarChartView> {
 }
 
 class BaseLineChartView: ChartView<LineChartView> {
+	override var interactive: Bool {
+		didSet {
+			chartView.pinchZoomEnabled = interactive
+			chartView.dragEnabled = interactive
+			chartView.setScaleEnabled(interactive)
+		}
+	}
+
 	override func initializeView() {
 		super.initializeView()
 
 		chartView.leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
 		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
+		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
 			Int(value).kmFormatted
 		}

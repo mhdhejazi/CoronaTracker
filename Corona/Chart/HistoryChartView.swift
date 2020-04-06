@@ -16,7 +16,9 @@ class HistoryChartView: BaseLineChartView {
 
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
-		chartView.marker = SimpleMarkerView(chartView: chartView)
+		let marker = SimpleMarkerView(chartView: chartView)
+		marker.font = .systemFont(ofSize: 13 * fontScale)
+		chartView.marker = marker
 	}
 
 	override func update(region: Region?, animated: Bool) {
@@ -52,14 +54,16 @@ class HistoryChartView: BaseLineChartView {
 			dataSet.colors = [colors[i].withAlphaComponent(0.75)]
 
 //			dataSet.drawCirclesEnabled = false
-			dataSet.circleRadius = confirmedEntries.count < 60 ? 2 : 1.8
+			dataSet.circleRadius = (confirmedEntries.count < 60 ? 2 : 1.8) * fontScale
 			dataSet.circleColors = [colors[i]]
 
 			dataSet.drawCircleHoleEnabled = false
-			dataSet.circleHoleRadius = 1
+			dataSet.circleHoleRadius = 1 * fontScale
 
-			dataSet.lineWidth = 1
-			dataSet.highlightLineWidth = 0
+			dataSet.lineWidth = 1 * fontScale
+			dataSet.highlightLineWidth = 1 * fontScale
+			dataSet.highlightColor = UIColor.lightGray.withAlphaComponent(0.5)
+			dataSet.drawHorizontalHighlightIndicatorEnabled = false
 
 			dataSets.append(dataSet)
 		}

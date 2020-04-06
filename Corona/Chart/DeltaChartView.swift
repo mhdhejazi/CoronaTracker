@@ -25,7 +25,9 @@ class DeltaChartView: BaseBarChartView {
 			Int(value).kmFormatted
 		}
 
-		chartView.marker = SimpleMarkerView(chartView: chartView)
+		let marker = SimpleMarkerView(chartView: chartView)
+		marker.font = .systemFont(ofSize: 13 * fontScale)
+		chartView.marker = marker
 	}
 
 	override func update(region: Region?, animated: Bool) {

@@ -12,25 +12,19 @@ import Charts
 
 class TrendlineChartView: BaseLineChartView {
 	private static let maxItems = 6
-	private static let colors = [
-		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
-		UIColor(hue: 0.8, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-		UIColor(hue: 0.2, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-		UIColor(hue: 0.1, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-		UIColor(hue: 0.95, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-		UIColor(hue: 0.4, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-	]
+
+	private var colors: [UIColor] { defaultColors }
 
 	private lazy var legendStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: (1...Self.maxItems).map { _ in
 			let colorLabel = UILabel()
 			colorLabel.textAlignment = .center
-			colorLabel.font = .systemFont(ofSize: 15)
+			colorLabel.font = .systemFont(ofSize: 15 * fontScale)
 			colorLabel.text = "●"
 			colorLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
 			let textLabel = UILabel()
-			textLabel.font = .systemFont(ofSize: 11)
+			textLabel.font = .systemFont(ofSize: 11 * fontScale)
 			textLabel.textColor = SystemColor.secondaryLabel
 			textLabel.textAlignment = .center
 			textLabel.numberOfLines = 0
@@ -61,7 +55,7 @@ class TrendlineChartView: BaseLineChartView {
 			if let dataSets = chartView.data?.dataSets as? [LineChartDataSet] {
 				for i in dataSets.indices {
 					let dataSet = dataSets[i]
-					var color = Self.colors[i % Self.colors.count]
+					var color = colors[i % colors.count]
 					if selectedIndex > -1 && selectedIndex != i {
 						color = color.withAlphaComponent(0.5)
 					}
@@ -90,6 +84,7 @@ class TrendlineChartView: BaseLineChartView {
 			self.selectedIndex = visible ? index : -1
 			print(index)
 		}
+		simpleMarker.font = .systemFont(ofSize: 13 * fontScale)
 		chartView.marker = simpleMarker
 
 		chartView.legend.enabled = false
@@ -133,20 +128,22 @@ class TrendlineChartView: BaseLineChartView {
 			dataSet.mode = .cubicBezier
 			dataSet.drawValuesEnabled = false
 
-			let color = Self.colors[i % Self.colors.count]
+			let color = colors[i % colors.count]
 
 			dataSet.colors = [color]
 
 			dataSet.drawCirclesEnabled = false
-			dataSet.circleRadius = regions[i] == region ? 3 : 2
+			dataSet.circleRadius = (regions[i] == region ? 3 : 2) * fontScale
 			dataSet.circleColors = [color.withAlphaComponent(0.75)]
 
 			dataSet.drawCircleHoleEnabled = false
-			dataSet.circleHoleRadius = 1
+			dataSet.circleHoleRadius = 1 * fontScale
 
-			dataSet.lineWidth = regions[i] == region ? 2.5 : 1.5
+			dataSet.lineWidth = (regions[i] == region ? 2.5 : 1.5) * fontScale
 			dataSet.lineDashLengths = regions[i] == region ? nil : [4, 2]
-			dataSet.highlightLineWidth = 0
+			dataSet.highlightLineWidth = 1 * fontScale
+			dataSet.highlightColor = UIColor.lightGray.withAlphaComponent(0.5)
+			dataSet.drawHorizontalHighlightIndicatorEnabled = false
 
 			dataSets.append(dataSet)
 		}
@@ -163,7 +160,7 @@ class TrendlineChartView: BaseLineChartView {
 	private func updateLegend(regions: [Region]) {
 		zip(regions, legendStack.arrangedSubviews).forEach { (region, view) in
 			if let stack = view as? UIStackView, let colorIndex = regions.firstIndex(of: region) {
-				(stack.arrangedSubviews.first as? UILabel)?.textColor = Self.colors[colorIndex % Self.colors.count]
+				(stack.arrangedSubviews.first as? UILabel)?.textColor = colors[colorIndex % colors.count]
 				(stack.arrangedSubviews.last as? UILabel)?.text = region.localizedName.replacingOccurrences(of: " ", with: "\n")
 			}
 		}

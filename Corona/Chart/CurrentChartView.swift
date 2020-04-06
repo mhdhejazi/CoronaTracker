@@ -25,7 +25,9 @@ class CurrentChartView: ChartView<PieChartView> {
 
 		chartView.rotationEnabled = false
 
-		chartView.marker = SimpleMarkerView(chartView: chartView)
+		let marker = SimpleMarkerView(chartView: chartView)
+		marker.font = .systemFont(ofSize: 13 * fontScale)
+		chartView.marker = marker
 	}
 
 	override func update(region: Region?, animated: Bool) {
@@ -52,8 +54,8 @@ class CurrentChartView: ChartView<PieChartView> {
 		dataSet.xValuePosition = .outsideSlice
 		dataSet.yValuePosition = .insideSlice
 		dataSet.entryLabelColor = .black
-		dataSet.valueFont = .systemFont(ofSize: 14, weight: .bold)
-		dataSet.valueFormatter = PercentValueFormatter()
+		dataSet.valueFont = .systemFont(ofSize: 14 * fontScale, weight: .bold)
+		dataSet.valueFormatter = PercentValueFormatter(minPercent: fontScale == 1 ? 8 : 0)
 		dataSet.selectionShift = 8
 
 		chartView.data = PieChartData(dataSet: dataSet)
