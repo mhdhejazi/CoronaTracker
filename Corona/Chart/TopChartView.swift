@@ -20,6 +20,8 @@ class TopChartView: BaseBarChartView {
 		}
 	}
 
+	override var shareableText: String? { L10n.Chart.topCountries }
+
 	override var supportedModes: [Statistic.Kind] {
 		[.confirmed, .recovered, .deaths]
 	}

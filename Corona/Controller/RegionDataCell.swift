@@ -256,6 +256,10 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 		return image
 	}
 
+	override var shareableText: String? {
+		chartView.shareableText
+	}
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 
@@ -269,23 +273,18 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 }
 
 class CurrentChartCell: ChartDataCell<CurrentChartView> {
-	override var shareableText: String? { L10n.Share.current }
 }
 
 class DeltaChartCell: ChartDataCell<DeltaChartView> {
-	override var shareableText: String? { L10n.Chart.delta }
 }
 
 class HistoryChartCell: ChartDataCell<HistoryChartView> {
-	override var shareableText: String? { L10n.Share.chartHistory }
 }
 
 class TopChartCell: ChartDataCell<TopChartView> {
-	override var shareableText: String? { L10n.Chart.topCountries }
 }
 
 class TrendlineChartCell: ChartDataCell<TrendlineChartView> {
-	override var shareableText: String? { L10n.Chart.trendline }
 }
 
 class UpdateTimeCell: RegionDataCell {

@@ -11,6 +11,8 @@ import UIKit
 import Charts
 
 class CurrentChartView: ChartView<PieChartView> {
+	override var shareableText: String? { L10n.Share.current }
+
 	override func initializeView() {
 		super.initializeView()
 

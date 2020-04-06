@@ -14,6 +14,8 @@ protocol RegionChartView: UIView {
 	@available(iOS 13.0, *)
 	var contextMenuActions: [UIMenuElement] { get }
 
+	var shareableText: String? { get }
+
 	var shareAction: (() -> Void)? { get set }
 
 	func update(region: Region?, animated: Bool)
@@ -76,6 +78,8 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 			}
 		}
 	}
+
+	var shareableText: String? { nil }
 
 	var shareAction: (() -> Void)?
 

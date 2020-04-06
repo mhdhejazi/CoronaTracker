@@ -11,6 +11,8 @@ import UIKit
 import Charts
 
 class HistoryChartView: BaseLineChartView {
+	override var shareableText: String? { L10n.Share.chartHistory }
+
 	override func initializeView() {
 		super.initializeView()
 

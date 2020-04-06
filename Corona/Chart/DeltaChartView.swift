@@ -11,6 +11,8 @@ import UIKit
 import Charts
 
 class DeltaChartView: BaseBarChartView {
+	override var shareableText: String? { L10n.Chart.delta }
+
 	override var supportedModes: [Statistic.Kind] {
 		[.confirmed, .deaths]
 	}

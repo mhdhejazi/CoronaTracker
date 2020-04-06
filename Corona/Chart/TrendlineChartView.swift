@@ -70,6 +70,8 @@ class TrendlineChartView: BaseLineChartView {
 			}
 		}
 	}
+	
+	override var shareableText: String? { L10n.Chart.trendline }
 
 	override func initializeView() {
 		super.initializeView()
