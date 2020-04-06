@@ -61,23 +61,30 @@ extension UIView {
 		UIGraphicsImageRenderer(bounds: bounds).image { layer.render(in: $0.cgContext) }
 	}
 
-	public func snapEdgesToSuperview(_ edges: UIRectEdge = .all, constant: CGFloat = 0) {
-		snapEdges(edges, to: superview!, constant: constant)
+	public func snapEdgesToSuperview(_ edges: UIRectEdge = .all, constant: CGFloat = 0, safeArea: Bool = false) {
+		snapEdges(edges, to: superview!, constant: constant, safeArea: safeArea)
 	}
 
-	public func snapEdges(_ edges: UIRectEdge, to view: UIView, constant: CGFloat = 0) {
+	public func snapEdges(_ edges: UIRectEdge, to otherView: UIView, constant: CGFloat = 0, safeArea: Bool = false) {
 		translatesAutoresizingMaskIntoConstraints = false
+		var otherViewTopAnchor = otherView.topAnchor
+		var otherViewBottomAnchor = otherView.bottomAnchor
+		if #available(iOS 11, *), safeArea {
+			otherViewTopAnchor = otherView.safeAreaLayoutGuide.topAnchor
+			otherViewBottomAnchor = otherView.safeAreaLayoutGuide.bottomAnchor
+		}
+
 		if edges.contains(.top) {
-			topAnchor.constraint(equalTo: view.topAnchor, constant: constant).isActive = true
+			topAnchor.constraint(equalTo: otherViewTopAnchor, constant: constant).isActive = true
 		}
 		if edges.contains(.bottom) {
-			bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -constant).isActive = true
+			bottomAnchor.constraint(equalTo: otherViewBottomAnchor, constant: -constant).isActive = true
 		}
 		if edges.contains(.left) {
-			leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: constant).isActive = true
+			leadingAnchor.constraint(equalTo: otherView.leadingAnchor, constant: constant).isActive = true
 		}
 		if edges.contains(.right) {
-			trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constant).isActive = true
+			trailingAnchor.constraint(equalTo: otherView.trailingAnchor, constant: -constant).isActive = true
 		}
 	}
 
