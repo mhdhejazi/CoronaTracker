@@ -308,6 +308,6 @@ class DataSourceCell: RegionDataCell {
 		let url = URL(string: "https://arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61")!
 		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
-		MapController.instance.present(safariController, animated: true)
+		App.topViewController.present(safariController, animated: true)
 	}
 }

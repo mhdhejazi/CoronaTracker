@@ -99,19 +99,7 @@ class RegionDataController: UITableViewController {
 		guard let cell = cell,
 			let image = createShareImage(for: cell) else { return }
 
-		let items: [Any] = [
-			ImageItemSource(image: image, imageName: "Corona Tracker"),
-			TextItemSource(text: cell.shareableText ?? "")
-		]
-
-		let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			activityController.modalPresentationStyle = .popover
-			activityController.popoverPresentationController?.sourceView = cell
-			activityController.popoverPresentationController?.sourceRect = cell.bounds
-		}
-		present(activityController, animated: true, completion: nil)
+		ShareManager.instance.share(image: image, text: cell.shareableText, sourceView: cell)
 	}
 
 	private func copyImage(for cell: RegionDataCell?) {

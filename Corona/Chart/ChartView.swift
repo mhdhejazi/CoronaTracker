@@ -186,8 +186,7 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 			self.shareAction?()
 		})
 
-		let topViewController = MapController.instance.presentedViewController ?? MapController.instance
-		Menu.show(above: topViewController!, sourceView: menuButton, width: 150, items: menuItems)
+		Menu.show(above: App.topViewController, sourceView: menuButton, width: 150, items: menuItems)
 	}
 }
 

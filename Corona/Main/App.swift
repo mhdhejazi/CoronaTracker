@@ -12,6 +12,10 @@ import SafariServices
 import Disk
 
 class App {
+	static var topViewController: UIViewController {
+		MapController.instance.presentedViewController ?? MapController.instance
+	}
+
 	#if targetEnvironment(macCatalyst)
 	static let updateURL = URL(string: "https://coronatracker.samabox.com/")!
 	#else
