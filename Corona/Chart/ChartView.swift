@@ -125,7 +125,10 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 
 		self.addSubview(chartView)
 		self.sendSubviewToBack(chartView)
-		chartView.snapEdgesToSuperview(constant: 20)
+		chartView.snapEdgesToSuperview([.top, .bottom], constant: 20)
+		chartView.snapEdgesToSuperview([.left, .right], constant: 0)
+		chartView.extraLeftOffset = 20
+		chartView.extraRightOffset = 20
 
 		if !(chartView is PieChartView) {
 			chartView.xAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
