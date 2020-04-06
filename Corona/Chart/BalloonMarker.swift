@@ -23,6 +23,7 @@ open class BalloonMarker: MarkerImage
     open var textColor: UIColor
     open var insets: UIEdgeInsets
     open var minimumSize = CGSize()
+    open var roundCorners: Bool = false
     
     fileprivate var label: String?
     fileprivate var _labelSize: CGSize = CGSize()
@@ -100,6 +101,13 @@ open class BalloonMarker: MarkerImage
             size: size)
         rect.origin.x -= size.width / 2.0
         rect.origin.y -= size.height
+
+        var textRect = rect
+        if roundCorners {
+            let deltaX = rect.height / 1
+            rect.origin.x += deltaX / 2
+            rect.size.width -= deltaX
+        }
         
         context.saveGState()
         
@@ -124,15 +132,33 @@ open class BalloonMarker: MarkerImage
             context.addLine(to: CGPoint(
                 x: rect.origin.x + rect.size.width,
                 y: rect.origin.y + arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y + rect.size.height))
+            if roundCorners {
+                context.addArc(center: CGPoint(x: rect.origin.x + rect.size.width,
+                                               y: rect.origin.y + arrowSize.height + (rect.size.height - arrowSize.height) / 2),
+                               radius: (rect.size.height - arrowSize.height) / 2,
+                               startAngle: CGFloat(270 * Double.pi / 180),
+                               endAngle: CGFloat(90 * Double.pi / 180),
+                               clockwise: false)
+            } else {
+                context.addLine(to: CGPoint(
+                    x: rect.origin.x + rect.size.width,
+                    y: rect.origin.y + rect.size.height))
+            }
             context.addLine(to: CGPoint(
                 x: rect.origin.x,
                 y: rect.origin.y + rect.size.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y + arrowSize.height))
+            if roundCorners {
+                context.addArc(center: CGPoint(x: rect.origin.x,
+                                               y: rect.origin.y + arrowSize.height + (rect.size.height - arrowSize.height) / 2),
+                               radius: (rect.size.height - arrowSize.height) / 2,
+                               startAngle: CGFloat(90 * Double.pi / 180),
+                               endAngle: CGFloat(270 * Double.pi / 180),
+                               clockwise: false)
+            } else {
+                context.addLine(to: CGPoint(
+                    x: rect.origin.x,
+                    y: rect.origin.y + arrowSize.height))
+            }
             context.fillPath()
         }
         else
@@ -144,39 +170,57 @@ open class BalloonMarker: MarkerImage
             context.addLine(to: CGPoint(
                 x: rect.origin.x + rect.size.width,
                 y: rect.origin.y))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x + rect.size.width,
-                y: rect.origin.y + rect.size.height - arrowSize.height))
+            if roundCorners {
+                context.addArc(center: CGPoint(x: rect.origin.x + rect.size.width,
+                                               y: rect.origin.y + (rect.size.height - arrowSize.height) / 2),
+                               radius: (rect.size.height - arrowSize.height) / 2,
+                               startAngle: CGFloat(270 * Double.pi / 180),
+                               endAngle: CGFloat(90 * Double.pi / 180),
+                               clockwise: false)
+            } else {
+                context.addLine(to: CGPoint(
+                    x: rect.origin.x + rect.size.width,
+                    y: rect.origin.y + rect.size.height - arrowSize.height))
+            }
             context.addLine(to: CGPoint(
                 x: rect.origin.x + (rect.size.width + arrowSize.width) / 2.0,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
             //arrow vertex
             context.addLine(to: CGPoint(
                 x: point.x,
-                y: point.y - 7))
+                y: point.y))
             context.addLine(to: CGPoint(
                 x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
             context.addLine(to: CGPoint(
                 x: rect.origin.x,
                 y: rect.origin.y + rect.size.height - arrowSize.height))
-            context.addLine(to: CGPoint(
-                x: rect.origin.x,
-                y: rect.origin.y))
+            if roundCorners {
+                context.addArc(center: CGPoint(x: rect.origin.x,
+                                               y: rect.origin.y + (rect.size.height - arrowSize.height) / 2),
+                               radius: (rect.size.height - arrowSize.height) / 2,
+                               startAngle: CGFloat(90 * Double.pi / 180),
+                               endAngle: CGFloat(270 * Double.pi / 180),
+                               clockwise: false)
+            } else {
+                context.addLine(to: CGPoint(
+                    x: rect.origin.x,
+                    y: rect.origin.y))
+            }
             context.fillPath()
         }
 
         if offset.y > 0 {
-            rect.origin.y += self.insets.top + arrowSize.height
+            textRect.origin.y += self.insets.top + arrowSize.height
         } else {
-            rect.origin.y += self.insets.top
+            textRect.origin.y += self.insets.top
         }
 
-        rect.size.height -= self.insets.top + self.insets.bottom
+        textRect.size.height -= self.insets.top + self.insets.bottom
         
         UIGraphicsPushContext(context)
         
-        label.draw(in: rect, withAttributes: _drawAttributes)
+        label.draw(in: textRect, withAttributes: _drawAttributes)
         
         UIGraphicsPopContext()
         

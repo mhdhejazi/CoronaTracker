@@ -33,11 +33,11 @@ public class SimpleMarkerView: BalloonMarker {
 		super.init(color: UIColor.darkGray.withAlphaComponent(0.9),
 				   font: .systemFont(ofSize: 13),
 				   textColor: UIColor.white.withAlphaComponent(0.9),
-				   insets: UIEdgeInsets(top: 8, left: 10, bottom: 23, right: 10))
+				   insets: UIEdgeInsets(top: 8, left: 20, bottom: 19, right: 20))
 
 		self.chartView = chartView
-		self.arrowSize = CGSize(width: 15, height: 15)
 		self.minimumSize = CGSize(width: 80, height: 40)
+		self.roundCorners = true
 	}
 
 	public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
