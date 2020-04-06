@@ -71,7 +71,7 @@ class MapController: UIViewController {
 	}
 
 	private func initializeView() {
-		effectViewOptions.layer.cornerRadius = 10
+		effectViewOptions.layer.cornerRadius = effectViewOptions.bounds.height / 2
 		viewOptions.enableShadow()
 
 		buttonUpdate.layer.cornerRadius = buttonUpdate.bounds.height / 2

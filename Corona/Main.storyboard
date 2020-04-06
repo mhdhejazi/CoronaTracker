@@ -35,11 +35,11 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-BL-8DR">
-                                <rect key="frame" x="314" y="58" width="36" height="36"/>
+                                <rect key="frame" x="356" y="118" width="42" height="42"/>
                                 <color key="backgroundColor" red="0.10443064439999999" green="0.59553691789999996" blue="0.28788988450000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="AZQ-5B-931"/>
-                                    <constraint firstAttribute="width" constant="36" id="dBn-fc-T3g"/>
+                                    <constraint firstAttribute="height" constant="42" id="AZQ-5B-931"/>
+                                    <constraint firstAttribute="width" constant="42" id="dBn-fc-T3g"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="↑">
@@ -58,7 +58,7 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aR-P0-eo7">
-                                <rect key="frame" x="360" y="54" width="44" height="44"/>
+                                <rect key="frame" x="355" y="59" width="44" height="44"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7n8-Lj-1bQ">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -68,13 +68,14 @@
                                         </view>
                                         <blurEffect style="systemUltraThinMaterial"/>
                                     </visualEffectView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="led-U9-o8H">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="led-U9-o8H">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="OJG-MB-Bis"/>
                                             <constraint firstAttribute="width" constant="44" id="Tns-LH-f1y"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="Layers"/>
                                         <connections>
                                             <action selector="buttonModeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D8M-9M-gLP"/>
                                         </connections>
@@ -96,15 +97,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KxX-74-s0j"/>
-                            <constraint firstItem="9aR-P0-eo7" firstAttribute="leading" secondItem="nPj-BL-8DR" secondAttribute="trailing" constant="10" id="NkO-ch-INj"/>
-                            <constraint firstItem="9aR-P0-eo7" firstAttribute="top" secondItem="xZx-3p-KzT" secondAttribute="bottom" constant="10" id="O1U-72-4qM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9aR-P0-eo7" secondAttribute="trailing" constant="10" id="Opv-x4-qvu"/>
+                            <constraint firstItem="9aR-P0-eo7" firstAttribute="top" secondItem="xZx-3p-KzT" secondAttribute="bottom" constant="15" id="O1U-72-4qM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9aR-P0-eo7" secondAttribute="trailing" constant="15" id="Opv-x4-qvu"/>
                             <constraint firstAttribute="bottom" secondItem="qeS-9C-v7O" secondAttribute="bottom" id="YRk-uz-VDe"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="top" secondItem="led-U9-o8H" secondAttribute="bottom" constant="15" id="a0i-RD-Zjc"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="a3J-6Z-LWE"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cDy-Ki-Gc7"/>
-                            <constraint firstItem="nPj-BL-8DR" firstAttribute="centerY" secondItem="led-U9-o8H" secondAttribute="centerY" id="d4l-EV-Gwj"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dRa-y1-qq1"/>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="sOW-cD-NyO"/>
+                            <constraint firstItem="nPj-BL-8DR" firstAttribute="centerX" secondItem="led-U9-o8H" secondAttribute="centerX" id="sT4-tf-fHh"/>
                             <constraint firstItem="xZx-3p-KzT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="un6-8O-SDk"/>
                             <constraint firstItem="qeS-9C-v7O" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ymW-JY-5eI"/>
                         </constraints>
@@ -758,6 +759,7 @@ Deaths</string>
     <resources>
         <image name="Close" width="22" height="22"/>
         <image name="Icon-Small" width="38" height="38"/>
+        <image name="Layers" width="22" height="23"/>
         <image name="More" width="22" height="22"/>
         <image name="Search" width="22" height="22"/>
     </resources>
