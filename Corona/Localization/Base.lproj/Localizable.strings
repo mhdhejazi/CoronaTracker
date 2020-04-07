@@ -18,6 +18,7 @@
 "chart.delta.increasing" = "Increasing";
 "chart.delta.decreasing" = "Decreasing";
 "chart.trendline" = "Confirmed cases since 100th case";
+"chart.trendline.deaths" = "Deaths since 10th death";
 "chart.history" = "Growth of Cases";
 "chart.axis.days" = "%d Days";
 "data.updating" = "Updating...";

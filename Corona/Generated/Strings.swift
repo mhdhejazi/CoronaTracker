@@ -57,6 +57,10 @@ internal enum L10n {
       /// Increasing
       internal static let increasing = L10n.tr("Localizable", "chart.delta.increasing")
     }
+    internal enum Trendline {
+      /// Deaths since 10th death
+      internal static let deaths = L10n.tr("Localizable", "chart.trendline.deaths")
+    }
   }
 
   internal enum Data {

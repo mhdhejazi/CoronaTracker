@@ -73,6 +73,10 @@ class TrendlineChartView: BaseLineChartView {
 	
 	override var shareableText: String? { L10n.Chart.trendline }
 
+	override var supportedModes: [Statistic.Kind] {
+		[.confirmed, .deaths]
+	}
+
 	override func initializeView() {
 		super.initializeView()
 
@@ -106,19 +110,19 @@ class TrendlineChartView: BaseLineChartView {
 			regions.append(region)
 		}
 
-		title = L10n.Chart.trendline
+		title = (mode == .deaths) ? L10n.Chart.Trendline.deaths : L10n.Chart.trendline
 
-		let history = regions.map { region in
+		let serieses = regions.map { region in
 			region.timeSeries!.series
 				.lazy
 				.sorted { $0.key < $1.key }
-				.drop { $0.value.confirmedCount < 100 }
+				.drop { $0.value.number(for: mode) < (mode == .deaths ? 10 : 100) }
 		}
-		let count = history.map { $0.count }.sorted().dropLast().last!
-		let entries = zip(history.indices, history).map { (regionIndex, series) in
-			zip(series.indices.prefix(count), series).map { (index, pair) in
+		let totalDays = serieses.map { $0.count }.sorted().dropLast().last! /// Next to the longest (to deal with China case)
+		let entries = zip(serieses.indices, serieses).map { (regionIndex, series) in
+			zip(series.indices.prefix(totalDays), series).map { (index, pair) in
 				ChartDataEntry(x: Double(index - series.startIndex),
-							   y: Double(pair.value.confirmedCount),
+							   y: Double(pair.value.number(for: mode)),
 							   data: regionIndex)
 			}
 		}
