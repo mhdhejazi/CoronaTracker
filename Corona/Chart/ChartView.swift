@@ -20,6 +20,8 @@ protocol RegionChartView: UIView {
 
 	var interactive: Bool { get set }
 
+	var mode: Statistic.Kind { get set }
+
 	init(fontScale: CGFloat)
 
 	func update(region: Region?, animated: Bool)
@@ -93,7 +95,11 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		return chartView
 	}()
 
-	var interactive: Bool = false
+	var interactive: Bool = false {
+		didSet {
+			chartView.isUserInteractionEnabled = interactive
+		}
+	}
 
 	let fontScale: CGFloat
 

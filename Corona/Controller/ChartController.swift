@@ -18,6 +18,7 @@ class ChartController: UIViewController {
 
 	var region: Region?
 	var chartViewType: RegionChartView.Type?
+	var mode: Statistic.Kind = .confirmed
 
 	override var keyCommands: [UIKeyCommand]? {
 		return [UIKeyCommand(input: UIKeyCommand.inputEscape,
@@ -44,6 +45,7 @@ class ChartController: UIViewController {
 		chartView.snapEdgesToSuperview()
 		chartView.interactive = true
 		chartView.shareAction = share
+		chartView.mode = mode
 		chartView.update(region: region, animated: true)
 
 		if #available(iOS 11.0, *) {

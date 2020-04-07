@@ -265,7 +265,7 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 
 		contentView.addSubview(chartView)
 		chartView.snapEdgesToSuperview()
-		chartView.isUserInteractionEnabled = false
+		chartView.interactive = false
 
 		contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:))))
 	}
@@ -280,6 +280,7 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 
 		chartController.region = region
 		chartController.chartViewType = C.self
+		chartController.mode = chartView.mode
 
 		App.topViewController.present(chartController, animated: true)
 	}
