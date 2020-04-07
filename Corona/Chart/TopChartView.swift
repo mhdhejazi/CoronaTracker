@@ -26,6 +26,11 @@ class TopChartView: BaseBarChartView {
 		[.confirmed, .recovered, .deaths]
 	}
 
+	override var extraMenuItems: [MenuItem] {
+		[MenuItem.option(title: L10n.Chart.logarithmic, selected: isLogarithmic, action: {
+			self.isLogarithmic = !self.isLogarithmic
+		})]
+	}
 
 	var isLogarithmic = false {
 		didSet {

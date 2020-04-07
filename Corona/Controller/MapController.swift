@@ -222,7 +222,7 @@ class MapController: UIViewController {
 	}
 
 	@IBAction func buttonModeTapped(_ sender: Any) {
-		Menu.show(above: self, sourceView: buttonMode, width: 150, items: [
+		Menu.show(above: self, sourceView: buttonMode, items: [
 			.option(title: L10n.Case.confirmed, selected: mode == .confirmed) {
 				self.mode = .confirmed
 			},

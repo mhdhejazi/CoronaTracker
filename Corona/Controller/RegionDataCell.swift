@@ -233,11 +233,6 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 	@available(iOS 13.0, *)
 	override var contextMenuActions: [UIMenuElement] {
 		var actions = chartView.contextMenuActions
-		if !actions.isEmpty {
-			actions = [
-				UIMenu(title: "", options: .displayInline, children: actions)
-			]
-		}
 		actions.append(contentsOf: super.contextMenuActions)
 		return actions
 	}

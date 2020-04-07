@@ -145,7 +145,7 @@ extension RegionPanelController {
 	}
 
 	@IBAction func buttonMenuTapped(_ sender: Any) {
-		Menu.show(above: self, sourceView: buttonMenu, width: 175, items: [
+		Menu.show(above: self, sourceView: buttonMenu, items: [
 			.regular(title: L10n.Menu.update, image: Asset.reload.image) {
 				MapController.instance.downloadIfNeeded()
 			},

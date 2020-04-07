@@ -10,11 +10,9 @@ import UIKit
 
 class MenuController: UITableViewController {
 	let items: [MenuItem]
-	var width: CGFloat
 
-	init(items: [MenuItem], width: CGFloat = 200) {
+	init(items: [MenuItem]) {
 		self.items = items
-		self.width = width
 
 		super.init(style: .plain)
 	}
@@ -32,7 +30,9 @@ class MenuController: UITableViewController {
 		tableView.separatorStyle = .none
 		tableView.rowHeight = 44
 
-		preferredContentSize = CGSize(width: width,
+		let maxTitleWidth = items.map { $0.calculateTitleWidth(using: ItemCell.font) }.max()
+
+		preferredContentSize = CGSize(width: (maxTitleWidth ?? 0) + 100,
 									  height: items.reduce(0) { $0 + $1.height } - 1)
 	}
 
@@ -79,6 +79,8 @@ class MenuController: UITableViewController {
 }
 
 class ItemCell: UITableViewCell {
+	static let font: UIFont = .preferredFont(forTextStyle: .callout)
+
 	class var separatorHeight: CGFloat { 0.5 }
 	var separatorView: UIVisualEffectView?
 
@@ -86,7 +88,7 @@ class ItemCell: UITableViewCell {
 		super.init(style: .default, reuseIdentifier: nil)
 
 		backgroundColor = .clear
-		textLabel?.font = .preferredFont(forTextStyle: .callout)
+		textLabel?.font = Self.font
 
 		let effect: UIVisualEffect
 		if #available(iOS 13.0, *) {

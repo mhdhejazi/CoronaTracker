@@ -22,6 +22,8 @@ protocol RegionChartView: UIView {
 
 	var mode: Statistic.Kind { get set }
 
+	var extraMenuItems: [MenuItem] { get }
+
 	init(fontScale: CGFloat)
 
 	func update(region: Region?, animated: Bool)
@@ -76,13 +78,42 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 
 	var supportedModes: [Statistic.Kind] { [] }
 
+	var extraMenuItems: [MenuItem] { [] }
+
 	@available(iOS 13.0, *)
 	var contextMenuActions: [UIMenuElement] {
-		supportedModes.map { mode in
+		var result: [UIMenuElement] = []
+
+		var actions = supportedModes.map { mode in
 			UIAction(title: mode.description, state: self.mode == mode ? .on : .off) { _ in
 				self.mode = mode
 			}
 		}
+		if !actions.isEmpty {
+			result.append(UIMenu(title: "", options: .displayInline, children: actions))
+		}
+
+		actions = extraMenuItems.compactMap { item in
+			switch item {
+			case .regular(let title, let image, let action):
+				return UIAction(title: title ?? "", image: image) { _ in
+					action()
+				}
+
+			case .option(let title, let selected, let action):
+				return UIAction(title: title ?? "", state: selected ? .on : .off) { _ in
+					action()
+				}
+
+			default:
+				return nil
+			}
+		}
+		if !actions.isEmpty {
+			result.append(UIMenu(title: "", options: .displayInline, children: actions))
+		}
+
+		return result
 	}
 
 	var shareableText: String? { nil }
@@ -192,11 +223,17 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 			menuItems.append(.separator)
 		}
 
+		menuItems.append(contentsOf: extraMenuItems)
+
+		if !extraMenuItems.isEmpty {
+			menuItems.append(.separator)
+		}
+
 		menuItems.append(.regular(title: L10n.Menu.share, image: Asset.share.image) {
 			self.shareAction?()
 		})
 
-		Menu.show(above: App.topViewController, sourceView: menuButton, width: 150, items: menuItems)
+		Menu.show(above: App.topViewController, sourceView: menuButton, items: menuItems)
 	}
 }
 
