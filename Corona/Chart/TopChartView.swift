@@ -76,6 +76,13 @@ class TopChartView: BaseBarChartView {
 		chartView.legend.enabled = false
 	}
 
+	override func updateOptions(from chartView: RegionChartView) {
+		super.updateOptions(from: chartView)
+
+		guard let chartView = chartView as? TopChartView else { return }
+		self.isLogarithmic = chartView.isLogarithmic
+	}
+
 	override func update(region: Region?, animated: Bool) {
 		super.update(region: region, animated: animated)
 
@@ -95,8 +102,7 @@ class TopChartView: BaseBarChartView {
 			entries.append(entry)
 		}
 
-		let label = isLogarithmic ? L10n.Chart.logarithmic : L10n.Chart.topCountries
-		let dataSet = BarChartDataSet(entries: entries, label: label)
+		let dataSet = BarChartDataSet(entries: entries)
 		dataSet.colors = colors
 
 //		dataSet.drawValuesEnabled = false

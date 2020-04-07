@@ -24,7 +24,11 @@ protocol RegionChartView: UIView {
 
 	var extraMenuItems: [MenuItem] { get }
 
+	var region: Region? { get set }
+
 	init(fontScale: CGFloat)
+
+	func updateOptions(from chartView: RegionChartView)
 
 	func update(region: Region?, animated: Bool)
 
@@ -192,6 +196,10 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		chartView.legend.formSize = 12
 		chartView.legend.horizontalAlignment = .center
 		chartView.legend.xEntrySpace = 10
+	}
+
+	func updateOptions(from chartView: RegionChartView) {
+		self.mode = chartView.mode
 	}
 
 	func update(region: Region?, animated: Bool) {

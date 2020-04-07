@@ -273,9 +273,7 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 		guard let chartController = App.topViewController.storyboard?.instantiateViewController(
 			withIdentifier: String(describing: ChartController.self)) as? ChartController else { return }
 
-		chartController.region = region
-		chartController.chartViewType = C.self
-		chartController.mode = chartView.mode
+		chartController.sourceChartView = chartView
 
 		App.topViewController.present(chartController, animated: true)
 	}

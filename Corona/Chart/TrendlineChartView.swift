@@ -76,12 +76,29 @@ class TrendlineChartView: BaseLineChartView {
 	override var supportedModes: [Statistic.Kind] {
 		[.confirmed, .deaths]
 	}
+	
+	override var extraMenuItems: [MenuItem] {
+		[MenuItem.option(title: L10n.Chart.logarithmic, selected: isLogarithmic, action: {
+			self.isLogarithmic = !self.isLogarithmic
+		})]
+	}
+
+	var isLogarithmic = false {
+		didSet {
+			self.chartView.clear()
+			self.update(region: region, animated: true)
+		}
+	}
 
 	override func initializeView() {
 		super.initializeView()
 
 		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
 			L10n.Chart.Axis.days(Int(value))
+		}
+
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
 		}
 
 		let simpleMarker = SimpleMarkerView(chartView: chartView)
@@ -94,6 +111,13 @@ class TrendlineChartView: BaseLineChartView {
 		chartView.marker = simpleMarker
 
 		chartView.legend.enabled = false
+	}
+
+	override func updateOptions(from chartView: RegionChartView) {
+		super.updateOptions(from: chartView)
+
+		guard let chartView = chartView as? TrendlineChartView else { return }
+		self.isLogarithmic = chartView.isLogarithmic
 	}
 
 	override func update(region: Region?, animated: Bool) {
@@ -120,10 +144,14 @@ class TrendlineChartView: BaseLineChartView {
 		}
 		let totalDays = serieses.map { $0.count }.sorted().dropLast().last! /// Next to the longest (to deal with China case)
 		let entries = zip(serieses.indices, serieses).map { (regionIndex, series) in
-			zip(series.indices.prefix(totalDays), series).map { (index, pair) in
-				ChartDataEntry(x: Double(index - series.startIndex),
-							   y: Double(pair.value.number(for: mode)),
-							   data: regionIndex)
+			zip(series.indices.prefix(totalDays), series).map { (index, pair) -> ChartDataEntry in
+				var value = Double(pair.value.number(for: mode))
+				if isLogarithmic {
+					value = log10(value)
+				}
+				return ChartDataEntry(x: Double(index - series.startIndex),
+									  y: value,
+									  data: regionIndex)
 			}
 		}
 		let labels = regions.map { $0.localizedName }
@@ -155,6 +183,16 @@ class TrendlineChartView: BaseLineChartView {
 		}
 
 		updateLegend(regions: regions)
+
+		if isLogarithmic {
+			chartView.leftAxis.axisMinimum = 2
+			chartView.leftAxis.axisMaximum = 6
+			chartView.leftAxis.labelCount = 4
+		}
+		else {
+			chartView.leftAxis.resetCustomAxisMin()
+			chartView.leftAxis.resetCustomAxisMax()
+		}
 
 		chartView.data = LineChartData(dataSets: dataSets)
 

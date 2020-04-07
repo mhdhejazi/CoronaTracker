@@ -13,14 +13,38 @@ import Charts
 class HistoryChartView: BaseLineChartView {
 	override var shareableText: String? { L10n.Share.chartHistory }
 
+	override var extraMenuItems: [MenuItem] {
+		[MenuItem.option(title: L10n.Chart.logarithmic, selected: isLogarithmic, action: {
+			self.isLogarithmic = !self.isLogarithmic
+		})]
+	}
+
+	var isLogarithmic = false {
+		didSet {
+			self.chartView.clear()
+			self.update(region: region, animated: true)
+		}
+	}
+
 	override func initializeView() {
 		super.initializeView()
+
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
+		}
 
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
 		let marker = SimpleMarkerView(chartView: chartView)
 		marker.font = .systemFont(ofSize: 13 * fontScale)
 		chartView.marker = marker
+	}
+
+	override func updateOptions(from chartView: RegionChartView) {
+		super.updateOptions(from: chartView)
+
+		guard let chartView = chartView as? HistoryChartView else { return }
+		self.isLogarithmic = chartView.isLogarithmic
 	}
 
 	override func update(region: Region?, animated: Bool) {
@@ -34,14 +58,26 @@ class HistoryChartView: BaseLineChartView {
 		title = L10n.Chart.history
 
 		let dates = series.series.keys.sorted().drop { series.series[$0]?.isZero == true }
-		let confirmedEntries = dates.map {
-			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.confirmedCount ?? 0))
+		let confirmedEntries = dates.map { date -> ChartDataEntry in
+			var value = Double(series.series[date]?.confirmedCount ?? 0)
+			if isLogarithmic {
+				value = log10(value)
+			}
+			return ChartDataEntry(x: Double(date.referenceDays), y: value)
 		}
-		let recoveredEntries = dates.map {
-			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.recoveredCount ?? 0))
+		let recoveredEntries = dates.map { date -> ChartDataEntry in
+			var value = Double(series.series[date]?.recoveredCount ?? 0)
+			if isLogarithmic {
+				value = log10(value)
+			}
+			return ChartDataEntry(x: Double(date.referenceDays), y: value)
 		}
-		let deathsEntries = dates.map {
-			ChartDataEntry(x: Double($0.referenceDays), y: Double(series.series[$0]?.deathCount ?? 0))
+		let deathsEntries = dates.map { date -> ChartDataEntry in
+			var value = Double(series.series[date]?.deathCount ?? 0)
+			if isLogarithmic {
+				value = log10(value)
+			}
+			return ChartDataEntry(x: Double(date.referenceDays), y: value)
 		}
 
 		let entries = [confirmedEntries, deathsEntries, recoveredEntries]
@@ -68,6 +104,16 @@ class HistoryChartView: BaseLineChartView {
 			dataSet.drawHorizontalHighlightIndicatorEnabled = false
 
 			dataSets.append(dataSet)
+		}
+
+		if isLogarithmic {
+			chartView.leftAxis.axisMinimum = 1
+			chartView.leftAxis.axisMaximum = 7
+			chartView.leftAxis.labelCount = 6
+		}
+		else {
+			chartView.leftAxis.resetCustomAxisMin()
+			chartView.leftAxis.resetCustomAxisMax()
 		}
 
 		chartView.data = LineChartData(dataSets: dataSets)

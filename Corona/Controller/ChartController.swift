@@ -16,9 +16,7 @@ class ChartController: UIViewController {
 	@IBOutlet var imageLogo: UIImageView!
 	@IBOutlet var chartViewContainer: UIView!
 
-	var region: Region?
-	var chartViewType: RegionChartView.Type?
-	var mode: Statistic.Kind = .confirmed
+	var sourceChartView: RegionChartView!
 
 	override var keyCommands: [UIKeyCommand]? {
 		return [UIKeyCommand(input: UIKeyCommand.inputEscape,
@@ -40,21 +38,22 @@ class ChartController: UIViewController {
 
 		let fontScale: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 1 : 1.3
 
-		chartView = chartViewType?.init(fontScale: fontScale)
+		let chartViewType = type(of: sourceChartView) as RegionChartView.Type
+		chartView = chartViewType.init(fontScale: fontScale)
 		chartViewContainer.addSubview(chartView)
 		chartView.snapEdgesToSuperview()
 		chartView.interactive = true
 		chartView.shareAction = share
-		chartView.mode = mode
-		chartView.update(region: region, animated: true)
+		chartView.updateOptions(from: sourceChartView)
+		chartView.update(region: sourceChartView.region, animated: true)
 
 		if #available(iOS 11.0, *) {
 			labelTitle.font = .preferredFont(forTextStyle: .largeTitle)
 		} else {
 			labelTitle.font = .boldSystemFont(ofSize: 24)
 		}
-		labelTitle.text = (chartViewType == TopChartView.self) ? L10n.Region.world : region?.localizedName
-		labelTime.text = region?.report?.lastUpdate.relativeTimeString
+		labelTitle.text = (chartViewType == TopChartView.self) ? L10n.Region.world : sourceChartView.region?.localizedName
+		labelTime.text = sourceChartView.region?.report?.lastUpdate.relativeTimeString
 	}
 
 	private func share() {
