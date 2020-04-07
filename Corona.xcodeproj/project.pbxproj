@@ -135,6 +135,7 @@
 		113AF0582437A4B2000732D0 /* ChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
 		113AF05E243B52B3000732D0 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		113AF060243CB1C1000732D0 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		113AF061243CB277000732D0 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1151868A241FA9AA00EBC83E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		1151868E241FAECB00EBC83E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		11518690241FAECB00EBC83E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
@@ -502,6 +503,7 @@
 				ja,
 				pl,
 				nl,
+				ro,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -636,6 +638,7 @@
 				11DE76862430AE6600381C0A /* ja */,
 				34C02EBB2431246C00AE80FE /* pl */,
 				113AF060243CB1C1000732D0 /* nl */,
+				113AF061243CB277000732D0 /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

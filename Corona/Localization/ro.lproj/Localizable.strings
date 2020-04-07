@@ -1,0 +1,29 @@
+/*
+ Localizable.strings
+ Corona
+
+ Created by rhcpfan on 3/23/20.
+ Copyright © 2020 Samabox. All rights reserved.
+ */
+
+"case.confirmed" = "Confirmate";
+"case.active" = "Active";
+"case.recovered" = "Vindecate";
+"case.deaths" = "Decese";
+"region.world" = "La nivel mondial";
+"chart.topCountries" = "Cele mai afectate țări";
+"chart.logarithmic" = "Cele mai afectate țări (scală logaritmică)";
+"data.updating" = "Se actualizează...";
+"data.updateDate" = "Ultima actualizare:";
+"data.errorTitle" = "Nu se pot actualiza datele";
+"data.errorMessage" = "Te rugam să te asiguri că ești conectat la internet.";
+"app.newVersionTitle" = "O nouă versiune este disponibilă";
+"app.newVersionMessage" = " %@";
+"message.cancel" = "Anulare";
+"message.open" = "Deschide";
+"message.ok" = "OK";
+"message.done" = "Gata";
+"menu.update" = "Actualizează";
+"menu.share" = "Distribuie";
+"share.current" = "Coronavirus (cazuri actuale)";
+"share.chartHistory" = "Coronavirus (grafic al creșterii)";
