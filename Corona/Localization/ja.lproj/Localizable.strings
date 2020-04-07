@@ -14,6 +14,12 @@
 "chart.topCountries" = "感染者数の多い国";
 "chart.logarithmic" = "対数スケール";
 "chart.delta" = "新規罹患者数";
+"chart.delta.deaths" = "新規死者数";
+"chart.delta.increasing" = "前日比増";
+"chart.delta.decreasing" = "前日比減";
+"chart.trendline" = "100例目以降の推移";
+"chart.history" = "推移";
+"chart.axis.days" = "%d 日後";
 "data.updating" = "更新中...";
 "data.updateDate" = "最終更新:";
 "data.errorTitle" = "データを更新できませんでした";
@@ -25,6 +31,7 @@
 "message.open" = "開く";
 "message.ok" = "OK";
 "message.done" = "完了";
+"menu.copy" = "Copy";
 "menu.update" = "更新";
 "menu.share" = "共有";
 "share.current" = "コロナウイルス最新感染状況";
