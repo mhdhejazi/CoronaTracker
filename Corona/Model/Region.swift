@@ -115,7 +115,7 @@ extension Region {
 extension Region: Equatable {
 	public static func == (lhs: Region, rhs: Region) -> Bool {
 		(lhs.level == rhs.level && lhs.parentName == rhs.parentName && lhs.name == rhs.name) ||
-			(lhs.location == rhs.location && !lhs.location.isZero)
+			(lhs.level == rhs.level && lhs.location == rhs.location && !lhs.location.isZero)
 	}
 }
 
