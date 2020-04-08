@@ -1,11 +1,9 @@
-<img src="https://user-images.githubusercontent.com/121827/76558431-5e747900-64ae-11ea-9168-2091a431773a.png" width="127">
-
-# Corona Tracker 
-Coronavirus tracker app for iOS & macOS with map &amp; charts.
+<img src="https://user-images.githubusercontent.com/121827/78813826-4709ac80-79d6-11ea-9406-247ebabd815b.png" height="175">
 
 ![iOS](https://img.shields.io/badge/iOS-10%20-blue)
 ![macOS](https://img.shields.io/badge/macOS-10.15-blue)
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
+<a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img src="https://img.shields.io/badge/@hejazi-x?color=08a0e9&logo=twitter&logoColor=white" /></a>
 
 ![image](https://user-images.githubusercontent.com/121827/77246699-e25efb80-6c3a-11ea-8a49-30bd87ff33c0.png)
 
@@ -30,7 +28,7 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 ![image](https://user-images.githubusercontent.com/121827/77247007-03751b80-6c3e-11ea-91fc-b3d535fda6a2.png)
 
 ## How to Use
-### 1. iOS App
+### 1. iOS & macOS App
 #### Build from source code
 1. Clone/Download the repo.
 2. Open `Corona.xcodeproj` in Xcode.
@@ -38,7 +36,7 @@ Coronavirus tracker app for iOS & macOS with map &amp; charts.
 4. Build & run!
 
 ### 2. macOS App
-[Download the latest release](https://github.com/MhdHejazi/CoronaTracker/releases/latest) for macOS.
+[Download the latest release](https://github.com/mhdhejazi/CoronaTracker/releases/latest) for macOS.
 
 Or install via [brew](http://brew.sh):
 
@@ -49,15 +47,26 @@ Or install via [brew](http://brew.sh):
 ## Contribute
 Please feel free to contribute pull requests or create issues for bugs and feature requests.
 
-## License
-The app is available for personal/non-commercial use. It's not allowed to publish, distribute, or use the app in a commercial way.
-
 ## Author
-Mhd Hejazi (contact@samabox.com)
+Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img src="https://img.shields.io/badge/@hejazi-x?color=08a0e9&logo=twitter&logoColor=white" valign="middle" /></a> (contact@samabox.com)
 
 ## Credits
 ### Data
 Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
+
+### Translations
+* __German__ by [@sebastianbinder](https://github.com/sebastianbinder)
+* __Swedish__ by [@FluffyDev2019](https://github.com/FluffyDev2019)
+* __Portuguese__ by [@ppamorim](https://github.com/ppamorim)
+* __Italian__ by [@Ale111](https://github.com/Ale111)
+* __French__ by [@Risengan](https://github.com/Risengan)
+* __Russian__ by [@wacumov](https://github.com/wacumov)
+* __Simplified Chinese__ by [@erickzli](https://github.com/erickzli)
+* __Spanish__ by [@ejewik](https://github.com/ejewik)
+* __Japanese__ by [@dev-sora](https://github.com/dev-sora)
+* __Polish__ by [@pbeo](https://github.com/pbeo)
+* __Dutch__ by [@hdatteln](https://github.com/hdatteln)
+* __Romanian__ by [@rhcpfan](https://github.com/rhcpfan)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
