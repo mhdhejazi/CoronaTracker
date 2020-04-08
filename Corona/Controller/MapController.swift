@@ -78,6 +78,7 @@ class MapController: UIViewController {
 
 		if #available(iOS 13.0, *) {
 			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
+			effectViewOptions.effect = UIBlurEffect(style: .systemUltraThinMaterial)
 		}
 
 		if #available(iOS 11.0, *) {
@@ -343,7 +344,7 @@ class PanelLayout: FloatingPanelLayout {
 	public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
 		switch position {
 		case .full: return 16
-		case .half: return 197
+		case .half: return 198
 		default: return nil
 		}
 	}

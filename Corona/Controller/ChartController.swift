@@ -11,6 +11,8 @@ import UIKit
 class ChartController: UIViewController {
 	private var chartView: RegionChartView!
 
+	@IBOutlet var effectViewBackground: UIVisualEffectView!
+	@IBOutlet var effectViewHeader: UIVisualEffectView!
 	@IBOutlet var labelTitle: UILabel!
 	@IBOutlet var labelTime: UILabel!
 	@IBOutlet var imageLogo: UIImageView!
@@ -54,6 +56,11 @@ class ChartController: UIViewController {
 		}
 		labelTitle.text = (chartViewType == TopChartView.self) ? L10n.Region.world : sourceChartView.region?.localizedName
 		labelTime.text = sourceChartView.region?.report?.lastUpdate.relativeTimeString
+
+		if #available(iOS 13.0, *) {
+			effectViewBackground.effect = UIBlurEffect(style: .systemMaterial)
+			effectViewHeader.effect = UIBlurEffect(style: .systemMaterial)
+		}
 	}
 
 	private func share() {
