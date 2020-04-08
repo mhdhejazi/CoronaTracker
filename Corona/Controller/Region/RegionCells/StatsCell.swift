@@ -12,15 +12,15 @@ class StatsCell: RegionDataCell {
 	private var showPercents = false
 	private var switchPercentsTask: DispatchWorkItem?
 
-	@IBOutlet var labelConfirmedTitle: UILabel!
-	@IBOutlet var labelConfirmed: UILabel!
-	@IBOutlet var labelNewConfirmed: UILabel!
-	@IBOutlet var labelRecoveredTitle: UILabel!
-	@IBOutlet var labelRecovered: UILabel!
-	@IBOutlet var labelNewRecovered: UILabel!
-	@IBOutlet var labelDeathsTitle: UILabel!
-	@IBOutlet var labelDeaths: UILabel!
-	@IBOutlet var labelNewDeaths: UILabel!
+	@IBOutlet private var labelConfirmedTitle: UILabel!
+	@IBOutlet private var labelConfirmed: UILabel!
+	@IBOutlet private var labelNewConfirmed: UILabel!
+	@IBOutlet private var labelRecoveredTitle: UILabel!
+	@IBOutlet private var labelRecovered: UILabel!
+	@IBOutlet private var labelNewRecovered: UILabel!
+	@IBOutlet private var labelDeathsTitle: UILabel!
+	@IBOutlet private var labelDeaths: UILabel!
+	@IBOutlet private var labelNewDeaths: UILabel!
 
 	override var shareableImage: UIImage? { snapshot() }
 	override var shareableText: String? { L10n.Share.current }
@@ -33,7 +33,6 @@ class StatsCell: RegionDataCell {
 			labelRecovered.font = .preferredFont(forTextStyle: .largeTitle)
 			labelDeaths.font = .preferredFont(forTextStyle: .largeTitle)
 		} else {
-			/// iOS 10
 			labelConfirmed.font = .systemFont(ofSize: 24)
 			labelRecovered.font = .systemFont(ofSize: 24)
 			labelDeaths.font = .systemFont(ofSize: 24)
@@ -68,7 +67,7 @@ class StatsCell: RegionDataCell {
 	private func updateStats(reset: Bool = false) {
 		switchPercentsTask?.cancel()
 		let task = DispatchWorkItem {
-			self.showPercents = !self.showPercents
+			self.showPercents.toggle()
 			self.updateStats()
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + Self.numberPercentSwitchInterval, execute: task)
@@ -103,8 +102,9 @@ class StatsCell: RegionDataCell {
 		}
 	}
 
-	@objc func cellTapped(_ sender: Any) {
-		self.showPercents = !self.showPercents
+	@objc
+	func cellTapped(_ sender: Any) {
+		self.showPercents.toggle()
 		updateStats()
 	}
 }

@@ -33,13 +33,12 @@ class PanelLayout: FloatingPanelLayout {
 		if #available(iOS 11.0, *) {
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0.0),
-				surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0.0)
 			]
 		} else {
-			/// iOS 10
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0.0),
-				surfaceView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0),
+				surfaceView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0.0)
 			]
 		}
 	}
@@ -54,13 +53,12 @@ class LandscapePanelLayout: PanelLayout {
 		if #available(iOS 11.0, *) {
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8.0),
-				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400)
 			]
 		} else {
-			/// iOS 10
 			return [
 				surfaceView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8.0),
-				surfaceView.widthAnchor.constraint(equalToConstant: 400),
+				surfaceView.widthAnchor.constraint(equalToConstant: 400)
 			]
 		}
 	}

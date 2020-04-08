@@ -57,7 +57,7 @@ class ItemCell: UITableViewCell {
 	}
 
 	required init?(coder: NSCoder) {
-		fatalError()
+		fatalError("init(coder:) has not been implemented")
 	}
 }
 
@@ -71,6 +71,6 @@ class SeparatorCell: ItemCell {
 	}
 
 	required init?(coder: NSCoder) {
-		fatalError()
+		fatalError("init(coder:) has not been implemented")
 	}
 }

@@ -26,7 +26,7 @@ public class DataManager {
 		case .province:
 			var regions = [Region]()
 			for country in world.subRegions {
-				if (country.subRegions.isEmpty) {
+				if country.subRegions.isEmpty {
 					regions.append(country)
 				} else {
 					regions.append(contentsOf: country.subRegions)
@@ -42,48 +42,48 @@ public class DataManager {
 		return result
 	}
 
-	public func load(completion: @escaping (Bool) -> ()) {
+	public func load(completion: @escaping (Bool) -> Void) {
 		DispatchQueue.global().async {
 
 			var result: Bool
 			do {
 				self.world = try Disk.retrieve(Self.dataFileName, from: .caches, as: Region.self)
 				result = true
-			}
-			catch {
+			} catch {
 				print("Unexpected error: \(error).")
 				try? Disk.clear(.caches)
 				result = false
 			}
 
 			DispatchQueue.main.async {
-				completion(result);
+				completion(result)
 			}
 		}
 	}
 }
 
 extension DataManager {
-	public func download(completion: @escaping (Bool) -> ()) {
-		JHUWebDataService.instance.fetchReports { (regions, error) in
+	public func download(completion: @escaping (Bool) -> Void) {
+		JHUWebDataService.instance.fetchReports { regions, _ in
 			guard let regions = regions else {
 				completion(false)
 				return
 			}
 
-			/// Don't download the time serieses if they are not old enough. Currently, they are updated from the data source every 24 hours.
+			/// Don't download the time serieses if they are not old enough.
+			/// Currently, they are updated from the data source every 24 hours.
 //			if self.world.timeSeries?.lastUpdate?.ageDays ?? 0 < 2 {
 //				self.update(regions: regions, timeSeriesRegions: self.regions(of: .province), completion: completion)
 //				return
 //			}
 
-			JHURepoDataService.instance.fetchTimeSerieses { (timeSeriesRegions, error) in
+			JHURepoDataService.instance.fetchTimeSerieses { timeSeriesRegions, _ in
 				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
 			}
 		}
 	}
 
-	private func update(regions: [Region], timeSeriesRegions: [Region]?, completion: @escaping (Bool) -> ()) {
+	private func update(regions: [Region], timeSeriesRegions: [Region]?, completion: @escaping (Bool) -> Void) {
 		timeSeriesRegions?.forEach { timeSeriesRegion in
 			regions.first { $0 == timeSeriesRegion }?.timeSeries = timeSeriesRegion.timeSeries
 		}
@@ -91,11 +91,8 @@ extension DataManager {
 		/// Countries
 		var countries = [Region]()
 		countries.append(contentsOf: regions.filter({ !$0.isProvince }))
-		Dictionary(grouping: regions.filter({ region in
-			region.isProvince
-		}), by: { region in
-			region.parentName
-		}).forEach { (key, value) in
+		let provinceRegions = regions.filter({ $0.isProvince })
+		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { value in
 			if let countryRegion = Region.join(subRegions: value) {
 				countries.append(countryRegion)
 			}

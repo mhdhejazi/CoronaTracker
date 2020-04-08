@@ -8,7 +8,7 @@ import UIKit
 import SafariServices
 
 class DataSourceCell: RegionDataCell {
-	@IBOutlet var labelSource: UILabel!
+	@IBOutlet private var labelSource: UILabel!
 
 	override func awakeFromNib() {
 		super.awakeFromNib()

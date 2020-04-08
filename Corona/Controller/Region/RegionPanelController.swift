@@ -51,14 +51,14 @@ class RegionPanelController: UIViewController {
 		}
 	}
 
-	@IBOutlet var effectViewBackground: UIVisualEffectView!
-	@IBOutlet var effectViewHeader: UIVisualEffectView!
-	@IBOutlet var viewHeader: UIView!
-	@IBOutlet var labelTitle: UILabel!
-	@IBOutlet var labelUpdated: UILabel!
-	@IBOutlet var buttonMenu: UIButton!
-	@IBOutlet var buttonSearch: UIButton!
-	@IBOutlet var searchBar: UISearchBar!
+	@IBOutlet private var effectViewBackground: UIVisualEffectView!
+	@IBOutlet private var effectViewHeader: UIVisualEffectView!
+	@IBOutlet private var viewHeader: UIView!
+	@IBOutlet private var labelTitle: UILabel!
+	@IBOutlet private var labelUpdated: UILabel!
+	@IBOutlet private var buttonMenu: UIButton!
+	@IBOutlet private var buttonSearch: UIButton!
+	@IBOutlet private var searchBar: UISearchBar!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -88,8 +88,7 @@ class RegionPanelController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.destination is RegionDataController {
 			regionDataController = segue.destination as? RegionDataController
-		}
-		else if segue.destination is RegionListController {
+		} else if segue.destination is RegionListController {
 			regionListController = segue.destination as? RegionListController
 		}
 	}
@@ -150,11 +149,12 @@ extension RegionPanelController {
 			.regular(title: L10n.Menu.share, image: Asset.share.image) {
 				MapController.instance.showRegionScreen()
 				self.regionDataController.setEditing(true, animated: true)
-			},
+			}
 		])
 	}
 
-	@objc func buttonDoneTapped(_ sender: Any) {
+	@objc
+	func buttonDoneTapped(_ sender: Any) {
 		setEditing(false, animated: true)
 		regionDataController.setEditing(false, animated: true)
 	}

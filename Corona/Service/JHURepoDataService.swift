@@ -27,9 +27,15 @@ public class JHURepoDataService: DataService {
 
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
 	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
-	private static let confirmedTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", relativeTo: baseURL)!
-	private static let recoveredTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_recovered_global.csv", relativeTo: baseURL)!
-	private static let deathsTimeSeriesURL = URL(string: "csse_covid_19_time_series/time_series_covid19_deaths_global.csv", relativeTo: baseURL)!
+	private static let confirmedTimeSeriesURL = URL(
+		string: "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+		relativeTo: baseURL)!
+	private static let recoveredTimeSeriesURL = URL(
+		string: "csse_covid_19_time_series/time_series_covid19_recovered_global.csv",
+		relativeTo: baseURL)!
+	private static let deathsTimeSeriesURL = URL(
+		string: "csse_covid_19_time_series/time_series_covid19_deaths_global.csv",
+		relativeTo: baseURL)!
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		let today = Date()
@@ -50,7 +56,7 @@ public class JHURepoDataService: DataService {
 		print("Downloading \(fileName)")
 		let url = URL(string: String(format: Self.dailyReportURLString, fileName), relativeTo: Self.baseURL)!
 
-		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
+		_ = URLSession.shared.dataTask(with: url) { data, response, _ in
 
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
@@ -63,7 +69,7 @@ public class JHURepoDataService: DataService {
 
 			DispatchQueue.global(qos: .default).async {
 				let oldData = try? Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
-				if (oldData == data) {
+				if oldData == data {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
@@ -82,8 +88,7 @@ public class JHURepoDataService: DataService {
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
 			let regions = reader.map({ Region.createFromReportData(dataRow: $0) })
 			completion(regions, nil)
-		}
-		catch {
+		} catch {
 			print("Unexpected error: \(error).")
 			completion(nil, error)
 		}
@@ -155,7 +160,7 @@ public class JHURepoDataService: DataService {
 			let recoveredTimeSeries = recovered.first { $0.region == confirmedTimeSeries.region }
 			let deathsTimeSeries = deaths.first { $0.region == confirmedTimeSeries.region }
 
-			var series: [Date : Statistic] = [:]
+			var series: [Date: Statistic] = [:]
 			for column in confirmedTimeSeries.values.indices {
 				let dateString = dateStrings[dateStrings.startIndex + column]
 				if let date = dateFormatter.date(from: dateString) {
@@ -190,18 +195,17 @@ public class JHURepoDataService: DataService {
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
 			let headers = reader.headerRow
 			let result = reader.map({ CounterTimeSeries(dataRow: $0) })
-			
+
 			return (result, headers ?? [])
-		}
-		catch {
+		} catch {
 			print("Unexpected error: \(error).")
 			return nil
 		}
 	}
 
-	private func downloadFile(url: URL, fileName: String, completion: @escaping (Data?) -> ()) {
+	private func downloadFile(url: URL, fileName: String, completion: @escaping (Data?) -> Void) {
 		print("Downloading \(fileName)")
-		_ = URLSession.shared.dataTask(with: url) { (data, response, error) in
+		_ = URLSession.shared.dataTask(with: url) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data else {
@@ -221,7 +225,7 @@ public class JHURepoDataService: DataService {
 	}
 }
 
-private extension Region {
+extension Region {
 	private enum DataFieldOrder: Int {
 		case province = 0
 		case country
@@ -233,7 +237,7 @@ private extension Region {
 		case longitude
 	}
 
-	static func createFromReportData(dataRow: [String]) -> Region {
+	fileprivate static func createFromReportData(dataRow: [String]) -> Region {
 		let province = dataRow[DataFieldOrder.province.rawValue]
 		let country = dataRow[DataFieldOrder.country.rawValue]
 		let latitude = Double(dataRow[DataFieldOrder.latitude.rawValue]) ?? 0

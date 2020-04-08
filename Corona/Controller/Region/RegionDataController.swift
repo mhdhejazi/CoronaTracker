@@ -137,14 +137,17 @@ extension RegionDataController {
 		false
 	}
 
-	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+	override func tableView(_ tableView: UITableView,
+							editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 		.none
 	}
 
 	@available(iOS 11.0, *)
-	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+	override func tableView(_ tableView: UITableView,
+							trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
 		let cell = tableView.cellForRow(at: indexPath) as? RegionDataCell
-		let action = UIContextualAction(style: .normal, title: nil) { action, sourceView, completion in
+		let action = UIContextualAction(style: .normal, title: nil) { _, _, completion in
 			completion(true)
 			self.shareImage(for: cell)
 		}

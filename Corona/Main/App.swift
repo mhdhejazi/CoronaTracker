@@ -17,14 +17,14 @@ class App {
 	#if targetEnvironment(macCatalyst)
 	static let updateURL = URL(string: "https://coronatracker.samabox.com/")!
 	#else
-	static let updateURL = URL(string: "https://github.com/MhdHejazi/CoronaTracker")!
+	static let updateURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker")!
 	#endif
 
 	static let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
 
 	public static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
-		let checkForUpdateURL = URL(string: "https://api.github.com/repos/MhdHejazi/CoronaTracker/releases/latest")!
-		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { (data, response, error) in
+		let checkForUpdateURL = URL(string: "https://api.github.com/repos/mhdhejazi/CoronaTracker/releases/latest")!
+		_ = URLSession.shared.dataTask(with: checkForUpdateURL) { data, response, _ in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data,

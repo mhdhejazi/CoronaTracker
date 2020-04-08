@@ -9,12 +9,12 @@ import UIKit
 class ChartController: UIViewController {
 	private var chartView: RegionChartView!
 
-	@IBOutlet var effectViewBackground: UIVisualEffectView!
-	@IBOutlet var effectViewHeader: UIVisualEffectView!
-	@IBOutlet var labelTitle: UILabel!
-	@IBOutlet var labelTime: UILabel!
-	@IBOutlet var imageLogo: UIImageView!
-	@IBOutlet var chartViewContainer: UIView!
+	@IBOutlet private var effectViewBackground: UIVisualEffectView!
+	@IBOutlet private var effectViewHeader: UIVisualEffectView!
+	@IBOutlet private var labelTitle: UILabel!
+	@IBOutlet private var labelTime: UILabel!
+	@IBOutlet private var imageLogo: UIImageView!
+	@IBOutlet private var chartViewContainer: UIView!
 
 	var sourceChartView: RegionChartView!
 
@@ -62,7 +62,7 @@ class ChartController: UIViewController {
 	}
 
 	private func share() {
-		var image: UIImage? = nil
+		var image: UIImage?
 		chartView.prepareForShare {
 			image = self.view.snapshot()
 		}

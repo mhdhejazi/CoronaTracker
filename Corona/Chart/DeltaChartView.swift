@@ -21,7 +21,7 @@ class DeltaChartView: BaseBarChartView {
 		chartView.xAxis.drawGridLinesEnabled = false
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
-		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			Int(value).kmFormatted
 		}
 
@@ -47,7 +47,7 @@ class DeltaChartView: BaseBarChartView {
 			LegendEntry(label: "↑ " + L10n.Chart.Delta.increasing, form: .circle, formSize: 12,
 						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: increasingColor),
 			LegendEntry(label: "↓ " + L10n.Chart.Delta.decreasing, form: .circle, formSize: 12,
-						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue),
+						formLineWidth: 0, formLineDashPhase: 0, formLineDashLengths: nil, formColor: .systemBlue)
 		])
 
 		let changes = series.changes()
@@ -61,11 +61,11 @@ class DeltaChartView: BaseBarChartView {
 		}
 
 		var colors = [UIColor]()
-		for i in entries.indices.reversed() {
+		for index in entries.indices.reversed() {
 			var color = increasingColor
-			if i > 0 {
-				let currentEntry = entries[i]
-				let previousEntry = entries[i - 1]
+			if index > 0 {
+				let currentEntry = entries[index]
+				let previousEntry = entries[index - 1]
 				if currentEntry.y < previousEntry.y {
 					color = .systemBlue
 				}

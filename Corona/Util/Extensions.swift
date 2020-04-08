@@ -39,7 +39,7 @@ extension Calendar {
 }
 
 extension Date {
-	public static let reference = Calendar.posix.date(from: DateComponents(year: 2000))!
+	public static let reference = Calendar.posix.date(from: DateComponents(year: 2_000))!
 
 	public static func fromReferenceDays(days: Int) -> Date {
 		Calendar.posix.date(byAdding: .day, value: days, to: Date.reference)!
@@ -68,27 +68,22 @@ extension Date {
 
 		var interval: Int
 		var unit: String
-		if let value = components.year, value > 0  {
+		if let value = components.year, value > 0 {
 			interval = value
 			unit = "year"
-		}
-		else if let value = components.month, value > 0  {
+		} else if let value = components.month, value > 0 {
 			interval = value
 			unit = "month"
-		}
-		else if let value = components.day, value > 0  {
+		} else if let value = components.day, value > 0 {
 			interval = value
 			unit = "day"
-		}
-		else if let value = components.hour, value > 0  {
+		} else if let value = components.hour, value > 0 {
 			interval = value
 			unit = "hour"
-		}
-		else if let value = components.minute, value > 0  {
+		} else if let value = components.minute, value > 0 {
 			interval = value
 			unit = "minute"
-		}
-		else {
+		} else {
 			return "moments ago"
 		}
 
@@ -172,9 +167,9 @@ extension NumberFormatter {
 
 extension FileManager {
 	static let cachesDirectoryURL: URL? = {
-		return try? FileManager.default.url(for: .cachesDirectory,
-											in: .userDomainMask,
-											appropriateFor: nil,
-											create: true)
+		try? FileManager.default.url(for: .cachesDirectory,
+									 in: .userDomainMask,
+									 appropriateFor: nil,
+									 create: true)
 	}()
 }

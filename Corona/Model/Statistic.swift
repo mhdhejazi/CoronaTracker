@@ -15,9 +15,21 @@ public struct Statistic: Codable {
 extension Statistic {
 	public var activeCount: Int { confirmedCount - recoveredCount - deathCount }
 
-	public var recoveredPercent: Double { confirmedCount == 0 ? 0 : 100.0 * Double(recoveredCount) / Double(confirmedCount) }
-	public var deathPercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(deathCount) / Double(confirmedCount) }
-	public var activePercent: Double { confirmedCount == 0 ? 0 :  100.0 * Double(activeCount) / Double(confirmedCount) }
+	public var recoveredPercent: Double {
+		confirmedCount == 0
+			? 0
+			: 100.0 * Double(recoveredCount) / Double(confirmedCount)
+	}
+	public var deathPercent: Double {
+		confirmedCount == 0
+			? 0
+			: 100.0 * Double(deathCount) / Double(confirmedCount)
+	}
+	public var activePercent: Double {
+		confirmedCount == 0
+			? 0
+			: 100.0 * Double(activeCount) / Double(confirmedCount)
+	}
 
 	public var confirmedCountString: String { confirmedCount.groupingFormatted }
 	public var recoveredCountString: String { recoveredCount == 0 ? "-" : recoveredCount.groupingFormatted }

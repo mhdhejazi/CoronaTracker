@@ -14,24 +14,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	private var showPercents = false
 	private var switchPercentsTask: DispatchWorkItem?
 
-	@IBOutlet var worldwideTitleLabel: UILabel!
-	@IBOutlet var confirmedLabel: UILabel!
-	@IBOutlet var confirmedCountLabel: UILabel!
-	@IBOutlet var recoveredLabel: UILabel!
-	@IBOutlet var recoveredCountLabel: UILabel!
-	@IBOutlet var deathsLabel: UILabel!
-	@IBOutlet var deathsCountLabel: UILabel!
-	@IBOutlet var dataViews: [UIView]!
-	@IBOutlet var dataLabels: [UILabel]!
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
-	@IBOutlet var updateTimeLabel: UILabel!
+	@IBOutlet private var worldwideTitleLabel: UILabel!
+	@IBOutlet private var confirmedLabel: UILabel!
+	@IBOutlet private var confirmedCountLabel: UILabel!
+	@IBOutlet private var recoveredLabel: UILabel!
+	@IBOutlet private var recoveredCountLabel: UILabel!
+	@IBOutlet private var deathsLabel: UILabel!
+	@IBOutlet private var deathsCountLabel: UILabel!
+	@IBOutlet private var dataViews: [UIView]!
+	@IBOutlet private var dataLabels: [UILabel]!
+    @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
+	@IBOutlet private var updateTimeLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initializeView()
 
-		DataManager.instance.load { [weak self] success in
+		DataManager.instance.load { [weak self] _ in
 			self?.report = DataManager.instance.world.report
 			self?.update()
 		}
@@ -42,7 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		updateTimeLabel.isHidden = true
         DataManager.instance.download { [weak self] success in
             completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { [weak self] success in
+            DataManager.instance.load { [weak self] _ in
 				self?.report = DataManager.instance.world.report
                 self?.activityIndicatorView.stopAnimating()
 				self?.updateTimeLabel.isHidden = false

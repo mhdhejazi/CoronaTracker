@@ -42,8 +42,8 @@ class RegionDataCell: UITableViewCell {
 		return items
 	}
 
-	var copyAction: (() -> Void)? = nil
-	var shareAction: (() -> Void)? = nil
+	var copyAction: (() -> Void)?
+	var shareAction: (() -> Void)?
 	var shareableImage: UIImage? { nil }
 	var shareableText: String? { nil }
 
@@ -97,25 +97,35 @@ class RegionDataCell: UITableViewCell {
 
 @available(iOS 13.0, *)
 extension RegionDataCell: UIContextMenuInteractionDelegate {
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+								configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+
 		guard shareableText != nil, !isEditing else { return nil }
 
-		return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
+		return UIContextMenuConfiguration(identifier: nil,
+										  previewProvider: nil,
+										  actionProvider: { _ in
 			UIMenu(title: "", children: self.contextMenuActions)
 		})
 	}
 
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+								previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+
 		let parameters = UIPreviewParameters()
 		parameters.backgroundColor = .clear
 		return UITargetedPreview(view: self, parameters: parameters)
 	}
 
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+								willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+
 		self.backgroundColor = SystemColor.secondarySystemBackground
 	}
 
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+								willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+
 		UIView.animate(withDuration: 0.25) {
 			self.backgroundColor = .clear
 		}

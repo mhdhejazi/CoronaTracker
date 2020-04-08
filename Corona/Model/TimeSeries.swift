@@ -7,7 +7,7 @@
 import MapKit
 
 public struct TimeSeries: Codable {
-	public let series: [Date : Statistic]
+	public let series: [Date: Statistic]
 }
 
 extension TimeSeries {
@@ -20,7 +20,7 @@ extension TimeSeries {
 	static func join(subSerieses: [TimeSeries]) -> TimeSeries? {
 		guard let firstSubSeries = subSerieses.first else { return nil }
 
-		var series: [Date : Statistic] = [:]
+		var series: [Date: Statistic] = [:]
 		firstSubSeries.series.keys.forEach { key in
 			let subData = subSerieses.compactMap { $0.series[key] }
 			let superData = Statistic.sum(subData: subData)
@@ -30,16 +30,16 @@ extension TimeSeries {
 		return TimeSeries(series: series)
 	}
 
-	public func changes() -> [Date : Change] {
-		var result = [Date : Change]()
+	public func changes() -> [Date: Change] {
+		var result = [Date: Change]()
 		let dates = series.keys.sorted()
-		for i in dates.indices {
-			let date = dates[i]
-			if i == 0 {
+		for index in dates.indices {
+			let date = dates[index]
+			if index == 0 {
 				result[date] = Change(currentStat: series[date]!, lastStat: .zero)
 				continue
 			}
-			let previousDate = dates[i - 1]
+			let previousDate = dates[index - 1]
 			result[date] = Change(currentStat: series[date]!, lastStat: series[previousDate]!)
 		}
 

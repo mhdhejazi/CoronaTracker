@@ -26,7 +26,7 @@ class TopChartView: BaseBarChartView {
 
 	override var extraMenuItems: [MenuItem] {
 		[MenuItem.option(title: L10n.Chart.logarithmic, selected: isLogarithmic, action: {
-			self.isLogarithmic = !self.isLogarithmic
+			self.isLogarithmic.toggle()
 		})]
 	}
 
@@ -41,7 +41,7 @@ class TopChartView: BaseBarChartView {
 		super.initializeView()
 
 		chartView.xAxis.drawGridLinesEnabled = false
-		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, axis in
+		chartView.xAxis.valueFormatter = DefaultAxisValueFormatter(block: { value, _ in
 			guard let entry = self.chartView.barData?.dataSets.first?.entryForIndex(Int(value)) as? BarChartDataEntry,
 				let region = entry.data as? Region else { return value.description }
 
@@ -53,11 +53,11 @@ class TopChartView: BaseBarChartView {
 			chartView.xAxis.labelRotationAngle = 45
 		}
 
-		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
 		}
 
-		let simpleMarker = SimpleMarkerView(chartView: chartView) { (entry, highlight) in
+		let simpleMarker = SimpleMarkerView(chartView: chartView) { entry, _ in
 			guard let region = entry.data as? Region,
 				let report = region.report else { return entry.y.kmFormatted }
 
@@ -89,13 +89,13 @@ class TopChartView: BaseBarChartView {
 		title = L10n.Chart.topCountries + (mode == .confirmed ? "" : " (\(mode))")
 
 		var entries = [BarChartDataEntry]()
-		for i in regions.indices {
-			let region = regions[i]
+		for index in regions.indices {
+			let region = regions[index]
 			var value = Double(region.report?.stat.number(for: mode) ?? 0)
 			if isLogarithmic {
 				value = log10(value)
 			}
-			let entry = BarChartDataEntry(x: Double(i), y: value)
+			let entry = BarChartDataEntry(x: Double(index), y: value)
 			entry.data = region
 			entries.append(entry)
 		}
@@ -106,7 +106,7 @@ class TopChartView: BaseBarChartView {
 //		dataSet.drawValuesEnabled = false
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12 * fontScale, weight: .regular)
-		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, dataSetIndex, viewPortHandler in
+		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, _, _ in
 			guard let region = entry.data as? Region else { return Int(value).kmFormatted }
 			return region.report?.stat.number(for: self.mode).kmFormatted ?? Int(value).kmFormatted
 		})
@@ -115,8 +115,7 @@ class TopChartView: BaseBarChartView {
 			chartView.leftAxis.axisMinimum = 2
 			chartView.leftAxis.axisMaximum = 6
 			chartView.leftAxis.labelCount = 4
-		}
-		else {
+		} else {
 			chartView.leftAxis.resetCustomAxisMin()
 			chartView.leftAxis.resetCustomAxisMax()
 		}

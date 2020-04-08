@@ -7,7 +7,7 @@
 import UIKit
 
 class UpdateTimeCell: RegionDataCell {
-	@IBOutlet var labelUpdated: UILabel!
+	@IBOutlet private var labelUpdated: UILabel!
 
 	override func update(animated: Bool) {
 		self.labelUpdated.text = "\(L10n.Data.updateDate) \(self.region?.report?.lastUpdate.relativeDateString ?? "-")"

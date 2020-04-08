@@ -15,7 +15,7 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		UIColor(hue: 0.2, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
 		UIColor(hue: 0.1, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
 		UIColor(hue: 0.95, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
-		UIColor(hue: 0.4, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic,
+		UIColor(hue: 0.4, saturation: 0.8, brightness: 0.7, alpha: 1.0).dynamic
 	]
 
 	var hasTitle: Bool { true }
@@ -185,7 +185,8 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		menuButton.isHidden = false
 	}
 
-	@objc func menuButtonTapped(_ sender: Any) {
+	@objc
+	func menuButtonTapped(_ sender: Any) {
 		var menuItems: [MenuItem] = supportedModes.map { mode in
 			let title: String
 			switch mode {

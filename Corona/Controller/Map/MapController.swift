@@ -14,7 +14,7 @@ class MapController: UIViewController {
 
 	static var instance: MapController!
 
-	private var cityZoomLevel: CGFloat { (view.bounds.width > 1000) ? 5 : 4 }
+	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 5 : 4 }
 	private var allAnnotations: [RegionAnnotation] = []
 	private var countryAnnotations: [RegionAnnotation] = []
 	private var currentAnnotations: [RegionAnnotation] = []
@@ -28,12 +28,12 @@ class MapController: UIViewController {
 		}
 	}
 
-	@IBOutlet var mapView: MKMapView!
-	@IBOutlet var effectView: UIVisualEffectView!
-	@IBOutlet var buttonUpdate: UIButton!
-	@IBOutlet var viewOptions: UIView!
-	@IBOutlet var effectViewOptions: UIVisualEffectView!
-	@IBOutlet var buttonMode: UIButton!
+	@IBOutlet private var mapView: MKMapView!
+	@IBOutlet private var effectView: UIVisualEffectView!
+	@IBOutlet private var buttonUpdate: UIButton!
+	@IBOutlet private var viewOptions: UIView!
+	@IBOutlet private var effectViewOptions: UIVisualEffectView!
+	@IBOutlet private var buttonMode: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -179,8 +179,7 @@ class MapController: UIViewController {
 				if success {
 					self.hideHUD()
 					self.update()
-				}
-				else {
+				} else {
 					if showSpinner {
 						self.showMessage(title: L10n.Data.errorTitle,
 										 message: L10n.Data.errorMessage)
@@ -233,7 +232,7 @@ class MapController: UIViewController {
 			},
 			.option(title: L10n.Case.deaths, selected: mode == .deaths) {
 				self.mode = .deaths
-			},
+			}
 		])
 	}
 }
@@ -251,7 +250,6 @@ extension MapController: MKMapViewDelegate {
 				for: annotation) as? RegionAnnotationView else { return nil }
 			annotationView = view
 		} else {
-			/// iOS 10
 			let view = mapView.dequeueReusableAnnotationView(
 				withIdentifier: RegionAnnotationView.reuseIdentifier) as? RegionAnnotationView
 			annotationView = view ?? RegionAnnotationView(annotation: annotation,
@@ -272,7 +270,7 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		var annotationToSelect: MKAnnotation? = nil
+		var annotationToSelect: MKAnnotation?
 
 		if mapView.zoomLevel > cityZoomLevel {
 			if currentAnnotations.count != allAnnotations.count {
@@ -283,8 +281,7 @@ extension MapController: MKMapViewDelegate {
 					mapView.addAnnotations(self.currentAnnotations)
 				}
 			}
-		}
-		else {
+		} else {
 			if currentAnnotations.count != countryAnnotations.count {
 				mapView.superview?.transition {
 					annotationToSelect = mapView.selectedAnnotations.first
@@ -310,13 +307,15 @@ extension MapController: MKMapViewDelegate {
 }
 
 extension MapController: FloatingPanelControllerDelegate {
-	func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+	func floatingPanel(_ controller: FloatingPanelController,
+					   layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
+
 		(newCollection.userInterfaceIdiom == .pad ||
 			newCollection.verticalSizeClass == .compact) ? LandscapePanelLayout() : PanelLayout()
 	}
 
-	func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
-		let currentPosition = vc.position
+	func floatingPanelWillBeginDragging(_ controller: FloatingPanelController) {
+		let currentPosition = controller.position
 
 		// currentPosition == .full means deceleration will start from top to bottom (i.e. user dragging the panel down)
 		if currentPosition == .full, regionPanelController.isSearching {

@@ -1,0 +1,26 @@
+disabled_rules:
+  - type_body_length
+  - file_length
+  - function_body_length
+  - vertical_parameter_alignment # Many false positives because of tabs
+
+opt_in_rules:
+  - empty_count
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - private_outlet
+  - operator_usage_whitespace
+  - first_where
+  - number_separator
+  - prohibited_super_call
+  - fatal_error_message
+  - closure_spacing
+  - object_literal
+  - attributes
+  - toggle_bool
+  - collection_alignment
+  - closure_end_indentation
+  - no_extension_access_modifier
+  - implicit_return
+
+indentation: tabs

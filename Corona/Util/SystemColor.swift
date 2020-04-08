@@ -4,6 +4,8 @@
 /// fallback for older versions of iOS. These values are the same as the
 /// standard `UIColor` colors as of iOS 13.0 beta 1.
 
+// swiftlint:disable all
+
 import UIKit
 
 public enum SystemColor {

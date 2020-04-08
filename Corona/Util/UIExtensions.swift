@@ -26,7 +26,7 @@ extension CLLocationCoordinate2D {
 }
 
 extension UIControl {
-	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> ()) {
+	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
 		let sleeve = ClosureSleeve(closure)
 		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
 		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -34,14 +34,16 @@ extension UIControl {
 }
 
 /// WARNING: This solution causes memory leaks
-@objc class ClosureSleeve: NSObject {
-	let closure: () -> ()
+@objc
+class ClosureSleeve: NSObject {
+	let closure: () -> Void
 
-	init (_ closure: @escaping () -> ()) {
+	init (_ closure: @escaping () -> Void) {
 		self.closure = closure
 	}
 
-	@objc func invoke() {
+	@objc
+	func invoke() {
 		closure()
 	}
 }

@@ -51,7 +51,7 @@ class BaseLineChartView: ChartView<LineChartViewWithHorizontalPanning> {
 		chartView.leftAxis.gridLineDashLengths = [3, 3]
 		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
 		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
-		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
+		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			Int(value).kmFormatted
 		}
 

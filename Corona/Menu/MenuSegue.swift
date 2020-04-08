@@ -7,8 +7,8 @@
 import UIKit
 
 class MenuSegue: UIStoryboardSegue, UIViewControllerTransitioningDelegate {
-	private var selfRetainer: MenuSegue? = nil
-	var sourceView: UIView? = nil
+	private var selfRetainer: MenuSegue?
+	var sourceView: UIView?
 
 	override func perform() {
 		selfRetainer = self
@@ -17,7 +17,9 @@ class MenuSegue: UIStoryboardSegue, UIViewControllerTransitioningDelegate {
 		source.present(destination, animated: true, completion: nil)
 	}
 
-	public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+	public func animationController(forPresented presented: UIViewController,
+									presenting: UIViewController,
+									source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		Presenter(segue: self, sourceView: sourceView)
 	}
 
@@ -26,7 +28,9 @@ class MenuSegue: UIStoryboardSegue, UIViewControllerTransitioningDelegate {
 		return Dismisser()
 	}
 
-	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+	public func presentationController(forPresented presented: UIViewController,
+									   presenting: UIViewController?,
+									   source: UIViewController) -> UIPresentationController? {
 		PresentationController(presentedViewController: presented, presenting: presenting)
 	}
 }
@@ -46,7 +50,7 @@ private class PresentationController: UIPresentationController {
 
 		/// Dim background
 		containerView.backgroundColor = .clear
-		presentingViewController.transitionCoordinator?.animate(alongsideTransition: { context in
+		presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
 			containerView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
 		})
 	}
@@ -56,7 +60,7 @@ private class PresentationController: UIPresentationController {
 
 		containerView.gestureRecognizers = []
 
-		presentingViewController.transitionCoordinator?.animate(alongsideTransition: { context in
+		presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
 			containerView.backgroundColor = .clear
 		})
 	}
@@ -64,12 +68,13 @@ private class PresentationController: UIPresentationController {
 	override func viewWillTransition(to size: CGSize, with transitionCoordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransition(to: size, with: transitionCoordinator)
 
-		transitionCoordinator.animate(alongsideTransition: {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+		transitionCoordinator.animate(alongsideTransition: { _ in
 			self.presentedViewController.dismiss(animated: true)
-		}, completion:nil)
+		})
 	}
 
-	@objc private func onTap(_ sender: UITapGestureRecognizer) {
+	@objc
+	private func onTap(_ sender: UITapGestureRecognizer) {
 		presentedViewController.dismiss(animated: true)
 	}
 }
@@ -168,8 +173,8 @@ private class Dismisser: NSObject, UIViewControllerAnimatedTransitioning {
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		UIView.animate(withDuration: 0.2, animations: {
 			transitionContext.containerView.subviews.forEach { $0.alpha = 0 }
-		}) { (completed) in
+		}, completion: { completed in
 			transitionContext.completeTransition(completed)
-		}
+		})
 	}
 }

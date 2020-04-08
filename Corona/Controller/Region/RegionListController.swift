@@ -30,11 +30,13 @@ class RegionListController: UITableViewController {
 }
 
 extension RegionListController: UIGestureRecognizerDelegate {
-	@objc func tableViewPanned(_ sender: Any) {
+	@objc
+	func tableViewPanned(_ sender: Any) {
 		MapController.instance.view.endEditing(false)
 	}
 
-	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+						   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 		true
 	}
 }
@@ -50,12 +52,12 @@ extension RegionListController {
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let identifier = String(describing: RegionCell.self)
-		let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! RegionCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? RegionCell
 
 		let region = regions[indexPath.row]
-		cell.region = region
+		cell?.region = region
 
-		return cell
+		return cell!
 	}
 }
 
@@ -67,8 +69,8 @@ class RegionCell: UITableViewCell {
 		}
 	}
 
-	@IBOutlet var labelName: UILabel!
-	@IBOutlet var labelStats: UILabel!
+	@IBOutlet private var labelName: UILabel!
+	@IBOutlet private var labelStats: UILabel!
 
 	override func awakeFromNib() {
 		super.awakeFromNib()

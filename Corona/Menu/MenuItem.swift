@@ -13,7 +13,7 @@ enum MenuItem {
 
 	var height: CGFloat {
 		switch self {
-		case .regular(_, _, _), .option(_, _, _):
+		case .regular, .option:
 			return 44
 		case .separator:
 			return 8

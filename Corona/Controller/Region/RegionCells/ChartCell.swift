@@ -23,7 +23,7 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 	}
 
 	override var shareableImage: UIImage? {
-		var image: UIImage? = nil
+		var image: UIImage?
 		chartView.prepareForShare {
 			image = self.snapshot()
 		}
@@ -48,7 +48,8 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 		chartView.update(region: region, animated: animated)
 	}
 
-	@objc func cellTapped(_ sender: Any) {
+	@objc
+	func cellTapped(_ sender: Any) {
 		guard let chartController = App.topViewController.storyboard?.instantiateViewController(
 			withIdentifier: String(describing: ChartController.self)) as? ChartController else { return }
 
