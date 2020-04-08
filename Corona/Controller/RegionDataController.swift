@@ -11,7 +11,7 @@ import UIKit
 class RegionDataController: UITableViewController {
 	private typealias Row = (type: RegionDataCell.Type, height: CGFloat)
 	private let allRows: [Row] = [
-		(type: StatsCell.self, height: 150),
+		(type: StatsCell.self, height: 130),
 		(type: CurrentChartCell.self, height: 250),
 		(type: DeltaChartCell.self, height: 275),
 		(type: HistoryChartCell.self, height: 300),

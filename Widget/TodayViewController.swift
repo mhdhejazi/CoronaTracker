@@ -66,9 +66,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		}
 
 		worldwideTitleLabel.text = L10n.Region.world
-		confirmedLabel.text = L10n.Case.confirmed
-		recoveredLabel.text = L10n.Case.recovered
-		deathsLabel.text = L10n.Case.deaths
+		confirmedLabel.text = L10n.Case.confirmed.uppercased()
+		recoveredLabel.text = L10n.Case.recovered.uppercased()
+		deathsLabel.text = L10n.Case.deaths.uppercased()
 	}
 
     private func update() {

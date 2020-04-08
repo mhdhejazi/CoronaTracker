@@ -158,9 +158,9 @@ class StatsCell: RegionDataCell {
 			labelDeaths.font = .systemFont(ofSize: 24)
 		}
 
-		labelConfirmedTitle.text = L10n.Case.confirmed
-		labelRecoveredTitle.text = L10n.Case.recovered
-		labelDeathsTitle.text = L10n.Case.deaths
+		labelConfirmedTitle.text = L10n.Case.confirmed.uppercased()
+		labelRecoveredTitle.text = L10n.Case.recovered.uppercased()
+		labelDeathsTitle.text = L10n.Case.deaths.uppercased()
 
 		contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:))))
 	}

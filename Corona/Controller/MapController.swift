@@ -328,6 +328,10 @@ extension MapController: FloatingPanelControllerDelegate {
 }
 
 class PanelLayout: FloatingPanelLayout {
+	public var supportedPositions: Set<FloatingPanelPosition> {
+		return Set([.full, .half])
+	}
+
 	public var initialPosition: FloatingPanelPosition {
 		#if targetEnvironment(macCatalyst)
 		return .full
@@ -339,8 +343,7 @@ class PanelLayout: FloatingPanelLayout {
 	public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
 		switch position {
 		case .full: return 16
-		case .half: return 215
-		case .tip: return 68
+		case .half: return 197
 		default: return nil
 		}
 	}
