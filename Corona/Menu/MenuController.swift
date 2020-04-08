@@ -1,8 +1,6 @@
 //
-//  MenuController.swift
 //  Corona Tracker
-//
-//  Created by Mohammad on 3/18/20.
+//  Created by Mhd Hejazi on 3/18/20.
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 

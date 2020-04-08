@@ -1,10 +1,8 @@
 /*
- Localizable.strings
- Corona
-
- Created by rhcpfan on 3/23/20.
- Copyright © 2020 Samabox. All rights reserved.
- */
+  Corona Tracker
+  Translation by Andrei Ciobanu - github.com/rhcpfan
+  Copyright © 2020 Samabox. All rights reserved.
+*/
 
 "case.confirmed" = "Confirmate";
 "case.active" = "Active";

@@ -1,8 +1,6 @@
 //
-//  SceneDelegate.swift
-//  Corona
-//
-//  Created by Mohammad on 3/2/20.
+//  Corona Tracker
+//  Created by Mhd Hejazi on 3/2/20.
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 

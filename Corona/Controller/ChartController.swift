@@ -1,8 +1,6 @@
 //
-//  ChartController.swift
 //  Corona Tracker
-//
-//  Created by Mohammad on 4/3/20.
+//  Created by Mhd Hejazi on 4/3/20.
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 

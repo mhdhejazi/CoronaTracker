@@ -1,8 +1,6 @@
 //
-//  DeltaChartView.swift
 //  Corona Tracker
-//
-//  Created by Mohammad on 3/23/20.
+//  Created by Mhd Hejazi on 3/23/20.
 //  Copyright © 2020 Samabox. All rights reserved.
 //
 

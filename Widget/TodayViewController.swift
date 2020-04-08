@@ -1,7 +1,5 @@
 //
-//  TodayViewController.swift
-//  CoronaTrackerWidget
-//
+//  Corona Tracker
 //  Created by Piotr Ożóg on 12/03/2020.
 //  Copyright © 2020 Samabox. All rights reserved.
 //
