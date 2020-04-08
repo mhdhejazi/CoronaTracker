@@ -16,7 +16,9 @@
    * __Current state chart__ for all countries (and cities).
    * __Timeline chart__ for all countries (and cities).
    * __Top affected countries__ chart with info about every country.
-  * Option for using a __logarithmic__ scale.
+   * __Daily new cases__ shows how fast the virus is spreading in a given country.
+   * __Cases since the 100th case__ how fast the virus is spreading in different countries.
+   * Option for using a __logarithmic__ scale.
 * __Search__ for countries & cities.
 * __Share__ stats & charts as images.
 * __Today widget__ for worldwide stats (Contributed by [Piotr Ożóg](https://github.com/pbeo)).
