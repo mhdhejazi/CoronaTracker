@@ -64,7 +64,7 @@ public class JHURepoDataService: DataService {
 			}
 
 			DispatchQueue.global(qos: .default).async {
-				let dataHash = data.md5Hash()
+				let dataHash = data.sha1Hash()
 				if dataHash == self.lastReportsDataHash {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
