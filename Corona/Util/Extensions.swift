@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 extension Locale {
 	public static let posix = Locale(identifier: "en_US_POSIX")
@@ -172,4 +173,26 @@ extension FileManager {
 									 appropriateFor: nil,
 									 create: true)
 	}()
+}
+
+extension String {
+	func md5Hash() -> String? {
+		guard let data = self.data(using: .utf8) else { return nil }
+		return data.md5Hash()
+	}
+}
+
+extension Data {
+	func md5Hash() -> String {
+		let length = Int(CC_MD5_DIGEST_LENGTH)
+		var digest = [UInt8](repeating: 0, count: length)
+
+		_ = self.withUnsafeBytes { body in
+			CC_MD5(body.baseAddress, CC_LONG(self.count), &digest)
+		}
+
+		return (0..<length).reduce("") {
+			$0 + String(format: "%02x", digest[$1])
+		}
+	}
 }

@@ -6,7 +6,6 @@
 
 import Foundation
 
-import Disk
 import CSV
 
 public class JHURepoDataService: DataService {
@@ -20,11 +19,6 @@ public class JHURepoDataService: DataService {
 	static let instance = JHURepoDataService()
 
 	private static let maxOldDataAge = 10 // Days
-	private static let dailyReportFileName = "JHURepoDataService-DailyReport.csv"
-	private static let confirmedTimeSeriesFileName = "JHURepoDataService-TS-Confirmed.csv"
-	private static let recoveredTimeSeriesFileName = "JHURepoDataService-TS-Recovered.csv"
-	private static let deathsTimeSeriesFileName = "JHURepoDataService-TS-Deaths.csv"
-
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!
 	private static let dailyReportURLString = "csse_covid_19_daily_reports/%@.csv"
 	private static let confirmedTimeSeriesURL = URL(
@@ -36,6 +30,8 @@ public class JHURepoDataService: DataService {
 	private static let deathsTimeSeriesURL = URL(
 		string: "csse_covid_19_time_series/time_series_covid19_deaths_global.csv",
 		relativeTo: baseURL)!
+
+	private var lastReportsDataHash: String?
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		let today = Date()
@@ -68,15 +64,15 @@ public class JHURepoDataService: DataService {
 			}
 
 			DispatchQueue.global(qos: .default).async {
-				let oldData = try? Disk.retrieve(Self.dailyReportFileName, from: .caches, as: Data.self)
-				if oldData == data {
+				let dataHash = data.md5Hash()
+				if dataHash == self.lastReportsDataHash {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
 				}
 
 				print("Download success \(fileName)")
-				try? Disk.save(data, to: .caches, as: Self.dailyReportFileName)
+				self.lastReportsDataHash = dataHash
 
 				self.parseReports(data: data, completion: completion)
 			}
@@ -99,19 +95,19 @@ public class JHURepoDataService: DataService {
 		var result = [Data?](repeating: nil, count: 3)
 
 		dispatchGroup.enter()
-		downloadFile(url: Self.confirmedTimeSeriesURL, fileName: Self.confirmedTimeSeriesFileName) { data in
+		downloadFile(url: Self.confirmedTimeSeriesURL) { data in
 			result[0] = data
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: Self.recoveredTimeSeriesURL, fileName: Self.recoveredTimeSeriesFileName) { data in
+		downloadFile(url: Self.recoveredTimeSeriesURL) { data in
 			result[1] = data
 			dispatchGroup.leave()
 		}
 
 		dispatchGroup.enter()
-		downloadFile(url: Self.deathsTimeSeriesURL, fileName: Self.deathsTimeSeriesFileName) { data in
+		downloadFile(url: Self.deathsTimeSeriesURL) { data in
 			result[2] = data
 			dispatchGroup.leave()
 		}
@@ -203,7 +199,8 @@ public class JHURepoDataService: DataService {
 		}
 	}
 
-	private func downloadFile(url: URL, fileName: String, completion: @escaping (Data?) -> Void) {
+	private func downloadFile(url: URL, completion: @escaping (Data?) -> Void) {
+		let fileName = url.lastPathComponent
 		print("Downloading \(fileName)")
 		_ = URLSession.shared.dataTask(with: url) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
@@ -217,7 +214,6 @@ public class JHURepoDataService: DataService {
 
 			DispatchQueue.global().async {
 				print("Download success \(fileName)")
-				try? Disk.save(data, to: .caches, as: fileName)
 
 				completion(data)
 			}

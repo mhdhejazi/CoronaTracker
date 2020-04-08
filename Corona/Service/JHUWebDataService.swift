@@ -6,8 +6,6 @@
 
 import Foundation
 
-import Disk
-
 public class JHUWebDataService: DataService {
 	enum FetchError: Error {
 		case noNewData
@@ -15,11 +13,9 @@ public class JHUWebDataService: DataService {
 		case downloadError
 	}
 
-	private static let reportsFileName = "JHUWebDataService-Reports.json"
-	private static let globalTimeSeriesFileName = "JHUWebDataService-GlobalTimeSeries.json"
-
 	// swiftlint:disable line_length
-	private static var reportsURL: URL { URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=Confirmed%20%3E%200&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Confirmed%20desc%2CCountry_Region%20asc%2CProvince_State%20asc&resultOffset=0&resultRecordCount=500&cacheHint=false&rnd=\(Int.random())")!
+	private static var reportsURL: URL {
+		URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=Confirmed%20%3E%200&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Confirmed%20desc%2CCountry_Region%20asc%2CProvince_State%20asc&resultOffset=0&resultRecordCount=500&cacheHint=false&rnd=\(Int.random())")!
 	}
 	private static let globalTimeSeriesURL = URL(string: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/cases_time_v3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=Report_Date_String%20asc&outSR=102100&resultOffset=0&resultRecordCount=2000&cacheHint=true")!
 
@@ -27,6 +23,9 @@ public class JHUWebDataService: DataService {
 	// swiftlint:enable line_length
 
 	static let instance = JHUWebDataService()
+
+	private var lastReportsDataHash: String?
+	private var lastTimeSeriesDataHash: String?
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		print("Calling API")
@@ -37,15 +36,15 @@ public class JHUWebDataService: DataService {
 			}
 
 			DispatchQueue.global(qos: .default).async {
-				let oldData = try? Disk.retrieve(Self.reportsFileName, from: .caches, as: Data.self)
-				if oldData == data {
+				let dataHash = data.md5Hash()
+				if dataHash == self.lastReportsDataHash {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
 				}
 
 				print("Download success")
-				try? Disk.save(data, to: .caches, as: Self.reportsFileName)
+				self.lastReportsDataHash = dataHash
 
 				self.parseReports(data: data) { result, error in
 					/// Update recovered cases for US
@@ -99,15 +98,15 @@ public class JHUWebDataService: DataService {
 			}
 
 			DispatchQueue.global(qos: .default).async {
-				let oldData = try? Disk.retrieve(Self.globalTimeSeriesFileName, from: .caches, as: Data.self)
-				if oldData == data {
+				let dataHash = data.md5Hash()
+				if dataHash == self.lastTimeSeriesDataHash {
 					print("Nothing new")
 					completion(nil, FetchError.noNewData)
 					return
 				}
 
 				print("Download success")
-				try? Disk.save(data, to: .caches, as: Self.globalTimeSeriesFileName)
+				self.lastTimeSeriesDataHash = dataHash
 
 				self.parseTimeSerieses(data: data, completion: completion)
 			}
