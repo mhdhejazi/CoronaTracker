@@ -77,7 +77,7 @@ class RegionDataCell: UITableViewCell {
 
 		guard shareableText != nil, superview is UITableView else { return }
 
-		UIView.animate(withDuration: editing ? 0.5 : 0.25,
+		UIView.animate(withDuration: animated ? (editing ? 0.5 : 0.25) : 0,
 					   delay: 0,
 					   usingSpringWithDamping: editing ? 0.7 : 2,
 					   initialSpringVelocity: 0,
@@ -162,20 +162,25 @@ class StatsCell: RegionDataCell {
 		labelRecoveredTitle.text = L10n.Case.recovered.uppercased()
 		labelDeathsTitle.text = L10n.Case.deaths.uppercased()
 
+		contentView.alpha = 0
+		contentView.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
 		contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:))))
 	}
 
 	override func update(animated: Bool) {
-		UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-			self.labelConfirmed.text = self.region?.report?.stat.confirmedCountString ?? "-"
-			self.labelRecovered.text = self.region?.report?.stat.recoveredCountString ?? "-"
-			self.labelDeaths.text = self.region?.report?.stat.deathCountString ?? "-"
+		DispatchQueue.main.async {
+			self.contentView.transition(duration: 0.25) {
+				self.contentView.alpha = 1
+				self.contentView.transform = .identity
+				self.labelConfirmed.text = self.region?.report?.stat.confirmedCountString ?? "-"
+				self.labelRecovered.text = self.region?.report?.stat.recoveredCountString ?? "-"
+				self.labelDeaths.text = self.region?.report?.stat.deathCountString ?? "-"
 
-			self.labelNewConfirmed.text = self.region?.dailyChange?.newConfirmedString ?? "-"
-			self.labelNewRecovered.text = self.region?.dailyChange?.newRecoveredString ?? "-"
-			self.labelNewDeaths.text = self.region?.dailyChange?.newDeathsString ?? "-"
-		}, completion: nil)
-
+				self.labelNewConfirmed.text = self.region?.dailyChange?.newConfirmedString ?? "-"
+				self.labelNewRecovered.text = self.region?.dailyChange?.newRecoveredString ?? "-"
+				self.labelNewDeaths.text = self.region?.dailyChange?.newDeathsString ?? "-"
+			}
+		}
 		updateStats(reset: true)
 	}
 
@@ -194,27 +199,23 @@ class StatsCell: RegionDataCell {
 		}
 
 		guard let report = region?.report else { return }
-		labelRecovered.transition {
+		contentView.transition {
 			self.labelRecovered.text = self.showPercents ?
 				report.stat.recoveredPercentString :
 				report.stat.recoveredCountString
-		}
-		labelDeaths.transition {
+
 			self.labelDeaths.text = self.showPercents ?
 				report.stat.deathPercentString :
 				report.stat.deathCountString
-		}
-		labelNewConfirmed.transition {
+
 			self.labelNewConfirmed.text = self.showPercents ?
 				self.region?.dailyChange?.confirmedGrowthString ?? "-" :
 				self.region?.dailyChange?.newConfirmedString ?? "-"
-		}
-		labelNewRecovered.transition {
+
 			self.labelNewRecovered.text = self.showPercents ?
 				self.region?.dailyChange?.recoveredGrowthString ?? "-" :
 				self.region?.dailyChange?.newRecoveredString ?? "-"
-		}
-		labelNewDeaths.transition {
+
 			self.labelNewDeaths.text = self.showPercents ?
 				self.region?.dailyChange?.deathsGrowthString ?? "-" :
 				self.region?.dailyChange?.newDeathsString ?? "-"
@@ -308,7 +309,7 @@ class DataSourceCell: RegionDataCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 
-		labelSource.text = L10n.Data.source("The Center for Systems Science and Engineering at Johns Hopkins")
+		labelSource.text = L10n.Data.source("CSSE at Johns Hopkins University")
 	}
 
 	@IBAction func buttonInfoTapped(_ sender: Any) {
@@ -316,5 +317,29 @@ class DataSourceCell: RegionDataCell {
 		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
 		App.topViewController.present(safariController, animated: true)
+	}
+}
+
+class AuthorInfoCell: RegionDataCell {
+	override func awakeFromNib() {
+		super.awakeFromNib()
+	}
+
+	@IBAction func buttonInfoTapped(_ sender: Any) {
+		let url = URL(string: "https://coronatracker.samabox.com")!
+		let safariController = SFSafariViewController(url: url)
+		safariController.modalPresentationStyle = .pageSheet
+		App.topViewController.present(safariController, animated: true)
+	}
+
+	@IBAction func buttonTwitterTapped(_ sender: Any) {
+		let twitterAppURL = URL(string: "twitter://user?screen_name=Hejazi")!
+		let twitterWebURL = URL(string: "https://twitter.com/Hejazi")!
+
+		if UIApplication.shared.canOpenURL(twitterAppURL) {
+			UIApplication.shared.open(twitterAppURL)
+		} else {
+			UIApplication.shared.open(twitterWebURL)
+		}
 	}
 }

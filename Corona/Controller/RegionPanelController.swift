@@ -108,7 +108,7 @@ class RegionPanelController: UIViewController {
 
 	func update(region: Region?) {
 		viewHeader.transition(duration: 0.25) {
-			self.labelTitle.text = region?.localizedLongName ?? "N/A"
+			self.labelTitle.text = region?.localizedLongName ?? Region.world.localizedName
 		}
 
 		updateTime()

@@ -315,38 +315,98 @@
                                     <outlet property="labelUpdated" destination="Q0A-p0-mUG" id="HQh-Fh-cee"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataSourceCell" rowHeight="50" id="PyN-Ks-IkV" customClass="DataSourceCell" customModule="Corona_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="468" width="414" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DataSourceCell" rowHeight="40" id="PyN-Ks-IkV" customClass="DataSourceCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="468" width="414" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PyN-Ks-IkV" id="sfr-T1-3kB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Source: The Center for Systems Science and Engineering at Johns Hopkins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdl-LP-xBX">
-                                            <rect key="frame" x="20" y="8" width="341" height="34"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                            <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8F-8a-gQO">
-                                            <rect key="frame" x="369" y="13" width="25" height="24"/>
-                                            <connections>
-                                                <action selector="buttonInfoTapped:" destination="PyN-Ks-IkV" eventType="touchUpInside" id="ilM-DY-Dxu"/>
-                                            </connections>
-                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1T8-Ge-EY9">
+                                            <rect key="frame" x="20" y="4" width="374" height="32"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Source: CSSE at Johns Hopkins University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mdl-LP-xBX">
+                                                    <rect key="frame" x="0.0" y="8" width="334" height="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8F-8a-gQO">
+                                                    <rect key="frame" x="342" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Dfo-Ds-9DD"/>
+                                                        <constraint firstAttribute="width" constant="32" id="w4m-vq-5Tt"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Info"/>
+                                                    <connections>
+                                                        <action selector="buttonInfoTapped:" destination="PyN-Ks-IkV" eventType="touchUpInside" id="ilM-DY-Dxu"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="K8F-8a-gQO" firstAttribute="leading" secondItem="Mdl-LP-xBX" secondAttribute="trailing" constant="8" symbolic="YES" id="A6f-ad-wZJ"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="K8F-8a-gQO" secondAttribute="trailing" id="Igu-bh-fsR"/>
-                                        <constraint firstItem="Mdl-LP-xBX" firstAttribute="centerY" secondItem="sfr-T1-3kB" secondAttribute="centerY" id="Mg4-bs-S7B"/>
-                                        <constraint firstItem="Mdl-LP-xBX" firstAttribute="leading" secondItem="sfr-T1-3kB" secondAttribute="leadingMargin" id="T09-5y-IMi"/>
-                                        <constraint firstItem="K8F-8a-gQO" firstAttribute="centerY" secondItem="sfr-T1-3kB" secondAttribute="centerY" id="dYj-m8-ajX"/>
+                                        <constraint firstItem="1T8-Ge-EY9" firstAttribute="leading" secondItem="sfr-T1-3kB" secondAttribute="leadingMargin" id="QEV-zT-s6r"/>
+                                        <constraint firstItem="1T8-Ge-EY9" firstAttribute="centerY" secondItem="sfr-T1-3kB" secondAttribute="centerY" id="Ush-9L-No4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1T8-Ge-EY9" secondAttribute="trailing" id="vZZ-8C-7sX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="labelSource" destination="Mdl-LP-xBX" id="KwM-go-ZQc"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AuthorInfoCell" rowHeight="40" id="O3o-Ue-2xB" customClass="AuthorInfoCell" customModule="Corona_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="508" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O3o-Ue-2xB" id="jZH-Mo-y6C">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="RCA-Mv-c5L">
+                                            <rect key="frame" x="20" y="4" width="374" height="32"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Made with ♥️ by Mhd Hejazi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-VG-TyF">
+                                                    <rect key="frame" x="0.0" y="8" width="308" height="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTp-nP-OJe">
+                                                    <rect key="frame" x="309" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="dhO-8F-i12"/>
+                                                        <constraint firstAttribute="width" constant="32" id="x0A-x7-FBP"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Twitter"/>
+                                                    <connections>
+                                                        <action selector="buttonTwitterTapped:" destination="O3o-Ue-2xB" eventType="touchUpInside" id="FqH-7t-LUc"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBg-ZE-pds">
+                                                    <rect key="frame" x="342" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Cmq-pR-iUQ"/>
+                                                        <constraint firstAttribute="width" constant="32" id="m0G-jd-T65"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Info"/>
+                                                    <connections>
+                                                        <action selector="buttonInfoTapped:" destination="O3o-Ue-2xB" eventType="touchUpInside" id="ANn-AN-H1K"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="32" id="ucn-Rf-SR1"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RCA-Mv-c5L" firstAttribute="leading" secondItem="jZH-Mo-y6C" secondAttribute="leadingMargin" id="LNT-ZD-7gX"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="RCA-Mv-c5L" secondAttribute="trailing" id="TvA-Fe-Ahf"/>
+                                        <constraint firstItem="RCA-Mv-c5L" firstAttribute="centerY" secondItem="jZH-Mo-y6C" secondAttribute="centerY" id="dkV-j1-Co4"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -797,8 +857,10 @@ Deaths</string>
     <resources>
         <image name="Close" width="22" height="22"/>
         <image name="Icon-Small" width="38" height="38"/>
-        <image name="Layers" width="22" height="23"/>
+        <image name="Info" width="22" height="22"/>
+        <image name="Layers" width="22" height="22"/>
         <image name="More" width="22" height="22"/>
         <image name="Search" width="22" height="22"/>
+        <image name="Twitter" width="22" height="22"/>
     </resources>
 </document>

@@ -18,7 +18,8 @@ class RegionDataController: UITableViewController {
 		(type: TopChartCell.self, height: 300),
 		(type: TrendlineChartCell.self, height: 350),
 		(type: UpdateTimeCell.self, height: 40),
-		(type: DataSourceCell.self, height: 50)
+		(type: DataSourceCell.self, height: 40),
+		(type: AuthorInfoCell.self, height: 40)
 	]
 	private var currentRows: [Row] = []
 
