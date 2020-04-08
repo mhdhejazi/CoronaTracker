@@ -8,31 +8,6 @@ import UIKit
 
 import Charts
 
-protocol RegionChartView: UIView {
-	@available(iOS 13.0, *)
-	var contextMenuActions: [UIMenuElement] { get }
-
-	var shareableText: String? { get }
-
-	var shareAction: (() -> Void)? { get set }
-
-	var interactive: Bool { get set }
-
-	var mode: Statistic.Kind { get set }
-
-	var extraMenuItems: [MenuItem] { get }
-
-	var region: Region? { get set }
-
-	init(fontScale: CGFloat)
-
-	func updateOptions(from chartView: RegionChartView)
-
-	func update(region: Region?, animated: Bool)
-
-	func prepareForShare(shareCallback: () -> Void)
-}
-
 class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 	public let defaultColors = [
 		UIColor(hue: 0.57, saturation: 0.75, brightness: 0.8, alpha: 1.0).dynamic,
@@ -240,92 +215,5 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		})
 
 		Menu.show(above: App.topViewController, sourceView: menuButton, items: menuItems)
-	}
-}
-
-extension ChartViewBase {
-	func shouldAllowPanGesture(for gestureRecognizer: UIGestureRecognizer) -> Bool {
-		#if targetEnvironment(macCatalyst)
-		return super.gestureRecognizerShouldBegin(gestureRecognizer)
-		#else
-		guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
-			return super.gestureRecognizerShouldBegin(gestureRecognizer)
-		}
-
-		let velocity = panGestureRecognizer.velocity(in: self)
-		let isHorizontalPan = abs(velocity.x) >= abs(velocity.y)
-		if panGestureRecognizer.view == self {
-			return isHorizontalPan || abs(velocity.y) < 300 /// For our recognizer, allow horizontal & slow vertical movements
-		} else {
-			return !isHorizontalPan /// For others, allow only vertical (to dismiss dialog)
-		}
-		#endif
-	}
-}
-
-class BarChartViewWithHorizontalPanning: BarChartView {
-	override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-		shouldAllowPanGesture(for: gestureRecognizer)
-	}
-}
-
-class LineChartViewWithHorizontalPanning: LineChartView {
-	override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-		shouldAllowPanGesture(for: gestureRecognizer)
-	}
-}
-
-class BaseBarChartView: ChartView<BarChartViewWithHorizontalPanning> {
-	override var interactive: Bool {
-		didSet {
-			chartView.pinchZoomEnabled = interactive
-			chartView.dragEnabled = interactive
-			chartView.setScaleEnabled(interactive)
-		}
-	}
-
-	override func initializeView() {
-		super.initializeView()
-
-		chartView.leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
-		chartView.leftAxis.gridLineDashLengths = [3, 3]
-		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
-		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
-
-		chartView.rightAxis.enabled = false
-
-		chartView.dragEnabled = false
-		chartView.scaleXEnabled = false
-		chartView.scaleYEnabled = false
-
-		chartView.fitBars = true
-	}
-}
-
-class BaseLineChartView: ChartView<LineChartViewWithHorizontalPanning> {
-	override var interactive: Bool {
-		didSet {
-			chartView.pinchZoomEnabled = interactive
-			chartView.dragEnabled = interactive
-			chartView.setScaleEnabled(interactive)
-		}
-	}
-
-	override func initializeView() {
-		super.initializeView()
-
-		chartView.leftAxis.gridColor = UIColor.lightGray.withAlphaComponent(0.5)
-		chartView.leftAxis.gridLineDashLengths = [3, 3]
-		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
-		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
-		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter() { value, axis in
-			Int(value).kmFormatted
-		}
-
-		chartView.rightAxis.enabled = false
-
-		chartView.dragEnabled = false
-		chartView.scaleXEnabled = false
-		chartView.scaleYEnabled = false
 	}
 }
