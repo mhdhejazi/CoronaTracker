@@ -84,6 +84,7 @@
 		11C6D392243E489F003AC870 /* DataSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C6D391243E489F003AC870 /* DataSourceCell.swift */; };
 		11C6D394243E48C3003AC870 /* AuthorInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C6D393243E48C3003AC870 /* AuthorInfoCell.swift */; };
 		11C6D398243E4A23003AC870 /* PanelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C6D397243E4A23003AC870 /* PanelLayout.swift */; };
+		11DCD56D243F8EEC006CE8ED /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD56C243F8EEC006CE8ED /* Toolbar.swift */; };
 		11DE76882431339400381C0A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE76872431339400381C0A /* ChartView.swift */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
@@ -203,6 +204,7 @@
 		11C6D391243E489F003AC870 /* DataSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceCell.swift; sourceTree = "<group>"; };
 		11C6D393243E48C3003AC870 /* AuthorInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorInfoCell.swift; sourceTree = "<group>"; };
 		11C6D397243E4A23003AC870 /* PanelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelLayout.swift; sourceTree = "<group>"; };
+		11DCD56C243F8EEC006CE8ED /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		11DE76842430AB2900381C0A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11DE76852430AB9100381C0A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		11DE76862430AE6600381C0A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				3447B4BC241E7790003914AF /* App.swift */,
 				1162D12B240D05F600647002 /* AppDelegate.swift */,
 				1162D12D240D05F600647002 /* SceneDelegate.swift */,
+				11DCD56C243F8EEC006CE8ED /* Toolbar.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				11C6D380243E44FC003AC870 /* BaseChartView.swift in Sources */,
 				3447B4BD241E7790003914AF /* App.swift in Sources */,
 				115186C024203D5100EBC83E /* Change.swift in Sources */,
+				11DCD56D243F8EEC006CE8ED /* Toolbar.swift in Sources */,
 				1186BC6E242B608200097E9E /* RegionDataController.swift in Sources */,
 				1162D130240D05F600647002 /* MapController.swift in Sources */,
 				1124F64A242386A30002641D /* MenuSegue.swift in Sources */,
