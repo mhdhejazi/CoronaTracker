@@ -150,8 +150,7 @@ extension RegionPanelController {
 				MapController.instance.downloadIfNeeded()
 			},
 			.regular(title: L10n.Menu.share, image: Asset.share.image) {
-				MapController.instance.showRegionScreen()
-				self.regionDataController.setEditing(true, animated: true)
+				MapController.instance.showShareButtons()
 			}
 		])
 	}

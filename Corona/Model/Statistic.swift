@@ -44,7 +44,7 @@ extension Statistic {
 }
 
 extension Statistic {
-	public enum Kind: CustomStringConvertible {
+	public enum Kind: Int, RawRepresentable, CustomStringConvertible {
 		case confirmed, active, recovered, deaths
 
 		public static let all: [Kind] = [.confirmed, .active, .recovered, .deaths]

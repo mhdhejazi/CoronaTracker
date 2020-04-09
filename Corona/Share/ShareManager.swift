@@ -14,7 +14,7 @@ class ShareManager {
 
 		var items: [Any] = []
 		if let image = image {
-			let imageName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Image"
+			let imageName = Bundle.main.name ?? "Image"
 			items.append(ImageItemSource(image: image, imageName: imageName))
 		}
 

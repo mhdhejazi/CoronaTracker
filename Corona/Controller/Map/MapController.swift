@@ -73,6 +73,7 @@ class MapController: UIViewController {
 		viewOptions.enableShadow()
 
 		buttonUpdate.layer.cornerRadius = buttonUpdate.bounds.height / 2
+		buttonUpdate.isHidden = true
 
 		if #available(iOS 13.0, *) {
 			effectView.effect = UIBlurEffect(style: .systemThinMaterial)
@@ -85,8 +86,10 @@ class MapController: UIViewController {
 							 forAnnotationViewWithReuseIdentifier: RegionAnnotationView.reuseIdentifier)
 		}
 
-		/// Workaround for hiding the iPhone frame that appears on app start
 		#if targetEnvironment(macCatalyst)
+		viewOptions.isHidden = true
+
+		/// Workaround for hiding the iPhone frame that appears on app start
 		mapView.isHidden = true
 		DispatchQueue.main.async {
 			self.mapView.isHidden = false
@@ -198,7 +201,16 @@ class MapController: UIViewController {
 			}
 		}
 	}
-    
+
+	func showShareButtons() {
+		showRegionScreen()
+		regionPanelController.regionDataController.setEditing(true, animated: true)
+	}
+
+	func showSearchScreen() {
+		regionPanelController.isSearching = true
+	}
+
     // MARK: - Actions
 
 	@IBAction private func buttonUpdateTapped(_ sender: Any) {

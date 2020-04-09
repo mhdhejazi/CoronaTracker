@@ -15,36 +15,26 @@ extension MKMapView {
 	}
 }
 
-extension CLLocationCoordinate2D {
-	public var location: CLLocation {
-		return CLLocation(latitude: latitude, longitude: longitude)
-	}
-
-	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
-		return location.distance(from: coordinate.location)
-	}
-}
-
 extension UIControl {
 	public func addAction(for controlEvents: UIControl.Event = .touchUpInside, _ closure: @escaping () -> Void) {
 		let sleeve = ClosureSleeve(closure)
 		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
 		objc_setAssociatedObject(self, "[\(arc4random())]", sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
 	}
-}
 
-/// WARNING: This solution causes memory leaks
-@objc
-class ClosureSleeve: NSObject {
-	let closure: () -> Void
-
-	init (_ closure: @escaping () -> Void) {
-		self.closure = closure
-	}
-
+	/// WARNING: This solution causes memory leaks
 	@objc
-	func invoke() {
-		closure()
+	class ClosureSleeve: NSObject {
+		let closure: () -> Void
+
+		init (_ closure: @escaping () -> Void) {
+			self.closure = closure
+		}
+
+		@objc
+		func invoke() {
+			closure()
+		}
 	}
 }
 

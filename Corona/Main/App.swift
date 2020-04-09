@@ -20,7 +20,7 @@ class App {
 	static let updateURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker")!
 	#endif
 
-	static let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+	static let version = Bundle.main.version
 
 	public static func checkForAppUpdate(completion: @escaping (_ updateAvailable: Bool) -> Void) {
 		let checkForUpdateURL = URL(string: "https://api.github.com/repos/mhdhejazi/CoronaTracker/releases/latest")!

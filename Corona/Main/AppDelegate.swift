@@ -8,13 +8,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 	var window: UIWindow?
 
 	func application(_ application: UIApplication,
 					 didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		App.upgrade()
 		return true
+	}
+
+	func applicationWillEnterForeground(_ application: UIApplication) {
+		if !DataManager.instance.world.subRegions.isEmpty {
+			MapController.instance.downloadIfNeeded()
+		}
 	}
 
 	// MARK: UISceneSession Lifecycle
@@ -28,12 +33,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	@available(iOS 13.0, *)
 	func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-
-	}
-
-	func applicationWillEnterForeground(_ application: UIApplication) {
-		if !DataManager.instance.world.subRegions.isEmpty {
-			MapController.instance.downloadIfNeeded()
-		}
 	}
 }

@@ -6,6 +6,17 @@
 
 import Foundation
 import CommonCrypto
+import MapKit
+
+extension CLLocationCoordinate2D {
+	public var location: CLLocation {
+		return CLLocation(latitude: latitude, longitude: longitude)
+	}
+
+	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
+		return location.distance(from: coordinate.location)
+	}
+}
 
 extension Locale {
 	public static let posix = Locale(identifier: "en_US_POSIX")
@@ -195,4 +206,10 @@ extension Data {
 			$0 + String(format: "%02x", digest[$1])
 		}
 	}
+}
+
+extension Bundle {
+	var name: String? { infoDictionary?["CFBundleName"] as? String }
+
+	var version: String? { infoDictionary?["CFBundleVersion"] as? String }
 }
