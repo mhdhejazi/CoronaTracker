@@ -111,9 +111,9 @@ class MapController: UIViewController {
 		panelController.surfaceView.backgroundColor = .clear
 		panelController.surfaceView.contentView.backgroundColor = .clear
 
-		#if targetEnvironment(macCatalyst)
-		panelController.additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 10, right: 0)
-		#endif
+		if #available(iOS 11.0, *), view.safeAreaInsets.bottom == 0 {
+			panelController.additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 15, right: 0)
+		}
 	}
 
 	func updateRegionScreen(region: Region?) {
