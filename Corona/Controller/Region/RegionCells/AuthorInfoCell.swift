@@ -11,15 +11,17 @@ class AuthorInfoCell: RegionDataCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
+    
+    // MARK: - Actions
 
-	@IBAction func buttonInfoTapped(_ sender: Any) {
+	@IBAction private func buttonInfoTapped(_ sender: Any) {
 		let url = URL(string: "https://coronatracker.samabox.com")!
 		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
 		App.topViewController.present(safariController, animated: true)
 	}
 
-	@IBAction func buttonTwitterTapped(_ sender: Any) {
+	@IBAction private func buttonTwitterTapped(_ sender: Any) {
 		let twitterAppURL = URL(string: "twitter://user?screen_name=Hejazi")!
 		let twitterWebURL = URL(string: "https://twitter.com/Hejazi")!
 

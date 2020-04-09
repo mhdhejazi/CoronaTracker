@@ -198,8 +198,10 @@ class MapController: UIViewController {
 			}
 		}
 	}
+    
+    // MARK: - Actions
 
-	@IBAction func buttonUpdateTapped(_ sender: Any) {
+	@IBAction private func buttonUpdateTapped(_ sender: Any) {
 		let alertController = UIAlertController.init(
 			title: L10n.App.newVersionTitle,
 			message: L10n.App.newVersionMessage(App.updateURL.absoluteString),
