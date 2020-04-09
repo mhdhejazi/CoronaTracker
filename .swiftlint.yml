@@ -23,4 +23,11 @@ opt_in_rules:
   - no_extension_access_modifier
   - implicit_return
 
+custom_rules:
+  indent_by_tabs:
+    name: "Indentation Style"
+    regex: "([ ]{4})"
+    message: "Please use tabs for indentation, not spaces."
+    severity: warning
+
 indentation: tabs

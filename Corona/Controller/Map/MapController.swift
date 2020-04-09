@@ -211,7 +211,7 @@ class MapController: UIViewController {
 		regionPanelController.isSearching = true
 	}
 
-    // MARK: - Actions
+	// MARK: - Actions
 
 	@IBAction private func buttonUpdateTapped(_ sender: Any) {
 		let alertController = UIAlertController.init(

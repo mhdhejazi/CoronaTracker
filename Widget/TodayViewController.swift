@@ -23,33 +23,33 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	@IBOutlet private var deathsCountLabel: UILabel!
 	@IBOutlet private var dataViews: [UIView]!
 	@IBOutlet private var dataLabels: [UILabel]!
-    @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
+	@IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
 	@IBOutlet private var updateTimeLabel: UILabel!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-        initializeView()
+		initializeView()
 
 		DataManager.instance.load { [weak self] _ in
 			self?.report = DataManager.instance.world.report
 			self?.update()
 		}
-    }
+	}
 
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        activityIndicatorView.startAnimating()
+	func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+		activityIndicatorView.startAnimating()
 		updateTimeLabel.isHidden = true
-        DataManager.instance.download { [weak self] success in
-            completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-            DataManager.instance.load { [weak self] _ in
+		DataManager.instance.download { [weak self] success in
+			completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
+			DataManager.instance.load { [weak self] _ in
 				self?.report = DataManager.instance.world.report
-                self?.activityIndicatorView.stopAnimating()
+				self?.activityIndicatorView.stopAnimating()
 				self?.updateTimeLabel.isHidden = false
-                self?.update()
-            }
-        }
-    }
+				self?.update()
+			}
+		}
+	}
 
 	private func initializeView() {
 		dataViews.forEach { view in
@@ -69,10 +69,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		deathsLabel.text = L10n.Case.deaths.uppercased()
 	}
 
-    private func update() {
-        guard let report = report else {
-            return
-        }
+	private func update() {
+		guard let report = report else {
+			return
+		}
 
 		view.transition { [weak self] in
 			self?.confirmedCountLabel.text = report.stat.confirmedCountString
@@ -82,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 		}
 
 		updateStats()
-    }
+	}
 
 	private func updateStats(reset: Bool = false) {
 		switchPercentsTask?.cancel()

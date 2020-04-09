@@ -16,7 +16,7 @@ class DataSourceCell: RegionDataCell {
 		labelSource.text = L10n.Data.source("CSSE at Johns Hopkins University")
 	}
 
-    // MARK: - Actions
+	// MARK: - Actions
 
 	@IBAction private func buttonInfoTapped(_ sender: Any) {
 		let url = URL(string: "https://arcgis.com/apps/opsdashboard/index.html#/85320e2ea5424dfaaa75ae62e5c06e61")!

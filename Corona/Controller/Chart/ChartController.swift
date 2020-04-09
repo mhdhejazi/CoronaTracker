@@ -80,7 +80,7 @@ class ChartController: UIViewController {
 									sourceView: self.view)
 	}
 
-    // MARK: - Actions
+	// MARK: - Actions
 
 	@IBAction private func doneButtonTapped(_ sender: Any) {
 		dismiss(animated: true)

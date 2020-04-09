@@ -12,7 +12,7 @@ class AuthorInfoCell: RegionDataCell {
 		super.awakeFromNib()
 	}
 
-    // MARK: - Actions
+	// MARK: - Actions
 
 	@IBAction private func buttonInfoTapped(_ sender: Any) {
 		let url = URL(string: "https://coronatracker.samabox.com")!
