@@ -137,11 +137,14 @@ class RegionPanelController: UIViewController {
 }
 
 extension RegionPanelController {
-	@IBAction func buttonSearchTapped(_ sender: Any) {
+    
+    // MARK: - Actions
+    
+	@IBAction private func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
 	}
 
-	@IBAction func buttonMenuTapped(_ sender: Any) {
+	@IBAction private func buttonMenuTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMenu, items: [
 			.regular(title: L10n.Menu.update, image: Asset.reload.image) {
 				MapController.instance.downloadIfNeeded()
