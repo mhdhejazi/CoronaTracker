@@ -33,5 +33,6 @@
 "menu.copy" = "Copy";
 "menu.update" = "Update";
 "menu.share" = "Share";
+"menu.search" = "Search";
 "share.current" = "Coronavirus live update";
 "share.chartHistory" = "Coronavirus growth chart";

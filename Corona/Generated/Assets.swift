@@ -20,6 +20,7 @@
 internal enum Asset {
   internal static let close = ImageAsset(name: "Close")
   internal static let iconSmall = ImageAsset(name: "Icon-Small")
+  internal static let info = ImageAsset(name: "Info")
   internal static let layers = ImageAsset(name: "Layers")
   internal static let more = ImageAsset(name: "More")
   internal static let reload = ImageAsset(name: "Reload")
@@ -27,6 +28,7 @@ internal enum Asset {
   internal static let shareCircle = ImageAsset(name: "Share-Circle")
   internal static let share = ImageAsset(name: "Share")
   internal static let `switch` = ImageAsset(name: "Switch")
+  internal static let twitter = ImageAsset(name: "Twitter")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

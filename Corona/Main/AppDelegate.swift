@@ -8,6 +8,8 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+	private var mainMenu: MainMenu?
+
 	var window: UIWindow?
 
 	func application(_ application: UIApplication,
@@ -35,3 +37,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
 	}
 }
+
+// MARK: - Main Menu
+
+#if targetEnvironment(macCatalyst)
+extension AppDelegate {
+	override func buildMenu(with builder: UIMenuBuilder) {
+		mainMenu = MainMenu(builder: builder)
+	}
+
+	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+		if mainMenu?.canPerformAction(action) == true {
+			return true
+		}
+
+		return super.canPerformAction(action, withSender: sender)
+	}
+
+	override func forwardingTarget(for aSelector: Selector!) -> Any? {
+		if mainMenu?.canPerformAction(aSelector) == true {
+			return mainMenu
+		}
+
+		return super.forwardingTarget(for: aSelector)
+	}
+}
+#endif

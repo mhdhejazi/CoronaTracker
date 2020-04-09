@@ -8,7 +8,7 @@ import UIKit
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-	private var toolbar: Toolbar?
+	private var toolbar: MainToolbar?
 
 	var window: UIWindow?
 
@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			   options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 
-		toolbar = Toolbar(windowScene: windowScene)
+		toolbar = MainToolbar(windowScene: windowScene)
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

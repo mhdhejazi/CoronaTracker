@@ -81,6 +81,8 @@ internal enum L10n {
   internal enum Menu {
     /// Copy
     internal static let copy = L10n.tr("Localizable", "menu.copy")
+    /// Search
+    internal static let search = L10n.tr("Localizable", "menu.search")
     /// Share
     internal static let share = L10n.tr("Localizable", "menu.share")
     /// Update

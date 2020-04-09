@@ -6,7 +6,8 @@
 
 import UIKit
 
-class Toolbar: NSObject {
+class MainToolbar: NSObject {
+	@available(iOS 13.0, *)
 	init(windowScene: UIWindowScene) {
 		super.init()
 
@@ -17,7 +18,7 @@ class Toolbar: NSObject {
 }
 
 #if targetEnvironment(macCatalyst)
-extension Toolbar: NSToolbarDelegate {
+extension MainToolbar: NSToolbarDelegate {
 	func configureToolbar(for windowScene: UIWindowScene) {
 		guard let titlebar = windowScene.titlebar else { return }
 
