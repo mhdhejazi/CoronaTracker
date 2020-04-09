@@ -96,7 +96,7 @@ class TrendlineChartView: BaseLineChartView {
 		}
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
+			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
 		let simpleMarker = SimpleMarkerView(chartView: chartView)

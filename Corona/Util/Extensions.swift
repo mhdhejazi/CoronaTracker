@@ -118,11 +118,11 @@ extension TimeZone {
 extension Double {
 	public var kmFormatted: String {
 		if self >= 1_000, self < 1_000_000 {
-			return String(format: "%.1fk", locale: .posix, self / 1_000).replacingOccurrences(of: ".0", with: "")
+			return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self / 1_000))! + "k"
 		}
 
 		if self >= 1_000_000 {
-			return String(format: "%.1fm", locale: .posix, self / 1_000_000).replacingOccurrences(of: ".0", with: "")
+			return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self / 1_000_000))! + "m"
 		}
 
 		return NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
@@ -135,15 +135,7 @@ extension Double {
 
 extension Int {
 	public var kmFormatted: String {
-		if self >= 1_000, self < 1_000_000 {
-			return String(format: "%dk", locale: .posix, self / 1_000)
-		}
-
-		if self >= 1_000_000 {
-			return String(format: "%dm", locale: .posix, self / 1_000_000)
-		}
-
-		return NumberFormatter.posixFormatter.string(from: NSNumber(value: self))!
+		Double(self).kmFormatted
 	}
 
 	public var groupingFormatted: String {
@@ -167,12 +159,6 @@ extension NumberFormatter {
 		formatter.numberStyle = .percent
 		formatter.maximumFractionDigits = 1
 		formatter.multiplier = 1
-		return formatter
-	}()
-
-	public static let posixFormatter: NumberFormatter = {
-		let formatter = NumberFormatter()
-		formatter.locale = .posix
 		return formatter
 	}()
 }

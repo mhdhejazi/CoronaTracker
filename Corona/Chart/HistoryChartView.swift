@@ -28,7 +28,7 @@ class HistoryChartView: BaseLineChartView {
 		super.initializeView()
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
+			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)

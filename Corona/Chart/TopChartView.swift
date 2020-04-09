@@ -54,7 +54,7 @@ class TopChartView: BaseBarChartView {
 		}
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			self.isLogarithmic ? Int(pow(10, value)).kmFormatted : Int(value).kmFormatted
+			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
 		let simpleMarker = SimpleMarkerView(chartView: chartView) { entry, _ in
@@ -107,8 +107,8 @@ class TopChartView: BaseBarChartView {
 		dataSet.valueTextColor = SystemColor.secondaryLabel
 		dataSet.valueFont = .systemFont(ofSize: 12 * fontScale, weight: .regular)
 		dataSet.valueFormatter = DefaultValueFormatter(block: { value, entry, _, _ in
-			guard let region = entry.data as? Region else { return Int(value).kmFormatted }
-			return region.report?.stat.number(for: self.mode).kmFormatted ?? Int(value).kmFormatted
+			guard let region = entry.data as? Region else { return value.kmFormatted }
+			return region.report?.stat.number(for: self.mode).kmFormatted ?? value.kmFormatted
 		})
 
 		if isLogarithmic {
@@ -116,7 +116,7 @@ class TopChartView: BaseBarChartView {
 			chartView.leftAxis.axisMaximum = 6
 			chartView.leftAxis.labelCount = 4
 		} else {
-			chartView.leftAxis.resetCustomAxisMin()
+			chartView.leftAxis.axisMinimum = 0
 			chartView.leftAxis.resetCustomAxisMax()
 		}
 

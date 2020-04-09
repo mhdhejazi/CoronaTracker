@@ -22,7 +22,7 @@ class DeltaChartView: BaseBarChartView {
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			Int(value).kmFormatted
+			value.kmFormatted
 		}
 
 		let marker = SimpleMarkerView(chartView: chartView)

@@ -52,7 +52,7 @@ class BaseLineChartView: ChartView<LineChartViewWithHorizontalPanning> {
 		chartView.leftAxis.labelTextColor = SystemColor.secondaryLabel
 		chartView.leftAxis.labelFont = .systemFont(ofSize: 10 * fontScale)
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			Int(value).kmFormatted
+			value.kmFormatted
 		}
 
 		chartView.rightAxis.enabled = false
