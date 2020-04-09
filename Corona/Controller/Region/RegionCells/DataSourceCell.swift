@@ -15,7 +15,7 @@ class DataSourceCell: RegionDataCell {
 
 		labelSource.text = L10n.Data.source("CSSE at Johns Hopkins University")
 	}
-    
+
     // MARK: - Actions
 
 	@IBAction private func buttonInfoTapped(_ sender: Any) {

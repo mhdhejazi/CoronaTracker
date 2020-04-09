@@ -137,9 +137,9 @@ class RegionPanelController: UIViewController {
 }
 
 extension RegionPanelController {
-    
+
     // MARK: - Actions
-    
+
 	@IBAction private func buttonSearchTapped(_ sender: Any) {
 		isSearching = true
 	}

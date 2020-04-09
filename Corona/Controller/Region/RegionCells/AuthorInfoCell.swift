@@ -11,7 +11,7 @@ class AuthorInfoCell: RegionDataCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
-    
+
     // MARK: - Actions
 
 	@IBAction private func buttonInfoTapped(_ sender: Any) {

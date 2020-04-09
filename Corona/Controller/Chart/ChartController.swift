@@ -79,7 +79,7 @@ class ChartController: UIViewController {
 									text: chartView.shareableText,
 									sourceView: self.view)
 	}
-    
+
     // MARK: - Actions
 
 	@IBAction private func doneButtonTapped(_ sender: Any) {
