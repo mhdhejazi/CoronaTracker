@@ -11,7 +11,11 @@ import Disk
 
 class App {
 	static var topViewController: UIViewController {
-		MapController.instance.presentedViewController ?? MapController.instance
+		var topController: UIViewController = MapController.instance
+		while let presentedController = topController.presentedViewController, !(presentedController is MenuController) {
+			topController = presentedController
+		}
+		return topController
 	}
 
 	#if targetEnvironment(macCatalyst)
