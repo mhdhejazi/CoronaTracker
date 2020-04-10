@@ -71,7 +71,7 @@ public class JHUWebDataService: DataService {
 			let regions = result.features.map { $0.attributes.region }
 			completion(regions, nil)
 		} catch {
-			print("Unexpected error: \(error).")
+			debugPrint("Unexpected error:", error)
 			completion(nil, error)
 		}
 	}
@@ -84,7 +84,7 @@ public class JHUWebDataService: DataService {
 			let result = try decoder.decode(USRecoveredCallResult.self, from: data)
 			return result.value
 		} catch {
-			print("Unexpected error: \(error).")
+			debugPrint("Unexpected error:", error)
 			return nil
 		}
 	}
@@ -120,7 +120,7 @@ public class JHUWebDataService: DataService {
 			let region = result.region
 			completion([region], nil)
 		} catch {
-			print("Unexpected error: \(error).")
+			debugPrint("Unexpected error:", error)
 			completion(nil, error)
 		}
 	}

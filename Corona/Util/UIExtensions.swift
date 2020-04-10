@@ -136,7 +136,6 @@ extension UIImage {
 		guard let directoryURL = FileManager.cachesDirectoryURL else { return nil }
 
 		let imageURL = directoryURL.appendingPathComponent("\(fileName).\(imageType.rawValue)")
-		print(imageURL)
 
 		var data: Data?
 

@@ -50,7 +50,7 @@ public class DataManager {
 				self.world = try Disk.retrieve(Self.dataFileName, from: .caches, as: Region.self)
 				result = true
 			} catch {
-				print("Unexpected error: \(error).")
+				debugPrint("Unexpected error:", error)
 				try? Disk.clear(.caches)
 				result = false
 			}

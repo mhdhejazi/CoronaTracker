@@ -103,7 +103,6 @@ class TrendlineChartView: BaseLineChartView {
 		simpleMarker.visibilityCallback = { entry, visible in
 			let index = (entry.data as? Int) ?? -1
 			self.selectedIndex = visible ? index : -1
-			print(index)
 		}
 		simpleMarker.font = .systemFont(ofSize: 13 * fontScale)
 		chartView.marker = simpleMarker
