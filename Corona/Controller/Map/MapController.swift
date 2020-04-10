@@ -12,7 +12,7 @@ import FloatingPanel
 class MapController: UIViewController {
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
-	static var instance: MapController!
+	static var shared: MapController!
 
 	@IBOutlet private var mapView: MKMapView!
 	@IBOutlet private var effectView: UIVisualEffectView!
@@ -38,12 +38,12 @@ class MapController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		MapController.instance = self
+		MapController.shared = self
 
 		initializeView()
 		initializeBottomSheet()
 
-		DataManager.instance.load { _ in
+		DataManager.shared.load { _ in
 			self.update()
 			self.downloadIfNeeded()
 		}
@@ -149,11 +149,11 @@ class MapController: UIViewController {
 	}
 
 	private func update() {
-		allAnnotations = DataManager.instance.regions(of: .province)
+		allAnnotations = DataManager.shared.regions(of: .province)
 			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
 			.map({ RegionAnnotation(region: $0, mode: mode) })
 
-		countryAnnotations = DataManager.instance.regions(of: .country)
+		countryAnnotations = DataManager.shared.regions(of: .country)
 			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
 			.map({ RegionAnnotation(region: $0, mode: mode) })
 
@@ -175,7 +175,7 @@ class MapController: UIViewController {
 		}
 		regionPanelController.isUpdating = true
 
-		DataManager.instance.download { success in
+		DataManager.shared.download { success in
 			DispatchQueue.main.async {
 				self.regionPanelController.isUpdating = false
 

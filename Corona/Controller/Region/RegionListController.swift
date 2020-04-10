@@ -32,7 +32,7 @@ class RegionListController: UITableViewController {
 extension RegionListController: UIGestureRecognizerDelegate {
 	@objc
 	func tableViewPanned(_ sender: Any) {
-		MapController.instance.view.endEditing(false)
+		MapController.shared.view.endEditing(false)
 	}
 
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,

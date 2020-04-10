@@ -11,7 +11,7 @@ import Disk
 public class DataManager {
 	private static let dataFileName = "data.json"
 
-	public static let instance = DataManager()
+	public static let shared = DataManager()
 
 	public var world: Region = .world
 
@@ -64,7 +64,7 @@ public class DataManager {
 
 extension DataManager {
 	public func download(completion: @escaping (Bool) -> Void) {
-		JHUWebDataService.instance.fetchReports { regions, _ in
+		JHUWebDataService.shared.fetchReports { regions, _ in
 			guard let regions = regions else {
 				completion(false)
 				return
@@ -77,7 +77,7 @@ extension DataManager {
 //				return
 //			}
 
-			JHURepoDataService.instance.fetchTimeSerieses { timeSeriesRegions, _ in
+			JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
 				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
 			}
 		}

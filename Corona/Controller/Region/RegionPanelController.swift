@@ -48,10 +48,10 @@ class RegionPanelController: UIViewController {
 				self.regionDataController.view.isHidden = self.isSearching
 
 				if self.isSearching {
-					self.regionListController.regions = DataManager.instance.allRegions().sorted().reversed()
+					self.regionListController.regions = DataManager.shared.allRegions().sorted().reversed()
 					self.searchBar.text = ""
 					self.searchBar.becomeFirstResponder()
-					MapController.instance.showRegionScreen()
+					MapController.shared.showRegionScreen()
 				} else {
 					self.regionListController.regions = []
 					self.searchBar.resignFirstResponder()
@@ -147,10 +147,10 @@ extension RegionPanelController {
 	@IBAction private func buttonMenuTapped(_ sender: Any) {
 		Menu.show(above: self, sourceView: buttonMenu, items: [
 			.regular(title: L10n.Menu.update, image: Asset.reload.image) {
-				MapController.instance.downloadIfNeeded()
+				MapController.shared.downloadIfNeeded()
 			},
 			.regular(title: L10n.Menu.share, image: Asset.share.image) {
-				MapController.instance.showShareButtons()
+				MapController.shared.showShareButtons()
 			}
 		])
 	}
@@ -170,7 +170,7 @@ extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 	}
 
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		var regions: [Region] = DataManager.instance.allRegions().sorted().reversed()
+		var regions: [Region] = DataManager.shared.allRegions().sorted().reversed()
 
 		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 		if !query.isEmpty {
@@ -190,6 +190,6 @@ extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 
 		isSearching = false
 
-		MapController.instance.showRegionOnMap(region: region)
+		MapController.shared.showRegionOnMap(region: region)
 	}
 }

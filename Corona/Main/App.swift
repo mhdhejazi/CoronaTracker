@@ -11,7 +11,7 @@ import Disk
 
 class App {
 	static var topViewController: UIViewController {
-		var topController: UIViewController = MapController.instance
+		var topController: UIViewController = MapController.shared
 		while let presentedController = topController.presentedViewController, !(presentedController is MenuController) {
 			topController = presentedController
 		}

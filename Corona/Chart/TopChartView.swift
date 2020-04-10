@@ -84,7 +84,7 @@ class TopChartView: BaseBarChartView {
 	override func update(region: Region?, animated: Bool) {
 		super.update(region: region, animated: animated)
 
-		let regions = DataManager.instance.topCountries
+		let regions = DataManager.shared.topCountries
 
 		title = L10n.Chart.topCountries + (mode == .confirmed ? "" : " (\(mode))")
 

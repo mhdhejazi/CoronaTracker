@@ -7,7 +7,7 @@
 import UIKit
 
 class ShareManager {
-	static let instance = ShareManager()
+	static let shared = ShareManager()
 
 	func share(image: UIImage? = nil, text: String? = nil, sourceView: UIView? = nil) {
 		guard image != nil || text != nil else { return }

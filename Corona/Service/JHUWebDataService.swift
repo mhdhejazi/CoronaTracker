@@ -22,7 +22,7 @@ public class JHUWebDataService: DataService {
 	private static let usRecoveredCasesURL = URL(string: "https://services9.arcgis.com/N9p5hsImWXAccRNI/arcgis/rest/services/Nc2JKvYFoAEOFCG5JSI6/FeatureServer/1/query?f=json&where=Country_Region%3D%27US%27&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22value%22%7D%5D&outSR=102100&cacheHint=true")!
 	// swiftlint:enable line_length
 
-	static let instance = JHUWebDataService()
+	static let shared = JHUWebDataService()
 
 	private var lastReportsDataHash: String?
 	private var lastTimeSeriesDataHash: String?

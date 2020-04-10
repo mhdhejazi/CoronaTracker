@@ -97,8 +97,8 @@ class RegionAnnotationView: MKAnnotationView {
 	private lazy var rightAccessoryView: UIView? = {
 		let button = UIButton(type: .detailDisclosure)
 		button.addAction {
-			MapController.instance.updateRegionScreen(region: self.region)
-			MapController.instance.showRegionScreen()
+			MapController.shared.updateRegionScreen(region: self.region)
+			MapController.shared.showRegionScreen()
 		}
 		return button
 	}()

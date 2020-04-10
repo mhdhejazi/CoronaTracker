@@ -16,7 +16,7 @@ public class JHURepoDataService: DataService {
 		case downloadError
 	}
 
-	static let instance = JHURepoDataService()
+	static let shared = JHURepoDataService()
 
 	private static let maxOldDataAge = 10 // Days
 	private static let baseURL = URL(string: "https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/")!

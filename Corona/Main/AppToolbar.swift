@@ -50,7 +50,7 @@ extension AppToolbar: NSToolbarDelegate {
 										  target: self,
 										  action: #selector(toolbarGroupSelectionChanged(group:)))
 			item.controlRepresentation = .collapsed
-			item.selectedIndex = MapController.instance.mode.rawValue
+			item.selectedIndex = MapController.shared.mode.rawValue
 			return item
 
 		case .reload:
@@ -89,20 +89,20 @@ extension AppToolbar: NSToolbarDelegate {
 
 	@objc
 	func toolbarGroupSelectionChanged(group: NSToolbarItemGroup) {
-		MapController.instance.mode = Statistic.Kind(rawValue: group.selectedIndex) ?? .confirmed
+		MapController.shared.mode = Statistic.Kind(rawValue: group.selectedIndex) ?? .confirmed
 	}
 
 	@objc
 	func toolbarItemClicked(item: NSToolbarItem) {
 		switch item.itemIdentifier {
 		case .reload:
-			MapController.instance.downloadIfNeeded()
+			MapController.shared.downloadIfNeeded()
 
 		case .search:
-			MapController.instance.showSearchScreen()
+			MapController.shared.showSearchScreen()
 
 		case .share:
-			MapController.instance.showShareButtons()
+			MapController.shared.showShareButtons()
 
 		default:
 			break

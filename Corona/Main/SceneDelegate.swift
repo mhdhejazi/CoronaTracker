@@ -29,8 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func sceneWillEnterForeground(_ scene: UIScene) {
-		if !DataManager.instance.world.subRegions.isEmpty {
-			MapController.instance.downloadIfNeeded()
+		if !DataManager.shared.world.subRegions.isEmpty {
+			MapController.shared.downloadIfNeeded()
 		}
 	}
 

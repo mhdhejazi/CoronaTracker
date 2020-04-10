@@ -82,7 +82,7 @@ class ChartController: UIViewController {
 	}
 
 	private func shareImage() {
-		ShareManager.instance.share(image: createShareImage(),
+		ShareManager.shared.share(image: createShareImage(),
 									text: chartView.shareableText,
 									sourceView: self.view)
 	}

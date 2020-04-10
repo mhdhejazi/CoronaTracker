@@ -31,8 +31,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
 		initializeView()
 
-		DataManager.instance.load { [weak self] _ in
-			self?.report = DataManager.instance.world.report
+		DataManager.shared.load { [weak self] _ in
+			self?.report = DataManager.shared.world.report
 			self?.update()
 		}
 	}
@@ -40,10 +40,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
 		activityIndicatorView.startAnimating()
 		updateTimeLabel.isHidden = true
-		DataManager.instance.download { [weak self] success in
+		DataManager.shared.download { [weak self] success in
 			completionHandler(success ? NCUpdateResult.newData : NCUpdateResult.failed)
-			DataManager.instance.load { [weak self] _ in
-				self?.report = DataManager.instance.world.report
+			DataManager.shared.load { [weak self] _ in
+				self?.report = DataManager.shared.world.report
 				self?.activityIndicatorView.stopAnimating()
 				self?.updateTimeLabel.isHidden = false
 				self?.update()

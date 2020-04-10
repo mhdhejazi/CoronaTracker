@@ -24,7 +24,7 @@ class RegionDataController: UITableViewController {
 	var region: Region? {
 		didSet {
 			if region == nil {
-				region = DataManager.instance.world
+				region = DataManager.shared.world
 			}
 		}
 	}
@@ -51,7 +51,7 @@ class RegionDataController: UITableViewController {
 
 	func update() {
 		if region == nil {
-			region = DataManager.instance.world
+			region = DataManager.shared.world
 		}
 
 		if region?.timeSeries == nil {
@@ -98,7 +98,7 @@ class RegionDataController: UITableViewController {
 		guard let cell = cell,
 			let image = createShareImage(for: cell) else { return }
 
-		ShareManager.instance.share(image: image, text: cell.shareableText, sourceView: cell)
+		ShareManager.shared.share(image: image, text: cell.shareableText, sourceView: cell)
 	}
 
 	private func copyImage(for cell: RegionDataCell?) {

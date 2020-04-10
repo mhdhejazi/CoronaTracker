@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		if !DataManager.instance.world.subRegions.isEmpty {
-			MapController.instance.downloadIfNeeded()
+		if !DataManager.shared.world.subRegions.isEmpty {
+			MapController.shared.downloadIfNeeded()
 		}
 	}
 

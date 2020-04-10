@@ -65,16 +65,16 @@ extension AppMenu {
 
 	@objc
 	private func searchAction(_ sender: UICommand) {
-		MapController.instance.showSearchScreen()
+		MapController.shared.showSearchScreen()
 	}
 
 	@objc
 	private func reloadAction(_ sender: UICommand) {
-		MapController.instance.downloadIfNeeded()
+		MapController.shared.downloadIfNeeded()
 	}
 
 	@objc
 	private func shareAction(_ sender: UICommand) {
-		MapController.instance.showShareButtons()
+		MapController.shared.showShareButtons()
 	}
 }

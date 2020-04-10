@@ -121,7 +121,7 @@ class TrendlineChartView: BaseLineChartView {
 	override func update(region: Region?, animated: Bool) {
 		super.update(region: region, animated: animated)
 
-		var regions = DataManager.instance.topCountries.filter { $0.timeSeries != nil }
+		var regions = DataManager.shared.topCountries.filter { $0.timeSeries != nil }
 		guard regions.count > 2 else {
 			chartView.data = nil
 			return
