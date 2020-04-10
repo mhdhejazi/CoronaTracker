@@ -1,0 +1,38 @@
+/*
+ Corona Tracker
+ Translation by LeeGwangYong - github.com/LeeGwangYong
+ Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "확진자(누적)";
+"case.active" = "확진자(활성)";
+"case.recovered" = "완치자";
+"case.deaths" = "사망자";
+"region.world" = "전세계";
+"chart.topCountries" = "가장 영향을 받은 국가";
+"chart.logarithmic" = "Logarithmic Scale";
+"chart.delta" = "신규 확진 사례";
+"chart.delta.deaths" = "신규 사망 사례";
+"chart.delta.increasing" = "증가";
+"chart.delta.decreasing" = "감소";
+"chart.trendline" = "100번째 이후 확진 사례";
+"chart.trendline.deaths" = "10번째 이후 사망 사례";
+"chart.history" = "추이";
+"chart.axis.days" = "%d 일";
+"data.updating" = "업데이트 중...";
+"data.updateDate" = "최근 업데이트:";
+"data.errorTitle" = "데이터를 업데이트할 수 없습니다.";
+"data.errorMessage" = "인터넷에 연결되어 있는지 확인하세요.";
+"data.source" = "출처: %@";
+"app.newVersionTitle" = "사용 가능한 새로운 버전이 있습니다.";
+"app.newVersionMessage" = "%@ 에서 업데이트하세요.";
+"message.cancel" = "취소";
+"message.open" = "열기";
+"message.ok" = "확인";
+"message.done" = "완료";
+"menu.copy" = "복사";
+"menu.update" = "업데이트";
+"menu.share" = "공유하기";
+"menu.search" = "검색";
+"share.current" = "코로나 바이러스 실시간 업데이트";
+"share.chartHistory" = "코로나 바이러스 성장 차트";
