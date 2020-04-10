@@ -6,7 +6,7 @@
 
 import UIKit
 
-class MainMenu {
+class AppMenu {
 	@available(iOS 13.0, *)
 	init(builder: UIMenuBuilder) {
 		buildMenu(with: builder)
@@ -14,7 +14,7 @@ class MainMenu {
 }
 
 @available(iOS 13.0, *)
-extension MainMenu {
+extension AppMenu {
 	func canPerformAction(_ action: Selector) -> Bool {
 		switch action {
 		case #selector(searchAction(_:)),
@@ -60,6 +60,8 @@ extension MainMenu {
 								   modifierFlags: .command)
 		return UIMenu(title: "", options: .displayInline, children: [command])
 	}
+
+	// MARK: - Actions
 
 	@objc
 	private func searchAction(_ sender: UICommand) {

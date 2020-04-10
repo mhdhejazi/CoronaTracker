@@ -10,10 +10,6 @@ import NotificationCenter
 class TodayViewController: UIViewController, NCWidgetProviding {
 	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
 
-	private var report: Report?
-	private var showPercents = false
-	private var switchPercentsTask: DispatchWorkItem?
-
 	@IBOutlet private var worldwideTitleLabel: UILabel!
 	@IBOutlet private var confirmedLabel: UILabel!
 	@IBOutlet private var confirmedCountLabel: UILabel!
@@ -25,6 +21,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 	@IBOutlet private var dataLabels: [UILabel]!
 	@IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
 	@IBOutlet private var updateTimeLabel: UILabel!
+
+	private var report: Report?
+	private var showPercents = false
+	private var switchPercentsTask: DispatchWorkItem?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -14,6 +14,13 @@ class MapController: UIViewController {
 
 	static var instance: MapController!
 
+	@IBOutlet private var mapView: MKMapView!
+	@IBOutlet private var effectView: UIVisualEffectView!
+	@IBOutlet private var buttonUpdate: UIButton!
+	@IBOutlet private var viewOptions: UIView!
+	@IBOutlet private var effectViewOptions: UIVisualEffectView!
+	@IBOutlet private var buttonMode: UIButton!
+
 	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 5 : 4 }
 	private var allAnnotations: [RegionAnnotation] = []
 	private var countryAnnotations: [RegionAnnotation] = []
@@ -27,13 +34,6 @@ class MapController: UIViewController {
 			update()
 		}
 	}
-
-	@IBOutlet private var mapView: MKMapView!
-	@IBOutlet private var effectView: UIVisualEffectView!
-	@IBOutlet private var buttonUpdate: UIButton!
-	@IBOutlet private var viewOptions: UIView!
-	@IBOutlet private var effectViewOptions: UIVisualEffectView!
-	@IBOutlet private var buttonMode: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

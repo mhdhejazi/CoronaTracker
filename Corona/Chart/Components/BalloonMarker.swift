@@ -138,8 +138,8 @@ open class BalloonMarker: MarkerImage
                 context.addArc(center: CGPoint(x: rect.origin.x + rect.size.width,
                                                y: rect.origin.y + arrowSize.height + (rect.size.height - arrowSize.height) / 2),
                                radius: (rect.size.height - arrowSize.height) / 2,
-                               startAngle: CGFloat(270 * Double.pi / 180),
-                               endAngle: CGFloat(90 * Double.pi / 180),
+							   startAngle: CGFloat(270.radians),
+                               endAngle: CGFloat(90.radians),
                                clockwise: false)
             } else {
                 context.addLine(to: CGPoint(
@@ -153,8 +153,8 @@ open class BalloonMarker: MarkerImage
                 context.addArc(center: CGPoint(x: rect.origin.x,
                                                y: rect.origin.y + arrowSize.height + (rect.size.height - arrowSize.height) / 2),
                                radius: (rect.size.height - arrowSize.height) / 2,
-                               startAngle: CGFloat(90 * Double.pi / 180),
-                               endAngle: CGFloat(270 * Double.pi / 180),
+                               startAngle: CGFloat(90.radians),
+                               endAngle: CGFloat(270.radians),
                                clockwise: false)
             } else {
                 context.addLine(to: CGPoint(
@@ -176,8 +176,8 @@ open class BalloonMarker: MarkerImage
                 context.addArc(center: CGPoint(x: rect.origin.x + rect.size.width,
                                                y: rect.origin.y + (rect.size.height - arrowSize.height) / 2),
                                radius: (rect.size.height - arrowSize.height) / 2,
-                               startAngle: CGFloat(270 * Double.pi / 180),
-                               endAngle: CGFloat(90 * Double.pi / 180),
+                               startAngle: CGFloat(270.radians),
+                               endAngle: CGFloat(90.radians),
                                clockwise: false)
             } else {
                 context.addLine(to: CGPoint(
@@ -201,8 +201,8 @@ open class BalloonMarker: MarkerImage
                 context.addArc(center: CGPoint(x: rect.origin.x,
                                                y: rect.origin.y + (rect.size.height - arrowSize.height) / 2),
                                radius: (rect.size.height - arrowSize.height) / 2,
-                               startAngle: CGFloat(90 * Double.pi / 180),
-                               endAngle: CGFloat(270 * Double.pi / 180),
+                               startAngle: CGFloat(90.radians),
+                               endAngle: CGFloat(270.radians),
                                clockwise: false)
             } else {
                 context.addLine(to: CGPoint(

@@ -8,7 +8,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	private var mainMenu: MainMenu?
+	private var appMenu: AppMenu?
 
 	var window: UIWindow?
 
@@ -43,11 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if targetEnvironment(macCatalyst)
 extension AppDelegate {
 	override func buildMenu(with builder: UIMenuBuilder) {
-		mainMenu = MainMenu(builder: builder)
+		appMenu = AppMenu(builder: builder)
 	}
 
 	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-		if mainMenu?.canPerformAction(action) == true {
+		if appMenu?.canPerformAction(action) == true {
 			return true
 		}
 
@@ -55,8 +55,8 @@ extension AppDelegate {
 	}
 
 	override func forwardingTarget(for aSelector: Selector!) -> Any? {
-		if mainMenu?.canPerformAction(aSelector) == true {
-			return mainMenu
+		if appMenu?.canPerformAction(aSelector) == true {
+			return appMenu
 		}
 
 		return super.forwardingTarget(for: aSelector)

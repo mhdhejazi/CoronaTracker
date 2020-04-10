@@ -48,6 +48,8 @@ class ChartDataCell<C: RegionChartView>: RegionDataCell {
 		chartView.update(region: region, animated: animated)
 	}
 
+	// MARK: - Actions
+
 	@objc
 	func cellTapped(_ sender: Any) {
 		guard let chartController = App.topViewController.storyboard?.instantiateViewController(

@@ -185,6 +185,8 @@ class ChartView<C: ChartViewBase>: UIView, RegionChartView {
 		menuButton.isHidden = false
 	}
 
+	// MARK: - Actions
+
 	@objc
 	func menuButtonTapped(_ sender: Any) {
 		var menuItems: [MenuItem] = supportedModes.map { mode in

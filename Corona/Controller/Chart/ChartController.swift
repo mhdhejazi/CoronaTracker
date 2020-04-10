@@ -7,15 +7,15 @@
 import UIKit
 
 class ChartController: UIViewController {
-	private var chartView: RegionChartView!
-	private var contextMenu: ContextMenu?
-
 	@IBOutlet private var effectViewBackground: UIVisualEffectView!
 	@IBOutlet private var effectViewHeader: UIVisualEffectView!
 	@IBOutlet private var labelTitle: UILabel!
 	@IBOutlet private var labelTime: UILabel!
 	@IBOutlet private var imageLogo: UIImageView!
 	@IBOutlet private var chartViewContainer: UIView!
+
+	private var chartView: RegionChartView!
+	private var contextMenu: ContextMenu?
 
 	var sourceChartView: RegionChartView!
 

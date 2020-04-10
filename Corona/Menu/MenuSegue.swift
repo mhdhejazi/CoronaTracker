@@ -73,6 +73,8 @@ private class PresentationController: UIPresentationController {
 		})
 	}
 
+	// MARK: - Actions
+
 	@objc
 	private func onTap(_ sender: UITapGestureRecognizer) {
 		presentedViewController.dismiss(animated: true)
@@ -154,7 +156,7 @@ private class Presenter: NSObject, UIViewControllerAnimatedTransitioning {
 		/// Animate
 		shadowView.alpha = 0
 		shadowView.transform = CGAffineTransform(scaleX: 1, y: 0.1).translatedBy(x: 0, y: -shadowView.bounds.height * 6)
-		UIView.animate(withDuration: 0.5,
+		UIView.animate(withDuration: transitionDuration(using: transitionContext),
 					   delay: 0,
 					   usingSpringWithDamping: 0.7,
 					   initialSpringVelocity: 0,
@@ -171,7 +173,7 @@ private class Dismisser: NSObject, UIViewControllerAnimatedTransitioning {
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-		UIView.animate(withDuration: 0.2, animations: {
+		UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
 			transitionContext.containerView.subviews.forEach { $0.alpha = 0 }
 		}, completion: { completed in
 			transitionContext.completeTransition(completed)

@@ -7,6 +7,15 @@
 import UIKit
 
 class RegionPanelController: UIViewController {
+	@IBOutlet private var effectViewBackground: UIVisualEffectView!
+	@IBOutlet private var effectViewHeader: UIVisualEffectView!
+	@IBOutlet private var viewHeader: UIView!
+	@IBOutlet private var labelTitle: UILabel!
+	@IBOutlet private var labelUpdated: UILabel!
+	@IBOutlet private var buttonMenu: UIButton!
+	@IBOutlet private var buttonSearch: UIButton!
+	@IBOutlet private var searchBar: UISearchBar!
+
 	private lazy var buttonDone: UIButton = {
 		let button = UIButton(type: .system)
 		button.titleLabel?.font = .boldSystemFont(ofSize: 17)
@@ -50,15 +59,6 @@ class RegionPanelController: UIViewController {
 			}
 		}
 	}
-
-	@IBOutlet private var effectViewBackground: UIVisualEffectView!
-	@IBOutlet private var effectViewHeader: UIVisualEffectView!
-	@IBOutlet private var viewHeader: UIView!
-	@IBOutlet private var labelTitle: UILabel!
-	@IBOutlet private var labelUpdated: UILabel!
-	@IBOutlet private var buttonMenu: UIButton!
-	@IBOutlet private var buttonSearch: UIButton!
-	@IBOutlet private var searchBar: UISearchBar!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -154,6 +154,8 @@ extension RegionPanelController {
 			}
 		])
 	}
+
+	// MARK: - Actions
 
 	@objc
 	func buttonDoneTapped(_ sender: Any) {

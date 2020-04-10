@@ -62,15 +62,15 @@ extension RegionListController {
 }
 
 class RegionCell: UITableViewCell {
+	@IBOutlet private var labelName: UILabel!
+	@IBOutlet private var labelStats: UILabel!
+
 	var region: Region? {
 		didSet {
 			labelName.text = region?.localizedLongName
 			labelStats.text = region?.report?.stat.confirmedCountString
 		}
 	}
-
-	@IBOutlet private var labelName: UILabel!
-	@IBOutlet private var labelStats: UILabel!
 
 	override func awakeFromNib() {
 		super.awakeFromNib()

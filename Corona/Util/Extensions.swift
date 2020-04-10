@@ -131,6 +131,8 @@ extension Double {
 	public var percentFormatted: String {
 		NumberFormatter.percentFormatter.string(from: NSNumber(value: self))!
 	}
+
+	public var radians: Double { self * Double.pi / 180 }
 }
 
 extension Int {
@@ -141,6 +143,8 @@ extension Int {
 	public var groupingFormatted: String {
 		NumberFormatter.groupingFormatter.string(from: NSNumber(value: self))!
 	}
+
+	public var radians: Double { Double(self).radians }
 
 	public static func random() -> Int { random(in: 1..<max) }
 }

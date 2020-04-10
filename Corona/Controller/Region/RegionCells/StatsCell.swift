@@ -9,9 +9,6 @@ import UIKit
 class StatsCell: RegionDataCell {
 	static let numberPercentSwitchInterval: TimeInterval = 3 /// Seconds
 
-	private var showPercents = false
-	private var switchPercentsTask: DispatchWorkItem?
-
 	@IBOutlet private var labelConfirmedTitle: UILabel!
 	@IBOutlet private var labelConfirmed: UILabel!
 	@IBOutlet private var labelNewConfirmed: UILabel!
@@ -21,6 +18,9 @@ class StatsCell: RegionDataCell {
 	@IBOutlet private var labelDeathsTitle: UILabel!
 	@IBOutlet private var labelDeaths: UILabel!
 	@IBOutlet private var labelNewDeaths: UILabel!
+
+	private var showPercents = false
+	private var switchPercentsTask: DispatchWorkItem?
 
 	override var shareableImage: UIImage? { snapshot() }
 	override var shareableText: String? { L10n.Share.current }
@@ -101,6 +101,8 @@ class StatsCell: RegionDataCell {
 				self.region?.dailyChange?.newDeathsString ?? "-"
 		}
 	}
+
+	// MARK: - Actions
 
 	@objc
 	func cellTapped(_ sender: Any) {

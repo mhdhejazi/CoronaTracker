@@ -211,6 +211,8 @@ class TrendlineChartView: BaseLineChartView {
 		chartView.extraBottomOffset = legendStack.bounds.height + 10
 	}
 
+	// MARK: - Actions
+
 	@objc
 	func legendTapped(_ recognizer: UITapGestureRecognizer) {
 		let point = recognizer.location(in: legendStack)
