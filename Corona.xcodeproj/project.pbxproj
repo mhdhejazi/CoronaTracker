@@ -221,6 +221,7 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C02EBB2431246C00AE80FE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FC5A29A624400862005C58BB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +596,7 @@
 				pl,
 				nl,
 				ro,
+				ko,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -764,6 +766,7 @@
 				34C02EBB2431246C00AE80FE /* pl */,
 				113AF060243CB1C1000732D0 /* nl */,
 				113AF061243CB277000732D0 /* ro */,
+				FC5A29A624400862005C58BB /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
