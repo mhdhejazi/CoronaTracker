@@ -48,10 +48,7 @@ class TopChartView: BaseBarChartView {
 			return region.localizedName.replacingOccurrences(of: " ", with: "\n")
 		})
 
-		/// Rotate labels in other languages
-		if !Locale.current.isEnglish {
-			chartView.xAxis.labelRotationAngle = 45
-		}
+		chartView.xAxis.labelRotationAngle = 35
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
 			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
@@ -84,9 +81,23 @@ class TopChartView: BaseBarChartView {
 	override func update(region: Region?, animated: Bool) {
 		super.update(region: region, animated: animated)
 
-		let regions = DataManager.shared.topCountries
+		var regions: [Region] = []
+		var title: String = ""
+		var colors: [UIColor] = []
 
-		title = L10n.Chart.topCountries + (mode == .confirmed ? "" : " (\(mode))")
+		if region?.isWorld != true, let subRegions = region?.subRegions {
+			regions = [Region](subRegions.lazy.sorted().reversed().prefix(6))
+			title = L10n.Chart.topRegions
+			colors = self.colors.reversed()
+		}
+
+		if regions.count < 2 {
+			regions = DataManager.shared.topCountries
+			title = L10n.Chart.topCountries
+			colors = self.colors
+		}
+
+		self.title = title + (mode == .confirmed ? "" : " (\(mode))")
 
 		var entries = [BarChartDataEntry]()
 		for index in regions.indices {

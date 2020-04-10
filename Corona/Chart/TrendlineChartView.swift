@@ -11,7 +11,7 @@ import Charts
 class TrendlineChartView: BaseLineChartView {
 	private static let maxItems = 6
 
-	private var colors: [UIColor] { defaultColors }
+	private var colors: [UIColor] = []
 
 	private lazy var legendStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: (1...Self.maxItems).map { _ in
@@ -54,8 +54,12 @@ class TrendlineChartView: BaseLineChartView {
 				for index in dataSets.indices {
 					let dataSet = dataSets[index]
 					var color = colors[index % colors.count]
+					let stack = legendStack.arrangedSubviews[index]
+
+					stack.alpha = 1
 					if selectedIndex > -1 && selectedIndex != index {
 						color = color.withAlphaComponent(0.5)
+						stack.alpha = 0.5
 					}
 					dataSet.lineDashLengths = selectedIndex == index ? nil : [4, 2]
 					dataSet.colors = [color]
@@ -120,15 +124,25 @@ class TrendlineChartView: BaseLineChartView {
 	override func update(region: Region?, animated: Bool) {
 		super.update(region: region, animated: animated)
 
-		var regions = DataManager.shared.topCountries.filter { $0.timeSeries != nil }
+		var regions: [Region] = []
+
+		if region?.isWorld != true, let subRegions = region?.subRegions {
+			regions = [Region](subRegions.lazy.sorted().reversed().filter { $0.timeSeries != nil }.prefix(6))
+			colors = defaultColors.reversed()
+		}
+
+		if regions.count < 2 {
+			regions = DataManager.shared.topCountries.filter { $0.timeSeries != nil }
+			if let region = region, region.isCountry, !regions.contains(region) {
+				regions.removeLast()
+				regions.append(region)
+			}
+			colors = defaultColors
+		}
+
 		guard regions.count > 2 else {
 			chartView.data = nil
 			return
-		}
-
-		if let region = region, region.isCountry, !regions.contains(region) {
-			regions.removeLast()
-			regions.append(region)
 		}
 
 		title = (mode == .deaths) ? L10n.Chart.Trendline.deaths : L10n.Chart.trendline

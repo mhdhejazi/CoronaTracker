@@ -16,7 +16,7 @@ public class DataManager {
 	public var world: Region = .world
 
 	public var topCountries: [Region] {
-		[Region](regions(of: .country).sorted().reversed().prefix(6))
+		[Region](regions(of: .country).lazy.sorted().reversed().prefix(6))
 	}
 
 	public func regions(of level: Region.Level) -> [Region] {

@@ -41,6 +41,8 @@ internal enum L10n {
     internal static let logarithmic = L10n.tr("Localizable", "chart.logarithmic")
     /// Most Affected Countries
     internal static let topCountries = L10n.tr("Localizable", "chart.topCountries")
+    /// Most Affected Regions
+    internal static let topRegions = L10n.tr("Localizable", "chart.topRegions")
     /// Confirmed cases since 100th case
     internal static let trendline = L10n.tr("Localizable", "chart.trendline")
     internal enum Axis {

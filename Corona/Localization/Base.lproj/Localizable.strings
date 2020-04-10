@@ -10,6 +10,7 @@
 "case.deaths" = "Deaths";
 "region.world" = "Worldwide";
 "chart.topCountries" = "Most Affected Countries";
+"chart.topRegions" = "Most Affected Regions";
 "chart.logarithmic" = "Logarithmic Scale";
 "chart.delta" = "Daily New Cases";
 "chart.delta.deaths" = "Daily New Deaths";
