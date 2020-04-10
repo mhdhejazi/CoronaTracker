@@ -25,6 +25,8 @@ class RegionDataCell: UITableViewCell {
 		return button
 	}()
 
+	private var contextMenu: ContextMenu?
+
 	@available(iOS 13.0, *)
 	var contextMenuActions: [UIMenuElement] {
 		var items = [UIMenuElement]()
@@ -64,9 +66,7 @@ class RegionDataCell: UITableViewCell {
 		buttonShare.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
 		buttonShare.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
 
-		if #available(iOS 13.0, *) {
-			addInteraction(UIContextMenuInteraction(delegate: self))
-		}
+		contextMenu = ContextMenu(view: self, menuBuilder: self)
 	}
 
 	override func setEditing(_ editing: Bool, animated: Bool) {
@@ -96,38 +96,10 @@ class RegionDataCell: UITableViewCell {
 }
 
 @available(iOS 13.0, *)
-extension RegionDataCell: UIContextMenuInteractionDelegate {
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-								configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-
+extension RegionDataCell: ContextMenuBuilder {
+	func buildContextMenu() -> UIMenu? {
 		guard shareableText != nil, !isEditing else { return nil }
 
-		return UIContextMenuConfiguration(identifier: nil,
-										  previewProvider: nil,
-										  actionProvider: { _ in
-			UIMenu(title: "", children: self.contextMenuActions)
-		})
-	}
-
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-								previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-
-		let parameters = UIPreviewParameters()
-		parameters.backgroundColor = .clear
-		return UITargetedPreview(view: self, parameters: parameters)
-	}
-
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-								willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-
-		self.backgroundColor = SystemColor.secondarySystemBackground
-	}
-
-	func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-								willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-
-		UIView.animate(withDuration: 0.25) {
-			self.backgroundColor = .clear
-		}
+		return UIMenu(title: "", children: self.contextMenuActions)
 	}
 }
