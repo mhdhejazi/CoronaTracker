@@ -44,10 +44,8 @@ extension Statistic {
 }
 
 extension Statistic {
-	public enum Kind: Int, RawRepresentable, CustomStringConvertible {
+	public enum Kind: Int, RawRepresentable, CaseIterable, CustomStringConvertible {
 		case confirmed, active, recovered, deaths
-
-		public static let all: [Kind] = [.confirmed, .active, .recovered, .deaths]
 
 		public var description: String {
 			switch self {
@@ -79,8 +77,8 @@ extension Statistic {
 	public static let zero = Statistic(confirmedCount: 0, recoveredCount: 0, deathCount: 0)
 
 	public static func sum(subData: [Statistic]) -> Statistic {
-		Statistic(confirmedCount: subData.reduce(0) { $0 + $1.confirmedCount },
-				  recoveredCount: subData.reduce(0) { $0 + $1.recoveredCount },
-				  deathCount: subData.reduce(0) { $0 + $1.deathCount })
+		Statistic(confirmedCount: subData.sum { $0.confirmedCount },
+				  recoveredCount: subData.sum { $0.recoveredCount },
+				  deathCount: subData.sum { $0.deathCount })
 	}
 }

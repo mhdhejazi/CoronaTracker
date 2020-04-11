@@ -82,7 +82,7 @@ public class JHURepoDataService: DataService {
 	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
-			let regions = reader.map({ Region.createFromReportData(dataRow: $0) })
+			let regions = reader.map(Region.createFromReportData)
 			completion(regions, nil)
 		} catch {
 			debugPrint("Unexpected error:", error)
@@ -190,7 +190,7 @@ public class JHURepoDataService: DataService {
 		do {
 			let reader = try CSVReader(string: String(data: data, encoding: .utf8)!, hasHeaderRow: true)
 			let headers = reader.headerRow
-			let result = reader.map({ CounterTimeSeries(dataRow: $0) })
+			let result = reader.map(CounterTimeSeries.init)
 
 			return (result, headers ?? [])
 		} catch {

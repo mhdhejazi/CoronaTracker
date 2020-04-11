@@ -177,7 +177,7 @@ extension FileManager {
 }
 
 extension String {
-	func md5Hash() -> String? {
+	func sha1Hash() -> String? {
 		guard let data = self.data(using: .utf8) else { return nil }
 		return data.sha1Hash()
 	}
@@ -185,16 +185,9 @@ extension String {
 
 extension Data {
 	func sha1Hash() -> String {
-		let length = Int(CC_SHA1_DIGEST_LENGTH)
-		var digest = [UInt8](repeating: 0, count: length)
-
-		_ = self.withUnsafeBytes { body in
-			CC_SHA1(body.baseAddress, CC_LONG(self.count), &digest)
-		}
-
-		return (0..<length).reduce("") {
-			$0 + String(format: "%02x", digest[$1])
-		}
+		var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+		_ = withUnsafeBytes { CC_SHA1($0.baseAddress, CC_LONG(self.count), &digest) }
+		return digest.map { String(format: "%02x", $0) }.joined()
 	}
 }
 
@@ -202,4 +195,14 @@ extension Bundle {
 	var name: String? { infoDictionary?["CFBundleName"] as? String }
 
 	var version: String? { infoDictionary?["CFBundleVersion"] as? String }
+}
+
+extension Collection {
+	func sum(_ transform: (Self.Element) throws -> Int) rethrows -> Int {
+		try reduce(0) { $0 + (try transform($1)) }
+	}
+
+	func sum(_ transform: (Self.Element) throws -> CGFloat) rethrows -> CGFloat {
+		try reduce(0) { $0 + (try transform($1)) }
+	}
 }

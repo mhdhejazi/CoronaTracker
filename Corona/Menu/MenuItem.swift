@@ -35,6 +35,6 @@ enum MenuItem {
 										attributes: [.font: font],
 										context: nil)
 
-		return ceil(rect?.width ?? 0)
+		return rect?.width.rounded(.up) ?? 0
 	}
 }
