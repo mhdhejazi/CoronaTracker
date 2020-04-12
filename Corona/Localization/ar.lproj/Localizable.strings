@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Translation by Hussam Zain - github.com/hussamzain
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "مؤكدة";
+"case.active" = "نشطة";
+"case.recovered" = "شفاء";
+"case.deaths" = "الوفاة";
+"region.world" = "عالميا";
+"chart.topCountries" = "أكثر الدول إصابة";
+"chart.topRegions" = "أكثر المناطق إصابة";
+"chart.logarithmic" = "مقياس لوغارتمي";
+"chart.delta" = "الحالات اليومية الجديدة";
+"chart.delta.deaths" = "الوفيات اليومية الجديدة";
+"chart.delta.increasing" = "في ازدياد";
+"chart.delta.decreasing" = "في انخفاض";
+"chart.trendline" = "الحالات المؤكدة منذ الحالة المئة";
+"chart.trendline.deaths" = "الوفيات منذ الوفاة العاشرة";
+"chart.history" = "ازدياد الحالات";
+"chart.axis.days" = "%ي يوم";
+"data.updating" = "جار التحديث...";
+"data.updateDate" = "آخر تحديث:";
+"data.errorTitle" = "تعذر تحديث المعلومات";
+"data.errorMessage" = "يرجى التأكد من اتصال الجهاز بالإنترنت";
+"data.source" = "المصدر: %@";
+"app.newVersionTitle" = "يتوفر إصدار جديد";
+"app.newVersionMessage" = "يرجى التحديث من %@";
+"message.cancel" = "إلغاء";
+"message.open" = "فتح";
+"message.ok" = "حسنا";
+"message.done" = "تم";
+"menu.copy" = "نسخ";
+"menu.update" = "تحديث";
+"menu.share" = "مشاركة";
+"menu.search" = "بحث";
+"share.current" = "تحديث مباشر - فيروس كورونا";
+"share.chartHistory" = "الرسم البياني لنمو فيروس كورونا";
