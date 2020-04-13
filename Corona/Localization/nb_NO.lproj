@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Translation by Allan Nordhøy.
+  Copyright © 2020. GPLv3+
+*/
+
+"case.confirmed" = "Bekreftet";
+"case.active" = "Aktiv";
+"case.recovered" = "Recovered";
+"case.deaths" = "Dødsfall";
+"region.world" = "Hele verden";
+"chart.topCountries" = "Mest berørte land";
+"chart.topRegions" = "Mest berørte områder";
+"chart.logarithmic" = "Logaritmisk skala";
+"chart.delta" = "Nye tilfeller i dag";
+"chart.delta.deaths" = "Dødsfall i dag";
+"chart.delta.increasing" = "Økende";
+"chart.delta.decreasing" = "Synkende";
+"chart.trendline" = "Bekreftede tilfeller siden hundrede tilfelle";
+"chart.trendline.deaths" = "Dødsfall siden tiende dødsfall";
+"chart.history" = "Tilfelleøkning";
+"chart.axis.days" = "%d dager";
+"data.updating" = "Oppdaterer…";
+"data.updateDate" = "Sist oppdatert:";
+"data.errorTitle" = "Kan ikke oppdatere dataen";
+"data.errorMessage" = "Forsikre deg om at du er tilknyttet Internett.";
+"data.source" = "Kilde: %@";
+"app.newVersionTitle" = "Ny versjon tilgjengelig";
+"app.newVersionMessage" = "Oppdater fra %@";
+"message.cancel" = "Avbryt";
+"message.open" = "Åpne";
+"message.ok" = "OK";
+"message.done" = "Ferdig";
+"menu.copy" = "Kopier";
+"menu.update" = "Oppdater";
+"menu.share" = "Del";
+"menu.search" = "Søk";
+"share.current" = "Koronavirus-sanntidsoppdatering";
+"share.chartHistory" = "Koronavirus-vekstdiagram";
