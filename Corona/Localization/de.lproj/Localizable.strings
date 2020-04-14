@@ -14,7 +14,7 @@
 "chart.history" = "Entwicklung der Fallzahlen";
 "chart.topCountries" = "Am stärksten betroffene Länder";
 "chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
-"chart.trendline.deaths" = "Todesfälle seit dem 10. Fall"
+"chart.trendline.deaths" = "Todesfälle seit dem 10. Fall";
 "chart.logarithmic" = "Logarithmische Darstellung";
 "chart.delta" = "Neue Fälle pro Tag";
 "chart.delta.deaths" = "Täglich gestorben";
