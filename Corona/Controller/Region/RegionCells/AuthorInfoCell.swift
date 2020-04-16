@@ -15,15 +15,15 @@ class AuthorInfoCell: RegionDataCell {
 	// MARK: - Actions
 
 	@IBAction private func buttonInfoTapped(_ sender: Any) {
-		let url = URL(string: "https://coronatracker.samabox.com")!
+		let url = URL(string: "http://www.peme.dk")!
 		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
 		App.topViewController.present(safariController, animated: true)
 	}
 
 	@IBAction private func buttonTwitterTapped(_ sender: Any) {
-		let twitterAppURL = URL(string: "twitter://user?screen_name=Hejazi")!
-		let twitterWebURL = URL(string: "https://twitter.com/Hejazi")!
+		let twitterAppURL = URL(string: "twitter://user?screen_name=peme")!
+		let twitterWebURL = URL(string: "https://twitter.com/peme")!
 
 		if UIApplication.shared.canOpenURL(twitterAppURL) {
 			UIApplication.shared.open(twitterAppURL)
