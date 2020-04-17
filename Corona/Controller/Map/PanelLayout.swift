@@ -10,7 +10,7 @@ import FloatingPanel
 
 class PanelLayout: FloatingPanelLayout {
 	public var supportedPositions: Set<FloatingPanelPosition> {
-		return Set([.full, .half])
+		Set([.full, .half])
 	}
 
 	public var initialPosition: FloatingPanelPosition {
@@ -44,7 +44,7 @@ class PanelLayout: FloatingPanelLayout {
 	}
 
 	func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-		return position == .full ? 0.3 : 0.0
+		position == .full ? 0.3 : 0.0
 	}
 }
 
@@ -64,6 +64,6 @@ class LandscapePanelLayout: PanelLayout {
 	}
 
 	override func backdropAlphaFor(position: FloatingPanelPosition) -> CGFloat {
-		return 0.0
+		0.0
 	}
 }

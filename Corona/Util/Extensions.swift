@@ -10,11 +10,11 @@ import MapKit
 
 extension CLLocationCoordinate2D {
 	public var location: CLLocation {
-		return CLLocation(latitude: latitude, longitude: longitude)
+		CLLocation(latitude: latitude, longitude: longitude)
 	}
 
 	public func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
-		return location.distance(from: coordinate.location)
+		location.distance(from: coordinate.location)
 	}
 }
 

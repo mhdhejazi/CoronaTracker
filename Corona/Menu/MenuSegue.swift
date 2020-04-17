@@ -169,7 +169,7 @@ private class Presenter: NSObject, UIViewControllerAnimatedTransitioning {
 
 private class Dismisser: NSObject, UIViewControllerAnimatedTransitioning {
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-		return 0.2
+		0.2
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
