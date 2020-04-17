@@ -21,9 +21,9 @@
 "chart.history" = "案例增長";
 "chart.axis.days" = "%d 天";
 "data.updating" = "更新中...";
-"data.updateDate" = "最後更新於:";
+"data.updateDate" = "最後更新於：";
 "data.errorTitle" = "無法更新資料";
-"data.errorMessage" = "請確認您的網路狀態.";
+"data.errorMessage" = "請確認您的網路狀態。";
 "data.source" = "來源: %@";
 "app.newVersionTitle" = "發現新版本";
 "app.newVersionMessage" = "請從%@更新";
