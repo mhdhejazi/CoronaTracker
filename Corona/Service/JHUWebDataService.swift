@@ -30,8 +30,12 @@ public class JHUWebDataService: DataService {
 	private var lastTimeSeriesDataHash: String?
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
+		fetchReports(reportsURL: Self.reportsURL, completion: completion)
+	}
+
+	private func fetchReports(reportsURL: URL, completion: @escaping FetchResultBlock) {
 		print("Calling API")
-		requestAPI(url: Self.reportsURL) { data, error in
+		requestAPI(url: reportsURL) { data, error in
 			guard let data = data else {
 				completion(nil, error)
 				return
@@ -48,25 +52,29 @@ public class JHUWebDataService: DataService {
 				print("Download success")
 				self.lastReportsDataHash = dataHash
 
-				self.parseReports(data: data) { result, error in
+				self.parseReports(reportsURL: reportsURL, data: data) { result, error in
 					/// Update recovered cases for US
-					self.requestAPI(url: Self.usRecoveredCasesURL) { data, error in
-						var result = result
-						if let recoveredCount = self.parseRecoveredCount(data: data) {
-							/// Workaround: Add the recovered data as a dummy province since we don't have US region at this level
-							let dummyRegion = Region(level: .province, name: "Recovered", parentName: "US", location: .zero)
-							let dummyStat = Statistic(confirmedCount: 0, recoveredCount: recoveredCount, deathCount: 0)
-							dummyRegion.report = Report(lastUpdate: Date().yesterday, stat: dummyStat)
-							result?.append(dummyRegion)
-						}
+					if reportsURL == Self.germanyReportsURL {
 						completion(result, error)
+					} else {
+						self.requestAPI(url: Self.usRecoveredCasesURL) { data, error in
+							var result = result
+							if let recoveredCount = self.parseRecoveredCount(data: data) {
+								/// Workaround: Add the recovered data as a dummy province since we don't have US region at this level
+								let dummyRegion = Region(level: .province, name: "Recovered", parentName: "US", location: .zero)
+								let dummyStat = Statistic(confirmedCount: 0, recoveredCount: recoveredCount, deathCount: 0)
+								dummyRegion.report = Report(lastUpdate: Date().yesterday, stat: dummyStat)
+								result?.append(dummyRegion)
+							}
+							completion(result, error)
+						}
 					}
 				}
 			}
 		}
 	}
 
-	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
+	private func parseReports(reportsURL: URL, data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
