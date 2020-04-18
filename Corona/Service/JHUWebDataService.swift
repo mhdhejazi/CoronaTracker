@@ -29,6 +29,10 @@ public class JHUWebDataService: DataService {
 	private var lastReportsDataHash: String?
 	private var lastTimeSeriesDataHash: String?
 
+	public func fetchGermanReports(completion: @escaping FetchResultBlock) {
+		fetchReports(reportsURL: Self.germanyReportsURL, completion: completion)
+	}
+
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		fetchReports(reportsURL: Self.reportsURL, completion: completion)
 	}
