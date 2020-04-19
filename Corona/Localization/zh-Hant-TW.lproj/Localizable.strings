@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Translation by League2EB - github.com/League2EB
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "已確診";
+"case.active" = "治療中";
+"case.recovered" = "已康復";
+"case.deaths" = "已死亡";
+"region.world" = "全球";
+"chart.topCountries" = "最多確診個案國家";
+"chart.topRegions" = "最多確診個案地區";
+"chart.logarithmic" = "對數尺度";
+"chart.delta" = "每日新增案例";
+"chart.delta.deaths" = "每日新增死亡";
+"chart.delta.increasing" = "增長";
+"chart.delta.decreasing" = "下降";
+"chart.trendline" = "確診數量指數";
+"chart.trendline.deaths" = "死亡數量指數";
+"chart.history" = "案例增長";
+"chart.axis.days" = "%d 天";
+"data.updating" = "更新中...";
+"data.updateDate" = "最後更新於：";
+"data.errorTitle" = "無法更新資料";
+"data.errorMessage" = "請確認您的網路狀態。";
+"data.source" = "來源: %@";
+"app.newVersionTitle" = "發現新版本";
+"app.newVersionMessage" = "請從%@更新";
+"message.cancel" = "取消";
+"message.open" = "打開";
+"message.ok" = "確定";
+"message.done" = "完成";
+"menu.copy" = "複製";
+"menu.update" = "更新";
+"menu.share" = "分享";
+"menu.search" = "搜尋";
+"share.current" = "新型冠狀病毒即時更新";
+"share.chartHistory" = "新型冠狀病毒成長圖表";

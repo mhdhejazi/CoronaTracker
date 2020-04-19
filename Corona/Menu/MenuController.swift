@@ -31,7 +31,7 @@ class MenuController: UITableViewController {
 		let maxTitleWidth = items.map { $0.calculateTitleWidth(using: ItemCell.font) }.max()
 
 		preferredContentSize = CGSize(width: (maxTitleWidth ?? 0) + 100,
-									  height: items.reduce(0) { $0 + $1.height } - 1)
+									  height: items.sum { $0.height } - 1)
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
