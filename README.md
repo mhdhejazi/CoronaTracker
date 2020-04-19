@@ -64,13 +64,20 @@ Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
 * __Italian__ by [@Ale111](https://github.com/Ale111)
 * __French__ by [@Risengan](https://github.com/Risengan)
 * __Russian__ by [@wacumov](https://github.com/wacumov)
-* __Simplified Chinese__ by [@erickzli](https://github.com/erickzli)
+* __Chinese, Simplified__ by [@erickzli](https://github.com/erickzli)
 * __Spanish__ by [@ejewik](https://github.com/ejewik)
 * __Japanese__ by [@dev-sora](https://github.com/dev-sora)
 * __Polish__ by [@pbeo](https://github.com/pbeo)
 * __Dutch__ by [@hdatteln](https://github.com/hdatteln)
 * __Romanian__ by [@rhcpfan](https://github.com/rhcpfan)
+* __Korean__ by [@dev-yong](https://github.com/dev-yong)
+* __Arabic__ by [@hussamzain](https://github.com/hussamzain)
+* __Norwegian Bokmål__ by [@comradekingu](https://github.com/comradekingu)
 * __Indonesian__ by [@nikotidar](https://github.com/nikotidar)
+* __Danish__ by [@peme](https://github.com/peme)
+* __Chinese, Traditional (Taiwan)__ by [@League2EB](https://github.com/League2EB)
+* __Turkish__ by [@nesimtunc](https://github.com/nesimtunc)
+* __Hungarian__ by [@BrotherLouie](https://github.com/BrotherLouie)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
