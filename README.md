@@ -70,6 +70,7 @@ Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
 * __Polish__ by [@pbeo](https://github.com/pbeo)
 * __Dutch__ by [@hdatteln](https://github.com/hdatteln)
 * __Romanian__ by [@rhcpfan](https://github.com/rhcpfan)
+* __Indonesian__ by [@nikotidar](https://github.com/nikotidar)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
