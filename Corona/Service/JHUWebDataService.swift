@@ -81,8 +81,15 @@ public class JHUWebDataService: DataService {
 	private func parseReports(reportsURL: URL, data: Data, completion: @escaping FetchResultBlock) {
 		do {
 			let decoder = JSONDecoder()
-			let result = try decoder.decode(ReportsCallResult.self, from: data)
-			let regions = result.features.map { $0.attributes.region }
+			var regions = [Region]()
+			switch reportsURL {
+			case Self.germanyReportsURL:
+				let result = try decoder.decode(ReportsCallResultGermany.self, from: data)
+				regions = result.features.map { $0.attributes.region() }
+			default:
+				let result = try decoder.decode(ReportsCallResult.self, from: data)
+				regions = result.features.map { $0.attributes.region() }
+			}
 			completion(regions, nil)
 		} catch {
 			debugPrint("Unexpected error:", error)
@@ -169,7 +176,11 @@ private struct ReportFeature: Decodable {
 	let attributes: ReportAttributes
 }
 
-private struct ReportAttributes: Decodable {
+private protocol ReportAttributesProtocol: Decodable {
+	func region() -> Region
+}
+
+private struct ReportAttributes: ReportAttributesProtocol {
 	let Province_State: String?
 	let Country_Region: String
 	let Last_Update: Int
@@ -179,7 +190,7 @@ private struct ReportAttributes: Decodable {
 	let Deaths: Int?
 	let Recovered: Int?
 
-	var region: Region {
+	func region() -> Region {
 		let location = Coordinate(latitude: Lat ?? 0, longitude: Long_ ?? 0)
 		let lastUpdate = Date(timeIntervalSince1970: Double(Last_Update) / 1_000)
 		let stat = Statistic(confirmedCount: Confirmed ?? 0, recoveredCount: Recovered ?? 0, deathCount: Deaths ?? 0)
@@ -191,6 +202,84 @@ private struct ReportAttributes: Decodable {
 		} else {
 			region = Region(level: .country, name: Country_Region, parentName: nil, location: location)
 		}
+		region.report = report
+
+		return region
+	}
+}
+
+private struct ReportsCallResultGermany: Decodable {
+	let features: [ReportFeatureGermany]
+}
+
+private struct ReportFeatureGermany: Decodable {
+	let attributes: ReportAttributesGermany
+}
+
+private struct ReportAttributesGermany: ReportAttributesProtocol {
+	let Province_State: String
+	let Last_Update: Int
+	let Confirmed: Int?
+	let Deaths: Int?
+	let objectID: Int
+
+	private enum CodingKeys: String, CodingKey {
+		case objectID = "OBJECTID_1"
+		case Province_State = "LAN_ew_GEN"
+		case Last_Update = "Aktualisierung"
+		case Confirmed = "Fallzahl"
+		case Deaths = "Death"
+	}
+
+	/// Using the objectID field makes more sense than Province_State
+	/// but the later could be used with a .filter if needed
+	let coordinates: [Coordinate] = { [
+		/// Got them from https://www.latlong.net
+		/// I prefer to store them hard coded instead of using Core Location for this
+		//  1. Schleswig-Holstein		( Kiel )
+		Coordinate(latitude: 54.323, longitude: 10.122),
+		//  2. Hamburg					( Hamburg )
+		Coordinate(latitude: 53.551, longitude: 9.993),
+		//  3. Niedersachsen			( Hannover )
+		Coordinate(latitude: 52.375, longitude: 9.732),
+		//  4. Bremen					( Bremen )
+		Coordinate(latitude: 53.079, longitude: 8.801),
+		//  5. Nordrhein-Westfalen		( Düsseldorf )
+		Coordinate(latitude: 51.227, longitude: 6.773),
+		/// In case anyone wonders why I take Kassel instead of Wiesbaden
+		/// - Both are very close to each other on a Map, so I decided to keep Mainz
+		/// - Also, the center of Germany is very empty which is why I chose Kassel
+		//  6. Hessen					( Kassel instead of Wiesbaden )
+		Coordinate(latitude: 51.318, longitude: 9.494), // Wiesbaden would be latitude: 50.078, longitude: 8.239
+		//  7. Rheinland-Pfalz			( Mainz )
+		Coordinate(latitude: 49.992, longitude: 8.247),
+		//  8. Baden-Württemberg		( Stuttgart )
+		Coordinate(latitude: 48.775, longitude: 9.182),
+		//  9. Bayern					( München )
+		Coordinate(latitude: 48.135, longitude: 11.581),
+		// 10. Saarland					( Saarbrücken )
+		Coordinate(latitude: 49.234, longitude: 6.994),
+		// 11. Berlin					( Berlin )
+		Coordinate(latitude: 52.520, longitude: 13.404),
+		// 12. Brandenburg				( Potsdam )
+		Coordinate(latitude: 52.396, longitude: 13.058),
+		// 13. Mecklenburg-Vorpommern   ( Schwerin )
+		Coordinate(latitude: 53.635, longitude: 11.401),
+		// 14. Sachsen					( Dresden )
+		Coordinate(latitude: 51.050, longitude: 13.737),
+		// 15. Sachsen-Anhalt			( Magdeburg )
+		Coordinate(latitude: 52.131, longitude: 11.640),
+		// 16. Thüringen				( Erfurt )
+		Coordinate(latitude: 50.984, longitude: 11.029)
+		] }()
+
+	func region() -> Region {
+		let lastUpdate = Date(timeIntervalSince1970: Double(Last_Update) / 1_000)
+		let stat = Statistic(confirmedCount: Confirmed ?? 0, recoveredCount: 0, deathCount: Deaths ?? 0)
+		let report = Report(lastUpdate: lastUpdate, stat: stat)
+
+		let region = Region(level: .province, name: Province_State, parentName: "Germany",
+							location: coordinates[objectID - 1])
 		region.report = report
 
 		return region
