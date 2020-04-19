@@ -217,6 +217,7 @@
 		11E9FDFD244CDB8000455088 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11E9FDFE244CDD2600455088 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11E9FDFF244CE02600455088 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		11E9FE01244CE21900455088 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
@@ -610,6 +611,7 @@
 				nb,
 				tr,
 				"zh-Hant-TW",
+				da,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -786,6 +788,7 @@
 				11E9FDFD244CDB8000455088 /* nb */,
 				11E9FDFE244CDD2600455088 /* tr */,
 				11E9FDFF244CE02600455088 /* zh-Hant-TW */,
+				11E9FE01244CE21900455088 /* da */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

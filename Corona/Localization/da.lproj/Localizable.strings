@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Translation by Per Meldgaard - peme
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Bekræftet";
+"case.active" = "Aktiv";
+"case.recovered" = "Sygdomsfri";
+"case.deaths" = "Dødsfald";
+"region.world" = "Verdensplan";
+"chart.topCountries" = "Hårdest ramte lande";
+"chart.topRegions" = "Hårdest ramte områder";
+"chart.logarithmic" = "Logaritmisk skala";
+"chart.delta" = "Daglige nye smittede";
+"chart.delta.deaths" = "Daglige nye dødsfald";
+"chart.delta.increasing" = "Stigende";
+"chart.delta.decreasing" = "Faldende";
+"chart.trendline" = "Bekræftede smittede siden 100. sag";
+"chart.trendline.deaths" = "Dødsfald siden 10. død";
+"chart.history" = "Tilfælders i smittede";
+"chart.axis.days" = "%d dage";
+"data.updating" = "Opdaterer...";
+"data.updateDate" = "Sidst opdateret:";
+"data.errorTitle" = "Kan ikke opdatere data";
+"data.errorMessage" = "Sørg for, at du er tilsluttet internettet.";
+"data.source" = "Kilde: %@";
+"app.newVersionTitle" = "Ny version tilgængelig";
+"app.newVersionMessage" = "Opdater venligst fra %@";
+"message.cancel" = "Annullerer";
+"message.open" = "Åben";
+"message.ok" = "OK";
+"message.done" = "Færdig";
+"menu.copy" = "Kopier";
+"menu.update" = "Opdater";
+"menu.share" = "Del";
+"menu.search" = "Søg";
+"share.current" = "Coronavirus live-opdatering";
+"share.chartHistory" = "Coronavirus vækstkurve";
