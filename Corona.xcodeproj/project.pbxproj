@@ -225,6 +225,7 @@
 		34C02EBB2431246C00AE80FE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		448DD86C2446A22E0010F32B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		485B28D42449D44700C3AB22 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C31F26A5244C594300281F1F /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC5A29A624400862005C58BB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -604,6 +605,7 @@
 				ko,
 				id,
 				"tr-TR",
+				hu,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -777,6 +779,7 @@
 				FC5A29A624400862005C58BB /* ko */,
 				448DD86C2446A22E0010F32B /* id */,
 				485B28D42449D44700C3AB22 /* tr-TR */,
+				C31F26A5244C594300281F1F /* hu */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,39 @@
+/*
+  Corona Tracker
+  Translation by Ale - github.com/BrotherLouie
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Regisztrált";
+"case.active" = "Aktív";
+"case.recovered" = "Gyógyult";
+"case.deaths" = "Elhunyt";
+"region.world" = "Világszerte";
+"chart.topCountries" = "A leginkább érintett országok";
+"chart.topRegions" = "A leginkább érintett régiók";
+"chart.logarithmic" = "Logaritmikus skála";
+"chart.delta" = "Napi új esetek";
+"chart.delta.deaths" = "Napi új halálozások";
+"chart.delta.increasing" = "Növekedés";
+"chart.delta.decreasing" = "Csökkenés";
+"chart.trendline" = "Regisztrált esetek a 100. eset óta";
+"chart.trendline.deaths" = "Halálozás a 10. halál eset óta";
+"chart.history" = "Esetek alakulása";
+"chart.axis.days" = "%d nap";
+"data.updating" = "Frissítés...";
+"data.updateDate" = "Legutóbbi frissítés:";
+"data.errorTitle" = "Adatok frissítése nem sikerült";
+"data.errorMessage" = "Kérlek ellenőrizd a hálózati kapcsolatot.";
+"data.source" = "Forrás: %@";
+"app.newVersionTitle" = "Új verzió érhető el";
+"app.newVersionMessage" = "Frissítés elérhető innen: %@";
+"message.cancel" = "Mégsem";
+"message.open" = "Megnyitás";
+"message.ok" = "OK";
+"message.done" = "Kész";
+"menu.copy" = "Másolás";
+"menu.update" = "Frissítés";
+"menu.share" = "Megosztás";
+"menu.search" = "Keresés";
+"share.current" = "Koronavírus naprakész adatok";
+"share.chartHistory" = "Koronavírus növekedési grafikon";
