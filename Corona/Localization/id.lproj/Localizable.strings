@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Created by Niko Tidar Lantang Perkasa on 3/22/20.
+  Copyright © 2020 Niko Tidar Lantang Perkasa. All rights reserved.
+*/
+
+"case.confirmed" = "Terkonfirmasi";
+"case.active" = "Positif";
+"case.recovered" = "Sembuh";
+"case.deaths" = "Meninggal";
+"region.world" = "Global";
+"chart.topCountries" = "Negara Dengan Dampak Terbanyak";
+"chart.topRegions" = "Wilayah Dengan Dampak Terbanyak";
+"chart.logarithmic" = "Skala Logaritmik";
+"chart.delta" = "Kasus baru per Hari";
+"chart.delta.deaths" = "Pasien Meninggal per Hari";
+"chart.delta.increasing" = "Meningkat";
+"chart.delta.decreasing" = "Menurun";
+"chart.trendline" = "Kasus Terkonfirmasi Akumulatif";
+"chart.trendline.deaths" = "Pasien Meninggal Akumulatif";
+"chart.history" = "Grafik Pertumbuhan";
+"chart.axis.days" = "%d Hari";
+"data.updating" = "Memperbarui...";
+"data.updateDate" = "Pembaruan Terakhir:";
+"data.errorTitle" = "Tidak dapat memperbarui data";
+"data.errorMessage" = "Pastikan anda terhubung ke internet.";
+"data.source" = "Sumber: %@";
+"app.newVersionTitle" = "Versi baru tersedia";
+"app.newVersionMessage" = "Update dari %@";
+"message.cancel" = "Batal";
+"message.open" = "Buka";
+"message.ok" = "OK";
+"message.done" = "Selesai";
+"menu.copy" = "Salin";
+"menu.update" = "Perbarui";
+"menu.share" = "Bagikan";
+"menu.search" = "Cari";
+"share.current" = "Pembaruan Langsung Coronavirus";
+"share.chartHistory" = "Grafik pertumbuhan";

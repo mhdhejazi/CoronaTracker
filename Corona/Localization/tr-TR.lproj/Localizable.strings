@@ -1,0 +1,39 @@
+/* 
+  Corona Tracker
+  Created by Nesim Tunç on 4/17/20.
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Onaylanmış Vakalar";
+"case.active" = "Aktif";
+"case.recovered" = "İyileşenler";
+"case.deaths" = "Ölümler";
+"region.world" = "Dünya Geneli";
+"chart.topCountries" = "En Çok Etkilenen Ülkeler";
+"chart.topRegions" = "En Çok Etkilenen Bölgeler";
+"chart.logarithmic" = "Logaritmik Ölçek";
+"chart.delta" = "Günlük Yeni Vaka";
+"chart.delta.deaths" = "Günlük Yeni Ölüm";
+"chart.delta.increasing" = "Artıyor";
+"chart.delta.decreasing" = "Düşüyor";
+"chart.trendline" = "100. vakadan beri onaylanan vakalar";
+"chart.trendline.deaths" = "10. ölümden bu yana ölümler";
+"chart.history" = "Vakaların Artışı";
+"chart.axis.days" = "%d Gün";
+"data.updating" = "Güncelleniyor...";
+"data.updateDate" = "En son güncellenme:";
+"data.errorTitle" = "Veri güncellenemedi";
+"data.errorMessage" = "Lütfen internet bağlantınızın olduğundan emin olun.";
+"data.source" = "Kaynak: %@";
+"app.newVersionTitle" = "Yeni sürüm çıktı";
+"app.newVersionMessage" = "Lütfen uygulamayı şuradan güncelleyin %@";
+"message.cancel" = "İptal";
+"message.open" = "Açık";
+"message.ok" = "TAMAM";
+"message.done" = "Tamam";
+"menu.copy" = "Kopyala";
+"menu.update" = "Güncelle";
+"menu.share" = "Paylaş";
+"menu.search" = "Arama";
+"share.current" = "Koronavirüs güncel";
+"share.chartHistory" = "Koronavirüs artış grafiği";
