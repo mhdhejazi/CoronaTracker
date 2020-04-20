@@ -133,7 +133,7 @@ class TrendlineChartView: BaseLineChartView {
 
 		if regions.count < 2 {
 			regions = DataManager.shared.topCountries.filter { $0.timeSeries != nil }
-			if let region = region, region.isCountry, !regions.contains(region) {
+			if let region = region, region.isCountry, !regions.contains(region), region.timeSeries != nil {
 				regions.removeLast()
 				regions.append(region)
 			}
