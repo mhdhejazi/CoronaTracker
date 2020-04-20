@@ -22,9 +22,7 @@ extension Coordinate {
 		let center = Coordinate(latitude: totals.latitude / Double(coordinates.count),
 								longitude: totals.longitude / Double(coordinates.count))
 
-		return coordinates.min {
-			center.distance(from: $0) < center.distance(from: $1)
-		}!
+		return center
 	}
 
 	public var isZero: Bool { latitude == 0 && longitude == 0 }

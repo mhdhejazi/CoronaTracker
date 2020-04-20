@@ -88,6 +88,10 @@
 		11DCD56D243F8EEC006CE8ED /* AppToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD56C243F8EEC006CE8ED /* AppToolbar.swift */; };
 		11DCD56F243FAEBB006CE8ED /* AppMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD56E243FAEBB006CE8ED /* AppMenu.swift */; };
 		11DE76882431339400381C0A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DE76872431339400381C0A /* ChartView.swift */; };
+		11E9FE0A244DB2E200455088 /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE08244DB2E100455088 /* BaseDataService.swift */; };
+		11E9FE0B244DB2E200455088 /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE08244DB2E100455088 /* BaseDataService.swift */; };
+		11E9FE0C244DB2E200455088 /* RKIDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE09244DB2E100455088 /* RKIDataService.swift */; };
+		11E9FE0D244DB2E200455088 /* RKIDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE09244DB2E100455088 /* RKIDataService.swift */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopChartView.swift */; };
@@ -218,6 +222,8 @@
 		11E9FDFE244CDD2600455088 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11E9FDFF244CE02600455088 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		11E9FE01244CE21900455088 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		11E9FE08244DB2E100455088 /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
+		11E9FE09244DB2E100455088 /* RKIDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKIDataService.swift; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
@@ -306,8 +312,10 @@
 			isa = PBXGroup;
 			children = (
 				11518696241FAECB00EBC83E /* DataService.swift */,
+				11E9FE08244DB2E100455088 /* BaseDataService.swift */,
 				11518697241FAECB00EBC83E /* JHUWebDataService.swift */,
 				11518698241FAECB00EBC83E /* JHURepoDataService.swift */,
+				11E9FE09244DB2E100455088 /* RKIDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -728,6 +736,7 @@
 				115186A2241FAFCA00EBC83E /* Statistic.swift in Sources */,
 				116EC0A82410DF48006E4559 /* RegionPanelController.swift in Sources */,
 				1124F64C24238C600002641D /* Menu.swift in Sources */,
+				11E9FE0C244DB2E200455088 /* RKIDataService.swift in Sources */,
 				115186AB241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				1162D12C240D05F600647002 /* AppDelegate.swift in Sources */,
 				1186BC5D24291D4000097E9E /* DeltaChartView.swift in Sources */,
@@ -736,6 +745,7 @@
 				11DE76882431339400381C0A /* ChartView.swift in Sources */,
 				11C6D38B243E47BE003AC870 /* StatsCell.swift in Sources */,
 				11C6D38D243E47EF003AC870 /* ChartCell.swift in Sources */,
+				11E9FE0A244DB2E200455088 /* BaseDataService.swift in Sources */,
 				1162D156240F934100647002 /* BalloonMarker.swift in Sources */,
 				11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */,
 			);
@@ -745,6 +755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E9FE0D244DB2E200455088 /* RKIDataService.swift in Sources */,
 				115186AC241FAFCE00EBC83E /* DataService.swift in Sources */,
 				115186AE241FAFCE00EBC83E /* JHURepoDataService.swift in Sources */,
 				117C84EB2428119600688459 /* Strings.swift in Sources */,
@@ -755,6 +766,7 @@
 				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
 				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,
 				117C84E92428119600688459 /* Assets.swift in Sources */,
+				11E9FE0B244DB2E200455088 /* BaseDataService.swift in Sources */,
 				115186BA242005E900EBC83E /* SystemColor.swift in Sources */,
 				115186A4241FAFCA00EBC83E /* Report.swift in Sources */,
 				115186A6241FAFCA00EBC83E /* Coordinate.swift in Sources */,

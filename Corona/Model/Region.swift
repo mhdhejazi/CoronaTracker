@@ -16,12 +16,7 @@ public class Region: Codable {
 	public var timeSeries: TimeSeries?
 	public lazy var dailyChange: Change? = { generateDailyChange() }()
 
-	public var subRegions: [Region] = [] {
-		didSet {
-			report = Report.join(subReports: subRegions.compactMap { $0.report })
-			timeSeries = TimeSeries.join(subSerieses: subRegions.compactMap { $0.timeSeries })
-		}
-	}
+	public var subRegions: [Region] = []
 
 	init(level: Level, name: String, parentName: String?, location: Coordinate) {
 		self.level = level
@@ -85,12 +80,32 @@ extension Region {
 		return "\(name), \(localizedParentName)"
 	}
 
-	public func find(region: Region) -> Region? {
-		if region == self {
+	public func updateFromSubRegions() {
+		report = Report.join(subReports: subRegions.compactMap { $0.report })
+		timeSeries = TimeSeries.join(subSerieses: subRegions.compactMap { $0.timeSeries })
+	}
+
+	public func find(subRegion: Region) -> Region? {
+		if subRegion == self {
 			return self
 		}
 
-		return subRegions.first { $0 == region }
+		return subRegions.first { $0 == subRegion }
+	}
+
+	public func add(subRegions: [Region], addSubData: Bool) {
+		self.subRegions.append(contentsOf: subRegions)
+
+		guard addSubData else { return }
+
+		if let currentReport = report {
+			self.report = Report.join(
+				subReports: [currentReport] + subRegions.compactMap { $0.report })
+		}
+		if let currentTimeSeries = timeSeries {
+			self.timeSeries = TimeSeries.join(
+				subSerieses: [currentTimeSeries] + subRegions.compactMap { $0.timeSeries })
+		}
 	}
 }
 
@@ -100,12 +115,16 @@ extension Region {
 	public static func join(subRegions: [Region]) -> Region? {
 		guard let firstRegion = subRegions.first else { return nil }
 
+		/// Set the location to the center point between the two most affected sub regions
+		let location = Coordinate.center(of: subRegions.sorted().suffix(2).map { $0.location })
+
 		let region = Region(level: firstRegion.level.parent,
 							name: firstRegion.parentName ?? "N/A",
 							parentName: nil,
-							location: (subRegions.max() ?? firstRegion).location)
+							location: location)
 
 		region.subRegions = subRegions
+		region.updateFromSubRegions()
 		return region
 	}
 }

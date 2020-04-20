@@ -70,22 +70,15 @@ extension DataManager {
 				return
 			}
 
-			/// Don't download the time serieses if they are not old enough.
-			/// Currently, they are updated from the data source every 24 hours.
-//			if self.world.timeSeries?.lastUpdate?.ageDays ?? 0 < 2 {
-//				self.update(regions: regions, timeSeriesRegions: self.regions(of: .province), completion: completion)
-//				return
-//			}
-
-			JHUWebDataService.shared.fetchGermanReports { bundeslaender, _ in
-				regions.removeAll { $0.name == "Germany" }
+			/// Add Germany data
+			RKIDataService.shared.fetchReports { bundeslaender, _ in
 				if let bundeslaender = bundeslaender {
 					regions += bundeslaender
 				}
-			}
 
-			JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
-				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
+				JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
+					self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
+				}
 			}
 		}
 	}
@@ -99,9 +92,18 @@ extension DataManager {
 		var countries = [Region]()
 		countries.append(contentsOf: regions.filter({ !$0.isProvince }))
 		let provinceRegions = regions.filter({ $0.isProvince })
-		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { value in
-			if let countryRegion = Region.join(subRegions: value) {
-				countries.append(countryRegion)
+		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { subRegions in
+			/// If there is already a region for this country, just add the sub regions
+			if let existingCountry = countries.first(where: { $0.name == subRegions.first?.parentName }) {
+				/// Data for Germany comes from a different source, so don't accumulate data
+				let addSubData = (existingCountry.name != "Germany")
+				existingCountry.add(subRegions: subRegions, addSubData: addSubData)
+				return
+			}
+
+			/// Otherwise, create a new country region
+			if let newCountry = Region.join(subRegions: subRegions) {
+				countries.append(newCountry)
 			}
 		}
 
@@ -110,14 +112,10 @@ extension DataManager {
 			countries.first { $0.name == "US" }?.timeSeries = timeSeriesRegion.timeSeries
 		}
 
-		/// Update Germany time series
-		if let timeSeriesRegion = timeSeriesRegions?.first(where: { $0.name == "Germany" }) {
-			countries.first { $0.name == "Germany" }?.timeSeries = timeSeriesRegion.timeSeries
-		}
-
 		/// World
 		let worldRegion = Region.world
 		worldRegion.subRegions = countries
+		worldRegion.updateFromSubRegions()
 
 		self.world = worldRegion
 
