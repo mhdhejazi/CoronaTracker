@@ -45,7 +45,7 @@ public class JHUWebDataService: BaseDataService, DataService {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
-			let regions = result.features.map { $0.attributes.region() }
+			let regions = result.features.map { $0.attributes.region }
 			completion(regions, nil)
 		} catch {
 			debugPrint("Unexpected error:", error)
@@ -121,7 +121,7 @@ private struct ReportAttributes: Decodable {
 	let deaths: Int?
 	let recovered: Int?
 
-	func region() -> Region {
+	var region: Region {
 		let location = Coordinate(latitude: latitude ?? 0, longitude: longitude ?? 0)
 		let lastUpdate = Date(timeIntervalSince1970: Double(lastUpdateTimestamp) / 1_000)
 		let stat = Statistic(confirmedCount: confirmed ?? 0, recoveredCount: recovered ?? 0, deathCount: deaths ?? 0)

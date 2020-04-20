@@ -14,7 +14,7 @@ class RegionAnnotationView: MKAnnotationView {
 		countLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		countLabel.backgroundColor = .clear
 		countLabel.font = .boldSystemFont(ofSize: 13)
-		countLabel.textColor = .white
+		countLabel.textColor = UIColor.white.withAlphaComponent(0.8)
 		countLabel.textAlignment = .center
 		countLabel.adjustsFontSizeToFitWidth = true
 		countLabel.minimumScaleFactor = 0.5
@@ -25,7 +25,11 @@ class RegionAnnotationView: MKAnnotationView {
 
 	private var radius: CGFloat {
 		let value = CGFloat(number ?? 0)
-		return 10 + log( 1 + value) * CGFloat(mapZoomLevel - 2.2)
+		var radius = log( 1 + value) * CGFloat(mapZoomLevel - 2.2)
+		if isProvinceRegion {
+			radius *= (mapZoomLevel - 2.2) * 0.25
+		}
+		return 10 + radius
 	}
 
 	private var color: UIColor {
@@ -44,6 +48,9 @@ class RegionAnnotationView: MKAnnotationView {
 	}
 
 	var region: Region? { (annotation as? RegionAnnotation)?.region }
+	var isProvinceRegion: Bool {
+		region?.isProvince == true
+	}
 
 	var mode: Statistic.Kind { (annotation as? RegionAnnotation)?.mode ?? .confirmed }
 
@@ -80,6 +87,9 @@ class RegionAnnotationView: MKAnnotationView {
 			configure()
 		}
 	}
+	var shouldShowLabel: Bool {
+		round(self.mapZoomLevel) > (isProvinceRegion ? 7 : 4)
+	}
 
 	override var annotation: MKAnnotation? {
 		didSet {
@@ -91,6 +101,10 @@ class RegionAnnotationView: MKAnnotationView {
 
 			/// Ensure that the report text is set each time the annotation is updated
 			detailAccessoryView?.detailsLabel?.attributedText = detailsString
+
+			if #available(iOS 11.0, *) {
+				displayPriority = isProvinceRegion ? .defaultLow : .required
+			}
 		}
 	}
 
@@ -126,27 +140,19 @@ class RegionAnnotationView: MKAnnotationView {
 	}
 
 	func configure() {
-		let isProvince = region?.isProvince == true
-
-		if round(self.mapZoomLevel) > 4 {
+		if shouldShowLabel {
 			self.countLabel.text = number?.groupingFormatted
-			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
+			let fontSize = 13 * max(1, log(self.mapZoomLevel - 2))
+			self.countLabel.font = .boldSystemFont(ofSize: fontSize * (isProvinceRegion ? mapZoomLevel * 0.07 : 1))
 			self.countLabel.alpha = 1
 		} else {
 			self.countLabel.alpha = 0
 		}
 
-		let labelColor = UIColor.dynamicColor(lightThemeColor: self.color,
-											  darkThemeColor: UIColor.white.withAlphaComponent(0.8))
+		let diameter = self.radius * 2 * (isProvinceRegion ? 0.3 : 1)
+		self.frame.size = CGSize(width: diameter, height: diameter)
 
-		self.countLabel.textColor = isProvince ? labelColor : .white
-
-		let diameter = self.radius * 2
-		self.frame.size = CGSize(width: diameter, height: diameter / (isProvince ? 2 : 1))
-
-		self.backgroundColor = isProvince ? SystemColor.tertiarySystemBackground.withAlphaComponent(0.8) : self.color
-		self.layer.borderColor = isProvince ? self.color.cgColor : nil
-		self.layer.borderWidth = isProvince ? diameter / 30 : 0
+		self.backgroundColor = self.color
 		self.layer.cornerRadius = self.frame.height / 2
 	}
 

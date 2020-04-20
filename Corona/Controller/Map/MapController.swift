@@ -21,7 +21,7 @@ class MapController: UIViewController {
 	@IBOutlet private var effectViewOptions: UIVisualEffectView!
 	@IBOutlet private var buttonMode: UIButton!
 
-	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 5 : 4 }
+	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 6 : 5 }
 	private var allAnnotations: [RegionAnnotation] = []
 	private var countryAnnotations: [RegionAnnotation] = []
 	private var currentAnnotations: [RegionAnnotation] = []

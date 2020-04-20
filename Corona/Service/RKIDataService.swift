@@ -28,7 +28,7 @@ public class RKIDataService: BaseDataService, DataService {
 		do {
 			let decoder = JSONDecoder()
 			let result = try decoder.decode(ReportsCallResult.self, from: data)
-			let regions = result.features.map { $0.attributes.region() }
+			let regions = result.features.map { $0.attributes.region }
 			completion(regions, nil)
 		} catch {
 			debugPrint("Unexpected error:", error)
@@ -108,7 +108,7 @@ private struct ReportAttributes: Decodable {
 		Coordinate(latitude: 50.984, longitude: 11.029)
 	]
 
-	func region() -> Region {
+	var region: Region {
 		let lastUpdate = Date(timeIntervalSince1970: Double(lastUpdateTimestamp) / 1_000)
 		let stat = Statistic(confirmedCount: confirmed ?? 0, recoveredCount: 0, deathCount: deaths ?? 0)
 		let report = Report(lastUpdate: lastUpdate, stat: stat)
