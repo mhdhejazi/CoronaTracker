@@ -43,11 +43,11 @@ extension RegionListController: UIGestureRecognizerDelegate {
 
 extension RegionListController {
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
+		1
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return regions.count
+		regions.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

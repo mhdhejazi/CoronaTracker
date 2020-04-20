@@ -20,7 +20,7 @@ class ChartController: UIViewController {
 	var sourceChartView: RegionChartView!
 
 	override var keyCommands: [UIKeyCommand]? {
-		return [UIKeyCommand(input: UIKeyCommand.inputEscape,
+		[UIKeyCommand(input: UIKeyCommand.inputEscape,
 							 modifierFlags: [],
 							 action: #selector(doneButtonTapped(_:)))]
 	}

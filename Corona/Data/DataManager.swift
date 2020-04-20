@@ -65,7 +65,7 @@ public class DataManager {
 extension DataManager {
 	public func download(completion: @escaping (Bool) -> Void) {
 		JHUWebDataService.shared.fetchReports { regions, _ in
-			guard let regions = regions else {
+			guard var regions = regions else {
 				completion(false)
 				return
 			}
@@ -76,6 +76,13 @@ extension DataManager {
 //				self.update(regions: regions, timeSeriesRegions: self.regions(of: .province), completion: completion)
 //				return
 //			}
+
+			JHUWebDataService.shared.fetchGermanReports { bundeslaender, _ in
+				regions.removeAll { $0.name == "Germany" }
+				if let bundeslaender = bundeslaender {
+					regions += bundeslaender
+				}
+			}
 
 			JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
 				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
@@ -101,6 +108,11 @@ extension DataManager {
 		/// Update US time series
 		if let timeSeriesRegion = timeSeriesRegions?.first(where: { $0.name == "US" }) {
 			countries.first { $0.name == "US" }?.timeSeries = timeSeriesRegion.timeSeries
+		}
+
+		/// Update Germany time series
+		if let timeSeriesRegion = timeSeriesRegions?.first(where: { $0.name == "Germany" }) {
+			countries.first { $0.name == "Germany" }?.timeSeries = timeSeriesRegion.timeSeries
 		}
 
 		/// World
