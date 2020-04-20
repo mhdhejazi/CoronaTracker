@@ -92,6 +92,8 @@
 		11E9FE0B244DB2E200455088 /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE08244DB2E100455088 /* BaseDataService.swift */; };
 		11E9FE0C244DB2E200455088 /* RKIDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE09244DB2E100455088 /* RKIDataService.swift */; };
 		11E9FE0D244DB2E200455088 /* RKIDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE09244DB2E100455088 /* RKIDataService.swift */; };
+		11E9FE0F244DC24C00455088 /* BingDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE0E244DC05400455088 /* BingDataService.swift */; };
+		11E9FE10244DC24D00455088 /* BingDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E9FE0E244DC05400455088 /* BingDataService.swift */; };
 		11EB2C9D2413F7E9001769B2 /* CurrentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */; };
 		11EB2C9F2413FFE1001769B2 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */; };
 		11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EB2CA0241400EF001769B2 /* TopChartView.swift */; };
@@ -224,6 +226,7 @@
 		11E9FE01244CE21900455088 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		11E9FE08244DB2E100455088 /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
 		11E9FE09244DB2E100455088 /* RKIDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKIDataService.swift; sourceTree = "<group>"; };
+		11E9FE0E244DC05400455088 /* BingDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingDataService.swift; sourceTree = "<group>"; };
 		11EB2C9C2413F7E9001769B2 /* CurrentChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentChartView.swift; sourceTree = "<group>"; };
 		11EB2C9E2413FFE1001769B2 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		11EB2CA0241400EF001769B2 /* TopChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartView.swift; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 				11518697241FAECB00EBC83E /* JHUWebDataService.swift */,
 				11518698241FAECB00EBC83E /* JHURepoDataService.swift */,
 				11E9FE09244DB2E100455088 /* RKIDataService.swift */,
+				11E9FE0E244DC05400455088 /* BingDataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -702,6 +706,7 @@
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11C6D394243E48C3003AC870 /* AuthorInfoCell.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
+				11E9FE0F244DC24C00455088 /* BingDataService.swift in Sources */,
 				117C84E82428119600688459 /* Assets.swift in Sources */,
 				11C6D37E243E44D4003AC870 /* Charts+Extensions.swift in Sources */,
 				1186BC72242B64FE00097E9E /* RegionDataCell.swift in Sources */,
@@ -762,6 +767,7 @@
 				344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */,
 				115186A5241FAFCA00EBC83E /* TimeSeries.swift in Sources */,
 				1151869E241FAFC500EBC83E /* DataManager.swift in Sources */,
+				11E9FE10244DC24D00455088 /* BingDataService.swift in Sources */,
 				115186A8241FAFCA00EBC83E /* Region.swift in Sources */,
 				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
 				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,

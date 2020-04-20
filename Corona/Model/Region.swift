@@ -11,6 +11,7 @@ public class Region: Codable {
 	public let name: String
 	public let parentName: String? /// Country name
 	public let location: Coordinate
+	public let isoCode: String?
 
 	public var order: Int = Int.max
 	public var report: Report?
@@ -24,6 +25,12 @@ public class Region: Codable {
 		self.name = name
 		self.parentName = parentName
 		self.location = location
+
+		if level == .country {
+			self.isoCode = Locale.isoCode(from: name)
+		} else {
+			self.isoCode = nil
+		}
 	}
 
 	private func generateDailyChange() -> Change? {
@@ -40,9 +47,19 @@ public class Region: Codable {
 			lastDate.ageDays <= 3,
 			let lastStat = timeSeries.series[lastDate] else { return nil }
 
+		let nextToLastDate = dates.popLast()
+		var nextToLastStat: Statistic?
+		if let date = nextToLastDate {
+			nextToLastStat = timeSeries.series[date]
+		}
+
+		let confirmedDeltaToday = todayReport.stat.confirmedCount - lastStat.confirmedCount
+		let confirmedDeltaYesterday = lastStat.confirmedCount - (nextToLastStat?.confirmedCount ?? lastStat.confirmedCount)
+
 		yesterdayStat = lastStat
 
-		if todayReport.stat.confirmedCount == lastStat.confirmedCount {
+		/// If the delta today is less than 5% of yesterday's, then today's data is most likely incomplete
+		if Double(confirmedDeltaToday) < Double(confirmedDeltaYesterday) * 0.05 {
 			guard let nextToLastDate = dates.popLast(),
 				let nextToLastStat = timeSeries.series[nextToLastDate] else { return nil }
 
@@ -94,8 +111,21 @@ extension Region {
 		return subRegions.first { $0 == subRegion }
 	}
 
+	public func find(subRegionCode: String) -> Region? {
+		if subRegionCode == self.isoCode {
+			return self
+		}
+
+		return subRegions.first { $0.isoCode == subRegionCode }
+	}
+
+	public func find(subRegionName: String) -> Region? {
+		return subRegions.first { $0.name == subRegionName }
+	}
+
 	public func add(subRegions: [Region], addSubData: Bool) {
-		self.subRegions.append(contentsOf: subRegions)
+		let newSubRegions = subRegions.filter { self.find(subRegionName: $0.name) == nil }
+		self.subRegions.append(contentsOf: newSubRegions)
 
 		guard addSubData else { return }
 

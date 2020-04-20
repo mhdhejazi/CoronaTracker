@@ -31,3 +31,7 @@ custom_rules:
     severity: warning
 
 indentation: tabs
+
+identifier_name:
+  excluded:
+    - id

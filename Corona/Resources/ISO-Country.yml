@@ -37,10 +37,15 @@ ISO-CountryNames:
   - Bahrain
   BJ:
   - Benin
+  BL:
+  - Saint Barthélemy
   BN:
   - Brunei
   BO:
   - Bolivia
+  BQ:
+  - Saba
+  - Bonaire
   BR:
   - Brazil
   BS:
@@ -54,10 +59,12 @@ ISO-CountryNames:
   - Canada
   CD:
   - Congo (Kinshasa)
+  - Congo (DRC)
   CF:
   - Central African Republic
   CG:
   - Congo (Brazzaville)
+  - Congo
   CH:
   - Switzerland
   CI:
@@ -68,6 +75,7 @@ ISO-CountryNames:
   - Cameroon
   CN:
   - China
+  - China (mainland)
   CO:
   - Colombia
   CR:
@@ -134,6 +142,8 @@ ISO-CountryNames:
   - Guatemala
   GY:
   - Guyana
+  HK:
+  - Hong Kong SAR
   HN:
   - Honduras
   HR:
@@ -200,12 +210,18 @@ ISO-CountryNames:
   - Moldova
   ME:
   - Montenegro
+  MF:
+  - Saint Martin
   MG:
   - Madagascar
   MK:
   - North Macedonia
+  MM:
+  - Myanmar
   MN:
   - Mongolia
+  MO:
+  - Macao SAR
   MQ:
   - Martinique
   MR:
@@ -252,6 +268,10 @@ ISO-CountryNames:
   - Pakistan
   PL:
   - Poland
+  PM:
+  - Saint Pierre and Miquelon
+  PS:
+  - West Bank
   PT:
   - Portugal
   PY:
@@ -288,12 +308,16 @@ ISO-CountryNames:
   - Somalia
   SR:
   - Suriname
+  ST:
+  - São Tomé and Príncipe
   SV:
   - El Salvador
   SY:
   - Syria
   SZ:
   - Eswatini
+  TC:
+  - Turks and Caicos Islands
   TD:
   - Chad
   TG:
@@ -339,4 +363,4 @@ ISO-CountryNames:
   - Zambia
   ZW:
   - Zimbabwe
-
+  

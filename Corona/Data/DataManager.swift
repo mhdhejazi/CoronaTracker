@@ -64,26 +64,76 @@ public class DataManager {
 
 extension DataManager {
 	public func download(completion: @escaping (Bool) -> Void) {
+		let dispatchGroup = DispatchGroup()
+		var result: (jhu: [Region]?, bing: [Region]?, rki: [Region]?) = (nil, nil, nil)
+
+		/// Main data is from JHU
+		dispatchGroup.enter()
 		JHUWebDataService.shared.fetchReports { regions, _ in
-			guard var regions = regions else {
+			guard let regions = regions else {
+				dispatchGroup.leave()
 				completion(false)
 				return
 			}
 
-			/// Add Germany data
-			RKIDataService.shared.fetchReports { bundeslaender, _ in
-				if let bundeslaender = bundeslaender {
-					regions += bundeslaender
-				}
+			JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
+				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions)
+				result.jhu = regions
+				dispatchGroup.leave()
+			}
+		}
 
-				JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
-					self.update(regions: regions, timeSeriesRegions: timeSeriesRegions, completion: completion)
+		/// Add more data from Bing
+		dispatchGroup.enter()
+		BingDataService.shared.fetchReports { regions, _ in
+			guard let regions = regions else {
+				dispatchGroup.leave()
+				return
+			}
+
+			result.bing = regions
+			dispatchGroup.leave()
+		}
+
+		/// Add data for Germany
+		dispatchGroup.enter()
+		RKIDataService.shared.fetchReports { regions, _ in
+			guard let regions = regions else {
+				dispatchGroup.leave()
+				return
+			}
+
+			result.rki = regions
+			dispatchGroup.leave()
+		}
+
+		dispatchGroup.notify(queue: .global(qos: .default)) {
+			if result.jhu == nil {
+				return
+			}
+
+			/// Data from Bing
+			if let regions = result.bing {
+				for region in regions {
+					if let regionCode = Locale.isoCode(from: region.name),
+						let existingRegion = self.world.find(subRegionCode: regionCode) {
+						existingRegion.add(subRegions: region.subRegions, addSubData: false)
+					}
 				}
 			}
+
+			/// Data for Germany comes from a different source, so don't accumulate data
+			if let subRegions = result.rki, let region = self.world.find(subRegionCode: "DE") {
+				region.subRegions = subRegions
+			}
+
+			try? Disk.save(self.world, to: .caches, as: Self.dataFileName)
+
+			completion(true)
 		}
 	}
 
-	private func update(regions: [Region], timeSeriesRegions: [Region]?, completion: @escaping (Bool) -> Void) {
+	private func update(regions: [Region], timeSeriesRegions: [Region]?) {
 		timeSeriesRegions?.forEach { timeSeriesRegion in
 			regions.first { $0 == timeSeriesRegion }?.timeSeries = timeSeriesRegion.timeSeries
 		}
@@ -95,9 +145,7 @@ extension DataManager {
 		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { subRegions in
 			/// If there is already a region for this country, just add the sub regions
 			if let existingCountry = countries.first(where: { $0.name == subRegions.first?.parentName }) {
-				/// Data for Germany comes from a different source, so don't accumulate data
-				let addSubData = (existingCountry.name != "Germany")
-				existingCountry.add(subRegions: subRegions, addSubData: addSubData)
+				existingCountry.add(subRegions: subRegions, addSubData: true)
 				return
 			}
 
@@ -123,9 +171,5 @@ extension DataManager {
 		for index in sortedCountries.indices {
 			sortedCountries[index].order = index
 		}
-
-		try? Disk.save(self.world, to: .caches, as: Self.dataFileName)
-
-		completion(true)
 	}
 }

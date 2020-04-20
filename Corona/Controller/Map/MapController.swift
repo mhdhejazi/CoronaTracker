@@ -21,7 +21,7 @@ class MapController: UIViewController {
 	@IBOutlet private var effectViewOptions: UIVisualEffectView!
 	@IBOutlet private var buttonMode: UIButton!
 
-	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 6 : 5 }
+	private var cityZoomLevel: CGFloat { 5 }
 	private var allAnnotations: [RegionAnnotation] = []
 
 	private var panelController: FloatingPanelController!
@@ -286,15 +286,11 @@ extension MapController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 		if mapView.zoomLevel > cityZoomLevel {
 			if mapView.annotations.count != allAnnotations.count {
-				mapView.superview?.transition {
-					mapView.addAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
-				}
+				mapView.addAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
 			}
 		} else {
 			if mapView.annotations.count == allAnnotations.count {
-				mapView.superview?.transition {
-					mapView.removeAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
-				}
+				mapView.removeAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
 			}
 		}
 	}
