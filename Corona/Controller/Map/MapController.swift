@@ -149,7 +149,7 @@ class MapController: UIViewController {
 	}
 
 	private func update() {
-		allAnnotations = DataManager.shared.regions(of: .province)
+		allAnnotations = DataManager.shared.allRegions()
 			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
 			.map({ RegionAnnotation(region: $0, mode: mode) })
 

@@ -126,6 +126,8 @@ class RegionAnnotationView: MKAnnotationView {
 	}
 
 	func configure() {
+		let isProvince = region?.isProvince == true
+
 		if round(self.mapZoomLevel) > 4 {
 			self.countLabel.text = number?.groupingFormatted
 			self.countLabel.font = .boldSystemFont(ofSize: 13 * max(1, log(self.mapZoomLevel - 2)))
@@ -135,10 +137,13 @@ class RegionAnnotationView: MKAnnotationView {
 		}
 
 		let diameter = self.radius * 2
-		self.frame.size = CGSize(width: diameter, height: diameter)
+		self.frame.size = CGSize(width: diameter, height: diameter / (isProvince ? 2 : 1))
 
-		self.backgroundColor = self.color
-		self.layer.cornerRadius = self.frame.width / 2
+		self.countLabel.textColor = isProvince ? self.color : .white
+		self.backgroundColor = isProvince ? UIColor.white.withAlphaComponent(0.8) : self.color
+		self.layer.borderColor = isProvince ? self.color.cgColor : nil
+		self.layer.borderWidth = isProvince ? diameter / 30 : 0
+		self.layer.cornerRadius = self.frame.height / 2
 	}
 
 	override func layoutSubviews() {
