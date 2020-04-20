@@ -23,8 +23,6 @@ class MapController: UIViewController {
 
 	private var cityZoomLevel: CGFloat { (view.bounds.width > 1_000) ? 6 : 5 }
 	private var allAnnotations: [RegionAnnotation] = []
-	private var countryAnnotations: [RegionAnnotation] = []
-	private var currentAnnotations: [RegionAnnotation] = []
 
 	private var panelController: FloatingPanelController!
 	private var regionPanelController: RegionPanelController!
@@ -139,7 +137,11 @@ class MapController: UIViewController {
 	}
 
 	func selectAnnotation(for region: Region, onlyIfVisible: Bool = false) {
-		guard let annotation = self.currentAnnotations.first(where: { $0.region == region }) else { return }
+		guard let annotation = mapView.annotations.first(where: { annotation in
+			(annotation as? RegionAnnotation)?.region == region
+		}) else {
+			return
+		}
 
 		if onlyIfVisible, !mapView.visibleMapRect.contains(MKMapPoint(annotation.coordinate)) {
 			return
@@ -153,15 +155,13 @@ class MapController: UIViewController {
 			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
 			.map({ RegionAnnotation(region: $0, mode: mode) })
 
-		countryAnnotations = DataManager.shared.regions(of: .country)
-			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
-			.map({ RegionAnnotation(region: $0, mode: mode) })
-
-		currentAnnotations = mapView.zoomLevel > cityZoomLevel ? allAnnotations : countryAnnotations
+		let currentAnnotations = allAnnotations.filter { annotation in
+			annotation.region.isCountry || mapView.zoomLevel > cityZoomLevel
+		}
 
 		mapView.superview?.transition {
 			self.mapView.removeAnnotations(self.mapView.annotations)
-			self.mapView.addAnnotations(self.currentAnnotations)
+			self.mapView.addAnnotations(currentAnnotations)
 		}
 
 		regionPanelController.regionDataController.region = nil
@@ -276,7 +276,7 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-		for annotation in currentAnnotations {
+		for annotation in allAnnotations {
 			if let view = mapView.view(for: annotation) as? RegionAnnotationView {
 				view.mapZoomLevel = mapView.zoomLevel
 			}
@@ -284,30 +284,18 @@ extension MapController: MKMapViewDelegate {
 	}
 
 	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		var annotationToSelect: MKAnnotation?
-
 		if mapView.zoomLevel > cityZoomLevel {
-			if currentAnnotations.count != allAnnotations.count {
+			if mapView.annotations.count != allAnnotations.count {
 				mapView.superview?.transition {
-					annotationToSelect = mapView.selectedAnnotations.first
-					mapView.removeAnnotations(mapView.annotations)
-					self.currentAnnotations = self.allAnnotations
-					mapView.addAnnotations(self.currentAnnotations)
+					mapView.addAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
 				}
 			}
 		} else {
-			if currentAnnotations.count != countryAnnotations.count {
+			if mapView.annotations.count == allAnnotations.count {
 				mapView.superview?.transition {
-					annotationToSelect = mapView.selectedAnnotations.first
-					mapView.removeAnnotations(mapView.annotations)
-					self.currentAnnotations = self.countryAnnotations
-					mapView.addAnnotations(self.currentAnnotations)
+					mapView.removeAnnotations(self.allAnnotations.filter { !$0.region.isCountry })
 				}
 			}
-		}
-
-		if let region = (annotationToSelect as? RegionAnnotation)?.region {
-			selectAnnotation(for: region, onlyIfVisible: true)
 		}
 	}
 

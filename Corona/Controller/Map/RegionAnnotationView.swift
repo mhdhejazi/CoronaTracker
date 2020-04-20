@@ -103,7 +103,12 @@ class RegionAnnotationView: MKAnnotationView {
 			detailAccessoryView?.detailsLabel?.attributedText = detailsString
 
 			if #available(iOS 11.0, *) {
-				displayPriority = isProvinceRegion ? .defaultLow : .required
+				/// Give provinces a low display priority
+				/// Give the top 30 countries a required priority
+				/// Give the others a high priority
+				displayPriority = isProvinceRegion
+					? .defaultLow
+					: ((region?.order ?? Int.max) < 30 ? .required : .defaultHigh)
 			}
 		}
 	}

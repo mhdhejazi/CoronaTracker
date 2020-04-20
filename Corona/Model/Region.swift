@@ -12,6 +12,7 @@ public class Region: Codable {
 	public let parentName: String? /// Country name
 	public let location: Coordinate
 
+	public var order: Int = Int.max
 	public var report: Report?
 	public var timeSeries: TimeSeries?
 	public lazy var dailyChange: Change? = { generateDailyChange() }()

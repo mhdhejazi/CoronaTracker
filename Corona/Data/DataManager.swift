@@ -119,6 +119,11 @@ extension DataManager {
 
 		self.world = worldRegion
 
+		let sortedCountries: [Region] = countries.lazy.sorted().reversed()
+		for index in sortedCountries.indices {
+			sortedCountries[index].order = index
+		}
+
 		try? Disk.save(self.world, to: .caches, as: Self.dataFileName)
 
 		completion(true)
