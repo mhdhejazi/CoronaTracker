@@ -136,11 +136,15 @@ class RegionAnnotationView: MKAnnotationView {
 			self.countLabel.alpha = 0
 		}
 
+		let labelColor = UIColor.dynamicColor(lightThemeColor: self.color,
+											  darkThemeColor: UIColor.white.withAlphaComponent(0.8))
+
+		self.countLabel.textColor = isProvince ? labelColor : .white
+
 		let diameter = self.radius * 2
 		self.frame.size = CGSize(width: diameter, height: diameter / (isProvince ? 2 : 1))
 
-		self.countLabel.textColor = isProvince ? self.color : .white
-		self.backgroundColor = isProvince ? UIColor.white.withAlphaComponent(0.8) : self.color
+		self.backgroundColor = isProvince ? SystemColor.tertiarySystemBackground.withAlphaComponent(0.8) : self.color
 		self.layer.borderColor = isProvince ? self.color.cgColor : nil
 		self.layer.borderWidth = isProvince ? diameter / 30 : 0
 		self.layer.cornerRadius = self.frame.height / 2
