@@ -15,6 +15,19 @@ class DeltaChartView: BaseBarChartView {
 		[.confirmed, .deaths]
 	}
 
+	override var extraMenuItems: [MenuItem] {
+		[MenuItem.option(title: L10n.Chart.logarithmic, selected: isLogarithmic, action: {
+			self.isLogarithmic.toggle()
+		})]
+	}
+
+	var isLogarithmic = false {
+		didSet {
+			self.chartView.clear()
+			self.update(region: region, animated: true)
+		}
+	}
+
 	override func initializeView() {
 		super.initializeView()
 
@@ -22,12 +35,26 @@ class DeltaChartView: BaseBarChartView {
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
 		chartView.leftAxis.valueFormatter = DefaultAxisValueFormatter { value, _ in
-			value.kmFormatted
+			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
-		let marker = SimpleMarkerView(chartView: chartView)
+		let marker = SimpleMarkerView(chartView: chartView) { entry, _ in
+			let xValue = self.chartView.xAxis.valueFormatter?.stringForValue(entry.x, axis: nil) ?? "-"
+			if let value = entry.data as? Double {
+				return "\(xValue): \(value.kmFormatted)"
+			} else {
+				return "\(xValue): \(entry.y.kmFormatted)"
+			}
+		}
 		marker.font = .systemFont(ofSize: 13 * fontScale)
 		chartView.marker = marker
+	}
+
+	override func updateOptions(from chartView: RegionChartView) {
+		super.updateOptions(from: chartView)
+
+		guard let chartView = chartView as? DeltaChartView else { return }
+		self.isLogarithmic = chartView.isLogarithmic
 	}
 
 	override func update(region: Region?, animated: Bool) {
@@ -56,7 +83,9 @@ class DeltaChartView: BaseBarChartView {
 		var entries = [BarChartDataEntry]()
 		for date in dates {
 			let value = Double(showNewDeaths ? changes[date]!.newDeaths : changes[date]!.newConfirmed)
-			let entry = BarChartDataEntry(x: Double(date.referenceDays), y: value)
+			let scaledValue = isLogarithmic ? log10(value) : value
+			let entry = BarChartDataEntry(x: Double(date.referenceDays), y: scaledValue)
+			entry.data = value
 			entries.append(entry)
 		}
 
@@ -78,6 +107,15 @@ class DeltaChartView: BaseBarChartView {
 		dataSet.colors = colors.reversed()
 
 		dataSet.drawValuesEnabled = false
+
+		if isLogarithmic {
+			chartView.leftAxis.axisMinimum = 1
+			chartView.leftAxis.axisMaximum = 6
+			chartView.leftAxis.labelCount = 5
+		} else {
+			chartView.leftAxis.axisMinimum = 0
+			chartView.leftAxis.resetCustomAxisMax()
+		}
 
 		chartView.data = BarChartData(dataSet: dataSet)
 
