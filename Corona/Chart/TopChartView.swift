@@ -33,7 +33,7 @@ class TopChartView: BaseBarChartView {
 	var isLogarithmic = false {
 		didSet {
 			self.chartView.clear()
-			self.update(region: nil, animated: true)
+			self.update(region: region, animated: true)
 		}
 	}
 
@@ -102,11 +102,9 @@ class TopChartView: BaseBarChartView {
 		var entries = [BarChartDataEntry]()
 		for index in regions.indices {
 			let region = regions[index]
-			var value = Double(region.report?.stat.number(for: mode) ?? 0)
-			if isLogarithmic {
-				value = log10(value)
-			}
-			let entry = BarChartDataEntry(x: Double(index), y: value)
+			let value = Double(region.report?.stat.number(for: mode) ?? 0)
+			let scaledValue = isLogarithmic ? log10(value) : value
+			let entry = BarChartDataEntry(x: Double(index), y: scaledValue)
 			entry.data = region
 			entries.append(entry)
 		}

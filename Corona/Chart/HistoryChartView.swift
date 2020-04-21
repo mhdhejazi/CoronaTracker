@@ -33,7 +33,14 @@ class HistoryChartView: BaseLineChartView {
 
 		chartView.xAxis.valueFormatter = DayAxisValueFormatter(chartView: chartView)
 
-		let marker = SimpleMarkerView(chartView: chartView)
+		let marker = SimpleMarkerView(chartView: chartView) { entry, _ in
+			let xValue = self.chartView.xAxis.valueFormatter?.stringForValue(entry.x, axis: nil) ?? "-"
+			if let value = entry.data as? Double {
+				return "\(xValue): \(value.kmFormatted)"
+			} else {
+				return "\(xValue): \(entry.y.kmFormatted)"
+			}
+		}
 		marker.font = .systemFont(ofSize: 13 * fontScale)
 		chartView.marker = marker
 	}
@@ -56,26 +63,22 @@ class HistoryChartView: BaseLineChartView {
 		title = L10n.Chart.history
 
 		let dates = series.series.keys.sorted().drop { series.series[$0]?.isZero == true }
-		let confirmedEntries = dates.map { date -> ChartDataEntry in
-			var value = Double(series.series[date]?.confirmedCount ?? 0)
-			if isLogarithmic {
-				value = log10(value)
-			}
-			return ChartDataEntry(x: Double(date.referenceDays), y: value)
+
+		func createEntry(date: Date, value: Double) -> ChartDataEntry {
+			let scaledValue = isLogarithmic ? log10(value) : value
+			let entry = ChartDataEntry(x: Double(date.referenceDays), y: scaledValue)
+			entry.data = value
+			return entry
 		}
-		let recoveredEntries = dates.map { date -> ChartDataEntry in
-			var value = Double(series.series[date]?.recoveredCount ?? 0)
-			if isLogarithmic {
-				value = log10(value)
-			}
-			return ChartDataEntry(x: Double(date.referenceDays), y: value)
+
+		let confirmedEntries = dates.map { date in
+			createEntry(date: date, value: Double(series.series[date]?.confirmedCount ?? 0))
 		}
-		let deathsEntries = dates.map { date -> ChartDataEntry in
-			var value = Double(series.series[date]?.deathCount ?? 0)
-			if isLogarithmic {
-				value = log10(value)
-			}
-			return ChartDataEntry(x: Double(date.referenceDays), y: value)
+		let recoveredEntries = dates.map { date in
+			createEntry(date: date, value: Double(series.series[date]?.recoveredCount ?? 0))
+		}
+		let deathsEntries = dates.map { date in
+			createEntry(date: date, value: Double(series.series[date]?.deathCount ?? 0))
 		}
 
 		let entries = [confirmedEntries, deathsEntries, recoveredEntries]

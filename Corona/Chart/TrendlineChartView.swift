@@ -103,7 +103,14 @@ class TrendlineChartView: BaseLineChartView {
 			self.isLogarithmic ? pow(10, value).kmFormatted : value.kmFormatted
 		}
 
-		let simpleMarker = SimpleMarkerView(chartView: chartView)
+		let simpleMarker = SimpleMarkerView(chartView: chartView) { entry, _ in
+			let xValue = self.chartView.xAxis.valueFormatter?.stringForValue(entry.x, axis: nil) ?? "-"
+			if let value = entry.data as? Double {
+				return "\(xValue): \(value.kmFormatted)"
+			} else {
+				return "\(xValue): \(entry.y.kmFormatted)"
+			}
+		}
 		simpleMarker.visibilityCallback = { entry, visible in
 			let index = (entry.data as? Int) ?? -1
 			self.selectedIndex = visible ? index : -1
@@ -156,13 +163,13 @@ class TrendlineChartView: BaseLineChartView {
 		let totalDays = serieses.map { $0.count }.sorted().dropLast().last! /// Next to the longest (to deal with China case)
 		let entries = zip(serieses.indices, serieses).map { (regionIndex, series) in
 			zip(series.indices.prefix(totalDays), series).map { (index, pair) -> ChartDataEntry in
-				var value = Double(pair.value.number(for: mode))
-				if isLogarithmic {
-					value = log10(value)
-				}
-				return ChartDataEntry(x: Double(index - series.startIndex),
-									  y: value,
-									  data: regionIndex)
+				let value = Double(pair.value.number(for: mode))
+				let scaledValue = isLogarithmic ? log10(value) : value
+				let entry = ChartDataEntry(x: Double(index - series.startIndex),
+										   y: scaledValue,
+										   data: regionIndex)
+				entry.data = value
+				return entry
 			}
 		}
 		let labels = regions.map { $0.localizedName }
