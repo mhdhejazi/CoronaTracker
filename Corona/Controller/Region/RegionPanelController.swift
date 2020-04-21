@@ -174,9 +174,9 @@ extension RegionPanelController: UISearchBarDelegate, UITableViewDelegate {
 
 		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
 		if !query.isEmpty {
-			regions = regions.filter({ region in
+			regions = regions.filter { region in
 				region.localizedLongName.range(of: query, options: [.diacriticInsensitive, .caseInsensitive]) != nil
-			})
+			}
 		}
 
 		regionListController.regions = regions

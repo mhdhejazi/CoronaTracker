@@ -85,7 +85,7 @@ class RegionDataCell: UITableViewCell {
 						let alpha: CGFloat = editing ? 1 : 0
 						self.buttonShare.transform = .init(scaleX: scale, y: scale)
 						self.buttonShare.alpha = alpha
-						self.contentView.subviews.filter({ $0 !== self.buttonShare }).forEach { subview in
+						self.contentView.subviews.filter { $0 !== self.buttonShare }.forEach { subview in
 							subview.transform = editing ? .init(translationX: -self.buttonShare.bounds.width - 15, y: 0) : .identity
 						}
 		})

@@ -188,21 +188,21 @@ extension UIImage {
 
 extension UIColor {
 	static func dynamicColor(lightThemeColor: UIColor, darkThemeColor: UIColor) -> UIColor {
-		if #available(iOS 13.0, *) {
-			return UIColor(dynamicProvider: { ($0.userInterfaceStyle == .dark ? darkThemeColor : lightThemeColor) })
-		} else {
+		guard #available(iOS 13.0, *) else {
 			return lightThemeColor
 		}
+
+		return UIColor(dynamicProvider: { ($0.userInterfaceStyle == .dark ? darkThemeColor : lightThemeColor) })
 	}
 
 	var dynamic: UIColor {
-		if #available(iOS 13.0, *) {
-			var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
-			self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-			let darkThemeColor = UIColor(hue: hue, saturation: saturation * 0.9, brightness: brightness * 1.3, alpha: alpha)
-			return UIColor(dynamicProvider: { ($0.userInterfaceStyle == .dark ? darkThemeColor : self) })
-		} else {
+		guard #available(iOS 13.0, *) else {
 			return self
 		}
+
+		var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
+		self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+		let darkThemeColor = UIColor(hue: hue, saturation: saturation * 0.9, brightness: brightness * 1.3, alpha: alpha)
+		return UIColor(dynamicProvider: { ($0.userInterfaceStyle == .dark ? darkThemeColor : self) })
 	}
 }

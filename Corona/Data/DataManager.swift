@@ -140,8 +140,8 @@ extension DataManager {
 
 		/// Countries
 		var countries = [Region]()
-		countries.append(contentsOf: regions.filter({ !$0.isProvince }))
-		let provinceRegions = regions.filter({ $0.isProvince })
+		countries += regions.filter { !$0.isProvince }
+		let provinceRegions = regions.filter { $0.isProvince }
 		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { subRegions in
 			/// If there is already a region for this country, just add the sub regions
 			if let existingCountry = countries.first(where: { $0.name == subRegions.first?.parentName }) {

@@ -147,8 +147,8 @@ private struct GlobalTimeSeriesCallResult: Decodable {
 	var region: Region {
 		let series = [Date: Statistic](
 			uniqueKeysWithValues: zip(
-				features.map({ $0.attributes.date }),
-				features.map({ $0.attributes.stat })
+				features.map { $0.attributes.date },
+				features.map { $0.attributes.stat }
 			)
 		)
 		let timeSeries = TimeSeries(series: series)

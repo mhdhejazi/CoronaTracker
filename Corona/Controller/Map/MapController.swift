@@ -152,8 +152,8 @@ class MapController: UIViewController {
 
 	private func update() {
 		allAnnotations = DataManager.shared.allRegions()
-			.filter({ $0.report?.stat.number(for: mode) ?? 0 > 0 })
-			.map({ RegionAnnotation(region: $0, mode: mode) })
+			.filter { $0.report?.stat.number(for: mode) ?? 0 > 0 }
+			.map { RegionAnnotation(region: $0, mode: mode) }
 
 		let currentAnnotations = allAnnotations.filter { annotation in
 			annotation.region.isCountry || mapView.zoomLevel > cityZoomLevel
