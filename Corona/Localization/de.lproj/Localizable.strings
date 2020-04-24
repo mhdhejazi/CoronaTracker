@@ -13,6 +13,7 @@
 "chart.axis.days" = "%d Tage";
 "chart.history" = "Entwicklung der Fallzahlen";
 "chart.topCountries" = "Am stärksten betroffene Länder";
+"chart.topRegions" = "Am stärksten betroffene Regionen";
 "chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
 "chart.trendline.deaths" = "Todesfälle seit dem 10. Fall";
 "chart.logarithmic" = "Logarithmische Darstellung";
@@ -34,5 +35,6 @@
 "menu.copy" = "Kopieren";
 "menu.update" = "Aktualisieren";
 "menu.share" = "Teilen";
+"menu.search" = "Suchen";
 "share.current" = "Corona-Virus aktuell";
 "share.chartHistory" = "Ausbreitung des Corona-Virus";
