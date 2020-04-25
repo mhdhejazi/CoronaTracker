@@ -2,6 +2,7 @@ disabled_rules:
   - type_body_length
   - file_length
   - function_body_length
+  - orphaned_doc_comment
   - vertical_parameter_alignment # Many false positives because of tabs
 
 opt_in_rules:

@@ -120,7 +120,7 @@ extension Region {
 	}
 
 	public func find(subRegionName: String) -> Region? {
-		return subRegions.first { $0.name == subRegionName }
+		subRegions.first { $0.name == subRegionName }
 	}
 
 	public func add(subRegions: [Region], addSubData: Bool) {
