@@ -19,7 +19,7 @@ extension CLLocationCoordinate2D {
 }
 
 extension Locale {
-	public static let posix = Locale(identifier: "en_US_POSIX")
+    public static let posix = Locale(identifier: L10n.Identifier.posix)
 
 	static func isoCode(from englishCountryName: String) -> String? {
 		if let pair = YAMLFiles.isoCountryNames

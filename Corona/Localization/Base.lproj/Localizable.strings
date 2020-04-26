@@ -37,3 +37,4 @@
 "menu.search" = "Search";
 "share.current" = "Coronavirus live update";
 "share.chartHistory" = "Coronavirus growth chart";
+"identifier.posix" = "en_US_POSIX";

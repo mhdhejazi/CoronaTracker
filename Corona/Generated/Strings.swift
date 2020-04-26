@@ -113,6 +113,10 @@ internal enum L10n {
     /// Coronavirus live update
     internal static let current = L10n.tr("Localizable", "share.current")
   }
+    
+  internal enum Identifier {
+    internal static let posix = L10n.tr("Localizable", "identifier.posix")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name
