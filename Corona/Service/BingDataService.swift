@@ -7,7 +7,7 @@
 import Foundation
 
 public class BingDataService: BaseDataService, DataService {
-	private static var reportsURL: URL = URL(string: "https://bing.com/covid/data")!
+	private static var reportsURL: URL = URL(string: "https://bing.com/covid/")!
 
 	static let shared = BingDataService()
 
@@ -24,8 +24,15 @@ public class BingDataService: BaseDataService, DataService {
 
 	private func parseReports(data: Data, completion: @escaping FetchResultBlock) {
 		do {
+			guard let string = String(data: data, encoding: .utf8),
+				let pattern = try? NSRegularExpression(pattern: #"var data=(\{.+\});"#, options: []),
+				let match = pattern.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.count)),
+				let jsonData = (string as NSString).substring(with: match.range(at: 1)).data(using: .utf8) else {
+				return
+			}
+
 			let decoder = JSONDecoder()
-			let result = try decoder.decode(ReportData.self, from: data)
+			let result = try decoder.decode(ReportData.self, from: jsonData)
 
 			let regions = result.areas?.map { reportData -> Region in
 				let country = reportData.createRegion(level: .country, parentName: Region.world.name)
