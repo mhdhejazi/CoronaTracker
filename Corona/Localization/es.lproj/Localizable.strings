@@ -10,8 +10,12 @@
 "case.deaths" = "Muertes";
 "region.world" = "En todo el mundo";
 "chart.topCountries" = "Países más afectados";
+"chart.topRegions" = "Regiones más afectadas";
 "chart.logarithmic" = "Escala logarítmica";
 "chart.delta" = "Nuevos casos diarios";
+"chart.trendline" = "Casos confirmados desde el centésimo caso";
+"chart.history" = "Crecimiento de casos";
+"chart.axis.days" = "%d Días";
 "data.updating" = "Actualización...";
 "data.updateDate" = "Última actualización:";
 "data.errorTitle" = "No se pueden actualizar los datos.";
@@ -27,3 +31,4 @@
 "menu.share" = "Compartir";
 "share.current" = "Actualización en vivo de coronavirus";
 "share.chartHistory" = "Tabla de crecimiento de coronavirus";
+"identifier.posix" = "es_PE";
