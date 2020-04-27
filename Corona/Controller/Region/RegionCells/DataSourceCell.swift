@@ -38,4 +38,11 @@ class DataSourceCell: RegionDataCell {
 		safariController.modalPresentationStyle = .pageSheet
 		App.topViewController.present(safariController, animated: true)
 	}
+
+	@IBAction private func buttonBMSGPKTapped(_ sender: Any) {
+		let url = URL(string: "https://www.data.gv.at/anwendungen/covid-19-dashboard-oesterreich/")!
+		let safariController = SFSafariViewController(url: url)
+		safariController.modalPresentationStyle = .pageSheet
+		App.topViewController.present(safariController, animated: true)
+	}
 }
