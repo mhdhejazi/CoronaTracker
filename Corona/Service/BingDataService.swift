@@ -7,7 +7,7 @@
 import Foundation
 
 public class BingDataService: BaseDataService, DataService {
-	private static var reportsURL: URL = URL(string: "https://bing.com/covid/")!
+	private static let reportsURL = URL(string: "https://bing.com/covid/")!
 
 	static let shared = BingDataService()
 
