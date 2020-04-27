@@ -109,7 +109,7 @@ extension DataManager {
 
 		/// Add data from Austria
 		dispatchGroup.enter()
-		AustriaDataService.shared.fetchReports { regions, _ in
+		BMSGPKDataService.shared.fetchReports { regions, _ in
 			guard let regions = regions else {
 				dispatchGroup.leave()
 				return

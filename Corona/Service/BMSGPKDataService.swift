@@ -6,11 +6,14 @@
 
 import Foundation
 
-public class AustriaDataService: BaseDataService, DataService {
+// Data Source: https://www.data.gv.at/anwendungen/covid-19-dashboard-oesterreich/
+// BMSGPK: Bundesministerium für Soziales, Gesundheit, Pflege und Konsumentenschutz
+
+public class BMSGPKDataService: BaseDataService, DataService {
 	// swiftlint:disable:next line_length
 	private static var reportsURL: URL = URL(string: "https://services1.arcgis.com/YfxQKFk1MjjurGb5/arcgis/rest/services/AUSTRIA_COVID19_Cases/FeatureServer/2/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=infizierte%20desc&outSR=102100&resultOffset=0&resultRecordCount=25&resultType=standard&cacheHint=true")!
 
-	static let shared = AustriaDataService()
+	static let shared = BMSGPKDataService()
 
 	public func fetchReports(completion: @escaping FetchResultBlock) {
 		fetchData(from: Self.reportsURL) { data, error in
