@@ -65,7 +65,7 @@ public class DataManager {
 extension DataManager {
 	public func download(completion: @escaping (Bool) -> Void) {
 		let dispatchGroup = DispatchGroup()
-		var result: (jhu: [Region]?, bing: [Region]?, rki: [Region]?) = (nil, nil, nil)
+		var result: (jhu: [Region]?, bing: [Region]?, rki: [Region]?, austria: [Region]?) = (nil, nil, nil, nil)
 
 		/// Main data is from JHU
 		dispatchGroup.enter()
@@ -107,6 +107,18 @@ extension DataManager {
 			dispatchGroup.leave()
 		}
 
+		/// Add data from Austria
+		dispatchGroup.enter()
+		BMSGPKDataService.shared.fetchReports { regions, _ in
+			guard let regions = regions else {
+				dispatchGroup.leave()
+				return
+			}
+
+			result.austria = regions
+			dispatchGroup.leave()
+		}
+
 		dispatchGroup.notify(queue: .global(qos: .default)) {
 			if result.jhu == nil {
 				return
@@ -125,6 +137,11 @@ extension DataManager {
 			/// Data for Germany comes from a different source, so don't accumulate data
 			if let subRegions = result.rki, let region = self.world.find(subRegionCode: "DE") {
 				region.subRegions = subRegions
+			}
+
+			/// Data for Austria comes from a different source, so don't accumulate data
+			if let austrianSubRegions = result.austria, let region = self.world.find(subRegionCode: "AT") {
+				region.subRegions = austrianSubRegions
 			}
 
 			try? Disk.save(self.world, to: .caches, as: Self.dataFileName)

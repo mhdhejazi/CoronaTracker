@@ -102,6 +102,8 @@
 		344ED322241AC7AA004C4EA8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344ED321241AC7AA004C4EA8 /* NotificationCenter.framework */; };
 		344ED32C241AC7AA004C4EA8 /* Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 344ED31F241AC7AA004C4EA8 /* Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		344ED333241ACCC9004C4EA8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344ED324241AC7AA004C4EA8 /* TodayViewController.swift */; };
+		CDA24CD924559C9C00375D19 /* BMSGPKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */; };
+		CDA24CDA24559E3E00375D19 /* BMSGPKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */; };
 		CDA50DE0242C7D330055BE4A /* CSV in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B3241FB00000EBC83E /* CSV */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CDA50DE2242C7D350055BE4A /* Disk in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B0241FAFF300EBC83E /* Disk */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CDA50DE3242C7D3C0055BE4A /* CSV in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B7241FB04200EBC83E /* CSV */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -239,6 +241,7 @@
 		34C02EBB2431246C00AE80FE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		448DD86C2446A22E0010F32B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C31F26A5244C594300281F1F /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMSGPKDataService.swift; sourceTree = "<group>"; };
 		FC5A29A624400862005C58BB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,6 +322,7 @@
 				11518697241FAECB00EBC83E /* JHUWebDataService.swift */,
 				11518698241FAECB00EBC83E /* JHURepoDataService.swift */,
 				11E9FE09244DB2E100455088 /* RKIDataService.swift */,
+				CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */,
 				11E9FE0E244DC05400455088 /* BingDataService.swift */,
 			);
 			path = Service;
@@ -703,6 +707,7 @@
 				11DCD56F243FAEBB006CE8ED /* AppMenu.swift in Sources */,
 				11C6D382243E460D003AC870 /* MenuItem.swift in Sources */,
 				11C6D390243E4882003AC870 /* UpdateTimeCell.swift in Sources */,
+				CDA24CD924559C9C00375D19 /* BMSGPKDataService.swift in Sources */,
 				115186A1241FAFCA00EBC83E /* Coordinate.swift in Sources */,
 				11C6D394243E48C3003AC870 /* AuthorInfoCell.swift in Sources */,
 				11672A1E2411494F000B2466 /* DayAxisValueFormatter.swift in Sources */,
@@ -770,6 +775,7 @@
 				11E9FE10244DC24D00455088 /* BingDataService.swift in Sources */,
 				115186A8241FAFCA00EBC83E /* Region.swift in Sources */,
 				1151868C241FAC5B00EBC83E /* UIExtensions.swift in Sources */,
+				CDA24CDA24559E3E00375D19 /* BMSGPKDataService.swift in Sources */,
 				115186B9241FB31B00EBC83E /* Extensions.swift in Sources */,
 				117C84E92428119600688459 /* Assets.swift in Sources */,
 				11E9FE0B244DB2E200455088 /* BaseDataService.swift in Sources */,
