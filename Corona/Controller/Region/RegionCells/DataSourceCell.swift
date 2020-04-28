@@ -39,15 +39,8 @@ class DataSourceCell: RegionDataCell {
 		presentSafariViewController(with: url)
 	}
 
-	@IBAction func buttonBMSGPKTapped(_ sender: Any) {
+	@IBAction private func buttonBMSGPKTapped(_ sender: Any) {
 		let url = URL(string: "https://experience.arcgis.com/experience/fb603473e1f74f0bbae48155ff238565/")!
 		presentSafariViewController(with: url)
-	}
-
-	@IBAction private func buttonBMSGPKTapped(_ sender: Any) {
-		let url = URL(string: "https://www.data.gv.at/anwendungen/covid-19-dashboard-oesterreich/")!
-		let safariController = SFSafariViewController(url: url)
-		safariController.modalPresentationStyle = .pageSheet
-		App.topViewController.present(safariController, animated: true)
 	}
 }
