@@ -27,6 +27,7 @@
 "data.source" = "Source: %@";
 "app.newVersionTitle" = "New Version Available";
 "app.newVersionMessage" = "Please update from %@";
+"app.credits" = "Credits";
 "message.cancel" = "Cancel";
 "message.open" = "Open";
 "message.ok" = "OK";

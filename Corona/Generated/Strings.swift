@@ -13,6 +13,8 @@ import Foundation
 internal enum L10n {
 
   internal enum App {
+    /// Credits
+    internal static let credits = L10n.tr("Localizable", "app.credits")
     /// Please update from %@
     internal static func newVersionMessage(_ p1: String) -> String {
       return L10n.tr("Localizable", "app.newVersionMessage", p1)

@@ -13,7 +13,7 @@ class DataSourceCell: RegionDataCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 
-		labelSource.text = L10n.Data.source("")
+		labelSource.text = "\(L10n.App.credits): "
 	}
 
 	private func presentSafariViewController(with url: URL) {
@@ -41,6 +41,11 @@ class DataSourceCell: RegionDataCell {
 
 	@IBAction private func buttonBMSGPKTapped(_ sender: Any) {
 		let url = URL(string: "https://experience.arcgis.com/experience/fb603473e1f74f0bbae48155ff238565/")!
+		presentSafariViewController(with: url)
+	}
+
+	@IBAction private func buttonContributorsTapped(_ sender: Any) {
+		let url = URL(string: "https://github.com/mhdhejazi/CoronaTracker#credits")!
 		presentSafariViewController(with: url)
 	}
 }
