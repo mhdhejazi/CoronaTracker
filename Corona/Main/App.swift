@@ -18,10 +18,13 @@ class App {
 		return topController
 	}
 
+	static let repoURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker")!
+	static let releaseNotesURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker/releases")!
+	static let newIssueURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker/issues/new")!
 	#if targetEnvironment(macCatalyst)
 	static let updateURL = URL(string: "https://coronatracker.samabox.com/")!
 	#else
-	static let updateURL = URL(string: "https://github.com/mhdhejazi/CoronaTracker")!
+	static let updateURL = repoURL
 	#endif
 
 	static let version = Bundle.main.version
@@ -48,10 +51,14 @@ class App {
 		}.resume()
 	}
 
-	public static func openUpdatePage(viewController: UIViewController) {
-		let safariController = SFSafariViewController(url: updateURL)
+	public static func openWebPage(url: URL, viewController: UIViewController) {
+		let safariController = SFSafariViewController(url: url)
 		safariController.modalPresentationStyle = .pageSheet
 		viewController.present(safariController, animated: true)
+	}
+
+	public static func openUpdatePage(viewController: UIViewController) {
+		openWebPage(url: updateURL, viewController: viewController)
 	}
 
 	public static func upgrade() {
@@ -64,5 +71,17 @@ class App {
 		try? Disk.clear(.caches)
 
 		UserDefaults.standard.set(newAppVersion, forKey: appVersionKey)
+	}
+
+	public static func openHelpPage() {
+		openWebPage(url: repoURL, viewController: topViewController)
+	}
+
+	public static func openReleaseNotesPage() {
+		openWebPage(url: releaseNotesURL, viewController: topViewController)
+	}
+
+	public static func openNewIssuePage() {
+		openWebPage(url: newIssueURL, viewController: topViewController)
 	}
 }

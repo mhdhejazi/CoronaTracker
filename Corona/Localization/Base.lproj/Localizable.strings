@@ -36,5 +36,7 @@
 "menu.update" = "Update";
 "menu.share" = "Share";
 "menu.search" = "Search";
+"menu.releaseNotes" = "Release Notes";
+"menu.reportIssue" = "Report an Issue";
 "share.current" = "Coronavirus live update";
 "share.chartHistory" = "Coronavirus growth chart";
