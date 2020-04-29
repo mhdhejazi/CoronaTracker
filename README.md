@@ -3,7 +3,6 @@
 ![iOS](https://img.shields.io/badge/iOS-10%20-blue)
 ![macOS](https://img.shields.io/badge/macOS-10.15-blue)
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
-[![Gitter](https://badges.gitter.im/CoronaTrackerApp/community.svg)](https://gitter.im/CoronaTrackerApp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img src="https://img.shields.io/badge/@hejazi-x?color=08a0e9&logo=twitter&logoColor=white" /></a>
 
 ![image](https://user-images.githubusercontent.com/121827/77246699-e25efb80-6c3a-11ea-8a49-30bd87ff33c0.png)
