@@ -75,7 +75,7 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 * __Russian__ by [Mikhail Akopov](https://github.com/wacumov)
 * __Chinese, Simplified__ by [Erick Li](https://github.com/erickzli)
 * __Spanish__ by [Emily Jewik](https://github.com/ejewik)
-* __Japanese__ by [@dev-sora](https://github.com/dev-sora)
+* __Japanese__ by [Sorachi Kato](https://github.com/dev-sora)
 * __Polish__ by [Piotr Ożóg](https://github.com/pbeo)
 * __Dutch__ by [Heidi Duchting](https://github.com/hdatteln)
 * __Romanian__ by [Andrei Ciobanu](https://github.com/rhcpfan)
