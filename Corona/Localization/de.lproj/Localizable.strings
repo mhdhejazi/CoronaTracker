@@ -10,17 +10,17 @@
 "case.recovered" = "Genesen";
 "case.deaths" = "Gestorben";
 "region.world" = "Weltweit";
-"chart.axis.days" = "%d Tage";
-"chart.history" = "Entwicklung der Fallzahlen";
 "chart.topCountries" = "Am stärksten betroffene Länder";
 "chart.topRegions" = "Am stärksten betroffene Regionen";
-"chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
-"chart.trendline.deaths" = "Todesfälle seit dem 10. Fall";
 "chart.logarithmic" = "Logarithmische Darstellung";
 "chart.delta" = "Neue Fälle pro Tag";
 "chart.delta.deaths" = "Täglich gestorben";
 "chart.delta.increasing" = "Zunehmend";
 "chart.delta.decreasing" = "Abnehmend";
+"chart.trendline" = "Bestätigte Fälle nach dem 100. Fall";
+"chart.trendline.deaths" = "Todesfälle seit dem 10. Fall";
+"chart.history" = "Entwicklung der Fallzahlen";
+"chart.axis.days" = "%d Tage";
 "data.updating" = "Aktualisieren...";
 "data.updateDate" = "Zuletzt aktualisiert:";
 "data.errorTitle" = "Konnte nicht aktualisiert werden";
@@ -28,6 +28,7 @@
 "data.source" = "Quelle: %@";
 "app.newVersionTitle" = "Neue Version verfügbar";
 "app.newVersionMessage" = "Bitte von %@ aktualisieren";
+"app.credits" = "Danksagung";
 "message.cancel" = "Abbrechen";
 "message.open" = "Öffnen";
 "message.ok" = "OK";
@@ -36,5 +37,7 @@
 "menu.update" = "Aktualisieren";
 "menu.share" = "Teilen";
 "menu.search" = "Suchen";
+"menu.releaseNotes" = "Versionshinweise";
+"menu.reportIssue" = "Fehler melden";
 "share.current" = "Corona-Virus aktuell";
 "share.chartHistory" = "Ausbreitung des Corona-Virus";
