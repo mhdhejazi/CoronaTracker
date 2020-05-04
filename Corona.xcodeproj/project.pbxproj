@@ -239,6 +239,7 @@
 		344ED324241AC7AA004C4EA8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		344ED329241AC7AA004C4EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C02EBB2431246C00AE80FE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		383DDBE624609B2B00148CC8 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		448DD86C2446A22E0010F32B /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C31F26A5244C594300281F1F /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMSGPKDataService.swift; sourceTree = "<group>"; };
@@ -630,6 +631,7 @@
 				tr,
 				"zh-Hant-TW",
 				da,
+				uk,
 			);
 			mainGroup = 1162D11F240D05F600647002;
 			packageReferences = (
@@ -816,6 +818,7 @@
 				11E9FDFE244CDD2600455088 /* tr */,
 				11E9FDFF244CE02600455088 /* zh-Hant-TW */,
 				11E9FE01244CE21900455088 /* da */,
+				383DDBE624609B2B00148CC8 /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
