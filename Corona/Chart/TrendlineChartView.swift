@@ -214,7 +214,7 @@ class TrendlineChartView: BaseLineChartView {
 		chartView.data = LineChartData(dataSets: dataSets)
 
 		if animated {
-			chartView.animate(xAxisDuration: 2, easingOption: .linear)
+			chartView.animate(xAxisDuration: 0.5, easingOption: .easeOutQuad)
 		}
 	}
 

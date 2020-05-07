@@ -132,7 +132,7 @@ class TopChartView: BaseBarChartView {
 		chartView.data = BarChartData(dataSet: dataSet)
 
 		if animated {
-			chartView.animate(yAxisDuration: 2, easingOption: .easeOutCubic)
+			chartView.animate(yAxisDuration: 0.5, easingOption: .easeOutQuad)
 		}
 	}
 }

@@ -119,7 +119,7 @@ class HistoryChartView: BaseLineChartView {
 		chartView.data = LineChartData(dataSets: dataSets)
 
 		if animated {
-			chartView.animate(xAxisDuration: 2)
+			chartView.animate(xAxisDuration: 0.5, easingOption: .easeOutQuad)
 		}
 	}
 }

@@ -120,7 +120,7 @@ class DeltaChartView: BaseBarChartView {
 		chartView.data = BarChartData(dataSet: dataSet)
 
 		if animated {
-			chartView.animate(yAxisDuration: 2)
+			chartView.animate(yAxisDuration: 0.6, easingOption: .easeOutQuad)
 		}
 	}
 }
