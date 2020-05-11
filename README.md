@@ -87,6 +87,7 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 * __Chinese, Traditional (Taiwan)__ by [@League2EB](https://github.com/League2EB)
 * __Turkish__ by [Nesim Tunç](https://github.com/nesimtunc)
 * __Hungarian__ by [@BrotherLouie](https://github.com/BrotherLouie)
+* __Albanian__ by [Lori K.](https://github.com/lor1x)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
