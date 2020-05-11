@@ -38,3 +38,6 @@
 "menu.search" = "Rechercher";
 "share.current" = "Mise à jour en direct du coronavirus";
 "share.chartHistory" = "Courbe de croissance du coronavirus";
+"app.credits" = "Crédits";
+"menu.releaseNotes" = "Notes de version";
+"menu.reportIssue" = "Signaler un problème";
