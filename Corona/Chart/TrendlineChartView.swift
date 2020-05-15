@@ -34,7 +34,7 @@ class TrendlineChartView: BaseLineChartView {
 		})
 		stackView.distribution = .fillProportionally
 		stackView.alignment = .top
-		stackView.spacing = 8
+		stackView.spacing = 4
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 
 		self.addSubview(stackView)
@@ -159,8 +159,14 @@ class TrendlineChartView: BaseLineChartView {
 				.lazy
 				.sorted { $0.key < $1.key }
 				.drop { $0.value.number(for: mode) < (mode == .deaths ? 10 : 100) }
+		}.filter { !$0.isEmpty }
+
+		guard !serieses.isEmpty else {
+			chartView.data = nil
+			return
 		}
-		let totalDays = serieses.map { $0.count }.sorted().dropLast().last! /// Next to the longest (to deal with China case)
+
+		let totalDays = serieses.map { $0.count }.sorted().last!
 		let entries = zip(serieses.indices, serieses).map { (regionIndex, series) in
 			zip(series.indices.prefix(totalDays), series).map { (index, pair) -> ChartDataEntry in
 				let value = Double(pair.value.number(for: mode))
@@ -219,8 +225,10 @@ class TrendlineChartView: BaseLineChartView {
 	}
 
 	private func updateLegend(regions: [Region]) {
+		legendStack.arrangedSubviews.forEach { $0.isHidden = true }
 		zip(regions, legendStack.arrangedSubviews).forEach { (region, view) in
 			if let stack = view as? UIStackView, let colorIndex = regions.firstIndex(of: region) {
+				stack.isHidden = false
 				(stack.arrangedSubviews.first as? UILabel)?.textColor = colors[colorIndex % colors.count]
 				(stack.arrangedSubviews.last as? UILabel)?.text = region.localizedName.replacingOccurrences(of: " ", with: "\n")
 			}

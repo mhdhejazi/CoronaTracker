@@ -129,6 +129,8 @@ class TopChartView: BaseBarChartView {
 			chartView.leftAxis.resetCustomAxisMax()
 		}
 
+		chartView.xAxis.setLabelCount(entries.count, force: false)
+
 		chartView.data = BarChartData(dataSet: dataSet)
 
 		if animated {

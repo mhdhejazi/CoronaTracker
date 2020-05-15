@@ -126,10 +126,11 @@ extension DataManager {
 
 			/// Data from Bing
 			if let regions = result.bing {
-				for region in regions {
+				for region in regions where !region.subRegions.isEmpty {
 					if let regionCode = Locale.isoCode(from: region.name),
-						let existingRegion = self.world.find(subRegionCode: regionCode) {
-						existingRegion.add(subRegions: region.subRegions, addSubData: false)
+						let existingRegion = self.world.find(subRegionCode: regionCode),
+						existingRegion.subRegions.count < region.subRegions.count / 2 {
+						existingRegion.subRegions = region.subRegions
 					}
 				}
 			}
@@ -157,6 +158,7 @@ extension DataManager {
 
 		/// Countries
 		var countries = [Region]()
+		var newCountries = [Region]()
 		countries += regions.filter { !$0.isProvince }
 		let provinceRegions = regions.filter { $0.isProvince }
 		Dictionary(grouping: provinceRegions, by: { $0.parentName }).values.forEach { subRegions in
@@ -169,12 +171,15 @@ extension DataManager {
 			/// Otherwise, create a new country region
 			if let newCountry = Region.join(subRegions: subRegions) {
 				countries.append(newCountry)
+				newCountries.append(newCountry)
 			}
 		}
 
-		/// Update US time series
-		if let timeSeriesRegion = timeSeriesRegions?.first(where: { $0.name == "US" }) {
-			countries.first { $0.name == "US" }?.timeSeries = timeSeriesRegion.timeSeries
+		/// Update the time series for the newly created countries
+		newCountries.forEach { country in
+			if let region = timeSeriesRegions?.first(where: { $0 == country }) {
+				country.timeSeries = region.timeSeries
+			}
 		}
 
 		/// World
