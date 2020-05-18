@@ -1,0 +1,42 @@
+/* 
+  Corona Tracker
+  Translation by Kyriakos Markakis - github.com/marquicodes
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Επιβεβαιωμένα";
+"case.active" = "Ενεργά";
+"case.recovered" = "Ανάρρωσαν";
+"case.deaths" = "Θάνατοι";
+"region.world" = "Παγκοσμίως";
+"chart.topCountries" = "Πιο προσβεβλημενες χωρες";
+"chart.topRegions" = "Πιο προσβεβλημενες περιοχες";
+"chart.logarithmic" = "Λογαριθμική κλίμακα";
+"chart.delta" = "Ημερησια νεα κρουσματα";
+"chart.delta.deaths" = "Ημερησιοι νεοι θανατοι";
+"chart.delta.increasing" = "Αύξηση";
+"chart.delta.decreasing" = "Μείωση";
+"chart.trendline" = "Επιβεβαιωμενα κρουσματα (μετα το 100º)";
+"chart.trendline.deaths" = "Θανατοι (μετα το 10º θανατο)";
+"chart.history" = "Διαγραμμα Κρουσματων";
+"chart.axis.days" = "%d μέρες";
+"data.updating" = "Ενημέρωση...";
+"data.updateDate" = "Τελευταία Ενημέρωση:";
+"data.errorTitle" = "Αδυναμία ενημέρωσης δεδομένων";
+"data.errorMessage" = "Παρακαλούμε βεβαιωθείτε ότι είστε συνδεδεμένοι στο ίντερνετ.";
+"data.source" = "Πηγή: %@";
+"app.newVersionTitle" = "Νέα έκδοση διαθέσιμη για εγκατάσταση";
+"app.newVersionMessage" = "Παρακαλούμε ενημερώστε την εφαρμογή από %@";
+"app.credits" = "Εύσημα";
+"message.cancel" = "Ακύρωση";
+"message.open" = "Άνοιγμα";
+"message.ok" = "Εντάξει";
+"message.done" = "Ολοκληρώθηκε";
+"menu.copy" = "Αντιγραφή";
+"menu.update" = "Ενημέρωση";
+"menu.share" = "Μοιραστείτε το";
+"menu.search" = "Αναζήτηση";
+"menu.releaseNotes" = "Σημειώσεις έκδοσης";
+"menu.reportIssue" = "Αναφορά προβλήματος";
+"share.current" = "Κορονοϊός: Ζωντανή ενημέρωση";
+"share.chartHistory" = "Κορονοϊός: Διάγραμμα κρουσμάτων";
