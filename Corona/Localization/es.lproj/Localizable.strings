@@ -1,6 +1,7 @@
 /* 
   Corona Tracker
   Translation by Emily Jewik - github.com/ejewik
+              and James Pereira - github.com/marinehero
   Copyright © 2020 Samabox. All rights reserved.
 */
 
@@ -10,8 +11,16 @@
 "case.deaths" = "Muertes";
 "region.world" = "En todo el mundo";
 "chart.topCountries" = "Países más afectados";
+"chart.topRegions" = "Regiones más afectadas";
 "chart.logarithmic" = "Escala logarítmica";
 "chart.delta" = "Nuevos casos diarios";
+"chart.delta.deaths" = "Nuevas muertes diarias";
+"chart.delta.increasing" = "Creciente";
+"chart.delta.decreasing" = "Decreciente";
+"chart.trendline" = "Casos confirmados desde el centésimo caso";
+"chart.trendline.deaths" = "Muertes desde la décima muerte";
+"chart.history" = "Crecimiento de casos";
+"chart.axis.days" = "%d Dias";
 "data.updating" = "Actualización...";
 "data.updateDate" = "Última actualización:";
 "data.errorTitle" = "No se pueden actualizar los datos.";
@@ -23,7 +32,12 @@
 "message.open" = "Abierto";
 "message.ok" = "Bueno";
 "message.done" = "Hecho";
+"menu.copy" = "Copiar";
 "menu.update" = "Actualizar";
 "menu.share" = "Compartir";
+"menu.search" = "Copiar";
 "share.current" = "Actualización en vivo de coronavirus";
 "share.chartHistory" = "Tabla de crecimiento de coronavirus";
+"app.credits" = "Créditos";
+"menu.releaseNotes" = "Notas de lanzamiento";
+"menu.reportIssue" = "Reportar un problema";
