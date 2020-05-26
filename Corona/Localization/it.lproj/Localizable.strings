@@ -6,7 +6,7 @@
 
 "case.confirmed" = "Confermati";
 "case.active" = "Attivi";
-"case.recovered" = "Ricoverati";
+"case.recovered" = "Guariti";
 "case.deaths" = "Deceduti";
 "region.world" = "Tutto il mondo";
 "chart.topCountries" = "Nazioni Maggiormente Colpite";
