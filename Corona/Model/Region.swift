@@ -146,7 +146,7 @@ extension Region {
 		guard let firstRegion = subRegions.first else { return nil }
 
 		/// Set the location to the center point between the two most affected sub regions
-		let location = Coordinate.center(of: subRegions.sorted().suffix(2).map { $0.location })
+        let location = Coordinate.center(of: subRegions.filter { !$0.location.isZero }.sorted().suffix(2).map { $0.location })
 
 		let region = Region(level: firstRegion.level.parent,
 							name: firstRegion.parentName ?? "N/A",
