@@ -20,18 +20,18 @@ extension Change {
 	public var lastRecovered: Int { lastStat.recoveredCount }
 	public var lastDeaths: Int { lastStat.deathCount }
 
-	public var newConfirmed: Int { currentConfirmed - lastConfirmed }
-	public var newRecovered: Int { currentRecovered - lastRecovered }
-	public var newDeaths: Int { currentDeaths - lastDeaths }
+	public var newConfirmed: Int { max(0, currentConfirmed - lastConfirmed) }
+	public var newRecovered: Int { max(0, currentRecovered - lastRecovered) }
+	public var newDeaths: Int { max(0, currentDeaths - lastDeaths) }
 
 	public var confirmedGrowthPercent: Double {
-		lastConfirmed == 0 ? 0 :(Double(currentConfirmed) / Double(lastConfirmed) - 1) * 100
+		lastConfirmed == 0 ? 0 : max(0, (Double(currentConfirmed) / Double(lastConfirmed) - 1)) * 100
 	}
 	public var recoveredGrowthPercent: Double {
-		lastRecovered == 0 ? 0 :(Double(currentRecovered) / Double(lastRecovered) - 1) * 100
+		lastRecovered == 0 ? 0 : max(0, (Double(currentRecovered) / Double(lastRecovered) - 1)) * 100
 	}
 	public var deathsGrowthPercent: Double {
-		lastDeaths == 0 ? 0 :(Double(currentDeaths) / Double(lastDeaths) - 1) * 100
+		lastDeaths == 0 ? 0 : max(0, (Double(currentDeaths) / Double(lastDeaths) - 1)) * 100
 	}
 
 	public var newConfirmedString: String { newConfirmed > 0 ? "+\(newConfirmed.groupingFormatted)" : "-" }
