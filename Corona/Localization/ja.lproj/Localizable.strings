@@ -10,12 +10,14 @@
 "case.deaths" = "死亡者数";
 "region.world" = "世界";
 "chart.topCountries" = "感染者数の多い国";
+"chart.topRegions" = "感染者数の多い地域";
 "chart.logarithmic" = "対数スケール";
 "chart.delta" = "新規罹患者数";
 "chart.delta.deaths" = "新規死者数";
 "chart.delta.increasing" = "前日比増";
 "chart.delta.decreasing" = "前日比減";
 "chart.trendline" = "100例目以降の推移";
+"chart.trendline.deaths" = "死者数の推移(10例目以降)";
 "chart.history" = "推移";
 "chart.axis.days" = "%d 日後";
 "data.updating" = "更新中...";
@@ -32,5 +34,9 @@
 "menu.copy" = "Copy";
 "menu.update" = "更新";
 "menu.share" = "共有";
+"menu.search" = "検索";
 "share.current" = "コロナウイルス最新感染状況";
 "share.chartHistory" = "コロナウイルス感染者推移";
+"app.credits" = "クレジット";
+"menu.releaseNotes" = "リリースノート";
+"menu.reportIssue" = "問題を報告";

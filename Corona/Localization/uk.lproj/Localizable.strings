@@ -1,0 +1,42 @@
+/* 
+  Corona Tracker
+  Translation by Valeriy Soglaev - github.com/ValeriySoglaev
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Захворіло";
+"case.active" = "Хворіє";
+"case.recovered" = "Видужало";
+"case.deaths" = "Померло";
+"region.world" = "У світі";
+"chart.topCountries" = "Найбільш заражені країни";
+"chart.topRegions" = "Найбільш постраждалі регіони";
+"chart.logarithmic" = "Логарифмічна шкала";
+"chart.delta" = "Нових випадків в день";
+"chart.delta.deaths" = "Щоденні нові смерті";
+"chart.delta.increasing" = "Збільшується";
+"chart.delta.decreasing" = "Зменшується";
+"chart.trendline" = "Confirmed cases since 100th case";
+"chart.trendline.deaths" = "Deaths since 10th death";
+"chart.history" = "Зростання випадків";
+"chart.axis.days" = "%d Днів";
+"data.updating" = "Оновлення...";
+"data.updateDate" = "Останнє оновлення:";
+"data.errorTitle" = "Неможливо оновити дані";
+"data.errorMessage" = "Переконайтеся, що ви підключені до Інтернету.";
+"data.source" = "Джерело: %@";
+"app.newVersionTitle" = "Доступна нова версія";
+"app.newVersionMessage" = "Будь ласка, оновіться %@";
+"app.credits" = "Credits";
+"message.cancel" = "Закрити";
+"message.open" = "Відкрити";
+"message.ok" = "OK";
+"message.done" = "Готово";
+"menu.copy" = "Скопіювати";
+"menu.update" = "Оновити";
+"menu.share" = "Поділитися";
+"menu.search" = "Пошук";
+"menu.releaseNotes" = "Примітки до випуску";
+"menu.reportIssue" = "Повідомити про проблему";
+"share.current" = "Коронавірус онлайн";
+"share.chartHistory" = "Діаграма росту коронавірусу";

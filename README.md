@@ -3,7 +3,6 @@
 ![iOS](https://img.shields.io/badge/iOS-10%20-blue)
 ![macOS](https://img.shields.io/badge/macOS-10.15-blue)
 ![Swift](https://img.shields.io/badge/Swift-5-orange?logo=Swift&logoColor=white)
-[![Gitter](https://badges.gitter.im/CoronaTrackerApp/community.svg)](https://gitter.im/CoronaTrackerApp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img src="https://img.shields.io/badge/@hejazi-x?color=08a0e9&logo=twitter&logoColor=white" /></a>
 
 ![image](https://user-images.githubusercontent.com/121827/77246699-e25efb80-6c3a-11ea-8a49-30bd87ff33c0.png)
@@ -22,7 +21,7 @@
    * Option for using a __logarithmic__ scale.
 * __Search__ for countries & cities.
 * __Share__ stats & charts as images.
-* __Today widget__ for worldwide stats (Contributed by [Piotr Ożóg](https://github.com/pbeo)).
+* __Today widget__ for worldwide stats.
 * __Red color scale__: Reflects the number of confirmed cases. In addition to increasing circle size.
 * __Statistics__: Including the number of confirmed, recovered, and deaths, in addition to percents.
 * __iPad__ & __macOS__ support.
@@ -55,29 +54,42 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 
 ## Credits
 ### Data
-Data is provided by JHU CSSE (https://github.com/CSSEGISandData/COVID-19).
+* Johns Hopkins University Center for Systems Science and Engineering ([JHU CSSE](https://github.com/CSSEGISandData/COVID-19))
+* Robert Koch Institute ([RKI](https://experience.arcgis.com/experience/478220a4c454480e823b17327b2bf1d4/))
+* Bundesministeriums für Soziales, Gesundheit, Pflege und Konsumentenschutz ([BMSGPK](https://experience.arcgis.com/experience/fb603473e1f74f0bbae48155ff238565/))
+* Bing COVID-19 Tracker ([Bing](https://bing.com/covid/))
+
+### Features
+* Today widget by [Piotr Ożóg](https://github.com/pbeo).
+
+### Data Sources
+* State-level data for Germany by [Manuel Carrasco Molina](https://github.com/stuffmc).
+* State-level data for Austria by [Patrick Steiner](https://github.com/patricks).
 
 ### Translations
-* __German__ by [@sebastianbinder](https://github.com/sebastianbinder)
-* __Swedish__ by [@FluffyDev2019](https://github.com/FluffyDev2019)
-* __Portuguese__ by [@ppamorim](https://github.com/ppamorim)
-* __Italian__ by [@Ale111](https://github.com/Ale111)
-* __French__ by [@Risengan](https://github.com/Risengan)
-* __Russian__ by [@wacumov](https://github.com/wacumov)
-* __Chinese, Simplified__ by [@erickzli](https://github.com/erickzli)
-* __Spanish__ by [@ejewik](https://github.com/ejewik)
-* __Japanese__ by [@dev-sora](https://github.com/dev-sora)
-* __Polish__ by [@pbeo](https://github.com/pbeo)
-* __Dutch__ by [@hdatteln](https://github.com/hdatteln)
-* __Romanian__ by [@rhcpfan](https://github.com/rhcpfan)
-* __Korean__ by [@dev-yong](https://github.com/dev-yong)
-* __Arabic__ by [@hussamzain](https://github.com/hussamzain)
-* __Norwegian Bokmål__ by [@comradekingu](https://github.com/comradekingu)
-* __Indonesian__ by [@nikotidar](https://github.com/nikotidar)
-* __Danish__ by [@peme](https://github.com/peme)
+* __German__ by [Sebastian Binder](https://github.com/sebastianbinder), [Jakob Fuchs](https://github.com/jsf030)
+* __Swedish__ by [Swedish Power Tech AB](https://github.com/FluffyDev2019)
+* __Portuguese__ by [Pedro Paulo Amorim](https://github.com/ppamorim)
+* __Italian__ by [Ale](https://github.com/Ale111)
+* __French__ by [Clément Knoderer](https://github.com/Risengan), [Paul de Laage](https://github.com/pdldm)
+* __Russian__ by [Mikhail Akopov](https://github.com/wacumov)
+* __Chinese, Simplified__ by [Erick Li](https://github.com/erickzli)
+* __Spanish__ by [Emily Jewik](https://github.com/ejewik)
+* __Japanese__ by [Sorachi Kato](https://github.com/dev-sora)
+* __Polish__ by [Piotr Ożóg](https://github.com/pbeo)
+* __Dutch__ by [Heidi Duchting](https://github.com/hdatteln)
+* __Romanian__ by [Andrei Ciobanu](https://github.com/rhcpfan)
+* __Korean__ by [Lee Gwang Yong](https://github.com/dev-yong)
+* __Arabic__ by [Hussam Zain](https://github.com/hussamzain)
+* __Norwegian Bokmål__ by [Allan Nordhøy](https://github.com/comradekingu)
+* __Indonesian__ by [Niko Tidar Lantang Perkasa](https://github.com/nikotidar)
+* __Danish__ by [Per Meldgaard](https://github.com/peme)
 * __Chinese, Traditional (Taiwan)__ by [@League2EB](https://github.com/League2EB)
-* __Turkish__ by [@nesimtunc](https://github.com/nesimtunc)
+* __Turkish__ by [Nesim Tunç](https://github.com/nesimtunc)
 * __Hungarian__ by [@BrotherLouie](https://github.com/BrotherLouie)
+* __Ukrainian__ by [Valeriy Soglaev](https://github.com/ValeriySoglaev)
+* __Albanian__ by [Lori K.](https://github.com/lor1x)
+* __Greek__ by [Kyriakos Markakis](https://github.com/marquicodes)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.

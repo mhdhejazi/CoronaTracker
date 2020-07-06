@@ -27,6 +27,7 @@
 "data.source" = "Source: %@";
 "app.newVersionTitle" = "New Version Available";
 "app.newVersionMessage" = "Please update from %@";
+"app.credits" = "Credits";
 "message.cancel" = "Cancel";
 "message.open" = "Open";
 "message.ok" = "OK";
@@ -35,5 +36,7 @@
 "menu.update" = "Update";
 "menu.share" = "Share";
 "menu.search" = "Search";
+"menu.releaseNotes" = "Release Notes";
+"menu.reportIssue" = "Report an Issue";
 "share.current" = "Coronavirus live update";
 "share.chartHistory" = "Coronavirus growth chart";

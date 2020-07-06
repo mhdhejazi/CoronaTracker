@@ -147,6 +147,10 @@ extension RegionDataController {
 							trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
 		let cell = tableView.cellForRow(at: indexPath) as? RegionDataCell
+		guard cell?.shareableText != nil else {
+			return nil
+		}
+
 		let action = UIContextualAction(style: .normal, title: nil) { _, _, completion in
 			completion(true)
 			self.shareImage(for: cell)

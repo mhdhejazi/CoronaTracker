@@ -23,6 +23,7 @@ internal enum Asset {
   internal static let info = ImageAsset(name: "Info")
   internal static let layers = ImageAsset(name: "Layers")
   internal static let more = ImageAsset(name: "More")
+  internal static let persons = ImageAsset(name: "Persons")
   internal static let reload = ImageAsset(name: "Reload")
   internal static let search = ImageAsset(name: "Search")
   internal static let shareCircle = ImageAsset(name: "Share-Circle")

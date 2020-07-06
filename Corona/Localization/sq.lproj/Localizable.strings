@@ -1,0 +1,42 @@
+/*
+  Corona Tracker
+  Translation by Lori K. - github.com/lor1x
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Të konfirmuar";
+"case.active" = "Aktivë";
+"case.recovered" = "Shëruar";
+"case.deaths" = "Të vdekur";
+"region.world" = "Bota";
+"chart.topCountries" = "Shtetet më të prekura";
+"chart.topRegions" = "Most Affected Regions";
+"chart.logarithmic" = "Shkallë Logaritmi";
+"chart.delta" = "Rastetet e Reja Ditore";
+"chart.delta.deaths" = "Vdekjet e reja ditore";
+"chart.delta.increasing" = "Rritje";
+"chart.delta.decreasing" = "Rënie";
+"chart.trendline" = "Rastet e reja nga rasti 100";
+"chart.trendline.deaths" = "Numri vdekjve nga vdekja 10";
+"chart.history" = "Rritja e rasteve";
+"chart.axis.days" = "%d Ditë";
+"data.updating" = "Përditësimi…";
+"data.updateDate" = "Përditësimi i fundit:";
+"data.errorTitle" = "Nuk mund të përditësohen të dhënat";
+"data.errorMessage" = "Sigurohuni që jeni të lidhur me internetin";
+"data.source" = "Burimi: %@";
+"app.newVersionTitle" = "Version i ri";
+"app.newVersionMessage" = "Përditësohuni nga %@";
+"message.cancel" = "Anullo";
+"message.open" = "Hap";
+"message.ok" = "OK";
+"message.done" = "Mbaro";
+"menu.copy" = "Kopjo";
+"menu.update" = "Përditëso";
+"menu.share" = "Shpërndaj";
+"menu.search" = "Kërko";
+"share.current" = "Përditësim Live";
+"share.chartHistory" = "Grafiku";
+"app.credits" = "Credits";
+"menu.releaseNotes" = "Release Notes";
+"menu.reportIssue" = "Report an Issue";

@@ -1,6 +1,7 @@
 /*
   Corona Tracker
   Translation by Pedro Paulo Amorim - github.com/ppamorim
+              and James Pereira - github.com/marinehero
   Copyright © 2020 Samabox. All rights reserved.
 */
 
@@ -10,18 +11,33 @@
 "case.deaths" = "Mortos";
 "region.world" = "Mundo";
 "chart.topCountries" = "Países mais afetados";
+"chart.topRegions" = "Regiões mais afetadas";
 "chart.logarithmic" = "Escala logaritimica";
+"chart.delta" = "Novos casos diários";
+"chart.delta.deaths" = "Novas mortes diárias";
+"chart.delta.increasing" = "Aumentando";
+"chart.delta.decreasing" = "Diminuindo";
+"chart.trendline" = "Casos confirmados desde o 100º caso";
+"chart.trendline.deaths" = "Mortes desde a 10ª morte";
+"chart.history" = "Evolução de Casos Suspeitos";
+"chart.axis.days" = "%d Dias";
 "data.updating" = "Atualizando...";
 "data.updateDate" = "Atualizado:";
 "data.errorTitle" = "Não foi possível atualizar os dados";
 "data.errorMessage" = "Por favor, verifique a sua conexão com a internet.";
+"data.source" = "Fonte: %@";
 "app.newVersionTitle" = "Nova versão disponível";
 "app.newVersionMessage" = "Por favor atualize de %@";
 "message.cancel" = "Cancelar";
 "message.open" = "Abrir";
 "message.ok" = "OK";
 "message.done" = "Feito";
+"menu.copy" = "Copiar";
 "menu.update" = "Atualizar";
 "menu.share" = "Compartilhar";
+"menu.search" = "Pesquisar";
 "share.current" = "Atualização ao vivo do Coronavírus";
 "share.chartHistory" = "Gráfico de crescimento do Coronavírus";
+"app.credits" = "Créditos";
+"menu.releaseNotes" = "Notas de versão";
+"menu.reportIssue" = "Relatório de problemas";

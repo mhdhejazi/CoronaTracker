@@ -19,7 +19,10 @@ extension AppMenu {
 		switch action {
 		case #selector(searchAction(_:)),
 			 #selector(reloadAction(_:)),
-			 #selector(shareAction(_:)):
+			 #selector(shareAction(_:)),
+			 #selector(releaseNotesAction(_:)),
+			 #selector(reportIssueAction(_:)),
+			 #selector(showHelp(_:)):
 			return true
 
 		default:
@@ -35,6 +38,7 @@ extension AppMenu {
 		builder.insertSibling(searchMenu(), afterMenu: .standardEdit)
 		builder.insertChild(reloadMenu(), atStartOfMenu: .view)
 		builder.insertChild(shareMenu(), atStartOfMenu: .file)
+		builder.insertChild(helpMenu(), atStartOfMenu: .help)
 	}
 
 	private func searchMenu() -> UIMenu {
@@ -61,6 +65,21 @@ extension AppMenu {
 		return UIMenu(title: "", options: .displayInline, children: [command])
 	}
 
+	private func helpMenu() -> UIMenu {
+		UIMenu(title: "", options: .displayInline, children: [
+			UICommand(title: L10n.Menu.releaseNotes,
+					  action: #selector(releaseNotesAction(_:))),
+			UICommand(title: L10n.Menu.reportIssue,
+					  action: #selector(reportIssueAction(_:)))
+		])
+	}
+
+	private func reportIssueMenu() -> UIMenu {
+		let command = UICommand(title: L10n.Menu.reportIssue,
+								action: #selector(reportIssueAction(_:)))
+		return UIMenu(title: "", options: .displayInline, children: [command])
+	}
+
 	// MARK: - Actions
 
 	@objc
@@ -76,5 +95,20 @@ extension AppMenu {
 	@objc
 	private func shareAction(_ sender: UICommand) {
 		MapController.shared.showShareButtons()
+	}
+
+	@objc
+	private func releaseNotesAction(_ sender: UICommand) {
+		App.openReleaseNotesPage()
+	}
+
+	@objc
+	private func reportIssueAction(_ sender: UICommand) {
+		App.openNewIssuePage()
+	}
+
+	@objc
+	private func showHelp(_ sender: UICommand) {
+		App.openHelpPage()
 	}
 }

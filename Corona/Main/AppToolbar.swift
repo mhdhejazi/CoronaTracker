@@ -50,7 +50,7 @@ extension AppToolbar: NSToolbarDelegate {
 										  target: self,
 										  action: #selector(toolbarGroupSelectionChanged(group:)))
 			item.controlRepresentation = .collapsed
-			item.selectedIndex = MapController.shared.mode.rawValue
+			item.selectedIndex = (MapController.shared?.mode ?? .confirmed).rawValue
 			return item
 
 		case .reload:
