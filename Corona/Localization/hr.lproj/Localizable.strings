@@ -1,0 +1,42 @@
+/*
+  Corona Tracker
+  Created by Mhd Hejazi on 3/22/20.
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Potvrđeni";
+"case.active" = "Aktivni";
+"case.recovered" = "Oporavljeni";
+"case.deaths" = "Preminuli";
+"region.world" = "Svijet";
+"chart.topCountries" = "Najpogođenije zemlje";
+"chart.topRegions" = "Najpogođenije regije";
+"chart.logarithmic" = "Logaritamska ljestvica";
+"chart.delta" = "Novozaraženi";
+"chart.delta.deaths" = "Novopreminuli";
+"chart.delta.increasing" = "Rastući";
+"chart.delta.decreasing" = "Padajući";
+"chart.trendline" = "Potvrđeni slučajevi poslije 100. slučaja";
+"chart.trendline.deaths" = "Preminuli poslije 10. smrti";
+"chart.history" = "Rast slučajeva";
+"chart.axis.days" = "%d Dani";
+"data.updating" = "Ažuriranje...";
+"data.updateDate" = "Zadnji put ažurirano:";
+"data.errorTitle" = "Podaci se ne mogu ažurirati";
+"data.errorMessage" = "Provjerite jeste li povezani s internetom.";
+"data.source" = "Izvor: %@";
+"app.newVersionTitle" = "Dostupna nova verzija";
+"app.newVersionMessage" = "Ažurirajte s %@";
+"app.credits" = "Zasluge";
+"message.cancel" = "Poništi";
+"message.open" = "Otvori";
+"message.ok" = "OK";
+"message.done" = "Gotovo";
+"menu.copy" = "Kopiraj";
+"menu.update" = "Ažuriraj";
+"menu.share" = "Podijeli";
+"menu.search" = "Traži";
+"menu.releaseNotes" = "Bilješke o izdanju";
+"menu.reportIssue" = "Prijavi problem";
+"share.current" = "Ažuriranje koronavirusa uživo";
+"share.chartHistory" = "Grafikon rasta koronavirusa";
