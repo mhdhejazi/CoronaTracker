@@ -14,6 +14,7 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
 	private lazy var formatter: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.timeZone = .utc
+		formatter.dateFormat = "MMM dd"
 		return formatter
 	}()
 
@@ -23,13 +24,6 @@ class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
 
 	public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
 		let date = Date.fromReferenceDays(days: Int(value))
-
-		if let chartView = chartView, chartView.visibleXRange > 30 * 6 {
-			formatter.dateFormat = "MMM yyyy"
-		} else {
-			formatter.dateFormat = "MMM dd"
-		}
-
 		return formatter.string(from: date)
 	}
 }
