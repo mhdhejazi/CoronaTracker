@@ -90,6 +90,7 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 * __Ukrainian__ by [Valeriy Soglaev](https://github.com/ValeriySoglaev)
 * __Albanian__ by [Lori K.](https://github.com/lor1x)
 * __Greek__ by [Kyriakos Markakis](https://github.com/marquicodes)
+* __Kurdish__ by [Rawaz Mahmud](https://github.com/rawaz4)
 * __Croatian__ by [Nikola Franičević](https://github.com/FranicevicNikola)
 
 ### Libraries
