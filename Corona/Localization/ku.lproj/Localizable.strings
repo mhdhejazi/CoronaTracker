@@ -1,0 +1,40 @@
+
+/*Corona Tracker
+  Created by Mhd Hejazi on 3/22/20.
+  Copyright © 2020 Samabox. All rights reserved.*/
+"case.confirmed" = "تووشبوو";
+"case.active" = "تووشبووی چالاك";
+"case.recovered" = "چاكبوونه‌وه‌";
+"case.deaths" = "مردن";
+"region.world" = "جیهان";
+"chart.topCountries" = "زۆرترین ئه‌و وڵاتانه‌ی تووشی بۆتن";
+"chart.topRegions" = "زۆرترین ئه‌و هه‌رێمانه‌ی تووشی بۆتن";
+"chart.logarithmic" = "نیشاندانی هێڵكاری و گه‌وره‌كردن";
+"chart.delta" = "توشبووی نوێی ڕۆژانه‌";
+"chart.delta.deaths" = "مردنی نوێی ڕۆژانه‌";
+"chart.delta.increasing" = "زیادكردن";
+"chart.delta.decreasing" = "كه‌مركردن";
+"chart.trendline" = "حاڵه‌تی توشبونه‌كان له‌ 100ه‌مین حاڵه‌ته‌وه‌";
+"chart.trendline.deaths" = "حاڵه‌تی مردنه‌كان له‌ 10یه‌مین مردنه‌وه‌";
+"chart.history" = "ته‌شه‌نه‌كردنی حاڵه‌ته‌كان";
+"chart.axis.days" = "%d ڕۆژ";
+"data.updating" = "نوێكردنه‌وه‌...";
+"data.updateDate" = "دواهه‌مین نوێكردنه‌وه‌:";
+"data.errorTitle" = "ناتوانرێت نوێبكرێته‌وه‌";
+"data.errorMessage" = "تكایه‌ دڵنیابه‌ره‌وه‌ له‌وه‌ی كه‌ په‌یوه‌ستیت به‌ ئینته‌رنێته‌وه‌";
+"data.source" = "سه‌رچاوه‌: %@";
+"app.newVersionTitle" = "وه‌شانی نوێ به‌رده‌سته‌";
+"app.newVersionMessage" = "تكایه‌ نوێیبكه‌ره‌وه‌ له‌ %@";
+"message.cancel" = "داخستن";
+"message.open" = "كردنه‌وه‌";
+"message.ok" = "باشه‌";
+"message.done" = "ته‌واو بوو";
+"menu.copy" = "له‌به‌رگرتنه‌وه‌";
+"menu.update" = "نوێكردنه‌وه‌";
+"menu.share" = "هاوبه‌شكردن";
+"menu.search" = "گه‌ڕان";
+"share.current" = "ئاماری ڕاسته‌وخۆی ڤایرۆسی كۆرۆنا";
+"share.chartHistory" = "هێڵكاری گه‌شه‌كردنی ڤایرۆسی كۆرۆنا";
+"app.credits" = "دروستكه‌ره‌كان";
+"menu.releaseNotes" = "تێبینیه‌كانی وه‌شان";
+"menu.reportIssue" = "ڕاپۆرت دان له‌هه‌ر هه‌ڵه‌یه‌ك";
