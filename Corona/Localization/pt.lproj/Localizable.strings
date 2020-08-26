@@ -12,7 +12,7 @@
 "region.world" = "Mundo";
 "chart.topCountries" = "Países mais afetados";
 "chart.topRegions" = "Regiões mais afetadas";
-"chart.logarithmic" = "Escala logaritimica";
+"chart.logarithmic" = "Escala logarítmica";
 "chart.delta" = "Novos casos diários";
 "chart.delta.deaths" = "Novas mortes diárias";
 "chart.delta.increasing" = "Aumentando";
