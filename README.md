@@ -94,7 +94,7 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 * __Croatian__ by [Nikola Franičević](https://github.com/FranicevicNikola)
 
 ### Libraries
-* [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
+* [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data files.
 * [Charts](https://github.com/danielgindi/Charts): Beautiful and powerful charts.
 * [FloatingPanel](https://github.com/SCENEE/FloatingPanel): For the bottom sheet.
 * [Disk](https://github.com/saoudrizwan/Disk): Simplifies loading/saving files.
