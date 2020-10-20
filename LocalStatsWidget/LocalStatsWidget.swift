@@ -92,17 +92,13 @@ struct LocalStatsWidgetEntryView: View {
 	var entry: Provider.Entry
 
 	var body: some View {
-
-		let countryIsoCode = entry.region.isoCode ?? "world"
-		let widgetDeepLink = URL(string: "coronatracker://ios_14_widget/open?region=\(countryIsoCode)")
-
 		switch family {
 		case .systemSmall:
 			LocalStatsSmallWidgetView(entry: entry)
-				.widgetURL(widgetDeepLink)
+				.widgetURL(entry.region.deepLinkUrl)
 		default:
 			LocalStatsMediumWidgetView(entry: entry)
-				.widgetURL(widgetDeepLink)
+				.widgetURL(entry.region.deepLinkUrl)
 		}
 	}
 }
