@@ -150,7 +150,8 @@ public class JHURepoDataService: DataService {
 		dateFormatter.dateFormat = "M/d/yy"
 
 		let dateStrings = headers.dropFirst(4)
-		let dateValues = dateStrings.compactMap({ dateFormatter.date(from: $0) })
+		let dateValues = dateStrings.map { dateFormatter.date(from: $0) }
+		let mappedDates = Dictionary(uniqueKeysWithValues: zip(dateStrings, dateValues))
 
 		var regions: [Region] = []
 		for confirmedTimeSeries in confirmed {
@@ -159,21 +160,23 @@ public class JHURepoDataService: DataService {
 
 			var series: [Date: Statistic] = [:]
 			for column in confirmedTimeSeries.values.indices {
-				let date = dateValues[column]
-				var recoveredCount = 0
-				if let recoveredTimeSeries = recoveredTimeSeries {
-					recoveredCount = recoveredTimeSeries.values[min(column, recoveredTimeSeries.values.count - 1)]
+				let dateString = dateStrings[dateStrings.startIndex + column]
+				if let dateEntry = mappedDates[dateString], let date = dateEntry {
+					var recoveredCount = 0
+					if let recoveredTimeSeries = recoveredTimeSeries {
+						recoveredCount = recoveredTimeSeries.values[min(column, recoveredTimeSeries.values.count - 1)]
+					}
+					var deathCount = 0
+					if let deathsTimeSeries = deathsTimeSeries {
+						deathCount = deathsTimeSeries.values[min(column, deathsTimeSeries.values.count - 1)]
+					}
+					let stat = Statistic(
+						confirmedCount: confirmedTimeSeries.values[column],
+						recoveredCount: recoveredCount,
+						deathCount: deathCount
+					)
+					series[date] = stat
 				}
-				var deathCount = 0
-				if let deathsTimeSeries = deathsTimeSeries {
-					deathCount = deathsTimeSeries.values[min(column, deathsTimeSeries.values.count - 1)]
-				}
-				let stat = Statistic(
-					confirmedCount: confirmedTimeSeries.values[column],
-					recoveredCount: recoveredCount,
-					deathCount: deathCount
-				)
-				series[date] = stat
 			}
 			let timeSeries = TimeSeries(series: series)
 
