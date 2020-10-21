@@ -20,16 +20,20 @@ public class Region: Codable {
 
 	public var subRegions: [Region] = []
 
-	init(level: Level, name: String, parentName: String?, location: Coordinate) {
+	init(level: Level, name: String, parentName: String?, location: Coordinate, isoCode: String? = nil) {
 		self.level = level
 		self.name = name
 		self.parentName = parentName
 		self.location = location
 
-		if level == .country {
-			self.isoCode = Locale.isoCode(from: name)
+		if let isoCode = isoCode {
+			self.isoCode = isoCode
 		} else {
-			self.isoCode = nil
+			if level == .country {
+				self.isoCode = Locale.isoCode(from: name)
+			} else {
+				self.isoCode = nil
+			}
 		}
 	}
 

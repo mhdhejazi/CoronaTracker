@@ -136,12 +136,12 @@ extension DataManager {
 			}
 
 			/// Data for Germany comes from a different source, so don't accumulate data
-			if let subRegions = result.rki, let region = self.world.find(subRegionCode: "DE") {
+			if let subRegions = result.rki, let region = self.world.find(subRegionCode: "DEU") {
 				region.subRegions = subRegions
 			}
 
 			/// Data for Austria comes from a different source, so don't accumulate data
-			if let austrianSubRegions = result.austria, let region = self.world.find(subRegionCode: "AT") {
+			if let austrianSubRegions = result.austria, let region = self.world.find(subRegionCode: "AUT") {
 				region.subRegions = austrianSubRegions
 			}
 

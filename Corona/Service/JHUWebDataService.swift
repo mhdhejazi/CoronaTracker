@@ -104,6 +104,7 @@ private struct ReportAttributes: Decodable {
 	private enum CodingKeys: String, CodingKey {
 		case province = "Province_State"
 		case country = "Country_Region"
+		case isoCode = "ISO3"
 		case lastUpdateTimestamp = "Last_Update"
 		case latitude = "Lat"
 		case longitude = "Long_"
@@ -114,6 +115,7 @@ private struct ReportAttributes: Decodable {
 
 	let province: String?
 	let country: String
+	let isoCode: String?
 	let lastUpdateTimestamp: Int
 	let latitude: Double?
 	let longitude: Double?
@@ -131,7 +133,7 @@ private struct ReportAttributes: Decodable {
 		if let name = province {
 			region = Region(level: .province, name: name, parentName: country, location: location)
 		} else {
-			region = Region(level: .country, name: country, parentName: nil, location: location)
+			region = Region(level: .country, name: country, parentName: nil, location: location, isoCode: isoCode)
 		}
 		region.report = report
 
