@@ -110,7 +110,7 @@
 		6B2E65CF253C984E0010CB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2E65CE253C984E0010CB2D /* Assets.xcassets */; };
 		6B2E65D1253C984E0010CB2D /* LocalStatsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E65CD253C984B0010CB2D /* LocalStatsWidget.intentdefinition */; };
 		6B2E65D2253C984E0010CB2D /* LocalStatsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E65CD253C984B0010CB2D /* LocalStatsWidget.intentdefinition */; };
-		6B2E65D5253C984E0010CB2D /* LocalStatsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6B2E65C5253C984B0010CB2D /* LocalStatsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6B2E65D5253C984E0010CB2D /* LocalStatsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6B2E65C5253C984B0010CB2D /* LocalStatsWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6B2E65DC253C98D30010CB2D /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518694241FAECB00EBC83E /* Region.swift */; };
 		6B2E65DD253C98D60010CB2D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1151868E241FAECB00EBC83E /* DataManager.swift */; };
 		6B2E65DF253C98E80010CB2D /* TimeSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11518691241FAECB00EBC83E /* TimeSeries.swift */; };
@@ -1016,6 +1016,7 @@
 /* Begin PBXTargetDependency section */
 		6B2E65D4253C984E0010CB2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 6B2E65C4253C984B0010CB2D /* LocalStatsWidgetExtension */;
 			targetProxy = 6B2E65D3253C984E0010CB2D /* PBXContainerItemProxy */;
 		};
@@ -1226,6 +1227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.7.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Widget/Info.plist;
@@ -1234,6 +1236,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1246,6 +1249,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.7.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Widget/Info.plist;
@@ -1254,6 +1258,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1270,6 +1275,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = LocalStatsWidget/LocalStatsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.7.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LocalStatsWidget/Info.plist;
@@ -1279,10 +1285,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.LocalStatsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1297,6 +1304,7 @@
 				CODE_SIGN_ENTITLEMENTS = LocalStatsWidget/LocalStatsWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 1.7.2;
 				INFOPLIST_FILE = LocalStatsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1304,10 +1312,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.7.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.LocalStatsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
