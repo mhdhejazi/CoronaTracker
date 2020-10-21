@@ -52,7 +52,7 @@ public class JHURepoDataService: DataService {
 		print("Downloading", fileName)
 		let url = URL(string: String(format: Self.dailyReportURLString, fileName), relativeTo: Self.baseURL)!
 
-		_ = URLSession.shared.dataTask(with: url) { data, response, _ in
+		URLSession.shared.dataTask(with: url) { data, response, _ in
 
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
@@ -202,7 +202,7 @@ public class JHURepoDataService: DataService {
 	private func downloadFile(url: URL, completion: @escaping (Data?) -> Void) {
 		let fileName = url.lastPathComponent
 		print("Downloading", fileName)
-		_ = URLSession.shared.dataTask(with: url) { (data, response, _) in
+		URLSession.shared.dataTask(with: url) { (data, response, _) in
 			guard let response = response as? HTTPURLResponse,
 				response.statusCode == 200,
 				let data = data else {
