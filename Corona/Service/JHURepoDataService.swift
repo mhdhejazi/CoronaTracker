@@ -150,6 +150,7 @@ public class JHURepoDataService: DataService {
 		dateFormatter.dateFormat = "M/d/yy"
 
 		let dateStrings = headers.dropFirst(4)
+		let dateValues = dateStrings.map { dateFormatter.date(from: $0) }
 
 		var regions: [Region] = []
 		for confirmedTimeSeries in confirmed {
@@ -158,8 +159,7 @@ public class JHURepoDataService: DataService {
 
 			var series: [Date: Statistic] = [:]
 			for column in confirmedTimeSeries.values.indices {
-				let dateString = dateStrings[dateStrings.startIndex + column]
-				if let date = dateFormatter.date(from: dateString) {
+				if let date = dateValues[dateValues.startIndex + column] {
 					var recoveredCount = 0
 					if let recoveredTimeSeries = recoveredTimeSeries {
 						recoveredCount = recoveredTimeSeries.values[min(column, recoveredTimeSeries.values.count - 1)]

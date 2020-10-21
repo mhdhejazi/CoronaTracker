@@ -194,4 +194,24 @@ extension DataManager {
 			sortedCountries[index].order = index
 		}
 	}
+
+	/// Fetches data from JHU and updates internal data models (`.world`).
+	/// Since widgets have a peak memory usage limitation of 30Mb, keep it as simple as possible.
+	/// - Parameter completion: Called after fetching data.
+	/// - Note: A future improvement would be to parse only the data the widget needs:
+	/// - Data only for the selected COUNTRY/WORLDWIDE (`subRegions` can be skipped);
+	/// - Statistics only for today and yesterday (to display the daily change in number of cases).
+	public func fetchWidgetsData(completion: @escaping (Bool) -> Void) {
+		JHUWebDataService.shared.fetchReports { regions, _ in
+			guard let regions = regions else {
+				completion(false)
+				return
+			}
+
+			JHURepoDataService.shared.fetchTimeSerieses { timeSeriesRegions, _ in
+				self.update(regions: regions, timeSeriesRegions: timeSeriesRegions)
+				completion(true)
+			}
+		}
+	}
 }
