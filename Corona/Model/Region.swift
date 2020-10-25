@@ -30,7 +30,7 @@ public class Region: Codable {
 			self.isoCode = isoCode
 		} else {
 			if level == .country {
-				self.isoCode = Locale.isoCode(from: name)
+				self.isoCode = Locale.isoCode(for: name)
 			} else {
 				self.isoCode = nil
 			}

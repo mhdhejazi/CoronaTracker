@@ -46,7 +46,7 @@ struct Provider: IntentTimelineProvider {
 	}
 
 	func region(for configuration: ConfigurationIntent) -> Region {
-		let countryIsoCode = configuration.location?.isoCountryCode
+		let countryIsoCode = configuration.location?.iso3CountryCode
 		let dataManager = DataManager.shared
 
 		guard

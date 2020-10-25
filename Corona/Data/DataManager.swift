@@ -127,7 +127,7 @@ extension DataManager {
 			/// Data from Bing
 			if let regions = result.bing {
 				for region in regions where !region.subRegions.isEmpty {
-					if let regionCode = Locale.isoCode(from: region.name),
+					if let regionCode = Locale.isoCode(for: region.name),
 						let existingRegion = self.world.find(subRegionCode: regionCode),
 						existingRegion.subRegions.count < region.subRegions.count / 2 {
 						existingRegion.subRegions = region.subRegions
