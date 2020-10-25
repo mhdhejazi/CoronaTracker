@@ -13,6 +13,7 @@ class MapController: UIViewController {
 	private static let updateInterval: TimeInterval = 60 * 5 /// 5 mins
 
 	static var shared: MapController!
+	static var initialRegionCode: String?
 
 	@IBOutlet private var mapView: MKMapView!
 	@IBOutlet private var effectView: UIVisualEffectView!
@@ -23,6 +24,7 @@ class MapController: UIViewController {
 
 	private var cityZoomLevel: CGFloat { 5 }
 	private var allAnnotations: [RegionAnnotation] = []
+	private var currentRegion: Region?
 
 	private var panelController: FloatingPanelController!
 	private var regionPanelController: RegionPanelController!
@@ -42,6 +44,11 @@ class MapController: UIViewController {
 		initializeBottomSheet()
 
 		DataManager.shared.load { _ in
+			if let regionCode = Self.initialRegionCode,
+			   let initialRegion = DataManager.shared.world.subRegions.first(where: { $0.isoCode == regionCode }) {
+				self.currentRegion = initialRegion
+			}
+
 			self.update()
 			self.downloadIfNeeded()
 		}
@@ -115,6 +122,7 @@ class MapController: UIViewController {
 	}
 
 	func updateRegionScreen(region: Region?) {
+		currentRegion = region
 		regionPanelController.regionDataController.region = region
 		regionPanelController.regionDataController.update()
 	}
@@ -159,12 +167,14 @@ class MapController: UIViewController {
 			annotation.region.isCountry || mapView.zoomLevel > cityZoomLevel
 		}
 
+		let currentRegion = self.currentRegion
+
 		mapView.superview?.transition {
 			self.mapView.removeAnnotations(self.mapView.annotations)
 			self.mapView.addAnnotations(currentAnnotations)
 		}
 
-		regionPanelController.regionDataController.region = nil
+		regionPanelController.regionDataController.region = currentRegion
 		regionPanelController.regionDataController.update()
 	}
 

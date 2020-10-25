@@ -139,7 +139,6 @@
 		6BBBA13C253DFF9C00F09CD8 /* Widget-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBBA13A253DFF9800F09CD8 /* Widget-Extensions.swift */; };
 		6BD24B4C253CB8D300F9089A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD24B4B253CB8D300F9089A /* StatsView.swift */; };
 		6BD24B4E253CBB9B00F9089A /* LocalStatsSmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD24B49253CB8A900F9089A /* LocalStatsSmallWidgetView.swift */; };
-		6BE182BF253F565F00537EEB /* DeepLinkHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE182BE253F565F00537EEB /* DeepLinkHandling.swift */; };
 		CDA24CD924559C9C00375D19 /* BMSGPKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */; };
 		CDA24CDA24559E3E00375D19 /* BMSGPKDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */; };
 		CDA50DE0242C7D330055BE4A /* CSV in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 115186B3241FB00000EBC83E /* CSV */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -318,7 +317,6 @@
 		6BBBA13A253DFF9800F09CD8 /* Widget-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget-Extensions.swift"; sourceTree = "<group>"; };
 		6BD24B49253CB8A900F9089A /* LocalStatsSmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStatsSmallWidgetView.swift; sourceTree = "<group>"; };
 		6BD24B4B253CB8D300F9089A /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		6BE182BE253F565F00537EEB /* DeepLinkHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandling.swift; sourceTree = "<group>"; };
 		939AFEE824B8A3C700A72769 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C31F26A5244C594300281F1F /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDA24CD824559C9C00375D19 /* BMSGPKDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMSGPKDataService.swift; sourceTree = "<group>"; };
@@ -632,10 +630,9 @@
 		6B2E65CA253C984B0010CB2D /* LocalStatsWidget */ = {
 			isa = PBXGroup;
 			children = (
-				6BE182BD253F563C00537EEB /* DeepLinkHandling */,
-				6BBBA139253DFF8400F09CD8 /* Util */,
 				6B2E65FF253C9BB10010CB2D /* Data */,
 				6B2E65FE253C9BA10010CB2D /* Views */,
+				6BBBA139253DFF8400F09CD8 /* Util */,
 				6B2E65CB253C984B0010CB2D /* LocalStatsWidget.swift */,
 				6B2E65D6253C984E0010CB2D /* LocalStatsWidgetExtension.entitlements */,
 				6B2E65CD253C984B0010CB2D /* LocalStatsWidget.intentdefinition */,
@@ -669,14 +666,6 @@
 				6BBBA13A253DFF9800F09CD8 /* Widget-Extensions.swift */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		6BE182BD253F563C00537EEB /* DeepLinkHandling */ = {
-			isa = PBXGroup;
-			children = (
-				6BE182BE253F565F00537EEB /* DeepLinkHandling.swift */,
-			);
-			path = DeepLinkHandling;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -916,7 +905,6 @@
 				11C6D386243E46B1003AC870 /* DetailsView.swift in Sources */,
 				1114CFC82423F8CC00B1CF85 /* ImageItemSource.swift in Sources */,
 				11C6D37C243E4487003AC870 /* RegionChartView.swift in Sources */,
-				6BE182BF253F565F00537EEB /* DeepLinkHandling.swift in Sources */,
 				1151869C241FAF6200EBC83E /* Extensions.swift in Sources */,
 				1114CFC92423F8CC00B1CF85 /* TextItemSource.swift in Sources */,
 				11EB2CA1241400EF001769B2 /* TopChartView.swift in Sources */,
