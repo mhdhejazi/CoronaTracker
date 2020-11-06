@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1210"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -18,7 +18,7 @@
                BlueprintIdentifier = "344ED31E241AC7AA004C4EA8"
                BuildableName = "Widget.appex"
                BlueprintName = "Widget"
-               ReferencedContainer = "container:Corona.xcodeproj">
+               ReferencedContainer = "container:SpatialReality.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1162D127240D05F600647002"
-               BuildableName = "Corona Tracker.app"
-               BlueprintName = "Corona Tracker"
-               ReferencedContainer = "container:Corona.xcodeproj">
+               BuildableName = "SpatialReality.app"
+               BlueprintName = "SpatialReality"
+               ReferencedContainer = "container:SpatialReality.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1162D127240D05F600647002"
-            BuildableName = "Corona Tracker.app"
-            BlueprintName = "Corona Tracker"
-            ReferencedContainer = "container:Corona.xcodeproj">
+            BuildableName = "SpatialReality.app"
+            BlueprintName = "SpatialReality"
+            ReferencedContainer = "container:SpatialReality.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1162D127240D05F600647002"
-            BuildableName = "Corona Tracker.app"
-            BlueprintName = "Corona Tracker"
-            ReferencedContainer = "container:Corona.xcodeproj">
+            BuildableName = "SpatialReality.app"
+            BlueprintName = "SpatialReality"
+            ReferencedContainer = "container:SpatialReality.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

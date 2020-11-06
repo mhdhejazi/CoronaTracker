@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -162,7 +162,7 @@
 		11518698241FAECB00EBC83E /* JHURepoDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JHURepoDataService.swift; sourceTree = "<group>"; };
 		1151869B241FAF6200EBC83E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		115186BE242019EE00EBC83E /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
-		1162D128240D05F600647002 /* Corona Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1162D128240D05F600647002 /* SpatialReality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialReality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1162D12B240D05F600647002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1162D12D240D05F600647002 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1162D12F240D05F600647002 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 		1162D129240D05F600647002 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1162D128240D05F600647002 /* Corona Tracker.app */,
+				1162D128240D05F600647002 /* SpatialReality.app */,
 				344ED31F241AC7AA004C4EA8 /* Widget.appex */,
 			);
 			name = Products;
@@ -511,9 +511,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1162D127240D05F600647002 /* Corona Tracker */ = {
+		1162D127240D05F600647002 /* SpatialReality */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona Tracker" */;
+			buildConfigurationList = 1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "SpatialReality" */;
 			buildPhases = (
 				1162D124240D05F600647002 /* Sources */,
 				1162D125240D05F600647002 /* Frameworks */,
@@ -526,7 +526,7 @@
 			);
 			dependencies = (
 			);
-			name = "Corona Tracker";
+			name = SpatialReality;
 			packageProductDependencies = (
 				11BF32A924156AE500270130 /* FloatingPanel */,
 				1195F1A4241EC1FB00FE718F /* Charts */,
@@ -534,7 +534,7 @@
 				115186B3241FB00000EBC83E /* CSV */,
 			);
 			productName = Corona;
-			productReference = 1162D128240D05F600647002 /* Corona Tracker.app */;
+			productReference = 1162D128240D05F600647002 /* SpatialReality.app */;
 			productType = "com.apple.product-type.application";
 		};
 		344ED31E241AC7AA004C4EA8 /* Widget */ = {
@@ -566,8 +566,8 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
-				ORGANIZATIONNAME = Samabox;
+				LastUpgradeCheck = 1210;
+				ORGANIZATIONNAME = GlassHand;
 				TargetAttributes = {
 					1162D127240D05F600647002 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -577,8 +577,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 1162D123240D05F600647002 /* Build configuration list for PBXProject "Corona" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 1162D123240D05F600647002 /* Build configuration list for PBXProject "SpatialReality" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -609,7 +609,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1162D127240D05F600647002 /* Corona Tracker */,
+				1162D127240D05F600647002 /* SpatialReality */,
 				344ED31E241AC7AA004C4EA8 /* Widget */,
 			);
 		};
@@ -801,6 +801,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -824,7 +825,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -861,6 +862,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -878,7 +880,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -895,15 +897,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 55AFPWUVR6;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertouchsoftware.SpatialReality;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -919,15 +921,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Corona/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 55AFPWUVR6;
 				INFOPLIST_FILE = Corona/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aftertouchsoftware.SpatialReality;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -941,14 +943,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 55AFPWUVR6;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aftertouchsoftware.SpatialReality.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -961,14 +963,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 55AFPWUVR6;
 				INFOPLIST_FILE = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samabox.corona.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aftertouchsoftware.SpatialReality.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -979,7 +981,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1162D123240D05F600647002 /* Build configuration list for PBXProject "Corona" */ = {
+		1162D123240D05F600647002 /* Build configuration list for PBXProject "SpatialReality" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1162D13A240D05FA00647002 /* Debug */,
@@ -988,7 +990,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "Corona Tracker" */ = {
+		1162D13C240D05FA00647002 /* Build configuration list for PBXNativeTarget "SpatialReality" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1162D13D240D05FA00647002 /* Debug */,
