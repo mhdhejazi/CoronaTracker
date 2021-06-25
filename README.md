@@ -92,6 +92,7 @@ Mhd Hejazi <a href="https://twitter.com/intent/follow?screen_name=Hejazi"><img s
 * __Greek__ by [Kyriakos Markakis](https://github.com/marquicodes)
 * __Kurdish__ by [Rawaz Mahmud](https://github.com/rawaz4)
 * __Croatian__ by [Nikola Franičević](https://github.com/FranicevicNikola)
+* __Vietnamese__ by [Quan Bui Van](https://github.com/sjc-bui)
 
 ### Libraries
 * [CSV.swift](https://github.com/yaslab/CSV.swift): For parsing the CSV data file.
