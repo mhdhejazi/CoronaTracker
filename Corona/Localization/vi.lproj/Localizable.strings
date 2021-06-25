@@ -1,0 +1,42 @@
+/* 
+  Corona Tracker
+  Translation by Quan Bui Van - github.com/sjc-bui
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "Xác nhận";
+"case.active" = "Nhiễm";
+"case.recovered" = "Hồi phục";
+"case.deaths" = "Tử vong";
+"region.world" = "Thế giới";
+"chart.topCountries" = "Quốc gia bị ảnh hưởng nhiều nhất";
+"chart.topRegions" = "Khu vực bị ảnh hưởng nhiều nhất";
+"chart.logarithmic" = "Thang đo Logarit";
+"chart.delta" = "Số ca nhiễm mới hàng ngày";
+"chart.delta.deaths" = "Số ca tử vong hàng ngày";
+"chart.delta.increasing" = "Tăng";
+"chart.delta.decreasing" = "Giảm";
+"chart.trendline" = "Số ca đã xác nhận kể từ ca nhiễm thứ 100";
+"chart.trendline.deaths" = "Số ca tử vong kể từ ca tử vong thứ 10";
+"chart.history" = "Sự gia tăng số ca";
+"chart.axis.days" = "%d ngày";
+"data.updating" = "Đang cập nhật...";
+"data.updateDate" = "Cập nhật lần cuối:";
+"data.errorTitle" = "Không thể cập nhật dữ liệu";
+"data.errorMessage" = "Vui lòng kiểm tra kết nối mạng.";
+"data.source" = "Nguồn: %@";
+"app.newVersionTitle" = "Phiên bản mới có sẵn";
+"app.newVersionMessage" = "Vui lòng cập nhật từ %@";
+"app.credits" = "Tín dụng";
+"message.cancel" = "Huỷ";
+"message.open" = "Mở";
+"message.ok" = "Xác nhận";
+"message.done" = "Xong";
+"menu.copy" = "Sao chép";
+"menu.update" = "Cập nhật";
+"menu.share" = "Chia sẻ";
+"menu.search" = "Tìm kiếm";
+"menu.releaseNotes" = "Ghi chú phát hành";
+"menu.reportIssue" = "Báo cáo vấn đề";
+"share.current" = "Cập nhật trực tiếp số ca liên quan đến virus Corona";
+"share.chartHistory" = "Biểu đồ gia tăng số ca liên quan đến virus Corona";
