@@ -1,0 +1,43 @@
+/* 
+  Corona Tracker
+  Created by Mhd Hejazi on 3/22/20.
+  Translated by Biplob Hossain - github.com/biplobice
+  Copyright © 2020 Samabox. All rights reserved.
+*/
+
+"case.confirmed" = "সনাক্ত";
+"case.active" = "সক্রিয়";
+"case.recovered" = "সুস্থ";
+"case.deaths" = "মৃত্যু";
+"region.world" = "বিশ্বব্যাপী";
+"chart.topCountries" = "সর্বাধিক ক্ষতিগ্রস্ত দেশ";
+"chart.topRegions" = "সর্বাধিক ক্ষতিগ্রস্ত অঞ্চল";
+"chart.logarithmic" = "লগারিদমিক স্কেল";
+"chart.delta" = "দৈনিক নতুন সনাক্ত";
+"chart.delta.deaths" = "দৈনিক নতুন মৃত্যু";
+"chart.delta.increasing" = "বৃদ্ধি পাচ্ছে";
+"chart.delta.decreasing" = "কমছে";
+"chart.trendline" = "শততম সনাক্তের পর থেকে সনাক্ত";
+"chart.trendline.deaths" = "দশম মৃত্যুর পর থেকে মৃত্যু";
+"chart.history" = "বৃদ্ধির হার";
+"chart.axis.days" = "%d দিন";
+"data.updating" = "আপডেট করা হচ্ছে...";
+"data.updateDate" = "সর্বশেষ সংষ্করণ:";
+"data.errorTitle" = "ডেটা আপডেট করা যাচ্ছে না";
+"data.errorMessage" = "আপনি ইন্টারনেটের সাথে সংযুক্ত আছেন তা নিশ্চিত করুন।";
+"data.source" = "উৎস: %@";
+"app.newVersionTitle" = "নতুন সংস্করণ রয়েছে";
+"app.newVersionMessage" = "%@ থেকে আপডেট করুন";
+"app.credits" = "ক্রেডিট";
+"message.cancel" = "বাতিল";
+"message.open" = "খুলুন";
+"message.ok" = "ঠিক আছে";
+"message.done" = "সম্পন্ন";
+"menu.copy" = "কপি";
+"menu.update" = "আপডেট";
+"menu.share" = "শেয়ার";
+"menu.search" = "অনুসন্ধান";
+"menu.releaseNotes" = "রিলিজ নোট";
+"menu.reportIssue" = "রিপোর্ট করুন";
+"share.current" = "করোনাভাইরাস লাইভ আপডেট";
+"share.chartHistory" = "করোনাভাইরাস বৃদ্ধির চার্ট";
